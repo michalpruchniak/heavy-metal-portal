@@ -10,6 +10,6 @@ class Publisher extends Model
         'name',
         'url',
         'description',
-        'logo'
+        'logo',
     ];
 }

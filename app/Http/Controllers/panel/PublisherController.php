@@ -6,18 +6,14 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\PublisherRequest;
 use App\Http\Requests\UpdatePublisherRequest;
 use App\Services\Interfaces\PublisherServiceInterface;
-use Illuminate\Http\RedirectResponse;
-
 use Exception;
-use Inertia\Response;
-
+use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
+use Inertia\Response;
 
 class PublisherController extends Controller
 {
-    public function __construct(private readonly PublisherServiceInterface $publisherService)
-    {
-    }
+    public function __construct(private readonly PublisherServiceInterface $publisherService) {}
 
     public function create()
     {

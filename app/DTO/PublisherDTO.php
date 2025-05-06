@@ -1,5 +1,7 @@
 <?php
+
 namespace App\DTO;
+
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Http\UploadedFile;
 
@@ -10,13 +12,11 @@ class PublisherDTO implements Arrayable
         public readonly ?string $url,
         public readonly ?string $description,
         public readonly ?UploadedFile $logo,
-    )
-    {
-    }
+    ) {}
 
     public function toArray()
     {
-        return[
+        return [
             'name' => $this->name,
             'url' => $this->url,
             'description' => $this->description,
