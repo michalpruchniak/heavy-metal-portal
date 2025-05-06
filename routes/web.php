@@ -12,7 +12,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('dashboard', function () {
         return Inertia::render('dashboard');
     })->name('dashboard');
-    Route::resource('publishers', PublisherController::class)->only(['create', 'store', 'edit', 'update']);
+    Route::resource('publishers', PublisherController::class)->only(['index', 'create', 'store', 'edit', 'update']);
 });
 
 require __DIR__.'/settings.php';

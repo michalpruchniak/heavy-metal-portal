@@ -41,3 +41,13 @@ export interface User {
     updated_at: string;
     [key: string]: unknown; // This allows for additional properties...
 }
+
+export interface Publisher {
+    id: number;
+    name: string;
+    logo: string;
+    url?: string | null;
+    description?: string | null;
+    created_at: string;
+    updated_at: string;
+}

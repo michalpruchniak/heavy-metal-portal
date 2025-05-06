@@ -7,6 +7,7 @@ use App\Models\Publisher;
 use App\Repositories\Interfaces\PublisherRepositoryInterface;
 use App\Services\Interfaces\FileUploadServiceInterface;
 use App\Services\Interfaces\PublisherServiceInterface;
+use Illuminate\Database\Eloquent\Collection;
 
 class PublisherService implements PublisherServiceInterface
 {
@@ -14,6 +15,11 @@ class PublisherService implements PublisherServiceInterface
         private readonly PublisherRepositoryInterface $publisherRepository,
         private readonly FileUploadServiceInterface $fileUploadService
     ) {}
+
+    public function getAll(array $order = ['created_at' => 'desc']):Collection
+    {
+        return $this->publisherRepository->get(order: $order);
+    }
 
     public function create(PublisherDTO $publisherDTO): Publisher
     {

@@ -15,6 +15,13 @@ class PublisherController extends Controller
 {
     public function __construct(private readonly PublisherServiceInterface $publisherService) {}
 
+    public function index()
+    {
+        $publishers = $this->publisherService->getAll();
+        return Inertia::render('publishers/index', [
+            'publishers' => $publishers
+        ]);
+    }
     public function create()
     {
         return Inertia::render('publishers/create');
