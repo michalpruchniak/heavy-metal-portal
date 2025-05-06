@@ -1,0 +1,39 @@
+<?php
+
+namespace App\Repositories\Interfaces;
+
+use Illuminate\Database\Eloquent\Model;
+
+interface BaseRepositoryInterface
+{
+    /**
+     * Get records with optional where and order conditions.
+     *
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function get(array $where = [], array $order = [], array $relationships = []);
+
+    /**
+     * Creating a record.
+     *
+     * @param  array<string, mixed>  $data
+     */
+    public function create(array $data): ?Model;
+
+    /**
+     * Find or fail record
+     */
+    public function findOrFail(int $id): ?Model;
+
+    /**
+     * Record update based on Model.
+     *
+     * @param  array<string, mixed>  $data
+     */
+    public function update(?Model $model, array $data): ?Model;
+
+    /**
+     * Delete record.
+     */
+    public function delete(?Model $model): ?bool;
+}
