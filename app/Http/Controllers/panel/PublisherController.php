@@ -35,7 +35,7 @@ class PublisherController extends Controller
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
 
-        return redirect()->back()->with('success', 'Publisher created successfully');
+        return redirect()->route('publishers.index')->with('success', 'Publisher created successfully');
     }
 
     public function edit(int $publisher): Response
@@ -55,6 +55,6 @@ class PublisherController extends Controller
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
 
-        return redirect()->back()->with('success', 'Publisher updated successfully');
+        return redirect()->route('publishers.index')->with('success', 'Publisher updated successfully');
     }
 }

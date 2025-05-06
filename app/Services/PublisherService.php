@@ -8,6 +8,7 @@ use App\Repositories\Interfaces\PublisherRepositoryInterface;
 use App\Services\Interfaces\FileUploadServiceInterface;
 use App\Services\Interfaces\PublisherServiceInterface;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\Cache;
 
 class PublisherService implements PublisherServiceInterface
 {
@@ -18,7 +19,9 @@ class PublisherService implements PublisherServiceInterface
 
     public function getAll(array $order = ['created_at' => 'desc']):Collection
     {
-        return $this->publisherRepository->get(order: $order);
+        return Cache::remember('publishers_all', config('settings.cookies_expires'), function () use ($order) {
+            return $this->publisherRepository->get(order: $order);
+        });
     }
 
     public function create(PublisherDTO $publisherDTO): Publisher

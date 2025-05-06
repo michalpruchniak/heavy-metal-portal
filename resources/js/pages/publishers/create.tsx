@@ -15,11 +15,11 @@ const PublisherForm: FC<PublisherProps> = ({ publisher }) => {
     const breadcrumbs = [
         {
             title: 'Publishers',
-            href: '#',
+            href: route('publishers.index'),
         },
         {
             title: publisher ? 'Edit publisher' : 'Create publisher',
-            href: '#',
+            href:  publisher ? route('publishers.edit', {publisher: publisher.id}) : route('publishers.create'),
         },
     ];
 

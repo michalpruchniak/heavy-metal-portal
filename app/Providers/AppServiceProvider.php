@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\Publisher;
+use App\Observers\PublisherObserver;
 use App\Repositories\Interfaces\PublisherRepositoryInterface;
 use App\Repositories\PublisherRepository;
 use App\Services\FileUploadService;
@@ -30,6 +32,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Publisher::observe(PublisherObserver::class);
     }
 }
