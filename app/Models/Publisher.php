@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Casts\ImageUrlCast;
 use Illuminate\Database\Eloquent\Model;
 
 class Publisher extends Model
@@ -12,4 +13,9 @@ class Publisher extends Model
         'description',
         'logo',
     ];
+
+    protected $casts = [
+        'logo' => ImageUrlCast::class,
+    ];
+
 }
