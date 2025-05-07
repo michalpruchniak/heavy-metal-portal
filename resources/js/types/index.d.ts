@@ -58,12 +58,12 @@ export interface PublisherFormData {
     logo: File | null;
     _method: 'PUT' | 'POST';
     [key: string]: any | undefined;
-  }
+}
 
-  export interface IndexPageProps {
+export interface IndexPageProps {
     publishers: Publisher[];
-  }
+}
 
-  export interface PublisherProps {
+export interface PublisherProps {
     publisher?: Publisher;
-  }
+}

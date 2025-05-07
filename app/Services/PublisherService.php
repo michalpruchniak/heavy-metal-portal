@@ -17,7 +17,7 @@ class PublisherService implements PublisherServiceInterface
         private readonly FileUploadServiceInterface $fileUploadService
     ) {}
 
-    public function getAll(array $order = ['created_at' => 'desc']):Collection
+    public function getAll(array $order = ['created_at' => 'desc']): Collection
     {
         return Cache::remember('publishers_all', config('settings.cookies_expires'), function () use ($order) {
             return $this->publisherRepository->get(order: $order);

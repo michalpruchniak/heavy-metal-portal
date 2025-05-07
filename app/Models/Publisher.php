@@ -17,5 +17,4 @@ class Publisher extends Model
     protected $casts = [
         'logo' => ImageUrlCast::class,
     ];
-
 }
