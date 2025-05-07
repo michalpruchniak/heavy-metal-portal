@@ -9,7 +9,7 @@ type TableProps<T> = {
     placeholderFilteredInput?: string;
 };
 
-const Table = <T extends Record<string, any>>({
+const Table = <T extends Record<string, unknown>>({
     data,
     columns,
     filterField = 'name',
