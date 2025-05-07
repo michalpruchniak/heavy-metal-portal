@@ -18,10 +18,12 @@ class PublisherController extends Controller
     public function index()
     {
         $publishers = $this->publisherService->getAll();
+
         return Inertia::render('publishers/index', [
-            'publishers' => $publishers
+            'publishers' => $publishers,
         ]);
     }
+
     public function create()
     {
         return Inertia::render('publishers/create');

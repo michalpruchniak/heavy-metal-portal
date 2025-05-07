@@ -1,6 +1,7 @@
 import { Publisher } from '@/types';
+import { TableColumn } from 'react-data-table-component';
 
-const CompanyTableColumns = () => [
+const PublisherTableColumns: TableColumn<Publisher>[] = [
     {
         name: 'ID',
         selector: (row: Publisher) => row.id,
@@ -21,15 +22,11 @@ const CompanyTableColumns = () => [
     },
     {
         name: 'Edit',
-        cell: (row: Publisher) => (
-            <a href={route('publishers.edit', { publisher: row.id })}>
-                Edit
-            </a>
-        ),
+        cell: (row: Publisher) => <a href={route('publishers.edit', { publisher: row.id })}>Edit</a>,
         ignoreRowClick: true,
         allowOverflow: true,
         button: true,
-    }
+    },
 ];
 
-export default CompanyTableColumns;
+export default PublisherTableColumns;
