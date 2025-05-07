@@ -19,7 +19,7 @@ const Table = <T extends Record<string, unknown>>({
 
     const filteredElements = useMemo(() => {
         return data.filter((element) => element[filterField]?.toString().toLowerCase().includes(filterText.toLowerCase()));
-    }, [data, filterText]);
+    }, [data, filterText, filterField]);
 
     return (
         <>

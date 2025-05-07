@@ -50,6 +50,7 @@ export interface Publisher {
     description?: string | null;
     created_at: string;
     updated_at: string;
+    [key: string]: string | unknown;
 }
 
 export interface PublisherFormData {
@@ -57,7 +58,7 @@ export interface PublisherFormData {
     url?: string;
     logo: File | null;
     _method: 'PUT' | 'POST';
-    [key: string]: any | undefined;
+    [key: string]: string | number | File | null;
 }
 
 export interface IndexPageProps {
