@@ -1,6 +1,7 @@
 import { Publisher } from '@/types';
+import { TableColumn } from 'react-data-table-component';
 
-const CompanyTableColumns = () => [
+const PublisherTableColumns: TableColumn<Publisher>[] = [
     {
         name: 'ID',
         selector: (row: Publisher) => row.id,
@@ -32,4 +33,4 @@ const CompanyTableColumns = () => [
     }
 ];
 
-export default CompanyTableColumns;
+export default PublisherTableColumns;

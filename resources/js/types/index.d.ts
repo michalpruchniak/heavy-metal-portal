@@ -51,3 +51,19 @@ export interface Publisher {
     created_at: string;
     updated_at: string;
 }
+
+export interface PublisherFormData {
+    name: string;
+    url?: string;
+    logo: File | null;
+    _method: 'PUT' | 'POST';
+    [key: string]: any | undefined;
+  }
+
+  export interface IndexPageProps {
+    publishers: Publisher[];
+  }
+
+  export interface PublisherProps {
+    publisher?: Publisher;
+  }

@@ -1,8 +1,16 @@
 import { useMemo, useState } from 'react';
 import DataTable from 'react-data-table-component';
 import { Input } from '../ui/input';
+import { TableColumn } from 'react-data-table-component';
 
-const Table = ({ data, columns, filterField = 'name', placeholderFilteredInput = 'Search by name...' }) => {
+type TableProps<T> = {
+    data: T[];
+    columns: TableColumn<T>[];
+    filterField?: string;
+    placeholderFilteredInput?: string
+}
+
+const Table = <T extends Record<string, any>>({ data, columns, filterField = 'name', placeholderFilteredInput = 'Search by name...' }: TableProps<T>) => {
     const [filterText, setFilterText] = useState('');
 
     const filteredElements = useMemo(() => {
@@ -18,6 +26,7 @@ const Table = ({ data, columns, filterField = 'name', placeholderFilteredInput =
                 onChange={(e) => setFilterText(e.target.value)}
                 className="mb-4 w-full max-w-sm rounded border px-3 py-2 text-sm shadow-sm"
             />
+
             <DataTable
                 columns={columns}
                 data={filteredElements}
