@@ -23,9 +23,6 @@ const PublisherTableColumns: TableColumn<Publisher>[] = [
     {
         name: 'Edit',
         cell: (row: Publisher) => <a href={route('publishers.edit', { publisher: row.id })}>Edit</a>,
-        ignoreRowClick: true,
-        allowOverflow: true,
-        button: true,
     },
 ];
 

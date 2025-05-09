@@ -20,9 +20,7 @@ export default function Index({ publishers }: IndexPageProps) {
             <div className="flex h-full flex-1 flex-col gap-4 rounded-xl p-4">
                 <h1 className="text-center text-[45px]">Publishers</h1>
                 <div className="flex justify-end">
-                    <a href={route('publishers.create')} className="text-blue-600 hover:underline">
-                        <ButtonLink url={route('publishers.create')}>Add new publisher</ButtonLink>
-                    </a>
+                    <ButtonLink url={route('publishers.create')}>Add new publisher</ButtonLink>
                 </div>
                 <Table<Publisher> data={publishers} columns={PublisherTableColumns} />
             </div>
