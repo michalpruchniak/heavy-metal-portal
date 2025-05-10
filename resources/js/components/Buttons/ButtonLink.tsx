@@ -1,15 +1,19 @@
-import { Link } from "@inertiajs/react"
-import buttonTypes from "./__partials/constants/buttonTypes"
+import { Link } from '@inertiajs/react';
+import buttonVariants from './__partials/constants/buttonVariants';
 
 interface ButtonProps {
-    children: string
-    url: string
-    type?: keyof typeof buttonTypes;
+    children: string;
+    url: string;
+    variant?: keyof typeof buttonVariants;
 }
-const ButtonLink = ({ children, url, type='primary' } :ButtonProps) => {
-    const className = buttonTypes[type].className;
+const ButtonLink = ({ children, url, variant = 'primary'}: ButtonProps) => {
+    const className = buttonVariants[variant] ? buttonVariants[variant].className : buttonVariants['primary'].className;
 
-    return <Link className={`px-3 py-2 rounded-xl hover:no-underline ${className}`} href={url}>{children}</Link>
-}
+    return (
+        <Link className={`rounded-xl px-3 py-2 hover:no-underline ${className}`} href={url}>
+            {children}
+        </Link>
+    );
+};
 
-export default ButtonLink
+export default ButtonLink;

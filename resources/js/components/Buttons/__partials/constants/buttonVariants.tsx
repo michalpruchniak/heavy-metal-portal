@@ -1,0 +1,15 @@
+const type = {
+    button: 'px-3 py-2 rounded-xl hover:no-underline',
+    link: 'hover:no-underline',
+};
+
+const buttonVariants = {
+    primary: {
+        className: `${type.button} text-light-100 color-white bg-primary-500 hover:bg-primary-400 transition-colors duration-300`,
+    },
+    link: {
+        className: `${type.link} hover:text-primary-300 dark:hover:text-primary-200`,
+    },
+};
+
+export default buttonVariants;
