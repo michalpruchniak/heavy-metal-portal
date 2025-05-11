@@ -24,7 +24,7 @@ const PublisherTableColumns: TableColumn<Publisher>[] = [
     {
         name: 'Edit',
         cell: (row: Publisher) => (
-            <ButtonLink variant="link" url={route('publishers.edit', { publisher: row.id })}>
+            <ButtonLink variant="secondary" url={route('publishers.edit', { publisher: row.id })}>
                 Edit
             </ButtonLink>
         ),
