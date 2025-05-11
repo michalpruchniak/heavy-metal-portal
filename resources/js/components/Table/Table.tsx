@@ -1,3 +1,4 @@
+import { useAppearance } from '@/hooks/use-appearance';
 import { useMemo, useState } from 'react';
 import DataTable, { TableColumn } from 'react-data-table-component';
 import { Input } from '../ui/input';
@@ -16,6 +17,7 @@ const Table = <T extends Record<string, unknown>>({
     placeholderFilteredInput = 'Search by name...',
 }: TableProps<T>) => {
     const [filterText, setFilterText] = useState('');
+    const { appearance } = useAppearance();
 
     const filteredElements = useMemo(() => {
         return data.filter((element) => element[filterField]?.toString().toLowerCase().includes(filterText.toLowerCase()));
@@ -40,6 +42,7 @@ const Table = <T extends Record<string, unknown>>({
                 striped
                 responsive
                 noDataComponent="No elements found"
+                theme={appearance}
             />
         </>
     );

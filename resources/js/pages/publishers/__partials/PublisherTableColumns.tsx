@@ -1,3 +1,4 @@
+import ButtonLink from '@/components/Buttons/ButtonLink';
 import { Publisher } from '@/types';
 import { TableColumn } from 'react-data-table-component';
 
@@ -22,10 +23,11 @@ const PublisherTableColumns: TableColumn<Publisher>[] = [
     },
     {
         name: 'Edit',
-        cell: (row: Publisher) => <a href={route('publishers.edit', { publisher: row.id })}>Edit</a>,
-        ignoreRowClick: true,
-        allowOverflow: true,
-        button: true,
+        cell: (row: Publisher) => (
+            <ButtonLink variant="secondary" url={route('publishers.edit', { publisher: row.id })}>
+                Edit
+            </ButtonLink>
+        ),
     },
 ];
 
