@@ -11,6 +11,9 @@ use App\Services\Interfaces\FileUploadServiceInterface;
 use App\Services\Interfaces\PublisherServiceInterface;
 use App\Services\PublisherService;
 use Illuminate\Support\ServiceProvider;
+use Inertia\Inertia;
+use Illuminate\Support\Facades\Lang;
+use Illuminate\Support\Facades\App;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -33,5 +36,25 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Publisher::observe(PublisherObserver::class);
+
+        $this->getTranslate();
+    }
+
+    private function getTranslate(): void
+    {
+        Inertia::share([
+            'translations' => function () {
+                $files = ['main'];
+                $translations = [];
+
+                foreach ($files as $file) {
+                    $translations = array_merge($translations, Lang::get($file));
+                }
+
+                return $translations;
+            },
+            'locale' => fn () => App::getLocale(),
+        ]);
     }
 }
+
