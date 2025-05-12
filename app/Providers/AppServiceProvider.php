@@ -10,10 +10,10 @@ use App\Services\FileUploadService;
 use App\Services\Interfaces\FileUploadServiceInterface;
 use App\Services\Interfaces\PublisherServiceInterface;
 use App\Services\PublisherService;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\ServiceProvider;
 use Inertia\Inertia;
-use Illuminate\Support\Facades\Lang;
-use Illuminate\Support\Facades\App;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -57,4 +57,3 @@ class AppServiceProvider extends ServiceProvider
         ]);
     }
 }
-

@@ -1,10 +1,10 @@
 import ButtonLink from '@/components/Buttons/ButtonLink';
 import Table from '@/components/Table/Table';
+import useTranslation from '@/hooks/use-translate';
 import AppLayout from '@/layouts/app-layout';
 import { IndexPageProps, Publisher } from '@/types';
 import { Head } from '@inertiajs/react';
 import PublisherTableColumns from './__partials/PublisherTableColumns';
-import useTranslation from '@/hooks/use-translate';
 
 export default function Index({ publishers }: IndexPageProps) {
     const { labels } = useTranslation();
@@ -15,7 +15,6 @@ export default function Index({ publishers }: IndexPageProps) {
             href: route('publishers.index'),
         },
     ];
-
 
     return (
         <AppLayout breadcrumbs={breadcrumbs}>

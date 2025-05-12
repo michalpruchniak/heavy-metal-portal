@@ -7,7 +7,7 @@ import { Head, useForm } from '@inertiajs/react';
 import { FC, FormEvent } from 'react';
 
 const PublisherForm: FC<PublisherProps> = ({ publisher }) => {
-    const { labels } = useTranslation()
+    const { labels } = useTranslation();
     const breadcrumbs = [
         {
             title: labels.publisher,

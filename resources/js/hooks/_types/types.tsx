@@ -5,5 +5,5 @@ type TranslationSegment = Record<string, string>;
 export type Translations = Record<string, TranslationSegment>;
 
 export interface PageProps extends InertiaPageProps {
-  translations?: Translations;
+    translations?: Translations;
 }

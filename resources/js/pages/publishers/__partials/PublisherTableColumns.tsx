@@ -18,13 +18,7 @@ const PublisherTableColumns = (): TableColumn<Publisher>[] => {
         },
         {
             name: labels.name,
-            cell: (row: Publisher) => (
-                <img
-                    src={row.logo}
-                    alt="Logo"
-                    className="h-10 w-10 object-contain"
-                />
-            ),
+            cell: (row: Publisher) => <img src={row.logo} alt="Logo" className="h-10 w-10 object-contain" />,
         },
         {
             name: labels.url,
@@ -33,10 +27,7 @@ const PublisherTableColumns = (): TableColumn<Publisher>[] => {
         {
             name: labels.name,
             cell: (row: Publisher) => (
-                <ButtonLink
-                    variant="secondary"
-                    url={route('publishers.edit', { publisher: row.id })}
-                >
+                <ButtonLink variant="secondary" url={route('publishers.edit', { publisher: row.id })}>
                     {buttons.edit}
                 </ButtonLink>
             ),

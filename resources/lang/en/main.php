@@ -2,7 +2,7 @@
 
 return [
     'buttons' => [
-        'edit' => 'Edit'
+        'edit' => 'Edit',
     ],
     'labels' => [
         'Publishers' => 'Publishers',
@@ -13,6 +13,6 @@ return [
         'url' => 'URL',
         'logo' => 'Logo',
         'name' => 'Name',
-        'id' => 'ID'
-    ]
+        'id' => 'ID',
+    ],
 ];
