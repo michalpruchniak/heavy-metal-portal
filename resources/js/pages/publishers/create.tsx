@@ -1,18 +1,20 @@
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import useTranslation from '@/hooks/use-translate';
 import AppLayout from '@/layouts/app-layout';
 import { PublisherFormData, PublisherProps } from '@/types';
 import { Head, useForm } from '@inertiajs/react';
 import { FC, FormEvent } from 'react';
 
 const PublisherForm: FC<PublisherProps> = ({ publisher }) => {
+    const { labels } = useTranslation();
     const breadcrumbs = [
         {
-            title: 'Publishers',
+            title: labels.publisher,
             href: route('publishers.index'),
         },
         {
-            title: publisher ? 'Edit publisher' : 'Create publisher',
+            title: publisher ? labels.update_publisher : labels.create_publisher,
             href: publisher ? route('publishers.edit', { publisher: publisher.id }) : route('publishers.create'),
         },
     ];
@@ -39,9 +41,9 @@ const PublisherForm: FC<PublisherProps> = ({ publisher }) => {
 
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
-            <Head title={publisher ? 'Update publisher' : 'Create publisher'} />
+            <Head title={publisher ? labels.update_publisher : labels.create_publisher} />
             <div className="flex h-full flex-1 flex-col gap-4 rounded-xl p-4">
-                <h1 className="text-center text-[45px]">{publisher ? `Update publisher ${publisher.name}` : 'Create publisher'}</h1>
+                <h1 className="text-center text-[45px]">{publisher ? `${labels.update_publisher} ${publisher.name}` : labels.create_publisher}</h1>
 
                 <form onSubmit={handleSubmit} encType="multipart/form-data" className="flex flex-col gap-4 px-[15px] md:px-[17%]">
                     <div>
