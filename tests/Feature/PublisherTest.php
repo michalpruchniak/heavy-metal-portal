@@ -2,104 +2,88 @@
 
 use App\Models\Publisher;
 use App\Models\User;
+use Database\Seeders\UserTableSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
-use Spatie\Permission\Models\Role;
 
 uses(RefreshDatabase::class);
 
 beforeEach(function () {
-    $this->artisan('migrate');
+    $this->artisan('db:seed', ['--class' => UserTableSeeder::class]);
 
-    Role::firstOrCreate(['name' => 'admin']);
-    Role::firstOrCreate(['name' => 'moderator']);
+    $this->admin = User::factory()->create();
+    $this->admin->assignRole('admin');
+
+    $this->moderator = User::factory()->create();
+    $this->moderator->assignRole('moderator');
+
+    $this->user = User::factory()->create();
+
+    $this->faker = Faker\Factory::create();
+
 });
 
 test('publisher page is only for moderator and admin', function () {
-    $admin = User::factory()->create();
-    $admin->assignRole('admin');
 
-    $this->actingAs($admin)
+    $this->actingAs($this->admin)
         ->get(route('publishers.index'))
         ->assertOk();
 
-    $moderator = User::factory()->create();
-    $moderator->assignRole('moderator');
-
-    $this->actingAs($moderator)
+    $this->actingAs($this->moderator)
         ->get(route('publishers.index'))
         ->assertOk();
 });
 
 test('publishers page is disabled for guests and users without role', function () {
-    $user = User::factory()->create();
-
-    $this->actingAs($user)
+    $this->actingAs($this->user)
         ->get(route('publishers.index'))
         ->assertForbidden();
 });
 
 test('publisher create page is only for moderator and admin', function () {
-    $admin = User::factory()->create();
-    $admin->assignRole('admin');
-
-    $this->actingAs($admin)
+    $this->actingAs($this->admin)
         ->get(route('publishers.create'))
         ->assertOk();
 
-    $moderator = User::factory()->create();
-    $moderator->assignRole('moderator');
-
-    $this->actingAs($moderator)
+    $this->actingAs($this->moderator)
         ->get(route('publishers.create'))
         ->assertOk();
 });
 
 test('publisher create page is disabled for guests and users without role', function () {
-    $user = User::factory()->create();
-
-    $this->actingAs($user)
+    $this->actingAs($this->user)
         ->get(route('publishers.create'))
         ->assertForbidden();
 });
 
 test('publisher edit page is only for moderator and admin', function () {
-    $admin = User::factory()->create();
     $publisher = Publisher::factory()->create();
 
-    $admin->assignRole('admin');
-
-    $this->actingAs($admin)
+    $this->actingAs($this->admin)
         ->get(route('publishers.edit', ['publisher' => $publisher->id]))
         ->assertOk();
 
-    $moderator = User::factory()->create();
-    $moderator->assignRole('moderator');
-
-    $this->actingAs($moderator)
+    $this->actingAs($this->moderator)
         ->get(route('publishers.edit', ['publisher' => $publisher->id]))
         ->assertOk();
 });
 
 test('publisher edit page is disabled for guests and users without role', function () {
-    $user = User::factory()->create();
     $publisher = Publisher::factory()->create();
 
-    $this->actingAs($user)
+    $this->actingAs($this->user)
         ->get(route('publishers.edit', ['publisher' => $publisher->id]))
         ->assertForbidden();
 });
 
 test('new publisher can be added', function () {
-    $admin = User::factory()->create();
-    $admin->assignRole('admin');
 
     Storage::fake('public');
 
     $image = UploadedFile::fake()->image('logo.jpg');
 
-    $response = $this->actingAs($admin)->post(route('publishers.store'), [
+    $response = $this->actingAs($this->admin)->post(route('publishers.store'), [
         'name' => 'Test Publisher',
         'logo' => $image,
         'url' => 'http://testpublisher.com',
@@ -116,16 +100,13 @@ test('new publisher can be added', function () {
 });
 
 test('publisher validation test', function () {
-    $admin = User::factory()->create();
-    $admin->assignRole('admin');
-    $faker = Faker\Factory::create();
 
     $response = $this
-        ->actingAs($admin)
+        ->actingAs($this->admin)
         ->post(route('publishers.store'), [
             'logo' => null,
             'url' => 'wrong-utl',
-            'description' => $faker->words(2500, true),
+            'description' => $this->faker->words(2500, true),
         ]);
 
     $response->assertSessionHasErrors(['name', 'logo', 'description']);
