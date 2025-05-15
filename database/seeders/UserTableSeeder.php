@@ -16,9 +16,9 @@ class UserTableSeeder extends Seeder
     public function run(): void
     {
         $admin = User::create([
-            'name' => 'Admin',
-            'email' => 'test@test.pl',
-            'password' => Hash::make('password'),
+            'name' => config('users.admin_name'),
+            'email' => config('users.admin_email'),
+            'password' => Hash::make(config('users.admin_password')),
         ]);
 
         $roles = [
@@ -51,7 +51,6 @@ class UserTableSeeder extends Seeder
         Role::findByName('admin')->syncPermissions($permissions);
         Role::findByName('moderator')->syncPermissions($permissionModerator);
 
-        // Przypisanie roli admina użytkownikowi
         $admin->assignRole('admin');
     }
 }
