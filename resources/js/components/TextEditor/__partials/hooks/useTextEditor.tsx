@@ -9,8 +9,15 @@ import Heading from '@tiptap/extension-heading';
 import BulletList from '@tiptap/extension-bullet-list';
 import ListItem from '@tiptap/extension-list-item';
 import CharacterCount from '@tiptap/extension-character-count';
+import { Editor } from '@tiptap/react';
 
-const useTextEditor = ({ value, limit, onChange }) => {
+interface UseTextEditorParams {
+    value: string;
+    limit: number;
+    onChange: (value: string) => void;
+}
+
+const useTextEditor = ({ value, limit, onChange }: UseTextEditorParams): Editor | null => {
     return useEditor({
         extensions: [
             Document,

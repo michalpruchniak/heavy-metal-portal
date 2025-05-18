@@ -5,7 +5,7 @@ import AppLayout from '@/layouts/app-layout';
 import { PublisherFormData, PublisherProps } from '@/types';
 import { Head, useForm } from '@inertiajs/react';
 import { FC, FormEvent } from 'react';
-import TextEditor from '@/components/TextEditor/Texteditor'
+import TextEditor from '@/components/TextEditor/TextEditor'
 
 const PublisherForm: FC<PublisherProps> = ({ publisher }) => {
     const { labels } = useTranslation();
