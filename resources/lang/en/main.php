@@ -5,8 +5,8 @@ return [
         'edit' => 'Edit',
     ],
     'labels' => [
-        'Publishers' => 'Publishers',
-        'add_new_label' => 'Add new publisher',
+        'publishers' => 'Publishers',
+        'add_new_publisher' => 'Add new publisher',
         'update_publisher' => 'Update publisher',
         'create_publisher' => 'Create publisher',
         'edit' => 'Edit',

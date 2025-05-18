@@ -10,7 +10,7 @@ const PublisherForm: FC<PublisherProps> = ({ publisher }) => {
     const { labels } = useTranslation();
     const breadcrumbs = [
         {
-            title: labels.publisher,
+            title: labels.publishers,
             href: route('publishers.index'),
         },
         {
