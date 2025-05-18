@@ -5,6 +5,7 @@ import AppLayout from '@/layouts/app-layout';
 import { PublisherFormData, PublisherProps } from '@/types';
 import { Head, useForm } from '@inertiajs/react';
 import { FC, FormEvent } from 'react';
+import TextEditor from '@/components/TextEditor/Texteditor'
 
 const PublisherForm: FC<PublisherProps> = ({ publisher }) => {
     const { labels } = useTranslation();
@@ -71,7 +72,14 @@ const PublisherForm: FC<PublisherProps> = ({ publisher }) => {
                         />
                         {errors.logo && <div className="text-red-500">{errors.logo}</div>}
                     </div>
-
+                    <TextEditor
+                        name="short_description"
+                        limit={500}
+                        value={data?.short_description || ''}
+                        onChange={(value) => setData('short_description', value)}
+                        label={labels.short_description}
+                        error={errors.short_description}
+                    />
                     <Button type="submit" disabled={processing} className="self-start">
                         {publisher ? 'Update' : 'Create'}
                     </Button>
