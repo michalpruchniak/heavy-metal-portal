@@ -1,4 +1,4 @@
-import { ButtonVariant, VariantType } from '../../_types/types';
+import { ButtonVariant, VariantType } from '../../__types/types';
 
 const type: Record<'button' | 'link', string> = {
     button: 'px-3 py-2 rounded-xl hover:no-underline',

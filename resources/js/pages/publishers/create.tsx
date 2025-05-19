@@ -77,7 +77,7 @@ const PublisherForm: FC<PublisherProps> = ({ publisher }) => {
                         limit={500}
                         value={data?.short_description || ''}
                         onChange={(value) => setData('short_description', value)}
-                        label={labels.short_description}
+                        label='test'
                         error={errors.short_description}
                     />
                     <Button type="submit" disabled={processing} className="self-start">

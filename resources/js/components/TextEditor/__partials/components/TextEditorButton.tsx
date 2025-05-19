@@ -1,4 +1,4 @@
-import ButtonAction from '@/components/Buttons/ButtonAction';
+import ButtonAction from '@/components/Button/ButtonAction';
 import { TextEditorButtonProps } from '../../__types/types';
 
 const TextEditorButton: React.FC<TextEditorButtonProps> = ({
