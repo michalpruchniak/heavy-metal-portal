@@ -4,6 +4,7 @@ import useTranslation from '@/hooks/use-translate';
 import useTextEditor from './__partials/hooks/useTextEditor'
 import React from 'react';
 import { TextEditorProps } from './__types/types';
+import Message from '@/components/Message/Message';
 
 const TextEditor: React.FC<TextEditorProps> = ({
     value,
@@ -38,6 +39,7 @@ const TextEditor: React.FC<TextEditorProps> = ({
             <span className="text-[13px] leading-[15px] text-dark-100">
                 {labels.characters_remaining}: {limit - editor.storage.characterCount.characters()}
             </span>
+            {error && <Message>{error}</Message>}
         </div>
     );
 };

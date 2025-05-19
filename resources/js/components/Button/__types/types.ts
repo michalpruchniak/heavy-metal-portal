@@ -19,3 +19,8 @@ export interface ButtonLinkProps {
     url: string;
     variant?: keyof typeof buttonVariants;
 }
+
+export const type: Record<'button' | 'link', string> = {
+    button: 'px-3 py-2 rounded-xl hover:no-underline',
+    link: 'hover:no-underline',
+};
