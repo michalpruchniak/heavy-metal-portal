@@ -14,5 +14,6 @@ return [
         'logo' => 'Logo',
         'name' => 'Name',
         'id' => 'ID',
+        'characters_remaining' => 'Characters remaining'
     ],
 ];

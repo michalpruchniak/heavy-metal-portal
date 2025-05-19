@@ -3,16 +3,7 @@ import TextEditorToolbar from './__partials/components/TextEditorToolbar'
 import useTranslation from '@/hooks/use-translate';
 import useTextEditor from './__partials/hooks/useTextEditor'
 import React from 'react';
-
-interface TextEditorProps {
-    value: string;
-    limit?: number;
-    onChange: (value: string) => void;
-    name?: string;
-    label?: string;
-    className?: string;
-    error?: string;
-}
+import { TextEditorProps } from './__types/types';
 
 const TextEditor: React.FC<TextEditorProps> = ({
     value,
@@ -24,7 +15,7 @@ const TextEditor: React.FC<TextEditorProps> = ({
     error = '',
     ...props
 }) => {
-    const translations = useTranslation();
+    const { labels } = useTranslation();
     const editor = useTextEditor({ value, limit, onChange });
     if (!editor) {
         return null;
@@ -45,7 +36,7 @@ const TextEditor: React.FC<TextEditorProps> = ({
                 </div>
             </div>
             <span className="text-[13px] leading-[15px] text-dark-100">
-                {translations.labels.characters_remaining}: {limit - editor.storage.characterCount.characters()}
+                {labels.characters_remaining}: {limit - editor.storage.characterCount.characters()}
             </span>
         </div>
     );

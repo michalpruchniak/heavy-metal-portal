@@ -1,31 +1,21 @@
 import React from "react";
 import TextEditorButton from "./TextEditorButton";
-import { Editor } from "@tiptap/react";
-
-interface TextEditorToolbarProps {
-  editor: Editor;
-}
-
-interface ToolbarButton {
-  command: (() => void) | string;
-  isActive: boolean;
-  label: React.ReactNode;
-}
+import { TextEditorToolbarProps, ToolbarButton } from "../../__types/types";
 
 const TextEditorToolbar: React.FC<TextEditorToolbarProps> = ({ editor }) => {
   const buttons: ToolbarButton[] = [
     {
-      command: 'toggleBold',
+      command: () => editor.chain().focus().toggleBold().run(),
       isActive: editor.isActive('bold'),
       label: <strong>B</strong>,
     },
     {
-      command: 'toggleItalic',
+      command: () => editor.chain().focus().toggleItalic().run(),
       isActive: editor.isActive('italic'),
       label: <i>I</i>,
     },
     {
-      command: 'toggleUnderline',
+      command: () => editor.chain().focus().toggleUnderline().run(),
       isActive: editor.isActive('underline'),
       label: <u>U</u>,
     },

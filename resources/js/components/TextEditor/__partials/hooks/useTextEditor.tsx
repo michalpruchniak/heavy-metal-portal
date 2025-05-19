@@ -10,12 +10,7 @@ import BulletList from '@tiptap/extension-bullet-list';
 import ListItem from '@tiptap/extension-list-item';
 import CharacterCount from '@tiptap/extension-character-count';
 import { Editor } from '@tiptap/react';
-
-interface UseTextEditorParams {
-    value: string;
-    limit: number;
-    onChange: (value: string) => void;
-}
+import { UseTextEditorParams } from '../../__types/types';
 
 const useTextEditor = ({ value, limit, onChange }: UseTextEditorParams): Editor | null => {
     return useEditor({
