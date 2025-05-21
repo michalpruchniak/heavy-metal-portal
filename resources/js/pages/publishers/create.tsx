@@ -1,69 +1,65 @@
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import useTranslation from '@/hooks/use-translate';
 import AppLayout from '@/layouts/app-layout';
+import { PublisherFormData, PublisherProps } from '@/types';
 import { Head, useForm } from '@inertiajs/react';
-import { FC } from 'react';
-
-interface PublisherProps {
-    publisher?: {
-        id: number;
-        name: string;
-    };
-}
+import { FC, FormEvent } from 'react';
 
 const PublisherForm: FC<PublisherProps> = ({ publisher }) => {
+    const { labels } = useTranslation();
     const breadcrumbs = [
         {
-            title: 'Publishers',
+            title: labels.publishers,
             href: route('publishers.index'),
         },
         {
-            title: publisher ? 'Edit publisher' : 'Create publisher',
-            href:  publisher ? route('publishers.edit', {publisher: publisher.id}) : route('publishers.create'),
+            title: publisher ? labels.update_publisher : labels.create_publisher,
+            href: publisher ? route('publishers.edit', { publisher: publisher.id }) : route('publishers.create'),
         },
     ];
 
-    const { data, setData, processing, post, errors } = useForm<any>({
+    const { data, setData, processing, post, errors } = useForm<PublisherFormData>({
         name: publisher?.name ?? '',
+        url: publisher?.url ?? '',
         logo: null,
         _method: publisher?.id ? 'PUT' : 'POST',
     });
 
     const sendRequest = () => {
-        if (publisher?.id) {
-            post(route('publishers.update', { publisher: publisher?.id }), {
-                ...data,
-            });
-        } else {
-            post(route('publishers.store'), data);
-        }
+        const targetRoute = publisher ? route('publishers.update', { publisher: publisher.id }) : route('publishers.store');
+
+        post(targetRoute, {
+            preserveScroll: true,
+        });
     };
 
-    const handleSubmit = (e: any) => {
+    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         sendRequest();
     };
 
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
-            <Head title={publisher ? 'Update publisher' : 'Create publisher'} />
+            <Head title={publisher ? labels.update_publisher : labels.create_publisher} />
             <div className="flex h-full flex-1 flex-col gap-4 rounded-xl p-4">
-                <h1 className="text-center text-[45px]">{publisher ? `Update publisher ${publisher.name}` : 'Create publisher'}</h1>
+                <h1 className="text-center text-[45px]">{publisher ? `${labels.update_publisher} ${publisher.name}` : labels.create_publisher}</h1>
+
                 <form onSubmit={handleSubmit} encType="multipart/form-data" className="flex flex-col gap-4 px-[15px] md:px-[17%]">
                     <div>
-                        <label>
-                            Name:
-                        </label>
+                        <label>Name:</label>
                         <Input type="text" value={data.name} onChange={(e) => setData('name', e.target.value)} aria-invalid={!!errors.name} />
                         {errors.name && <div className="text-red-500">{errors.name}</div>}
                     </div>
+
                     <div>
                         <label>Url:</label>
-                        <Input type="text" value={data.url} onChange={(e) => setData('url', e.target.value)} aria-invalid={!!errors.url} />
+                        <Input type="text" value={data.url ?? ''} onChange={(e) => setData('url', e.target.value)} aria-invalid={!!errors.url} />
                         {errors.url && <div className="text-red-500">{errors.url}</div>}
                     </div>
+
                     <div>
-                        <label>Logo: {!publisher && ''}</label>
+                        <label>Logo:</label>
                         <Input
                             type="file"
                             onChange={(e) => {
@@ -75,6 +71,7 @@ const PublisherForm: FC<PublisherProps> = ({ publisher }) => {
                         />
                         {errors.logo && <div className="text-red-500">{errors.logo}</div>}
                     </div>
+
                     <Button type="submit" disabled={processing} className="self-start">
                         {publisher ? 'Update' : 'Create'}
                     </Button>

@@ -3,10 +3,13 @@
 namespace App\Models;
 
 use App\Casts\ImageUrlCast;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Publisher extends Model
 {
+    use HasFactory;
+
     protected $fillable = [
         'name',
         'url',
@@ -17,5 +20,4 @@ class Publisher extends Model
     protected $casts = [
         'logo' => ImageUrlCast::class,
     ];
-
 }
