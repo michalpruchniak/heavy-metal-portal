@@ -57,6 +57,7 @@ export interface PublisherFormData {
     name: string;
     url?: string;
     logo: File | null;
+    description?: string | null;
     _method: 'PUT' | 'POST';
     [key: string]: string | number | File | null;
 }
