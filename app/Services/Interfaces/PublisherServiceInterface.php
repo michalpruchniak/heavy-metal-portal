@@ -10,7 +10,7 @@ interface PublisherServiceInterface
 {
     const PUBLISHER_CATALOG_LOGO_DIRECTORY = 'publisher/logo';
 
-    public function getAll(array $order = ['created_at' => 'desc']):Collection;
+    public function getAll(array $order = ['created_at' => 'desc']): Collection;
 
     public function create(PublisherDTO $publisherDTO): Publisher;
 
