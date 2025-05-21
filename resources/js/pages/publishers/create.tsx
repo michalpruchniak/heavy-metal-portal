@@ -1,3 +1,4 @@
+import TextEditor from '@/components/TextEditor/TextEditor';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import useTranslation from '@/hooks/use-translate';
@@ -5,7 +6,6 @@ import AppLayout from '@/layouts/app-layout';
 import { PublisherFormData, PublisherProps } from '@/types';
 import { Head, useForm } from '@inertiajs/react';
 import { FC, FormEvent } from 'react';
-import TextEditor from '@/components/TextEditor/TextEditor'
 
 const PublisherForm: FC<PublisherProps> = ({ publisher }) => {
     const { labels } = useTranslation();
@@ -77,7 +77,7 @@ const PublisherForm: FC<PublisherProps> = ({ publisher }) => {
                         limit={500}
                         value={data?.short_description || ''}
                         onChange={(value) => setData('short_description', value)}
-                        label='test'
+                        label="test"
                         error={errors.short_description}
                     />
                     <Button type="submit" disabled={processing} className="self-start">

@@ -159,7 +159,6 @@
     }
 }
 
-
 .texteditor-content {
     padding: 15px;
 }
@@ -167,10 +166,8 @@
     outline: none;
 }
 
-
 .tiptap-active-button {
     background-color: #d3eeff;
-
 }
 .tiptap.ProseMirror {
     min-height: 183px;

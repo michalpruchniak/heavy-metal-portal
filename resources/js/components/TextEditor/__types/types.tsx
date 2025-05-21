@@ -1,5 +1,5 @@
-import { Editor } from "@tiptap/core";
-import { ReactNode } from "react";
+import { Editor } from '@tiptap/core';
+import { ReactNode } from 'react';
 
 export interface TextEditorProps {
     value: string;
@@ -16,7 +16,7 @@ export interface TextEditorButtonProps {
     command: (() => void) | string;
     isActive: boolean;
     children: ReactNode;
-  }
+}
 
 export interface TextEditorToolbarProps {
     editor: Editor;
