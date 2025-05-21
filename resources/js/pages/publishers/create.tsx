@@ -72,14 +72,6 @@ const PublisherForm: FC<PublisherProps> = ({ publisher }) => {
                         />
                         {errors.logo && <div className="text-red-500">{errors.logo}</div>}
                     </div>
-                    <TextEditor
-                        name="short_description"
-                        limit={500}
-                        value={data?.short_description || ''}
-                        onChange={(value) => setData('short_description', value)}
-                        label="test"
-                        error={errors.short_description}
-                    />
                     <Button type="submit" disabled={processing} className="self-start">
                         {publisher ? 'Update' : 'Create'}
                     </Button>
