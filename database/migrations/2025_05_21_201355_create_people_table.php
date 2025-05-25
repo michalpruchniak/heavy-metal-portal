@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\PersonTypeEnum;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,9 +15,11 @@ return new class extends Migration
         Schema::create('people', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('aka');
-            $table->text('description');
+            $table->text('aka')->nullable();
+            $table->text('bio')->nullable();
+            $table->date('DOB')->nullable();
             $table->string('img')->nullable();
+            $table->enum('type', PersonTypeEnum::cases())->default(PersonTypeEnum::NONE);
             $table->timestamps();
         });
     }
