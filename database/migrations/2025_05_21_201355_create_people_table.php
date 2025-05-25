@@ -19,7 +19,7 @@ return new class extends Migration
             $table->text('bio')->nullable();
             $table->date('DOB')->nullable();
             $table->string('img')->nullable();
-            $table->enum('type', PersonTypeEnum::cases())->default(PersonTypeEnum::NONE);
+            $table->enum('type', PersonTypeEnum::values())->default(PersonTypeEnum::NONE->value);
             $table->timestamps();
         });
     }
