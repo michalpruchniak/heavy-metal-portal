@@ -6,7 +6,7 @@ use App\Models\PersonPosition;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class PersonPositionSeeder extends Seeder
+class PersonPositionTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
