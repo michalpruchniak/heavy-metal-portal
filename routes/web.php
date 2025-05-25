@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\panel\PublisherController;
+use App\Services\RoleManager\RoleManager;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -34,5 +35,9 @@ Route::prefix('/panel')->middleware(['auth', 'verified'])->group(function () {
         ->middleware('permission:publishers.edit');
 });
 
+Route::get('/role', function() {
+    $roleManager = new RoleManager();
+    $roleManager->buildAdminPermission();
+});
 require __DIR__.'/settings.php';
 require __DIR__.'/auth.php';
