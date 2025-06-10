@@ -1,0 +1,36 @@
+<?php
+namespace App\Traits;
+
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
+
+trait CreateRolesAndPermissions
+{
+    private array $defaultRolesPermissions = [
+        'admin' => [
+            'publishers.view',
+            'publishers.create',
+            'publishers.edit',
+            'publishers.delete',
+        ],
+        'moderator' => [
+            'publishers.view',
+            'publishers.create',
+            'publishers.edit',
+            'publishers.delete',
+        ],
+    ];
+
+    public function createDefaultRolesAndPermissions(): void
+    {
+        foreach ($this->defaultRolesPermissions as $role => $permissions) {
+            $roleModel = Role::firstOrCreate(['name' => $role]);
+
+            foreach ($permissions as $permissionName) {
+                Permission::firstOrCreate(['name' => $permissionName]);
+            }
+
+            $roleModel->syncPermissions($permissions);
+        }
+    }
+}
