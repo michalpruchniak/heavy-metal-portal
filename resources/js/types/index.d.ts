@@ -53,6 +53,18 @@ export interface Publisher {
     [key: string]: string | unknown;
 }
 
+export interface Person {
+    id: number;
+    name: string;
+    aka?: string | null;
+    bio?: string | null;
+    DOB?: string | null;
+    img?: string | null;
+    created_at: string;
+    updated_at: string;
+    [key: string]: string | unknown;
+}
+
 export interface PublisherFormData {
     name: string;
     url?: string;
@@ -63,6 +75,10 @@ export interface PublisherFormData {
 
 export interface IndexPageProps {
     publishers: Publisher[];
+}
+
+export interface IndexPagePeopleProps {
+    people: Person[];
 }
 
 export interface PublisherProps {

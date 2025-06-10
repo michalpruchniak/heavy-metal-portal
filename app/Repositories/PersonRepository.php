@@ -3,9 +3,10 @@
 namespace App\Repositories;
 
 use App\Models\Person;
+use App\Repositories\Interfaces\PersonRepositoryInterface;
 use App\Repositories\Interfaces\PublisherRepositoryInterface;
 
-class PersonRepository extends BaseRepository implements PublisherRepositoryInterface
+class PersonRepository extends BaseRepository implements PersonRepositoryInterface
 {
     public function __construct(Person $model)
     {
