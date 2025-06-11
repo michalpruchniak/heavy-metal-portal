@@ -84,3 +84,7 @@ export interface IndexPagePeopleProps {
 export interface PublisherProps {
     publisher?: Publisher;
 }
+
+export interface PersonProps {
+    person?: Person;
+}
