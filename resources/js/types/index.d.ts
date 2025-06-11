@@ -53,23 +53,26 @@ export interface Publisher {
     [key: string]: string | unknown;
 }
 
-export interface Person {
-    id: number;
+export interface PersonFormData {
+    id?: number | null;
     name: string;
-    aka?: string | null;
+    type?: string | null;
+    aka?: string;
     bio?: string | null;
     DOB?: string | null;
-    img?: string | null;
-    created_at: string;
-    updated_at: string;
-    [key: string]: string | unknown;
+    img?: File | null;
+    created_at?: string | null;
+    updated_at?: string | null;
+    [key: string]: string | number | boolean | File | null | undefined;
 }
 
 export interface PublisherFormData {
     name: string;
-    url?: string;
-    logo: File | null;
+    url?: string | null
     description?: string | null;
+    logo?: File | null;
+    created_at?: string | null;
+    updated_at?: string | null;
     _method: 'PUT' | 'POST';
     [key: string]: string | number | File | null;
 }

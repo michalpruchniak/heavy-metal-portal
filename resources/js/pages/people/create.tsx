@@ -1,13 +1,15 @@
+import TextEditor from '@/components/TextEditor/TextEditor';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import useTranslation from '@/hooks/use-translate';
 import AppLayout from '@/layouts/app-layout';
-import { PublisherFormData, PublisherProps } from '@/types';
-import { Head, useForm } from '@inertiajs/react';
+import { PersonFormData, PublisherProps } from '@/types';
+import { Head, useForm, usePage } from '@inertiajs/react';
 import { FC, FormEvent } from 'react';
 
 const PersonForm: FC<PublisherProps> = ({ publisher }) => {
     const { labels } = useTranslation();
+    const { personType } = usePage<PageProps>().props;
     const breadcrumbs = [
         {
             title: labels.publishers,
@@ -19,7 +21,7 @@ const PersonForm: FC<PublisherProps> = ({ publisher }) => {
         },
     ];
 
-    const { data, setData, processing, post, errors } = useForm<PublisherFormData>({
+    const { data, setData, processing, post, errors } = useForm<PersonFormData>({
         name: publisher?.name ?? '',
         url: publisher?.url ?? '',
         logo: null,
@@ -57,19 +59,39 @@ const PersonForm: FC<PublisherProps> = ({ publisher }) => {
                         <Input type="text" value={data.aka ?? ''} onChange={(e) => setData('aka', e.target.value)} aria-invalid={!!errors.aka} />
                         {errors.aka && <div className="text-red-500">{errors.aka}</div>}
                     </div>
+                    <div>
+                        <TextEditor name="bio" value={data.bio ?? ''} limit={1500} label="bio" error={errors.bio}  onChange={(value) => setData('bio', value)} />
+                        {errors.aka && <div className="text-red-500">{errors.aka}</div>}
+                    </div>
 
                     <div>
-                        <label>Logo:</label>
+                        <label>Img:</label>
                         <Input
                             type="file"
                             onChange={(e) => {
                                 if (e.target.files && e.target.files[0]) {
-                                    setData('logo', e.target.files[0]);
+                                    setData('img', e.target.files[0]);
                                 }
                             }}
                             aria-invalid={!!errors.logo}
                         />
                         {errors.logo && <div className="text-red-500">{errors.logo}</div>}
+                    </div>
+
+                    <div>
+                        <label>Type:</label>
+                        <select
+                            value={data.type ?? 'none'}
+                            onChange={(e) => setData('type', e.target.value)}
+                            aria-invalid={!!errors.type}
+                            className="border rounded px-2 py-1"
+                        >
+                            {personType.map((type, index) => {
+                                return <option key={index} value={type}>{type}</option>
+                            })}
+                        </select>
+
+                        {errors.type && <div className="text-red-500">{errors.type}</div>}
                     </div>
 
                     <Button type="submit" disabled={processing} className="self-start">

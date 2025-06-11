@@ -9,7 +9,7 @@ Route::get('/', function () {
     return Inertia::render('welcome');
 })->name('home');
 
-Route::prefix('/panel')->middleware(['auth', 'verified'])->group(function () {
+Route::prefix('/panel')->middleware(['auth', 'verified', 'formOptionsMiddleware'])->group(function () {
     Route::get('dashboard', function () {
         return Inertia::render('dashboard');
     })->name('dashboard');
@@ -36,6 +36,10 @@ Route::prefix('/panel')->middleware(['auth', 'verified'])->group(function () {
 
     Route::get('people', [PersonController::class, 'index'])
         ->name('people.index')
+        ->middleware('permission:people.view');
+
+    Route::get('people/create', [PersonController::class, 'create'])
+        ->name('people.create')
         ->middleware('permission:people.view');
 });
 

@@ -1,4 +1,3 @@
-import TextEditor from '@/components/TextEditor/TextEditor';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import useTranslation from '@/hooks/use-translate';
@@ -23,6 +22,7 @@ const PublisherForm: FC<PublisherProps> = ({ publisher }) => {
     const { data, setData, processing, post, errors } = useForm<PublisherFormData>({
         name: publisher?.name ?? '',
         url: publisher?.url ?? '',
+        description: publisher?.description ?? '',
         logo: null,
         _method: publisher?.id ? 'PUT' : 'POST',
     });
