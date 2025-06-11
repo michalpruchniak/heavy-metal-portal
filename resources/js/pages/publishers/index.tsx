@@ -1,4 +1,4 @@
-import ButtonLink from '@/components/Buttons/ButtonLink';
+import ButtonLink from '@/components/Button/ButtonLink';
 import Table from '@/components/Table/Table';
 import useTranslation from '@/hooks/use-translate';
 import AppLayout from '@/layouts/app-layout';

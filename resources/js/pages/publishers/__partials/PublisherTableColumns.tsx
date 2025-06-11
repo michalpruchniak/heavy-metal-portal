@@ -1,4 +1,4 @@
-import ButtonLink from '@/components/Buttons/ButtonLink';
+import ButtonLink from '@/components/Button/ButtonLink';
 import useTranslation from '@/hooks/use-translate';
 import { Publisher } from '@/types';
 import { TableColumn } from 'react-data-table-component';
