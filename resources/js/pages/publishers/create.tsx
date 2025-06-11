@@ -1,3 +1,4 @@
+import TextEditor from '@/components/TextEditor/TextEditor';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import useTranslation from '@/hooks/use-translate';
@@ -71,7 +72,6 @@ const PublisherForm: FC<PublisherProps> = ({ publisher }) => {
                         />
                         {errors.logo && <div className="text-red-500">{errors.logo}</div>}
                     </div>
-
                     <Button type="submit" disabled={processing} className="self-start">
                         {publisher ? 'Update' : 'Create'}
                     </Button>
