@@ -12,11 +12,11 @@ const PersonForm: FC<PublisherProps> = ({ publisher }) => {
     const { personType } = usePage<PageProps>().props;
     const breadcrumbs = [
         {
-            title: labels.publishers,
-            href: route('publishers.index'),
+            title: labels.people,
+            href: route('people.index'),
         },
         {
-            title: publisher ? labels.update_publisher : labels.create_publisher,
+            title: publisher ? labels.edit_publisher : labels.create_person,
             href: publisher ? route('publishers.edit', { publisher: publisher.id }) : route('publishers.create'),
         },
     ];
@@ -43,9 +43,9 @@ const PersonForm: FC<PublisherProps> = ({ publisher }) => {
 
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
-            <Head title={publisher ? labels.update_publisher : labels.create_publisher} />
+            <Head title={publisher ? labels.edit_person : labels.create_person} />
             <div className="flex h-full flex-1 flex-col gap-4 rounded-xl p-4">
-                <h1 className="text-center text-[45px]">{publisher ? `${labels.update_publisher} ${publisher.name}` : labels.create_publisher}</h1>
+                <h1 className="text-center text-[45px]">{publisher ? `${labels.edit_person} ${publisher.name}` : labels.create_person}</h1>
 
                 <form onSubmit={handleSubmit} encType="multipart/form-data" className="flex flex-col gap-4 px-[15px] md:px-[17%]">
                     <div>

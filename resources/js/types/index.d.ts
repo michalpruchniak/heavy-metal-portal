@@ -74,6 +74,8 @@ export interface PublisherFormData {
     created_at?: string | null;
     updated_at?: string | null;
     _method: 'PUT' | 'POST';
+    created_at?: string;
+    updated_at?: string;
     [key: string]: string | number | File | null;
 }
 
@@ -91,4 +93,16 @@ export interface PublisherProps {
 
 export interface PersonProps {
     person?: Person;
+}
+
+export interface Person {
+    id: number;
+    name: string;
+    aka?: string;
+    bio?: string;
+    DOB?: string;
+    img?: File;
+    created_at?: string;
+    updated_at?: string;
+    [key: string]: string | unknown;
 }

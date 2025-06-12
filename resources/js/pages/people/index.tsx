@@ -1,4 +1,5 @@
-import ButtonLink from '@/components/Buttons/ButtonLink';
+import ButtonLink from '@/components/Button/ButtonLink';
+
 import Table from '@/components/Table/Table';
 import useTranslation from '@/hooks/use-translate';
 import AppLayout from '@/layouts/app-layout';
@@ -11,19 +12,19 @@ export default function Index({ people }: IndexPagePeopleProps) {
 
     const breadcrumbs = [
         {
-            title: labels.publishers,
+            title: labels.people,
             href: route('people.index'),
         },
     ];
 
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
-            <Head title="Publishers" />
+            <Head title="People" />
             <div className="flex h-full flex-1 flex-col gap-4 rounded-xl p-4">
-                <h1 className="text-center text-[45px]">{labels.publishers}</h1>
+                <h1 className="text-center text-[45px]">{labels.people}</h1>
                 <div className="flex justify-end">
-                    <ButtonLink url={route('publishers.create')} variant="primary">
-                        {labels.add_new_publisher}
+                    <ButtonLink url={route('people.create')} variant="primary">
+                        {labels.add_new_person}
                     </ButtonLink>
                 </div>
                 <Table<Person> data={people} columns={PersonTableColumns()} />
