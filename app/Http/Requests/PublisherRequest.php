@@ -26,7 +26,7 @@ class PublisherRequest extends FormRequest
             'name' => 'required|string|between:1,200',
             'logo' => 'required|image|max:500',
             'url' => 'nullable|url',
-            'description' => 'nullable|string|between:20,2500',
+            'description' => 'nullable|string|between:20,2500|file|mimes:jpg,jpeg,png,webp',
         ];
     }
 

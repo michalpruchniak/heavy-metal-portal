@@ -56,14 +56,14 @@ export interface Publisher {
 export interface PersonFormData {
     id?: number | null;
     name: string;
-    type?: string | null;
+    type?: string;
     aka?: string;
-    bio?: string | null;
-    DOB?: string | null;
+    bio?: string;
+    DOB?: string;
     img?: File | null;
     created_at?: string | null;
     updated_at?: string | null;
-    [key: string]: string | number | boolean | File | null | undefined;
+    [key: string]: string | number | boolean | File | null;
 }
 
 export interface PublisherFormData {

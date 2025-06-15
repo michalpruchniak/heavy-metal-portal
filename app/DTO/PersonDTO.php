@@ -13,7 +13,7 @@ class PersonDTO implements Arrayable
         public readonly string $name,
         public readonly ?string $aka,
         public readonly ?string $bio,
-        public readonly ?DateTimeImmutable $date,
+        public readonly ?DateTimeImmutable $DOB,
         public readonly ?UploadedFile $img,
         public readonly PersonTypeEnum $type
     ) {}
@@ -24,7 +24,7 @@ class PersonDTO implements Arrayable
             'name' => $this->name,
             'aka' => $this->aka,
             'bio' => $this->bio,
-            'date' => $this->date,
+            'DOB' => $this->DOB,
             'img' => $this->img,
             'type' => $this->type,
         ];

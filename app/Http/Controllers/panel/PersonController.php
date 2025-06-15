@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\panel;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PersonRequest;
 use App\Services\PersonService;
-use Illuminate\Http\Request;
+use Exception;
+use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -24,5 +26,16 @@ class PersonController extends Controller
     public function create(): Response
     {
         return Inertia::render('people/create');
+    }
+
+    public function store(PersonRequest $request): RedirectResponse
+    {
+        try {
+            $this->personService->create($request->getDTO());
+        } catch (Exception $e) {
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+        }
+
+        return redirect()->route('people.index')->with('success', 'Person created successfully');
     }
 }

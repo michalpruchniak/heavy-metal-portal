@@ -3,11 +3,11 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import useTranslation from '@/hooks/use-translate';
 import AppLayout from '@/layouts/app-layout';
-import { PersonFormData, PublisherProps } from '@/types';
+import { PersonFormData, PersonProps } from '@/types';
 import { Head, useForm, usePage } from '@inertiajs/react';
 import { FC, FormEvent } from 'react';
 
-const PersonForm: FC<PublisherProps> = ({ publisher }) => {
+const PersonForm: FC<PersonProps> = ({ person }) => {
     const { labels } = useTranslation();
     const { personType } = usePage<PageProps>().props;
     const breadcrumbs = [
@@ -16,20 +16,23 @@ const PersonForm: FC<PublisherProps> = ({ publisher }) => {
             href: route('people.index'),
         },
         {
-            title: publisher ? labels.edit_publisher : labels.create_person,
-            href: publisher ? route('publishers.edit', { publisher: publisher.id }) : route('publishers.create'),
+            title: person ? labels.edit_person : labels.create_person,
+            href: person ? route('publishers.edit', { publisher: person.id }) : route('people.create'),
         },
     ];
 
     const { data, setData, processing, post, errors } = useForm<PersonFormData>({
-        name: publisher?.name ?? '',
-        url: publisher?.url ?? '',
-        logo: null,
-        _method: publisher?.id ? 'PUT' : 'POST',
-    });
+        name: typeof person?.name === 'string' ? person.name :  '',
+        type: typeof person?.type === 'string' ? person.type : 'none',
+        aka: typeof person?.aka === 'string' ? person.aka : '',
+        bio: typeof person?.bio === 'string' ? person.bio : '',
+        DOB: typeof person?.DOB === 'string' ? person.DOB : '',
+        img: null,
+        _method: person?.id ? 'PUT' : 'POST',
+      });
 
     const sendRequest = () => {
-        const targetRoute = publisher ? route('publishers.update', { publisher: publisher.id }) : route('publishers.store');
+        const targetRoute = person ? route('publishers.update', { publisher: person.id }) : route('people.store');
 
         post(targetRoute, {
             preserveScroll: true,
@@ -43,9 +46,9 @@ const PersonForm: FC<PublisherProps> = ({ publisher }) => {
 
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
-            <Head title={publisher ? labels.edit_person : labels.create_person} />
+            <Head title={person ? labels.edit_person : labels.create_person} />
             <div className="flex h-full flex-1 flex-col gap-4 rounded-xl p-4">
-                <h1 className="text-center text-[45px]">{publisher ? `${labels.edit_person} ${publisher.name}` : labels.create_person}</h1>
+                <h1 className="text-center text-[45px]">{person ? `${labels.edit_person} ${person.name}` : labels.create_person}</h1>
 
                 <form onSubmit={handleSubmit} encType="multipart/form-data" className="flex flex-col gap-4 px-[15px] md:px-[17%]">
                     <div>
@@ -95,7 +98,7 @@ const PersonForm: FC<PublisherProps> = ({ publisher }) => {
                     </div>
 
                     <Button type="submit" disabled={processing} className="self-start">
-                        {publisher ? 'Update' : 'Create'}
+                        {person ? 'Update' : 'Create'}
                     </Button>
                 </form>
             </div>
