@@ -9,7 +9,8 @@ use App\Services\Interfaces\FileUploadServiceInterface;
 use App\Services\Interfaces\PersonServiceInterface;
 use Illuminate\Database\Eloquent\Collection;
 
-class PersonService implements PersonServiceInterface{
+class PersonService implements PersonServiceInterface
+{
     public function __construct(
         private readonly PersonRepositoryInterface $personRepository,
         private readonly FileUploadServiceInterface $fileUploadService
@@ -30,5 +31,4 @@ class PersonService implements PersonServiceInterface{
 
         return $person;
     }
-
 }

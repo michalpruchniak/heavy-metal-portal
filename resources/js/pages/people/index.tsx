@@ -3,7 +3,7 @@ import ButtonLink from '@/components/Button/ButtonLink';
 import Table from '@/components/Table/Table';
 import useTranslation from '@/hooks/use-translate';
 import AppLayout from '@/layouts/app-layout';
-import { IndexPagePeopleProps, IndexPageProps, Person, Publisher } from '@/types';
+import { IndexPagePeopleProps, Person } from '@/types';
 import { Head } from '@inertiajs/react';
 import PersonTableColumns from './__partials/PersonTableColumns';
 

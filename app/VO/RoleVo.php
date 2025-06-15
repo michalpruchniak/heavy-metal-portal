@@ -2,11 +2,13 @@
 
 namespace App\VO;
 
-class RoleVo {
+class RoleVo
+{
     private string $name;
+
     private array $permissions;
 
-    function __construct(string $name, array $permissions = [])
+    public function __construct(string $name, array $permissions = [])
     {
         $this->name = $name;
         $this->permissions = $permissions;

@@ -18,6 +18,6 @@ return [
         'add_new_person' => 'Add new person',
         'people' => 'People',
         'create_person' => 'Create person',
-        'edit_person' => 'Edit person'
+        'edit_person' => 'Edit person',
     ],
 ];

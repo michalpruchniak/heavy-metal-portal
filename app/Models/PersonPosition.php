@@ -10,7 +10,7 @@ class PersonPosition extends Model
 {
     use HasSlug;
 
-    public function getSlugOptions() : SlugOptions
+    public function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()
             ->generateSlugsFrom('name')

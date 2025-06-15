@@ -22,14 +22,14 @@ const PersonForm: FC<PersonProps> = ({ person }) => {
     ];
 
     const { data, setData, processing, post, errors } = useForm<PersonFormData>({
-        name: typeof person?.name === 'string' ? person.name :  '',
+        name: typeof person?.name === 'string' ? person.name : '',
         type: typeof person?.type === 'string' ? person.type : 'none',
         aka: typeof person?.aka === 'string' ? person.aka : '',
         bio: typeof person?.bio === 'string' ? person.bio : '',
         DOB: typeof person?.DOB === 'string' ? person.DOB : '',
         img: null,
         _method: person?.id ? 'PUT' : 'POST',
-      });
+    });
 
     const sendRequest = () => {
         const targetRoute = person ? route('publishers.update', { publisher: person.id }) : route('people.store');
@@ -63,7 +63,14 @@ const PersonForm: FC<PersonProps> = ({ person }) => {
                         {errors.aka && <div className="text-red-500">{errors.aka}</div>}
                     </div>
                     <div>
-                        <TextEditor name="bio" value={data.bio ?? ''} limit={1500} label="bio" error={errors.bio}  onChange={(value) => setData('bio', value)} />
+                        <TextEditor
+                            name="bio"
+                            value={data.bio ?? ''}
+                            limit={1500}
+                            label="bio"
+                            error={errors.bio}
+                            onChange={(value) => setData('bio', value)}
+                        />
                         {errors.aka && <div className="text-red-500">{errors.aka}</div>}
                     </div>
 
@@ -87,10 +94,14 @@ const PersonForm: FC<PersonProps> = ({ person }) => {
                             value={data.type ?? 'none'}
                             onChange={(e) => setData('type', e.target.value)}
                             aria-invalid={!!errors.type}
-                            className="border rounded px-2 py-1"
+                            className="rounded border px-2 py-1"
                         >
                             {personType.map((type, index) => {
-                                return <option key={index} value={type}>{type}</option>
+                                return (
+                                    <option key={index} value={type}>
+                                        {type}
+                                    </option>
+                                );
                             })}
                         </select>
 

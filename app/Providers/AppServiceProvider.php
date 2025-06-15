@@ -36,7 +36,6 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->bind(PersonServiceInterface::class, PersonService::class);
 
-
     }
 
     /**

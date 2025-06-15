@@ -68,7 +68,7 @@ export interface PersonFormData {
 
 export interface PublisherFormData {
     name: string;
-    url?: string | null
+    url?: string | null;
     description?: string | null;
     logo?: File | null;
     created_at?: string | null;

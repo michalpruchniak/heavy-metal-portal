@@ -19,7 +19,7 @@ class FormOptionsMiddleware
     {
         $shares = [];
 
-        if($request->routeIs('people.create') || $request->routeIs('people.edit')) {
+        if ($request->routeIs('people.create') || $request->routeIs('people.edit')) {
             $shares['personType'] = PersonTypeEnum::values();
         }
 

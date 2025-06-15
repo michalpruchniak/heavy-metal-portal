@@ -12,6 +12,6 @@ class Person extends Model
         'bio',
         'DOB',
         'img',
-        'type'
+        'type',
     ];
 }

@@ -2,11 +2,10 @@
 
 use App\Models\Publisher;
 use App\Models\User;
+use App\Traits\CreateRolesAndPermissions;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
-use App\Traits\CreateRolesAndPermissions;
-
 
 uses(RefreshDatabase::class, CreateRolesAndPermissions::class);
 

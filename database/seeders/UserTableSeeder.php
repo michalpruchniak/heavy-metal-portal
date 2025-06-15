@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 class UserTableSeeder extends Seeder
 {
     use CreateRolesAndPermissions;
+
     /**
      * Run the database seeds.
      */

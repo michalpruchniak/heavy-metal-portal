@@ -4,8 +4,8 @@ use App\DTO\PersonDTO;
 use App\Enums\PersonTypeEnum;
 use App\Repositories\Interfaces\PersonRepositoryInterface;
 use App\Services\PersonService;
-use Illuminate\Database\Eloquent\Collection;
 use Faker\Factory as FakerFactory;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\UploadedFile;
 
 beforeEach(function () {
@@ -13,7 +13,7 @@ beforeEach(function () {
     $this->personRepositoryMock = Mockery::mock(PersonRepositoryInterface::class);
     $this->personService = new PersonService($this->personRepositoryMock);
 
-    $this->makePersonDTO = function ():PersonDTO {
+    $this->makePersonDTO = function (): PersonDTO {
         return new PersonDTO(
             name: $this->faker->name(),
             aka: $this->faker->userName(),
@@ -25,11 +25,11 @@ beforeEach(function () {
     };
 
     $this->makePersonDTOs = function (int $count): array {
-        return array_map(fn() => ($this->makePersonDTO)(), range(1, $count));
+        return array_map(fn () => ($this->makePersonDTO)(), range(1, $count));
     };
 });
 
-test('Method getAll exists', function() {
+test('Method getAll exists', function () {
     expect(method_exists($this->personService, 'getAll'))->toBeTrue();
 });
 

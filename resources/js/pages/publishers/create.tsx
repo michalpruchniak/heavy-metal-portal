@@ -20,8 +20,8 @@ const PublisherForm: FC<PublisherProps> = ({ publisher }) => {
     ];
 
     const { data, setData, processing, post, errors } = useForm<PublisherFormData>({
-        name: typeof publisher?.name === 'string' ? publisher.name: '',
-        url: typeof publisher?.url  === 'string' ? publisher.url : '',
+        name: typeof publisher?.name === 'string' ? publisher.name : '',
+        url: typeof publisher?.url === 'string' ? publisher.url : '',
         description: typeof publisher?.description === 'string' ? publisher.description : '',
         logo: null,
         _method: publisher?.id ? 'PUT' : 'POST',

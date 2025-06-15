@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\PersonPosition;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -15,7 +14,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UserTableSeeder::class,
             PublisherTableSeeder::class,
-            PersonPositionTableSeeder::class
+            PersonPositionTableSeeder::class,
         ]);
     }
 }
