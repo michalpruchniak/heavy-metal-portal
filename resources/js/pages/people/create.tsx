@@ -52,13 +52,13 @@ const PersonForm: FC<PersonProps> = ({ person }) => {
 
                 <form onSubmit={handleSubmit} encType="multipart/form-data" className="flex flex-col gap-4 px-[15px] md:px-[17%]">
                     <div>
-                        <label>Name:</label>
+                        <label>{labels.name}:</label>
                         <Input type="text" value={data.name} onChange={(e) => setData('name', e.target.value)} aria-invalid={!!errors.name} />
                         {errors.name && <div className="text-red-500">{errors.name}</div>}
                     </div>
 
                     <div>
-                        <label>Aka:</label>
+                        <label>{labels.aka}:</label>
                         <Input type="text" value={data.aka ?? ''} onChange={(e) => setData('aka', e.target.value)} aria-invalid={!!errors.aka} />
                         {errors.aka && <div className="text-red-500">{errors.aka}</div>}
                     </div>
@@ -67,7 +67,7 @@ const PersonForm: FC<PersonProps> = ({ person }) => {
                             name="bio"
                             value={data.bio ?? ''}
                             limit={1500}
-                            label="bio"
+                            label={labels.bio}
                             error={errors.bio}
                             onChange={(value) => setData('bio', value)}
                         />
@@ -75,7 +75,7 @@ const PersonForm: FC<PersonProps> = ({ person }) => {
                     </div>
 
                     <div>
-                        <label>Img:</label>
+                        <label>{labels.image}:</label>
                         <Input
                             type="file"
                             onChange={(e) => {
@@ -89,12 +89,12 @@ const PersonForm: FC<PersonProps> = ({ person }) => {
                     </div>
 
                     <div>
-                        <label>Type:</label>
+                        <label>{labels.type}:</label>
                         <select
                             value={data.type ?? 'none'}
                             onChange={(e) => setData('type', e.target.value)}
                             aria-invalid={!!errors.type}
-                            className="rounded border px-2 py-1"
+                            className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                         >
                             {personType.map((type, index) => {
                                 return (

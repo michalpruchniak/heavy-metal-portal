@@ -19,5 +19,9 @@ return [
         'people' => 'People',
         'create_person' => 'Create person',
         'edit_person' => 'Edit person',
+        'aka' => 'Aka',
+        'bio' => 'Bio',
+        'image' => 'Image',
+        'type' => 'Type'
     ],
 ];
