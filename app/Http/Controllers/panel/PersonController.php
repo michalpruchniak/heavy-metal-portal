@@ -38,4 +38,13 @@ class PersonController extends Controller
 
         return redirect()->route('people.index')->with('success', 'Person created successfully');
     }
+
+    public function edit(int $person): Response
+    {
+        $person = $this->personService->findOrFail($person);
+
+        return Inertia::render('people/create', [
+            'person' => $person,
+        ]);
+    }
 }

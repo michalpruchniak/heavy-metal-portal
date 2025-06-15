@@ -17,6 +17,11 @@ class PersonService implements PersonServiceInterface
 
     ) {}
 
+    public function findOrFail(int $id): Person
+    {
+        return $this->personRepository->findOrFail($id);
+    }
+
     public function getAll(array $order = ['created_at' => 'desc']): Collection
     {
         return $this->personRepository->get(order: $order);
@@ -30,5 +35,16 @@ class PersonService implements PersonServiceInterface
         $person = $this->personRepository->create($personData);
 
         return $person;
+    }
+
+    public function update(int $id, PersonDTO $personDTO): Person
+    {
+        $person = $this->personRepository->findOrFail($id);
+        $personData = $personDTO->toArray();
+        $personData['img'] = $this->fileUploadService->saveOrUpdatePhoto($person->getRawOriginal('logo'), $personDTO->img, self::PERSON_CATALOG_PHOTO_DIRECTORY);
+
+        $person->update($personData);
+
+        return $person->refresh();
     }
 }

@@ -45,6 +45,10 @@ Route::prefix('/panel')->middleware(['auth', 'verified', 'formOptionsMiddleware'
     Route::post('people/store', [PersonController::class, 'store'])
         ->name('people.store')
         ->middleware('permission:people.view');
+
+    Route::get('people/edit/{person}', [PersonController::class, 'edit'])
+        ->name('people.edit')
+        ->middleware('permission:people.view');
 });
 
 require __DIR__.'/settings.php';

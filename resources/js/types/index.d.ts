@@ -101,7 +101,7 @@ export interface Person {
     aka?: string;
     bio?: string;
     DOB?: string;
-    img?: File;
+    img?: string|File;
     created_at?: string;
     updated_at?: string;
     [key: string]: string | unknown;
