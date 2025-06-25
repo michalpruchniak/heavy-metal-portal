@@ -3,6 +3,7 @@
 use App\DTO\PersonDTO;
 use App\Enums\PersonTypeEnum;
 use App\Repositories\Interfaces\PersonRepositoryInterface;
+use App\Services\Interfaces\FileUploadServiceInterface;
 use App\Services\PersonService;
 use Faker\Factory as FakerFactory;
 use Illuminate\Database\Eloquent\Collection;
@@ -11,14 +12,18 @@ use Illuminate\Http\UploadedFile;
 beforeEach(function () {
     $this->faker = FakerFactory::create();
     $this->personRepositoryMock = Mockery::mock(PersonRepositoryInterface::class);
-    $this->personService = new PersonService($this->personRepositoryMock);
+    $this->fileUploadServiceMock = Mockery::mock(FileUploadServiceInterface::class);
+    $this->personService = new PersonService(
+        $this->personRepositoryMock,
+        $this->fileUploadServiceMock
+    );
 
     $this->makePersonDTO = function (): PersonDTO {
         return new PersonDTO(
             name: $this->faker->name(),
             aka: $this->faker->userName(),
             bio: $this->faker->text(100),
-            date: DateTimeImmutable::createFromFormat('Y-m-d', $this->faker->date('Y-m-d')),
+            DOB: DateTimeImmutable::createFromFormat('Y-m-d', $this->faker->date('Y-m-d')),
             img: UploadedFile::fake()->image('photo.jpg'),
             type: PersonTypeEnum::random()
         );
