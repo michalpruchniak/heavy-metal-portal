@@ -22,6 +22,6 @@ return [
         'aka' => 'Aka',
         'bio' => 'Bio',
         'image' => 'Image',
-        'type' => 'Type'
+        'type' => 'Type',
     ],
 ];

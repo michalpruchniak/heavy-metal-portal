@@ -1,8 +1,8 @@
+import DefaultImg from '@/components/Atoms/Img/default.jpg';
 import ButtonLink from '@/components/Button/ButtonLink';
 import useTranslation from '@/hooks/use-translate';
 import { Person } from '@/types';
 import { TableColumn } from 'react-data-table-component';
-import DefaultImg from '@/components/Atoms/Img/default.jpg'
 
 const PersonTableColumns = (): TableColumn<Person>[] => {
     const { buttons, labels } = useTranslation();

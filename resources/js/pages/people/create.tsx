@@ -94,7 +94,7 @@ const PersonForm: FC<PersonProps> = ({ person }) => {
                             value={data.type ?? 'none'}
                             onChange={(e) => setData('type', e.target.value)}
                             aria-invalid={!!errors.type}
-                            className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                            className="border-input bg-background placeholder:text-muted-foreground focus-visible:ring-ring w-full rounded-md border px-3 py-2 text-sm shadow-sm focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
                         >
                             {personType.map((type, index) => {
                                 return (

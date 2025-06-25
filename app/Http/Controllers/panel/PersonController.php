@@ -47,4 +47,15 @@ class PersonController extends Controller
             'person' => $person,
         ]);
     }
+
+    public function update(int $id, PersonRequest $request): RedirectResponse
+    {
+        try {
+            $this->personService->update($id, $request->getDTO());
+        } catch (Exception $e) {
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+        }
+
+        return redirect()->route('people.index')->with('success', 'Person updated successfully');
+    }
 }
