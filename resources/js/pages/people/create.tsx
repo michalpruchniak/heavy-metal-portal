@@ -1,11 +1,12 @@
 import TextEditor from '@/components/TextEditor/TextEditor';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { PageProps } from '@/hooks/_types/types';
 import useTranslation from '@/hooks/use-translate';
 import AppLayout from '@/layouts/app-layout';
-import { PersonFormData, PersonProps } from '@/types';
 import { Head, useForm, usePage } from '@inertiajs/react';
 import { FC, FormEvent } from 'react';
+import { PersonFormData, PersonProps } from './__types/types';
 
 const PersonForm: FC<PersonProps> = ({ person }) => {
     const { labels } = useTranslation();

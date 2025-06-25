@@ -2,7 +2,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import useTranslation from '@/hooks/use-translate';
 import AppLayout from '@/layouts/app-layout';
-import { PublisherFormData, PublisherProps } from '@/types';
+import { PublisherFormData, PublisherProps } from './__types/types';
 import { Head, useForm } from '@inertiajs/react';
 import { FC, FormEvent } from 'react';
 

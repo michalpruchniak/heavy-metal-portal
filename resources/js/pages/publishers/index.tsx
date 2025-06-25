@@ -2,9 +2,9 @@ import ButtonLink from '@/components/Button/ButtonLink';
 import Table from '@/components/Table/Table';
 import useTranslation from '@/hooks/use-translate';
 import AppLayout from '@/layouts/app-layout';
-import { IndexPageProps, Publisher } from '@/types';
 import { Head } from '@inertiajs/react';
 import PublisherTableColumns from './__partials/PublisherTableColumns';
+import { IndexPageProps, Publisher } from './__types/types';
 
 export default function Index({ publishers }: IndexPageProps) {
     const { labels } = useTranslation();
