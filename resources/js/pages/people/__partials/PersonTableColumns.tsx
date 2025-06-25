@@ -1,33 +1,34 @@
+import DefaultImg from '@/components/Atoms/Img/default.jpg';
 import ButtonLink from '@/components/Button/ButtonLink';
 import useTranslation from '@/hooks/use-translate';
-import { Publisher } from '@/types';
+import { Person } from '@/types';
 import { TableColumn } from 'react-data-table-component';
 
-const PublisherTableColumns = (): TableColumn<Publisher>[] => {
+const PersonTableColumns = (): TableColumn<Person>[] => {
     const { buttons, labels } = useTranslation();
     return [
         {
             name: labels.id,
-            selector: (row: Publisher) => row.id,
+            selector: (row: Person) => row.id,
             sortable: true,
         },
         {
             name: labels.name,
-            selector: (row: Publisher) => row.name,
+            selector: (row: Person) => row.name,
             sortable: true,
         },
         {
             name: labels.name,
-            cell: (row: Publisher) => <img src={row.logo} alt="Logo" className="h-10 w-10 object-contain" />,
+            cell: (row: Person) => <img src={row.img ?? DefaultImg} alt="Logo" className="h-10 w-10 object-contain" />,
         },
         {
             name: labels.url,
-            selector: (row: Publisher) => row.url || 'N/A',
+            selector: (row: Person) => (typeof row.url === 'string' ? row.url : 'N/A'),
         },
         {
             name: labels.edit,
-            cell: (row: Publisher) => (
-                <ButtonLink variant="secondary" url={route('publishers.edit', { publisher: row.id })}>
+            cell: (row: Person) => (
+                <ButtonLink variant="secondary" url={route('people.edit', { person: row.id })}>
                     {buttons.edit}
                 </ButtonLink>
             ),
@@ -35,4 +36,4 @@ const PublisherTableColumns = (): TableColumn<Publisher>[] => {
     ];
 };
 
-export default PublisherTableColumns;
+export default PersonTableColumns;

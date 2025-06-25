@@ -53,12 +53,29 @@ export interface Publisher {
     [key: string]: string | unknown;
 }
 
+export interface PersonFormData {
+    id?: number | null;
+    name: string;
+    type?: string;
+    aka?: string;
+    bio?: string;
+    DOB?: string;
+    img?: File | null;
+    created_at?: string | null;
+    updated_at?: string | null;
+    [key: string]: string | number | boolean | File | null;
+}
+
 export interface PublisherFormData {
     name: string;
-    url?: string;
-    logo: File | null;
+    url?: string | null;
     description?: string | null;
+    logo?: File | null;
+    created_at?: string | null;
+    updated_at?: string | null;
     _method: 'PUT' | 'POST';
+    created_at?: string;
+    updated_at?: string;
     [key: string]: string | number | File | null;
 }
 
@@ -66,6 +83,26 @@ export interface IndexPageProps {
     publishers: Publisher[];
 }
 
+export interface IndexPagePeopleProps {
+    people: Person[];
+}
+
 export interface PublisherProps {
     publisher?: Publisher;
+}
+
+export interface PersonProps {
+    person?: Person;
+}
+
+export interface Person {
+    id: number;
+    name: string;
+    aka?: string;
+    bio?: string;
+    DOB?: string;
+    img?: string | File;
+    created_at?: string;
+    updated_at?: string;
+    [key: string]: string | unknown;
 }
