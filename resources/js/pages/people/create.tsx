@@ -7,8 +7,8 @@ import AppLayout from '@/layouts/app-layout';
 import { Head, useForm, usePage } from '@inertiajs/react';
 import { FC, FormEvent } from 'react';
 import { PersonFormData, PersonProps } from './__types/types';
-import { Input } from '@/components/ui/input';
 import InputFile from '@/components/Input/InputFile';
+import SelectInput from '@/components/SelectInput/SelectInput';
 
 const PersonForm: FC<PersonProps> = ({ person }) => {
     const { labels } = useTranslation();
@@ -81,23 +81,14 @@ const PersonForm: FC<PersonProps> = ({ person }) => {
                     </div>
 
                     <div>
-                        <label>{labels.type}:</label>
-                        <select
-                            value={data.type ?? 'none'}
-                            onChange={(e) => setData('type', e.target.value)}
-                            aria-invalid={!!errors.type}
-                            className="border-input bg-background placeholder:text-muted-foreground focus-visible:ring-ring w-full rounded-md border px-3 py-2 text-sm shadow-sm focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
-                        >
-                            {personType.map((type, index) => {
-                                return (
-                                    <option key={index} value={type}>
-                                        {type}
-                                    </option>
-                                );
-                            })}
-                        </select>
-
-                        {errors.type && <div className="text-red-500">{errors.type}</div>}
+                        <SelectInput
+                            name="type"
+                            value={data.type}
+                            label={labels.type}
+                            options={personType.map((type) => ({ value: type, label: type }))}
+                            onChange={(value) => setData('type', value)}
+                            error={errors.type}
+                        />
                     </div>
 
                     <Button type="submit" disabled={processing} className="self-start">

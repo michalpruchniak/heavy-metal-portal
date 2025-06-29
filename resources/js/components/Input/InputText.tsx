@@ -20,6 +20,7 @@ const InputText: React.FC<InputTextProps> = ({ value, onChange, name, label, cla
                 value={value}
                 onChange={(e) => onChange(e.target.value)}
                 aria-invalid={!!error}
+                className='border borde-1 p-2 rounded-md'
                 {...props}
             />
 

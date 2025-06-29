@@ -30,6 +30,7 @@ const InputFile: React.FC<InputFileProps> = ({
                     }
                 }}
                 aria-invalid={!!error}
+                className='border borde-1 p-2 rounded-md'
                 {...props}
             />
 
