@@ -5,10 +5,7 @@ const InputText: React.FC<InputTextProps> = ({ value, onChange, name, label, cla
     return (
         <div className={`flex flex-col space-y-2 ${className}`}>
             {label && (
-                <label
-                    htmlFor={name}
-                    className={`font-inter text-[16px] leading-[22.4px] font-[400] ${error ? 'text-red-500' : 'text-[#000000]'}`}
-                >
+                <label htmlFor={name} className={`font-inter text-[16px] leading-[22.4px] font-[400] ${error ? 'text-red-500' : 'text-[#000000]'}`}>
                     {label}
                 </label>
             )}
@@ -20,7 +17,7 @@ const InputText: React.FC<InputTextProps> = ({ value, onChange, name, label, cla
                 value={value}
                 onChange={(e) => onChange(e.target.value)}
                 aria-invalid={!!error}
-                className='border borde-1 p-2 rounded-md'
+                className="borde-1 rounded-md border p-2"
                 {...props}
             />
 

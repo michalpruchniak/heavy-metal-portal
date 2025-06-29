@@ -5,7 +5,7 @@ export interface InputTextProps {
     label?: string;
     className?: string;
     error?: string;
-    type?: string
+    type?: string;
 }
 
 export interface InputFileProps {
@@ -15,5 +15,5 @@ export interface InputFileProps {
     label?: string;
     className?: string;
     error?: string;
-    type?: string
+    type?: string;
 }

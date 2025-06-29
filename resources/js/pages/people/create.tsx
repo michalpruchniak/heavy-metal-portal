@@ -1,14 +1,14 @@
+import InputFile from '@/components/Input/InputFile';
+import InputText from '@/components/Input/InputText';
+import SelectInput from '@/components/SelectInput/SelectInput';
 import TextEditor from '@/components/TextEditor/TextEditor';
 import { Button } from '@/components/ui/button';
-import InputText from '@/components/Input/InputText';
 import { PageProps } from '@/hooks/_types/types';
 import useTranslation from '@/hooks/use-translate';
 import AppLayout from '@/layouts/app-layout';
 import { Head, useForm, usePage } from '@inertiajs/react';
 import { FC, FormEvent } from 'react';
 import { PersonFormData, PersonProps } from './__types/types';
-import InputFile from '@/components/Input/InputFile';
-import SelectInput from '@/components/SelectInput/SelectInput';
 
 const PersonForm: FC<PersonProps> = ({ person }) => {
     const { labels } = useTranslation();
@@ -72,12 +72,7 @@ const PersonForm: FC<PersonProps> = ({ person }) => {
                         />
                     </div>
                     <div>
-                        <InputFile
-                            name="logo"
-                            label={labels.image}
-                            onChange={(file) => setData('img', file)}
-                            error={errors.logo}
-                         />
+                        <InputFile name="logo" label={labels.image} onChange={(file) => setData('img', file)} error={errors.logo} />
                     </div>
 
                     <div>

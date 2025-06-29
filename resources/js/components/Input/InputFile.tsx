@@ -1,21 +1,11 @@
 import Message from '../Message/Message';
 import { InputFileProps } from './__types/types';
 
-const InputFile: React.FC<InputFileProps> = ({
-    onChange,
-    name,
-    label,
-    className = '',
-    error = '',
-    ...props
-}) => {
+const InputFile: React.FC<InputFileProps> = ({ onChange, name, label, className = '', error = '', ...props }) => {
     return (
         <div className={`flex flex-col space-y-2 ${className}`}>
             {label && (
-                <label
-                    htmlFor={name}
-                    className={`font-inter text-[16px] leading-[22.4px] font-[400] ${error ? 'text-red-500' : 'text-[#000000]'}`}
-                >
+                <label htmlFor={name} className={`font-inter text-[16px] leading-[22.4px] font-[400] ${error ? 'text-red-500' : 'text-[#000000]'}`}>
                     {label}
                 </label>
             )}
@@ -30,7 +20,7 @@ const InputFile: React.FC<InputFileProps> = ({
                     }
                 }}
                 aria-invalid={!!error}
-                className='border borde-1 p-2 rounded-md'
+                className="borde-1 rounded-md border p-2"
                 {...props}
             />
 
