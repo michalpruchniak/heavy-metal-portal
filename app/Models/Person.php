@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Casts\ImageUrlCast;
 use Illuminate\Database\Eloquent\Model;
 
 class Person extends Model
@@ -13,5 +14,9 @@ class Person extends Model
         'DOB',
         'img',
         'type',
+    ];
+
+    protected $casts = [
+        'img' => ImageUrlCast::class,
     ];
 }

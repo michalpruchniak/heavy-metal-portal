@@ -1,12 +1,14 @@
 import TextEditor from '@/components/TextEditor/TextEditor';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
+import InputText from '@/components/Input/InputText';
 import { PageProps } from '@/hooks/_types/types';
 import useTranslation from '@/hooks/use-translate';
 import AppLayout from '@/layouts/app-layout';
 import { Head, useForm, usePage } from '@inertiajs/react';
 import { FC, FormEvent } from 'react';
 import { PersonFormData, PersonProps } from './__types/types';
+import { Input } from '@/components/ui/input';
+import InputFile from '@/components/Input/InputFile';
 
 const PersonForm: FC<PersonProps> = ({ person }) => {
     const { labels } = useTranslation();
@@ -53,15 +55,11 @@ const PersonForm: FC<PersonProps> = ({ person }) => {
 
                 <form onSubmit={handleSubmit} encType="multipart/form-data" className="flex flex-col gap-4 px-[15px] md:px-[17%]">
                     <div>
-                        <label>{labels.name}:</label>
-                        <Input type="text" value={data.name} onChange={(e) => setData('name', e.target.value)} aria-invalid={!!errors.name} />
-                        {errors.name && <div className="text-red-500">{errors.name}</div>}
+                        <InputText label={labels.name} value={data.name} onChange={(value) => setData('name', value)} error={errors.name} />
                     </div>
 
                     <div>
-                        <label>{labels.aka}:</label>
-                        <Input type="text" value={data.aka ?? ''} onChange={(e) => setData('aka', e.target.value)} aria-invalid={!!errors.aka} />
-                        {errors.aka && <div className="text-red-500">{errors.aka}</div>}
+                        <InputText label={labels.aka} value={data.aka ?? ''} onChange={(value) => setData('aka', value)} error={errors.aka} />
                     </div>
                     <div>
                         <TextEditor
@@ -72,21 +70,14 @@ const PersonForm: FC<PersonProps> = ({ person }) => {
                             error={errors.bio}
                             onChange={(value) => setData('bio', value)}
                         />
-                        {errors.aka && <div className="text-red-500">{errors.aka}</div>}
                     </div>
-
                     <div>
-                        <label>{labels.image}:</label>
-                        <Input
-                            type="file"
-                            onChange={(e) => {
-                                if (e.target.files && e.target.files[0]) {
-                                    setData('img', e.target.files[0]);
-                                }
-                            }}
-                            aria-invalid={!!errors.logo}
-                        />
-                        {errors.logo && <div className="text-red-500">{errors.logo}</div>}
+                        <InputFile
+                            name="logo"
+                            label={labels.image}
+                            onChange={(file) => setData('img', file)}
+                            error={errors.logo}
+                         />
                     </div>
 
                     <div>
