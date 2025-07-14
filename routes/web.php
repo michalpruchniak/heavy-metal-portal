@@ -1,13 +1,13 @@
 <?php
 
+use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\panel\PersonController;
 use App\Http\Controllers\panel\PublisherController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-Route::get('/', function () {
-    return Inertia::render('welcome');
-})->name('home');
+Route::get('/', [HomeController::class, 'Home'])
+->name('home');
 
 Route::prefix('/panel')->middleware(['auth', 'verified', 'formOptionsMiddleware'])->group(function () {
     Route::get('dashboard', function () {
