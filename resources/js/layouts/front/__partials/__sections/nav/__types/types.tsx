@@ -4,4 +4,4 @@ type MenuElement = {
     className?: string;
     hide?: boolean;
     target?: string;
-  };
+};

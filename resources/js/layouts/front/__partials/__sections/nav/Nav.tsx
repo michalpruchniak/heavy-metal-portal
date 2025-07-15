@@ -1,11 +1,11 @@
+import Logo from '../../../../../../img/common/logo_white.webp';
 import MenuLinks from './__constants/MenuLinks';
-import Logo from '../../../../../../img/common/logo_white.webp'
 
 const Nav = () => {
     return (
-        <nav className="py-[10px] shadow-md lg:py-[25px] bg-black border-b border-light-300">
-            <div className="mx-auto flex md:w-fit flex-wrap items-center gap-[20px] lg:gap-[50px] justify-center">
-                <img src={Logo} className='w-[25px]'/>
+        <nav className="border-light-300 border-b bg-black py-[10px] shadow-md lg:py-[25px]">
+            <div className="mx-auto flex flex-wrap items-center justify-center gap-[20px] md:w-fit lg:gap-[50px]">
+                <img src={Logo} className="w-[25px]" />
                 <MenuLinks />
             </div>
         </nav>
