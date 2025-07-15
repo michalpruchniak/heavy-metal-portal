@@ -17,6 +17,11 @@ class PublisherService implements PublisherServiceInterface
         private readonly FileUploadServiceInterface $fileUploadService
     ) {}
 
+    public function findOrFail(int $id): Publisher
+    {
+        return $this->publisherRepository->findOrFail($id);
+    }
+
     public function getAll(array $order = ['created_at' => 'desc']): Collection
     {
         return Cache::remember('publishers_all', config('settings.cookies_expires'), function () use ($order) {
@@ -32,11 +37,6 @@ class PublisherService implements PublisherServiceInterface
         $publisher = $this->publisherRepository->create($publisherData);
 
         return $publisher;
-    }
-
-    public function findOrFail(int $id): Publisher
-    {
-        return $this->publisherRepository->findOrFail($id);
     }
 
     public function update(int $id, PublisherDTO $publisherDTO): Publisher

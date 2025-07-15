@@ -18,7 +18,6 @@ const Table = <T extends Record<string, unknown>>({
 }: TableProps<T>) => {
     const [filterText, setFilterText] = useState('');
     const { appearance } = useAppearance();
-
     const filteredElements = useMemo(() => {
         return data.filter((element) => element[filterField]?.toString().toLowerCase().includes(filterText.toLowerCase()));
     }, [data, filterText, filterField]);

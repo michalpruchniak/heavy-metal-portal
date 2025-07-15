@@ -15,5 +15,13 @@ return [
         'name' => 'Name',
         'id' => 'ID',
         'characters_remaining' => 'Characters remaining',
+        'add_new_person' => 'Add new person',
+        'people' => 'People',
+        'create_person' => 'Create person',
+        'edit_person' => 'Edit person',
+        'aka' => 'Aka',
+        'bio' => 'Bio',
+        'image' => 'Image',
+        'type' => 'Type',
     ],
 ];

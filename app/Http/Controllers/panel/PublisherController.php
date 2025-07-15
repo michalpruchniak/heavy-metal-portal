@@ -15,7 +15,7 @@ class PublisherController extends Controller
 {
     public function __construct(private readonly PublisherServiceInterface $publisherService) {}
 
-    public function index()
+    public function index(): Response
     {
         $publishers = $this->publisherService->getAll();
 
@@ -24,12 +24,12 @@ class PublisherController extends Controller
         ]);
     }
 
-    public function create()
+    public function create(): Response
     {
         return Inertia::render('publishers/create');
     }
 
-    public function store(PublisherRequest $request)
+    public function store(PublisherRequest $request): RedirectResponse
     {
         try {
             $this->publisherService->create($request->getDTO());

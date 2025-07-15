@@ -1,11 +1,10 @@
-import TextEditor from '@/components/TextEditor/TextEditor';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import useTranslation from '@/hooks/use-translate';
 import AppLayout from '@/layouts/app-layout';
-import { PublisherFormData, PublisherProps } from '@/types';
 import { Head, useForm } from '@inertiajs/react';
 import { FC, FormEvent } from 'react';
+import { PublisherFormData, PublisherProps } from './__types/types';
 
 const PublisherForm: FC<PublisherProps> = ({ publisher }) => {
     const { labels } = useTranslation();
@@ -21,8 +20,9 @@ const PublisherForm: FC<PublisherProps> = ({ publisher }) => {
     ];
 
     const { data, setData, processing, post, errors } = useForm<PublisherFormData>({
-        name: publisher?.name ?? '',
-        url: publisher?.url ?? '',
+        name: typeof publisher?.name === 'string' ? publisher.name : '',
+        url: typeof publisher?.url === 'string' ? publisher.url : '',
+        description: typeof publisher?.description === 'string' ? publisher.description : '',
         logo: null,
         _method: publisher?.id ? 'PUT' : 'POST',
     });
@@ -48,19 +48,19 @@ const PublisherForm: FC<PublisherProps> = ({ publisher }) => {
 
                 <form onSubmit={handleSubmit} encType="multipart/form-data" className="flex flex-col gap-4 px-[15px] md:px-[17%]">
                     <div>
-                        <label>Name:</label>
+                        <label>{labels.name}:</label>
                         <Input type="text" value={data.name} onChange={(e) => setData('name', e.target.value)} aria-invalid={!!errors.name} />
                         {errors.name && <div className="text-red-500">{errors.name}</div>}
                     </div>
 
                     <div>
-                        <label>Url:</label>
+                        <label>{labels.url}:</label>
                         <Input type="text" value={data.url ?? ''} onChange={(e) => setData('url', e.target.value)} aria-invalid={!!errors.url} />
                         {errors.url && <div className="text-red-500">{errors.url}</div>}
                     </div>
 
                     <div>
-                        <label>Logo:</label>
+                        <label>{labels.logo}:</label>
                         <Input
                             type="file"
                             onChange={(e) => {

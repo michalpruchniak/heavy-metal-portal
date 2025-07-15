@@ -1,14 +1,15 @@
 <?php
 
+use App\Http\Controllers\Front\HomeController;
+use App\Http\Controllers\panel\PersonController;
 use App\Http\Controllers\panel\PublisherController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-Route::get('/', function () {
-    return Inertia::render('welcome');
-})->name('home');
+Route::get('/', [HomeController::class, 'Home'])
+    ->name('home');
 
-Route::prefix('/panel')->middleware(['auth', 'verified'])->group(function () {
+Route::prefix('/panel')->middleware(['auth', 'verified', 'formOptionsMiddleware'])->group(function () {
     Route::get('dashboard', function () {
         return Inertia::render('dashboard');
     })->name('dashboard');
@@ -32,6 +33,22 @@ Route::prefix('/panel')->middleware(['auth', 'verified'])->group(function () {
     Route::put('publishers/{publisher}', [PublisherController::class, 'update'])
         ->name('publishers.update')
         ->middleware('permission:publishers.edit');
+
+    Route::get('people', [PersonController::class, 'index'])
+        ->name('people.index')
+        ->middleware('permission:people.view');
+
+    Route::get('people/create', [PersonController::class, 'create'])
+        ->name('people.create')
+        ->middleware('permission:people.view');
+
+    Route::post('people/store', [PersonController::class, 'store'])
+        ->name('people.store')
+        ->middleware('permission:people.view');
+
+    Route::get('people/edit/{person}', [PersonController::class, 'edit'])
+        ->name('people.edit')
+        ->middleware('permission:people.view');
 });
 
 require __DIR__.'/settings.php';
