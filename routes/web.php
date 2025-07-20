@@ -52,7 +52,11 @@ Route::prefix('/panel')->middleware(['auth', 'verified', 'formOptionsMiddleware'
         ->middleware('permission:people.view');
 
     Route::get('band/create', [BandController::class, 'create'])
-        ->name('band.create')
+        ->name('bands.create')
+        ->middleware('permission:people.view');
+
+    Route::post('band/store', [BandController::class, 'store'])
+        ->name('bands.store')
         ->middleware('permission:people.view');
 
 });

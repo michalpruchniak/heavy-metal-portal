@@ -29,7 +29,7 @@ const PublisherForm = ({ publisher }:any ) => {
     });
 
     const sendRequest = () => {
-        const targetRoute = publisher ? route('publishers.update', { publisher: publisher.id }) : route('publishers.store');
+        const targetRoute = publisher ? route('publishers.update', { publisher: publisher.id }) : route('bands.store');
 
         post(targetRoute, {
             preserveScroll: true,

@@ -33,10 +33,10 @@ class BandRequest extends FormRequest
     public function getDTO(): BandDTO
     {
         return new BandDTO(
-            name: $this->valdiated('name'),
-            description: $this->valdiated('description'),
-            logo: $this->valdiated('logo'),
-            stillActive: $this->valdiated('still_active'),
+            name: $this->validated('name'),
+            description: $this->validated('description'),
+            logo: $this->validated('logo'),
+            stillActive: $this->validated('still_active'),
         );
     }
 }

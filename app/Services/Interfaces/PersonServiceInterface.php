@@ -15,4 +15,7 @@ interface PersonServiceInterface
     public function getAll(array $order = ['created_at' => 'desc']): Collection;
 
     public function create(PersonDTO $personDTO): Person;
+
+    public function update(int $id, PersonDTO $personDTO): Person;
+
 }
