@@ -3,9 +3,10 @@ import { Input } from '@/components/ui/input';
 import useTranslation from '@/hooks/use-translate';
 import AppLayout from '@/layouts/app-layout';
 import { Head, useForm } from '@inertiajs/react';
-import { FormEvent } from 'react';
+import { FormEvent, useEffect } from 'react';
 import { BandFormData, BandProps } from './__types/types';
 import TextEditor from '@/components/TextEditor/TextEditor';
+import SearchableSelect, { Option } from '@/components/SearchableSelect/SearchableSelect';
 
 const Create = ({ band }:BandProps ) => {
     const { labels } = useTranslation();
@@ -19,15 +20,23 @@ const Create = ({ band }:BandProps ) => {
             href: band ? route('bands.edit', { band: band.id }) : route('bands.create'),
         },
     ];
-
+    const options: Option[] = [
+        { value: '2', label: 'Jabłko' },
+        { value: '1', label: 'Banan' },
+        { value: '3', label: 'Pomarańcza' },
+      ];
     const { data, setData, processing, post, errors } = useForm<BandFormData>({
         name: typeof band?.name === 'string' ? band.name : '',
         description: typeof band?.description === 'string' ? band.description : '',
         logo: null,
         still_active: true,
+        people: band?.people ?? [],
         _method: band?.id ? 'PUT' : 'POST',
     });
 
+    useEffect(() => {
+        console.log(data);
+    }, [data])
     const sendRequest = () => {
         const targetRoute = band ? route('bands.update', { band: band.id }) : route('bands.store');
 
@@ -75,6 +84,19 @@ const Create = ({ band }:BandProps ) => {
                             aria-invalid={!!errors.logo}
                         />
                         {errors.logo && <div className="text-red-500">{errors.logo}</div>}
+                    </div>
+                    <div>
+                    <SearchableSelect
+                    label="People"
+                    onChange={(value) => setData('people', value)}
+                    required={true}
+                    placeholder="Wybierz"
+                    options={options}
+                    value={data.people ?? null}
+                    error={errors.city_id}
+                    noOptionsMessage="Test"
+
+                />
                     </div>
                     <div className="flex items-center gap-2">
                         <input

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Panel;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\BandRequest;
 use App\Services\Interfaces\BandServiceInterface;
+use App\Services\Interfaces\PersonServiceInterface;
 use Exception;
 use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
@@ -12,14 +13,19 @@ use Inertia\Response;
 
 class BandController extends Controller
 {
-    public function __construct(private readonly BandServiceInterface $bandService) {}
+    public function __construct(
+        private readonly BandServiceInterface $bandService,
+        private readonly PersonServiceInterface $personService
+        ) {}
 
     public function index(): Response
     {
         $bands = $this->bandService->getAll();
+        $people = $this->personService->getAll();
 
         return Inertia::render('bands/index', [
             'bands' => $bands,
+            'people' => $people
         ]);
     }
 

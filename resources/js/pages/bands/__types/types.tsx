@@ -4,9 +4,10 @@ export interface BandFormData {
     logo?: File | null;
     still_active: boolean;
     _method: 'PUT' | 'POST';
+    people?: string | number | Array<string | number> | null;
     created_at?: string;
     updated_at?: string;
-    [key: string]: string | number | File | null | undefined | boolean;
+    [key: string]: string | number | File | null | undefined | boolean | Array<string | number>;
 }
 
 export interface Band {
@@ -15,9 +16,10 @@ export interface Band {
     logo: string;
     description?: string | null;
     still_active?: boolean | null;
+    people?: any[] | null;
     created_at: string;
     updated_at: string;
-    [key: string]: string | unknown | boolean;
+    [key: string]: string | unknown | boolean | undefined;
 }
 
 
