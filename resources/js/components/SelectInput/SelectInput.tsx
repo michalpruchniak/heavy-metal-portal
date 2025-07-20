@@ -6,7 +6,7 @@ const SelectInput: FC<SelectInputProps> = ({ name, value, label, options, onChan
     return (
         <div className={`flex flex-col space-y-2 ${className}`}>
             {label && (
-                <label htmlFor={name} className={`font-inter text-[16px] leading-[22.4px] font-[400] ${error ? 'text-red-500' : 'text-[#000000]'}`}>
+                <label htmlFor={name} className={`font-inter text-[16px] leading-[22.4px] font-[400] dark: text-white ${error ? 'text-red-500' : 'text-[#000000]'}`}>
                     {label}
                 </label>
             )}

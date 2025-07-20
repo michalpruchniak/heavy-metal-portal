@@ -4,9 +4,10 @@ import useTranslation from '@/hooks/use-translate';
 import AppLayout from '@/layouts/app-layout';
 import { Head, useForm } from '@inertiajs/react';
 import { FC, FormEvent } from 'react';
-import { PublisherFormData, PublisherProps } from './__types/types';
+import { BandFormData } from '../publishers/__types/types';
+import TextEditor from '@/components/TextEditor/TextEditor';
 
-const PublisherForm: FC<PublisherProps> = ({ publisher }) => {
+const PublisherForm = ({ publisher }:any ) => {
     const { labels } = useTranslation();
     const breadcrumbs = [
         {
@@ -19,11 +20,11 @@ const PublisherForm: FC<PublisherProps> = ({ publisher }) => {
         },
     ];
 
-    const { data, setData, processing, post, errors } = useForm<PublisherFormData>({
+    const { data, setData, processing, post, errors } = useForm<BandFormData>({
         name: typeof publisher?.name === 'string' ? publisher.name : '',
-        url: typeof publisher?.url === 'string' ? publisher.url : '',
         description: typeof publisher?.description === 'string' ? publisher.description : '',
         logo: null,
+        still_active: true,
         _method: publisher?.id ? 'PUT' : 'POST',
     });
 
@@ -52,13 +53,16 @@ const PublisherForm: FC<PublisherProps> = ({ publisher }) => {
                         <Input type="text" value={data.name} onChange={(e) => setData('name', e.target.value)} aria-invalid={!!errors.name} />
                         {errors.name && <div className="text-red-500">{errors.name}</div>}
                     </div>
-
                     <div>
-                        <label className='dark:text-whtie'>{labels.url}:</label>
-                        <Input type="text" value={data.url ?? ''} onChange={(e) => setData('url', e.target.value)} aria-invalid={!!errors.url} />
-                        {errors.url && <div className="text-red-500">{errors.url}</div>}
+                        <TextEditor
+                            name="description"
+                            value={data.description ?? ''}
+                            limit={2500}
+                            label={labels.description}
+                            error={errors.description}
+                            onChange={(value) => setData('description', value)}
+                        />
                     </div>
-
                     <div>
                         <label className='dark:text-whtie'>{labels.logo}:</label>
                         <Input
@@ -71,6 +75,19 @@ const PublisherForm: FC<PublisherProps> = ({ publisher }) => {
                             aria-invalid={!!errors.logo}
                         />
                         {errors.logo && <div className="text-red-500">{errors.logo}</div>}
+                    </div>
+                    <div className="flex items-center gap-2">
+                        <input
+                            type="checkbox"
+                            id="still_active"
+                            checked={data.still_active}
+                            onChange={(e) => setData('still_active', e.target.checked)}
+                            className="h-4 w-4"
+                        />
+                        <label htmlFor="still_active" className="dark:text-white">
+                            {labels.still_active || 'Still active'}
+                        </label>
+                        {errors.still_active && <div className="text-red-500">{errors.still_active}</div>}
                     </div>
                     <Button type="submit" disabled={processing} className="self-start">
                         {publisher ? 'Update' : 'Create'}

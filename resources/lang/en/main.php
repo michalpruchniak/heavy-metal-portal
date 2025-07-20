@@ -23,5 +23,6 @@ return [
         'bio' => 'Bio',
         'image' => 'Image',
         'type' => 'Type',
+        'description' => 'Description'
     ],
 ];
