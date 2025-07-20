@@ -51,6 +51,10 @@ Route::prefix('/panel')->middleware(['auth', 'verified', 'formOptionsMiddleware'
         ->name('people.edit')
         ->middleware('permission:people.view');
 
+    Route::get('bands', [BandController::class, 'index'])
+        ->name('bands.index')
+        ->middleware('permission:people.view');
+
     Route::get('band/create', [BandController::class, 'create'])
         ->name('bands.create')
         ->middleware('permission:people.view');

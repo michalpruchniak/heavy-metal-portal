@@ -3,19 +3,19 @@ import { Input } from '@/components/ui/input';
 import useTranslation from '@/hooks/use-translate';
 import AppLayout from '@/layouts/app-layout';
 import { Head, useForm } from '@inertiajs/react';
-import { FC, FormEvent } from 'react';
-import { BandFormData } from '../publishers/__types/types';
+import { FormEvent } from 'react';
+import { BandFormData, BandProps } from './__types/types';
 import TextEditor from '@/components/TextEditor/TextEditor';
 
-const PublisherForm = ({ band }:any ) => {
+const Create = ({ band }:BandProps ) => {
     const { labels } = useTranslation();
     const breadcrumbs = [
         {
-            title: labels.publishers,
-            href: route('publishers.index'),
+            title: labels.bands,
+            href: route('bands.index'),
         },
         {
-            title: band ? labels.update_publisher : labels.create_publisher,
+            title: band ? labels.update_band : labels.create_band,
             href: band ? route('bands.edit', { band: band.id }) : route('bands.create'),
         },
     ];
@@ -43,9 +43,9 @@ const PublisherForm = ({ band }:any ) => {
 
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
-            <Head title={band ? labels.update_publisher : labels.create_publisher} />
+            <Head title={band ? labels.update_band : labels.create_band} />
             <div className="flex h-full flex-1 flex-col gap-4 rounded-xl p-4">
-                <h1 className="text-center text-[45px]">{band ? `${labels.update_publisher} ${band.name}` : labels.create_publisher}</h1>
+                <h1 className="text-center text-[45px]">{band ? `${labels.update_band} ${band.name}` : labels.create_band}</h1>
 
                 <form onSubmit={handleSubmit} encType="multipart/form-data" className="flex flex-col gap-4 px-[15px] md:px-[17%]">
                     <div>
@@ -98,4 +98,4 @@ const PublisherForm = ({ band }:any ) => {
     );
 };
 
-export default PublisherForm;
+export default Create;

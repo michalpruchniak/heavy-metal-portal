@@ -4,7 +4,7 @@ import { NavUser } from '@/components/nav-user';
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/react';
-import { BookOpen, CircleUserRound, Folder, LayoutGrid } from 'lucide-react';
+import { BookOpen, CircleUserRound, Folder, LayoutGrid, Mic } from 'lucide-react';
 import AppLogo from './app-logo';
 
 const mainNavItems: NavItem[] = [
@@ -17,6 +17,11 @@ const mainNavItems: NavItem[] = [
         title: 'People',
         href: route('people.index'),
         icon: CircleUserRound,
+    },
+    {
+        title: 'Bands',
+        href: route('bands.index'),
+        icon: Mic,
     },
 ];
 

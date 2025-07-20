@@ -14,6 +14,15 @@ class BandController extends Controller
 {
     public function __construct(private readonly BandServiceInterface $bandService) {}
 
+    public function index(): Response
+    {
+        $bands = $this->bandService->getAll();
+
+        return Inertia::render('bands/index', [
+            'bands' => $bands,
+        ]);
+    }
+
     public function create(): Response
     {
         return Inertia::render('bands/create');

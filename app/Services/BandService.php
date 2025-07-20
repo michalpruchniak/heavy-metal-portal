@@ -6,6 +6,7 @@ use App\Models\Band;
 use App\Repositories\Interfaces\BandRepositoryInterface;
 use App\Services\Interfaces\BandServiceInterface;
 use App\Services\Interfaces\FileUploadServiceInterface;
+use Illuminate\Database\Eloquent\Collection;
 
 class BandService implements BandServiceInterface
 {
@@ -14,6 +15,11 @@ class BandService implements BandServiceInterface
         private readonly FileUploadServiceInterface $fileUploadService,
 
     ) {}
+
+    public function getAll(array $order = ['created_at' => 'desc']): Collection
+    {
+        return $this->bandRepository->get(order: $order);
+    }
 
     public function findOrFail(int $id): Band
     {

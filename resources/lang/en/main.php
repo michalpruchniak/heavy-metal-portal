@@ -3,6 +3,8 @@
 return [
     'buttons' => [
         'edit' => 'Edit',
+        'add_new_band' => 'Add new band',
+
     ],
     'labels' => [
         'publishers' => 'Publishers',
@@ -23,6 +25,9 @@ return [
         'bio' => 'Bio',
         'image' => 'Image',
         'type' => 'Type',
-        'description' => 'Description'
+        'description' => 'Description',
+        'bands' => 'Bands',
+        'update_band' => 'Update band',
+        'create_band' => 'Create publisher',
     ],
 ];

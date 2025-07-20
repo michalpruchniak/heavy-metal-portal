@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Casts\ImageUrlCast;
 use Illuminate\Database\Eloquent\Model;
 
 class Band extends Model
@@ -11,5 +12,9 @@ class Band extends Model
         'description',
         'logo',
         'still_active'
+    ];
+
+    protected $casts = [
+        'logo' => ImageUrlCast::class,
     ];
 }
