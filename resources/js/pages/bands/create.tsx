@@ -7,7 +7,7 @@ import { FC, FormEvent } from 'react';
 import { BandFormData } from '../publishers/__types/types';
 import TextEditor from '@/components/TextEditor/TextEditor';
 
-const PublisherForm = ({ publisher }:any ) => {
+const PublisherForm = ({ band }:any ) => {
     const { labels } = useTranslation();
     const breadcrumbs = [
         {
@@ -15,21 +15,21 @@ const PublisherForm = ({ publisher }:any ) => {
             href: route('publishers.index'),
         },
         {
-            title: publisher ? labels.update_publisher : labels.create_publisher,
-            href: publisher ? route('publishers.edit', { publisher: publisher.id }) : route('publishers.create'),
+            title: band ? labels.update_publisher : labels.create_publisher,
+            href: band ? route('bands.edit', { band: band.id }) : route('bands.create'),
         },
     ];
 
     const { data, setData, processing, post, errors } = useForm<BandFormData>({
-        name: typeof publisher?.name === 'string' ? publisher.name : '',
-        description: typeof publisher?.description === 'string' ? publisher.description : '',
+        name: typeof band?.name === 'string' ? band.name : '',
+        description: typeof band?.description === 'string' ? band.description : '',
         logo: null,
         still_active: true,
-        _method: publisher?.id ? 'PUT' : 'POST',
+        _method: band?.id ? 'PUT' : 'POST',
     });
 
     const sendRequest = () => {
-        const targetRoute = publisher ? route('publishers.update', { publisher: publisher.id }) : route('bands.store');
+        const targetRoute = band ? route('bands.update', { band: band.id }) : route('bands.store');
 
         post(targetRoute, {
             preserveScroll: true,
@@ -43,9 +43,9 @@ const PublisherForm = ({ publisher }:any ) => {
 
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
-            <Head title={publisher ? labels.update_publisher : labels.create_publisher} />
+            <Head title={band ? labels.update_publisher : labels.create_publisher} />
             <div className="flex h-full flex-1 flex-col gap-4 rounded-xl p-4">
-                <h1 className="text-center text-[45px]">{publisher ? `${labels.update_publisher} ${publisher.name}` : labels.create_publisher}</h1>
+                <h1 className="text-center text-[45px]">{band ? `${labels.update_publisher} ${band.name}` : labels.create_publisher}</h1>
 
                 <form onSubmit={handleSubmit} encType="multipart/form-data" className="flex flex-col gap-4 px-[15px] md:px-[17%]">
                     <div>
@@ -90,7 +90,7 @@ const PublisherForm = ({ publisher }:any ) => {
                         {errors.still_active && <div className="text-red-500">{errors.still_active}</div>}
                     </div>
                     <Button type="submit" disabled={processing} className="self-start">
-                        {publisher ? 'Update' : 'Create'}
+                        {band ? 'Update' : 'Create'}
                     </Button>
                 </form>
             </div>

@@ -15,6 +15,11 @@ class BandService implements BandServiceInterface
 
     ) {}
 
+    public function findOrFail(int $id): Band
+    {
+        return $this->bandRepository->findOrFail($id);
+    }
+
     public function create(BandDTO $bandDTO): Band
     {
         $bandData = $bandDTO->toArray();
@@ -23,5 +28,16 @@ class BandService implements BandServiceInterface
         $band = $this->bandRepository->create($bandData);
 
         return $band;
+    }
+
+    public function update(int $id, BandDTO $bandDTO): Band
+    {
+        $band = $this->bandRepository->findOrFail($id);
+        $bandData = $bandDTO->toArray();
+        $bandData['logo'] = $this->fileUploadService->saveOrUpdatePhoto($band->getRawOriginal('logo'), $bandDTO->logo, self::BAND_CATALOG_PHOTO_DIRECTORY);
+
+        $band->update($bandData);
+
+        return $band->refresh();
     }
 }

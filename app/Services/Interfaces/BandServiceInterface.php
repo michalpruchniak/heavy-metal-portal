@@ -9,6 +9,11 @@ interface BandServiceInterface
 {
     const BAND_CATALOG_PHOTO_DIRECTORY = 'band/photo';
 
+    public function findOrFail(int $id): Band;
+
     public function create(BandDTO $bandDTO): Band;
+
+    public function update(int $id, BandDTO $bandDTO): Band;
+
 
 }

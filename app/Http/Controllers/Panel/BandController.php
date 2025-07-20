@@ -25,10 +25,29 @@ class BandController extends Controller
         try {
             $this->bandService->create($request->getDTO());
         } catch (Exception $e) {
-            dd($e);
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
 
         return redirect()->route('people.index')->with('success', 'Person created successfully');
+    }
+
+    public function edit(int $band): Response
+    {
+        $band = $this->bandService->findOrFail($band);
+
+        return Inertia::render('bands/create', [
+            'band' => $band,
+        ]);
+    }
+
+    public function update(int $band, BandRequest $request): RedirectResponse
+    {
+        try {
+            $this->bandService->update($band, $request->getDTO());
+        } catch (Exception $e) {
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+        }
+
+        return redirect()->route('people.index')->with('success', 'Person updated successfully');
     }
 }
