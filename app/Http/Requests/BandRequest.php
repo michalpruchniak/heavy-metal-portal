@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\DTO\BandDTO;
+use App\Rules\AllExists;
 use Illuminate\Foundation\Http\FormRequest;
 
 class BandRequest extends FormRequest
@@ -27,8 +28,7 @@ class BandRequest extends FormRequest
             'description' => 'nullable|string|between:2,3000',
             'logo' => 'nullable|image|max:1500|image|mimes:jpg,jpeg,png,webp',
             'still_active' => 'nullable|boolean',
-            'people' => 'nullable|array',
-            'people.*' => 'integer|exists:people,id',
+            'people' => ['nullable', 'array', new AllExists('people')],
         ];
     }
 

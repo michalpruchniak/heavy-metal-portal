@@ -47,4 +47,14 @@ class PersonService implements PersonServiceInterface
 
         return $person->refresh();
     }
+
+    public function getMapPeopleArray(): array
+    {
+        return $this->personRepository->get()->map(function (Person $person) {
+            return [
+                'value' => $person->id,
+                'label' => $person->name,
+            ];
+        })->toArray();
+    }
 }

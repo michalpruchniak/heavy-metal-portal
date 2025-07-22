@@ -2,11 +2,13 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import useTranslation from '@/hooks/use-translate';
 import AppLayout from '@/layouts/app-layout';
-import { Head, useForm } from '@inertiajs/react';
+import { Head, useForm, usePage } from '@inertiajs/react';
 import { FormEvent, useEffect } from 'react';
 import { BandFormData, BandProps } from './__types/types';
 import TextEditor from '@/components/TextEditor/TextEditor';
 import SearchableSelect, { Option } from '@/components/SearchableSelect/SearchableSelect';
+import { PageProps } from '@/hooks/_types/types';
+
 
 const Create = ({ band }:BandProps ) => {
     const { labels } = useTranslation();
@@ -20,11 +22,10 @@ const Create = ({ band }:BandProps ) => {
             href: band ? route('bands.edit', { band: band.id }) : route('bands.create'),
         },
     ];
-    const options: Option[] = [
-        { value: '2', label: 'Jabłko' },
-        { value: '1', label: 'Banan' },
-        { value: '999', label: 'Pomarańcza' },
-      ];
+      const { peopleOptions = [] } = usePage<PageProps>().props;
+
+
+
     const { data, setData, processing, post, errors } = useForm<BandFormData>({
         name: typeof band?.name === 'string' ? band.name : '',
         description: typeof band?.description === 'string' ? band.description : '',
@@ -34,9 +35,7 @@ const Create = ({ band }:BandProps ) => {
         _method: band?.id ? 'PUT' : 'POST',
     });
 
-    useEffect(() => {
-        console.log(data);
-    }, [data])
+
     const sendRequest = () => {
         const targetRoute = band ? route('bands.update', { band: band.id }) : route('bands.store');
 
@@ -93,7 +92,7 @@ const Create = ({ band }:BandProps ) => {
                         onChange={(value) => setData('people', value)}
                         required={true}
                         placeholder="Wybierz"
-                        options={options}
+                        options={peopleOptions}
                         value={data.people ?? null}
                         error={errors.people}
                         noOptionsMessage="Test"
