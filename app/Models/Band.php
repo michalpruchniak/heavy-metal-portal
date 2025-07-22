@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Casts\ImageUrlCast;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Band extends Model
 {
@@ -17,4 +18,9 @@ class Band extends Model
     protected $casts = [
         'logo' => ImageUrlCast::class,
     ];
+
+    public function people(): BelongsToMany
+    {
+        return $this->belongsToMany(Person::class);
+    }
 }

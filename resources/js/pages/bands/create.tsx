@@ -23,7 +23,7 @@ const Create = ({ band }:BandProps ) => {
     const options: Option[] = [
         { value: '2', label: 'Jabłko' },
         { value: '1', label: 'Banan' },
-        { value: '3', label: 'Pomarańcza' },
+        { value: '999', label: 'Pomarańcza' },
       ];
     const { data, setData, processing, post, errors } = useForm<BandFormData>({
         name: typeof band?.name === 'string' ? band.name : '',
@@ -49,7 +49,9 @@ const Create = ({ band }:BandProps ) => {
         e.preventDefault();
         sendRequest();
     };
-
+    useEffect(() => {
+        console.log(errors)
+    }, [errors])
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title={band ? labels.update_band : labels.create_band} />
@@ -87,16 +89,16 @@ const Create = ({ band }:BandProps ) => {
                     </div>
                     <div>
                     <SearchableSelect
-                    label="People"
-                    onChange={(value) => setData('people', value)}
-                    required={true}
-                    placeholder="Wybierz"
-                    options={options}
-                    value={data.people ?? null}
-                    error={errors.city_id}
-                    noOptionsMessage="Test"
+                        label="People"
+                        onChange={(value) => setData('people', value)}
+                        required={true}
+                        placeholder="Wybierz"
+                        options={options}
+                        value={data.people ?? null}
+                        error={errors.people}
+                        noOptionsMessage="Test"
 
-                />
+                    />
                     </div>
                     <div className="flex items-center gap-2">
                         <input

@@ -26,7 +26,9 @@ class BandRequest extends FormRequest
             'name' => 'required|string|between:2,60',
             'description' => 'nullable|string|between:2,3000',
             'logo' => 'nullable|image|max:1500|image|mimes:jpg,jpeg,png,webp',
-            'still_active' => 'nullable|boolean'
+            'still_active' => 'nullable|boolean',
+            'people' => 'nullable|array',
+            'people.*' => 'integer|exists:people,id',
         ];
     }
 
@@ -37,6 +39,7 @@ class BandRequest extends FormRequest
             description: $this->validated('description'),
             logo: $this->validated('logo'),
             stillActive: $this->validated('still_active'),
+            people: $this->validated('people'),
         );
     }
 }

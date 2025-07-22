@@ -12,8 +12,8 @@ export default function Index({ bands }: IndexPageBandsProps) {
 
     const breadcrumbs = [
         {
-            title: labels.people,
-            href: route('people.index'),
+            title: labels.bands,
+            href: route('bands.index'),
         },
     ];
 

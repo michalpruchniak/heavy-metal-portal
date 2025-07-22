@@ -22,7 +22,7 @@ interface SearchableSelectProps {
   isMulti?: boolean;
 }
 
-const SearchableSelect: React.FC<SearchableSelectProps> = ({
+const SearchableSelect = ({
   label = '',
   required = false,
   error = '',
@@ -33,7 +33,7 @@ const SearchableSelect: React.FC<SearchableSelectProps> = ({
   isSearchable = true,
   noOptionsMessage,
   isMulti = true,
-}) => {
+}:SearchableSelectProps) => {
   const generatedId = useId();
   const { labels } = useTranslation();
 

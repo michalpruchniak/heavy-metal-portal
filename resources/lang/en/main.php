@@ -28,6 +28,6 @@ return [
         'description' => 'Description',
         'bands' => 'Bands',
         'update_band' => 'Update band',
-        'create_band' => 'Create publisher',
+        'create_band' => 'Create band',
     ],
 ];

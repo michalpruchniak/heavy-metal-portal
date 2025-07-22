@@ -32,7 +32,7 @@ class BandService implements BandServiceInterface
 
         $bandData['logo'] = $this->fileUploadService->saveOrUpdatePhoto(null, $bandDTO->logo, self::BAND_CATALOG_PHOTO_DIRECTORY);
         $band = $this->bandRepository->create($bandData);
-
+        $band->people()->sync($bandDTO->people);
         return $band;
     }
 
