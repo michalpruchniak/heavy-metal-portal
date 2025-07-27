@@ -9,6 +9,7 @@ export interface TextEditorProps {
     label?: string;
     className?: string;
     error?: string;
+    required?: boolean;
 }
 
 export interface TextEditorButtonProps {

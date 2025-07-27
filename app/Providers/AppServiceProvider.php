@@ -4,11 +4,15 @@ namespace App\Providers;
 
 use App\Models\Publisher;
 use App\Observers\PublisherObserver;
+use App\Repositories\BandRepository;
+use App\Repositories\Interfaces\BandRepositoryInterface;
 use App\Repositories\Interfaces\PersonRepositoryInterface;
 use App\Repositories\Interfaces\PublisherRepositoryInterface;
 use App\Repositories\PersonRepository;
 use App\Repositories\PublisherRepository;
+use App\Services\BandService;
 use App\Services\FileUploadService;
+use App\Services\Interfaces\BandServiceInterface;
 use App\Services\Interfaces\FileUploadServiceInterface;
 use App\Services\Interfaces\PersonServiceInterface;
 use App\Services\Interfaces\PublisherServiceInterface;
@@ -35,6 +39,10 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(PersonRepositoryInterface::class, PersonRepository::class);
 
         $this->app->bind(PersonServiceInterface::class, PersonService::class);
+
+        $this->app->bind(BandServiceInterface::class, BandService::class);
+
+        $this->app->bind(BandRepositoryInterface::class, BandRepository::class);
 
     }
 

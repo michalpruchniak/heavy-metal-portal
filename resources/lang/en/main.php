@@ -3,6 +3,8 @@
 return [
     'buttons' => [
         'edit' => 'Edit',
+        'add_new_band' => 'Add new band',
+
     ],
     'labels' => [
         'publishers' => 'Publishers',
@@ -23,5 +25,13 @@ return [
         'bio' => 'Bio',
         'image' => 'Image',
         'type' => 'Type',
+        'description' => 'Description',
+        'bands' => 'Bands',
+        'update_band' => 'Update band',
+        'create_band' => 'Create band',
     ],
+    'placeholders' => [
+        'please_select_people' => 'Please select people',
+        'no_people_to_display' => 'No people to display'
+    ]
 ];

@@ -6,19 +6,17 @@ use App\Casts\ImageUrlCast;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-class Person extends Model
+class Band extends Model
 {
     protected $fillable = [
         'name',
-        'aka',
-        'bio',
-        'DOB',
-        'img',
-        'type',
+        'description',
+        'logo',
+        'still_active',
     ];
 
     protected $casts = [
-        'img' => ImageUrlCast::class,
+        'logo' => ImageUrlCast::class,
     ];
 
     public function people(): BelongsToMany

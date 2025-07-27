@@ -6,6 +6,7 @@ export interface InputTextProps {
     className?: string;
     error?: string;
     type?: string;
+    required?: boolean;
 }
 
 export interface InputFileProps {

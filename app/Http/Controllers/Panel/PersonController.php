@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\panel;
+namespace App\Http\Controllers\Panel;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PersonRequest;
-use App\Services\PersonService;
+use App\Services\Interfaces\PersonServiceInterface;
 use Exception;
 use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
@@ -12,7 +12,7 @@ use Inertia\Response;
 
 class PersonController extends Controller
 {
-    public function __construct(private readonly PersonService $personService) {}
+    public function __construct(private readonly PersonServiceInterface $personService) {}
 
     public function index(): Response
     {

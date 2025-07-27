@@ -1,8 +1,9 @@
 <?php
 
 use App\Http\Controllers\Front\HomeController;
-use App\Http\Controllers\panel\PersonController;
-use App\Http\Controllers\panel\PublisherController;
+use App\Http\Controllers\Panel\BandController;
+use App\Http\Controllers\Panel\PersonController;
+use App\Http\Controllers\Panel\PublisherController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -49,6 +50,26 @@ Route::prefix('/panel')->middleware(['auth', 'verified', 'formOptionsMiddleware'
     Route::get('people/edit/{person}', [PersonController::class, 'edit'])
         ->name('people.edit')
         ->middleware('permission:people.view');
+
+    Route::get('bands', [BandController::class, 'index'])
+        ->name('bands.index')
+        ->middleware('permission:bands.view');
+
+    Route::get('band/create', [BandController::class, 'create'])
+        ->name('bands.create')
+        ->middleware('permission:bands.create');
+
+    Route::post('band/store', [BandController::class, 'store'])
+        ->name('bands.store')
+        ->middleware('permission:bands.create');
+
+    Route::get('bands/edit/{band}', [BandController::class, 'edit'])
+        ->name('bands.edit')
+        ->middleware('permission:bands.edit');
+
+    Route::put('bands/{band}', [BandController::class, 'update'])
+        ->name('bands.update')
+        ->middleware('permission:bands.edit');
 });
 
 require __DIR__.'/settings.php';

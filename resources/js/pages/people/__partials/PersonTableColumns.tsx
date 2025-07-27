@@ -1,8 +1,8 @@
 import DefaultImg from '@/components/Atoms/Img/default.jpg';
 import ButtonLink from '@/components/Button/ButtonLink';
 import useTranslation from '@/hooks/use-translate';
-import { Person } from '@/types';
 import { TableColumn } from 'react-data-table-component';
+import { Person } from '../__types/types';
 
 const PersonTableColumns = (): TableColumn<Person>[] => {
     const { buttons, labels } = useTranslation();
@@ -18,8 +18,8 @@ const PersonTableColumns = (): TableColumn<Person>[] => {
             sortable: true,
         },
         {
-            name: labels.name,
-            cell: (row: Person) => <img src={row.img ?? DefaultImg} alt="Logo" className="h-10 w-10 object-contain" />,
+            name: labels.photo,
+            cell: (row: Person) => <img src={row.img === 'string' ? row.img : DefaultImg} alt="Logo" className="h-10 w-10 object-contain" />,
         },
         {
             name: labels.url,
