@@ -22,11 +22,9 @@ class BandController extends Controller
     public function index(): Response
     {
         $bands = $this->bandService->getAll();
-        $people = $this->personService->getAll();
 
         return Inertia::render('bands/index', [
-            'bands' => $bands,
-            'people' => $people,
+            'bands' => $bands
         ]);
     }
 
@@ -44,7 +42,7 @@ class BandController extends Controller
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
 
-        return redirect()->route('people.index')->with('success', 'Person created successfully');
+        return redirect()->route('bands.index')->with('success', 'Person created successfully');
     }
 
     public function edit(int $band): Response
@@ -64,6 +62,6 @@ class BandController extends Controller
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
 
-        return redirect()->route('people.index')->with('success', 'Person updated successfully');
+        return redirect()->route('bands.index')->with('success', 'Band updated successfully');
     }
 }

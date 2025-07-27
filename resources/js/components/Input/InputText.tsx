@@ -1,7 +1,16 @@
 import Message from '../Message/Message';
+import RequiredStar from '../RequiredStar/RequiredStar';
 import { InputTextProps } from './__types/types';
 
-const InputText: React.FC<InputTextProps> = ({ value, onChange, name, label, className = '', error = '', ...props }) => {
+const InputText = ({
+    value,
+    onChange,
+    name,
+    label,
+    required = false,
+    className = '',
+    error = '',
+    ...props }: InputTextProps) => {
     return (
         <div className={`flex flex-col space-y-2 ${className}`}>
             {label && (
@@ -9,7 +18,7 @@ const InputText: React.FC<InputTextProps> = ({ value, onChange, name, label, cla
                     htmlFor={name}
                     className={`font-inter text-[16px] leading-[22.4px] font-[400] dark:text-white ${error ? 'text-red-500' : 'text-[#000000]'}`}
                 >
-                    {label}
+                    {label} {required && <RequiredStar />}
                 </label>
             )}
 

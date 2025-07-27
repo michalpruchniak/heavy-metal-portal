@@ -2,6 +2,7 @@ import useTranslation from '@/hooks/use-translate';
 import { useId } from 'react';
 import Select, { MultiValue, SingleValue } from 'react-select';
 import InputError from '../input-error';
+import RequiredStar from '../RequiredStar/RequiredStar';
 
 export type Option = {
     value: string | number;
@@ -54,7 +55,7 @@ const SearchableSelect = ({
         <div className="flex w-full flex-col gap-2">
             {label && (
                 <label htmlFor={generatedId} className="text-gray-800 dark:text-gray-200">
-                    {label} {required && '*'}
+                    {label} {required && <RequiredStar />}
                 </label>
             )}
             <Select

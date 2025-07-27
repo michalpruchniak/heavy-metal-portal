@@ -6,11 +6,11 @@ import { PageProps } from '@/hooks/_types/types';
 import useTranslation from '@/hooks/use-translate';
 import AppLayout from '@/layouts/app-layout';
 import { Head, useForm, usePage } from '@inertiajs/react';
-import { FormEvent, useEffect } from 'react';
+import { FormEvent } from 'react';
 import { BandFormData, BandProps } from './__types/types';
+import InputText from '@/components/Input/InputText';
 
 const Create = ({ band }: BandProps) => {
-    console.log(band);
     const { labels } = useTranslation();
     const breadcrumbs = [
         {
@@ -22,6 +22,7 @@ const Create = ({ band }: BandProps) => {
             href: band ? route('bands.edit', { band: band.id }) : route('bands.create'),
         },
     ];
+
     const { peopleOptions = [] } = usePage<PageProps>().props;
 
     const { data, setData, processing, post, errors } = useForm<BandFormData>({
@@ -32,6 +33,7 @@ const Create = ({ band }: BandProps) => {
         people: band?.people ?? [],
         _method: band?.id ? 'PUT' : 'POST',
     });
+
     const sendRequest = () => {
         const targetRoute = band ? route('bands.update', { band: band.id }) : route('bands.store');
 
@@ -44,9 +46,7 @@ const Create = ({ band }: BandProps) => {
         e.preventDefault();
         sendRequest();
     };
-    useEffect(() => {
-        console.log(errors);
-    }, [errors]);
+
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title={band ? labels.update_band : labels.create_band} />
@@ -55,9 +55,14 @@ const Create = ({ band }: BandProps) => {
 
                 <form onSubmit={handleSubmit} encType="multipart/form-data" className="flex flex-col gap-4 px-[15px] md:px-[17%]">
                     <div>
-                        <label className="dark:text-whtie">{labels.name}:</label>
-                        <Input type="text" value={data.name} onChange={(e) => setData('name', e.target.value)} aria-invalid={!!errors.name} />
-                        {errors.name && <div className="text-red-500">{errors.name}</div>}
+                        <InputText
+                            label={labels.name}
+                            required={true}
+                            value={data.name}
+                            onChange={(e) => setData('name', e)}
+                            error={errors.name}
+                        />
+
                     </div>
                     <div>
                         <TextEditor
@@ -86,7 +91,6 @@ const Create = ({ band }: BandProps) => {
                         <SearchableSelect
                             label="People"
                             onChange={(value) => setData('people', value)}
-                            required={true}
                             placeholder="Wybierz"
                             options={peopleOptions}
                             value={data.people ?? null}
