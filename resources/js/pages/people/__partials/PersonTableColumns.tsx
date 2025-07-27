@@ -18,7 +18,7 @@ const PersonTableColumns = (): TableColumn<Person>[] => {
             sortable: true,
         },
         {
-            name: labels.name,
+            name: labels.photo,
             cell: (row: Person) => <img src={row.img === 'string' ? row.img : DefaultImg} alt="Logo" className="h-10 w-10 object-contain" />,
         },
         {

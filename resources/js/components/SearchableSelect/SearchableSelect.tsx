@@ -3,24 +3,8 @@ import { useId } from 'react';
 import Select, { MultiValue, SingleValue } from 'react-select';
 import InputError from '../input-error';
 import RequiredStar from '../RequiredStar/RequiredStar';
-
-export type Option = {
-    value: string | number;
-    label: string;
-};
-
-interface SearchableSelectProps {
-    label?: string;
-    required?: boolean;
-    error?: string;
-    options: Option[];
-    value: string | number | null | Array<string | number>;
-    onChange: (value: string | number | '' | Array<string | number>) => void;
-    placeholder?: string;
-    isSearchable?: boolean;
-    noOptionsMessage?: string;
-    isMulti?: boolean;
-}
+import { Option, SearchableSelectProps } from './__types/types';
+import { useAppearance } from '@/hooks/use-appearance';
 
 const SearchableSelect = ({
     label = '',
@@ -34,7 +18,10 @@ const SearchableSelect = ({
     noOptionsMessage,
     isMulti = true,
 }: SearchableSelectProps) => {
+
     const generatedId = useId();
+    const { appearance } = useAppearance();
+
     const { labels } = useTranslation();
 
     const selectedOption = isMulti
@@ -79,7 +66,7 @@ const SearchableSelect = ({
                     ...theme,
                     colors: {
                         ...theme.colors,
-                        primary25: '#293544',
+                        primary25: appearance === 'light' ? '#FFF' : '#293544',
                     },
                 })}
             />

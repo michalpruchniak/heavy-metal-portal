@@ -1,13 +1,14 @@
 import Message from '@/components/Message/Message';
-import { FC } from 'react';
+import { useId } from 'react';
 import { SelectInputProps } from './__types/types';
 
-const SelectInput: FC<SelectInputProps> = ({ name, value, label, options, onChange, className = '', error = '' }) => {
+const SelectInput = ({ name, value, label, options, onChange, className = '', error = '' }: SelectInputProps) => {
+    const generatedId = useId();
     return (
         <div className={`flex flex-col space-y-2 ${className}`}>
             {label && (
                 <label
-                    htmlFor={name}
+                    htmlFor={generatedId}
                     className={`font-inter dark: text-[16px] leading-[22.4px] font-[400] text-white ${error ? 'text-red-500' : 'text-[#000000]'}`}
                 >
                     {label}
@@ -15,7 +16,7 @@ const SelectInput: FC<SelectInputProps> = ({ name, value, label, options, onChan
             )}
 
             <select
-                id={name}
+                id={generatedId}
                 name={name}
                 value={value}
                 onChange={(e) => onChange(e.target.value)}

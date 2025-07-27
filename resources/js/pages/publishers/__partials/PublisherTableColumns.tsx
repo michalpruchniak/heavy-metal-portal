@@ -2,6 +2,7 @@ import ButtonLink from '@/components/Button/ButtonLink';
 import useTranslation from '@/hooks/use-translate';
 import { TableColumn } from 'react-data-table-component';
 import { Publisher } from '../__types/types';
+import DefaultImg from '@/components/Atoms/Img/default.jpg';
 
 const PublisherTableColumns = (): TableColumn<Publisher>[] => {
     const { buttons, labels } = useTranslation();
@@ -18,7 +19,7 @@ const PublisherTableColumns = (): TableColumn<Publisher>[] => {
         },
         {
             name: labels.name,
-            cell: (row: Publisher) => <img src={row.logo} alt="Logo" className="h-10 w-10 object-contain" />,
+            cell: (row: Publisher) => <img src={row.logo === 'string' ? row.logo : DefaultImg} alt="Logo" className="h-10 w-10 object-contain" />,
         },
         {
             name: labels.url,

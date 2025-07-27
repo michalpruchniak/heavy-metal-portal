@@ -30,4 +30,8 @@ return [
         'update_band' => 'Update band',
         'create_band' => 'Create band',
     ],
+    'placeholders' => [
+        'please_select_people' => 'Please select people',
+        'no_people_to_display' => 'No people to display'
+    ]
 ];

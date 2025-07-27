@@ -14,3 +14,16 @@ export interface ReactSelectProps {
     error?: string;
     className?: string;
 }
+
+export interface SearchableSelectProps {
+    label?: string;
+    required?: boolean;
+    error?: string;
+    options: Option[];
+    value: string | number | null | Array<string | number>;
+    onChange: (value: string | number | '' | Array<string | number>) => void;
+    placeholder?: string;
+    isSearchable?: boolean;
+    noOptionsMessage?: string;
+    isMulti?: boolean;
+}

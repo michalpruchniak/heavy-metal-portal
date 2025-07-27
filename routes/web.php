@@ -53,23 +53,23 @@ Route::prefix('/panel')->middleware(['auth', 'verified', 'formOptionsMiddleware'
 
     Route::get('bands', [BandController::class, 'index'])
         ->name('bands.index')
-        ->middleware('permission:people.view');
+        ->middleware('permission:bands.view');
 
     Route::get('band/create', [BandController::class, 'create'])
         ->name('bands.create')
-        ->middleware('permission:people.view');
+        ->middleware('permission:bands.create');
 
     Route::post('band/store', [BandController::class, 'store'])
         ->name('bands.store')
-        ->middleware('permission:people.view');
+        ->middleware('permission:bands.create');
 
     Route::get('bands/edit/{band}', [BandController::class, 'edit'])
         ->name('bands.edit')
-        ->middleware('permission:people.view');
+        ->middleware('permission:bands.edit');
 
     Route::put('bands/{band}', [BandController::class, 'update'])
         ->name('bands.update')
-        ->middleware('permission:publishers.edit');
+        ->middleware('permission:bands.edit');
 });
 
 require __DIR__.'/settings.php';

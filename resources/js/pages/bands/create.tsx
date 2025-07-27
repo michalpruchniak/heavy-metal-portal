@@ -11,7 +11,7 @@ import { BandFormData, BandProps } from './__types/types';
 import InputText from '@/components/Input/InputText';
 
 const Create = ({ band }: BandProps) => {
-    const { labels } = useTranslation();
+    const { labels, placeholders } = useTranslation();
     const breadcrumbs = [
         {
             title: labels.bands,
@@ -91,11 +91,11 @@ const Create = ({ band }: BandProps) => {
                         <SearchableSelect
                             label="People"
                             onChange={(value) => setData('people', value)}
-                            placeholder="Wybierz"
+                            placeholder={placeholders.please_select_people}
                             options={peopleOptions}
                             value={data.people ?? null}
                             error={errors.people}
-                            noOptionsMessage="Test"
+                            noOptionsMessage={placeholders.no_people_to_display}
                         />
                     </div>
                     <div className="flex items-center gap-2">

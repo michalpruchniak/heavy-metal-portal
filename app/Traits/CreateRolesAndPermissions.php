@@ -12,15 +12,19 @@ trait CreateRolesAndPermissions
             'publishers.view',
             'publishers.create',
             'publishers.edit',
-            'publishers.delete',
             'people.view',
+            'bands.view',
+            'bands.create',
+            'bands.edit',
         ],
         'moderator' => [
             'publishers.view',
             'publishers.create',
             'publishers.edit',
-            'publishers.delete',
             'people.view',
+            'bands.view',
+            'bands.create',
+            'bands.edit',
         ],
     ];
 
