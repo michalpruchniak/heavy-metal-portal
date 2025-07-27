@@ -1,8 +1,8 @@
+import DefaultImg from '@/components/Atoms/Img/default.jpg';
 import ButtonLink from '@/components/Button/ButtonLink';
 import useTranslation from '@/hooks/use-translate';
 import { TableColumn } from 'react-data-table-component';
 import { Publisher } from '../__types/types';
-import DefaultImg from '@/components/Atoms/Img/default.jpg';
 
 const PublisherTableColumns = (): TableColumn<Publisher>[] => {
     const { buttons, labels } = useTranslation();

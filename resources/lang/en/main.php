@@ -29,9 +29,10 @@ return [
         'bands' => 'Bands',
         'update_band' => 'Update band',
         'create_band' => 'Create band',
+        'photo' => 'Photo'
     ],
     'placeholders' => [
         'please_select_people' => 'Please select people',
-        'no_people_to_display' => 'No people to display'
-    ]
+        'no_people_to_display' => 'No people to display',
+    ],
 ];

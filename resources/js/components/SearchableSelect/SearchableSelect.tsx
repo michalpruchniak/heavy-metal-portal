@@ -1,10 +1,10 @@
+import { useAppearance } from '@/hooks/use-appearance';
 import useTranslation from '@/hooks/use-translate';
 import { useId } from 'react';
 import Select, { MultiValue, SingleValue } from 'react-select';
 import InputError from '../input-error';
 import RequiredStar from '../RequiredStar/RequiredStar';
 import { Option, SearchableSelectProps } from './__types/types';
-import { useAppearance } from '@/hooks/use-appearance';
 
 const SearchableSelect = ({
     label = '',
@@ -18,7 +18,6 @@ const SearchableSelect = ({
     noOptionsMessage,
     isMulti = true,
 }: SearchableSelectProps) => {
-
     const generatedId = useId();
     const { appearance } = useAppearance();
 

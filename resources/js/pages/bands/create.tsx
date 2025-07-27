@@ -1,3 +1,4 @@
+import InputText from '@/components/Input/InputText';
 import SearchableSelect from '@/components/SearchableSelect/SearchableSelect';
 import TextEditor from '@/components/TextEditor/TextEditor';
 import { Button } from '@/components/ui/button';
@@ -8,7 +9,6 @@ import AppLayout from '@/layouts/app-layout';
 import { Head, useForm, usePage } from '@inertiajs/react';
 import { FormEvent } from 'react';
 import { BandFormData, BandProps } from './__types/types';
-import InputText from '@/components/Input/InputText';
 
 const Create = ({ band }: BandProps) => {
     const { labels, placeholders } = useTranslation();
@@ -55,14 +55,7 @@ const Create = ({ band }: BandProps) => {
 
                 <form onSubmit={handleSubmit} encType="multipart/form-data" className="flex flex-col gap-4 px-[15px] md:px-[17%]">
                     <div>
-                        <InputText
-                            label={labels.name}
-                            required={true}
-                            value={data.name}
-                            onChange={(e) => setData('name', e)}
-                            error={errors.name}
-                        />
-
+                        <InputText label={labels.name} required={true} value={data.name} onChange={(e) => setData('name', e)} error={errors.name} />
                     </div>
                     <div>
                         <TextEditor

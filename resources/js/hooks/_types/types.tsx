@@ -9,6 +9,6 @@ interface Options {
 }
 export interface PageProps extends InertiaPageProps {
     translations?: Translations;
-    personType?: string[];
+    personType?: { value: string; label: string }[];
     peopleOptions?: Options[];
 }

@@ -24,7 +24,7 @@ class BandController extends Controller
         $bands = $this->bandService->getAll();
 
         return Inertia::render('bands/index', [
-            'bands' => $bands
+            'bands' => $bands,
         ]);
     }
 

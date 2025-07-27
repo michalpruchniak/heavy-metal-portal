@@ -9,7 +9,7 @@ const SelectInput = ({ name, value, label, options, onChange, className = '', er
             {label && (
                 <label
                     htmlFor={generatedId}
-                    className={`font-inter dark: text-[16px] leading-[22.4px] font-[400] text-white ${error ? 'text-red-500' : 'text-[#000000]'}`}
+                    className={`font-inter leading-[22.4px] font-[400] dark:text-[16px] dark:text-white ${error ? 'text-red-500' : 'text-[#000000]'}`}
                 >
                     {label}
                 </label>

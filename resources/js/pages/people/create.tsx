@@ -12,7 +12,8 @@ import { PersonFormData, PersonProps } from './__types/types';
 
 const PersonForm: FC<PersonProps> = ({ person }) => {
     const { labels } = useTranslation();
-    const { personType } = usePage<PageProps>().props;
+    const { personType = [] } = usePage<PageProps>().props;
+
     const breadcrumbs = [
         {
             title: labels.people,
@@ -20,7 +21,7 @@ const PersonForm: FC<PersonProps> = ({ person }) => {
         },
         {
             title: person ? labels.edit_person : labels.create_person,
-            href: person ? route('publishers.edit', { publisher: person.id }) : route('people.create'),
+            href: person ? route('people.edit', { person: person.id }) : route('people.create'),
         },
     ];
 
@@ -35,7 +36,7 @@ const PersonForm: FC<PersonProps> = ({ person }) => {
     });
 
     const sendRequest = () => {
-        const targetRoute = person ? route('publishers.update', { publisher: person.id }) : route('people.store');
+        const targetRoute = person ? route('people.update', { person: person.id }) : route('people.store');
 
         post(targetRoute, {
             preserveScroll: true,
@@ -55,7 +56,13 @@ const PersonForm: FC<PersonProps> = ({ person }) => {
 
                 <form onSubmit={handleSubmit} encType="multipart/form-data" className="flex flex-col gap-4 px-[15px] md:px-[17%]">
                     <div>
-                        <InputText label={labels.name} value={data.name} onChange={(value) => setData('name', value)} error={errors.name} />
+                        <InputText
+                            label={labels.name}
+                            value={data.name}
+                            required={true}
+                            onChange={(value) => setData('name', value)}
+                            error={errors.name}
+                        />
                     </div>
 
                     <div>
@@ -80,7 +87,7 @@ const PersonForm: FC<PersonProps> = ({ person }) => {
                             name="type"
                             value={data.type}
                             label={labels.type}
-                            options={personType.map((type) => ({ value: type, label: type }))}
+                            options={personType}
                             onChange={(value) => setData('type', value)}
                             error={errors.type}
                         />
