@@ -23,7 +23,7 @@ interface BaseRepositoryInterface
     /**
      * Find or fail record
      */
-    public function findOrFail(int $id): ?Model;
+    public function findOrFail(int $id, array $relationships = []): ?Model;
 
     /**
      * Record update based on Model.

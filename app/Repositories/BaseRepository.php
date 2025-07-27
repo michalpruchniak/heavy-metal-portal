@@ -47,9 +47,9 @@ abstract class BaseRepository
     /**
      * Find or fail record
      */
-    public function findOrFail(int $id): ?Model
+    public function findOrFail(int $id, array $relationships = []): ?Model
     {
-        return $this->model->findOrFail($id);
+        return $this->model->with($relationships)->findOrFail($id);
     }
 
     /**

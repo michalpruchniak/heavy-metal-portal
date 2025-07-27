@@ -23,7 +23,7 @@ class BandService implements BandServiceInterface
 
     public function findOrFail(int $id): Band
     {
-        return $this->bandRepository->findOrFail($id);
+        return $this->bandRepository->findOrFail(id:$id, relationships:['people']);
     }
 
     public function create(BandDTO $bandDTO): Band

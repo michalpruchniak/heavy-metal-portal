@@ -34,8 +34,7 @@ const Create = ({ band }:BandProps ) => {
         people: band?.people ?? [],
         _method: band?.id ? 'PUT' : 'POST',
     });
-
-
+    console.log(data);
     const sendRequest = () => {
         const targetRoute = band ? route('bands.update', { band: band.id }) : route('bands.store');
 
