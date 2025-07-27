@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\DTO\PersonDTO;
+use App\Enums\PersonTypeEnum;
 use App\Models\Person;
 use App\Repositories\Interfaces\PersonRepositoryInterface;
 use App\Services\Interfaces\FileUploadServiceInterface;
@@ -54,6 +55,16 @@ class PersonService implements PersonServiceInterface
             return [
                 'value' => $person->id,
                 'label' => $person->name,
+            ];
+        })->toArray();
+    }
+
+    public function getMapPersonTypeArray(): array
+    {
+        return collect(PersonTypeEnum::cases())->map(function (PersonTypeEnum $enum) {
+            return [
+                'value' => $enum->value,
+                'label' => $enum->name,
             ];
         })->toArray();
     }

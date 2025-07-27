@@ -25,7 +25,7 @@ class FormOptionsMiddleware
         $shares = [];
 
         if ($request->routeIs('people.create') || $request->routeIs('people.edit')) {
-            $shares['personType'] = PersonTypeEnum::values();
+            $shares['personType'] = $this->personService->getMapPersonTypeArray();
         }
 
         if ($request->routeIs('bands.create') || $request->routeIs('bands.edit')) {
