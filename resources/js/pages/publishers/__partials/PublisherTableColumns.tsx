@@ -1,7 +1,7 @@
 import ButtonLink from '@/components/Button/ButtonLink';
 import useTranslation from '@/hooks/use-translate';
-import { Publisher } from '@/types';
 import { TableColumn } from 'react-data-table-component';
+import { Publisher } from '../__types/types';
 
 const PublisherTableColumns = (): TableColumn<Publisher>[] => {
     const { buttons, labels } = useTranslation();
@@ -25,7 +25,7 @@ const PublisherTableColumns = (): TableColumn<Publisher>[] => {
             selector: (row: Publisher) => row.url || 'N/A',
         },
         {
-            name: labels.name,
+            name: labels.edit,
             cell: (row: Publisher) => (
                 <ButtonLink variant="secondary" url={route('publishers.edit', { publisher: row.id })}>
                     {buttons.edit}

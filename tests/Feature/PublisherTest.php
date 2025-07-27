@@ -2,15 +2,15 @@
 
 use App\Models\Publisher;
 use App\Models\User;
-use Database\Seeders\UserTableSeeder;
+use App\Traits\CreateRolesAndPermissions;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 
-uses(RefreshDatabase::class);
+uses(RefreshDatabase::class, CreateRolesAndPermissions::class);
 
 beforeEach(function () {
-    $this->artisan('db:seed', ['--class' => UserTableSeeder::class]);
+    $this->createDefaultRolesAndPermissions();
 
     $this->admin = User::factory()->create();
     $this->admin->assignRole('admin');

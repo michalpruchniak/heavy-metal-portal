@@ -41,31 +41,3 @@ export interface User {
     updated_at: string;
     [key: string]: unknown; // This allows for additional properties...
 }
-
-export interface Publisher {
-    id: number;
-    name: string;
-    logo: string;
-    url?: string | null;
-    description?: string | null;
-    created_at: string;
-    updated_at: string;
-    [key: string]: string | unknown;
-}
-
-export interface PublisherFormData {
-    name: string;
-    url?: string;
-    logo: File | null;
-    description?: string | null;
-    _method: 'PUT' | 'POST';
-    [key: string]: string | number | File | null;
-}
-
-export interface IndexPageProps {
-    publishers: Publisher[];
-}
-
-export interface PublisherProps {
-    publisher?: Publisher;
-}
