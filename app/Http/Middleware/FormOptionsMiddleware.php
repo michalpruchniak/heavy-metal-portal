@@ -2,7 +2,6 @@
 
 namespace App\Http\Middleware;
 
-use App\Enums\PersonTypeEnum;
 use App\Services\Interfaces\PersonServiceInterface;
 use Closure;
 use Illuminate\Http\Request;

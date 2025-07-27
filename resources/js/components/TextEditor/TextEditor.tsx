@@ -1,21 +1,12 @@
 import Message from '@/components/Message/Message';
 import useTranslation from '@/hooks/use-translate';
 import { EditorContent } from '@tiptap/react';
+import RequiredStar from '../RequiredStar/RequiredStar';
 import TextEditorToolbar from './__partials/components/TextEditorToolbar';
 import useTextEditor from './__partials/hooks/useTextEditor';
 import { TextEditorProps } from './__types/types';
-import RequiredStar from '../RequiredStar/RequiredStar';
 
-const TextEditor = ({
-    value,
-    limit = 500,
-    onChange,
-    name,
-    label,
-    required = false,
-    className,
-    error = '',
-    ...props }:TextEditorProps) => {
+const TextEditor = ({ value, limit = 500, onChange, name, label, required = false, className, error = '', ...props }: TextEditorProps) => {
     const { labels } = useTranslation();
     const editor = useTextEditor({ value, limit, onChange });
     if (!editor) {

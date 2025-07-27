@@ -56,7 +56,13 @@ const PersonForm: FC<PersonProps> = ({ person }) => {
 
                 <form onSubmit={handleSubmit} encType="multipart/form-data" className="flex flex-col gap-4 px-[15px] md:px-[17%]">
                     <div>
-                        <InputText label={labels.name} value={data.name} required={true} onChange={(value) => setData('name', value)} error={errors.name} />
+                        <InputText
+                            label={labels.name}
+                            value={data.name}
+                            required={true}
+                            onChange={(value) => setData('name', value)}
+                            error={errors.name}
+                        />
                     </div>
 
                     <div>
