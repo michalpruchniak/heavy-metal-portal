@@ -11,6 +11,7 @@ import { PageProps } from '@/hooks/_types/types';
 
 
 const Create = ({ band }:BandProps ) => {
+    console.log(band);
     const { labels } = useTranslation();
     const breadcrumbs = [
         {
@@ -30,7 +31,7 @@ const Create = ({ band }:BandProps ) => {
         name: typeof band?.name === 'string' ? band.name : '',
         description: typeof band?.description === 'string' ? band.description : '',
         logo: null,
-        still_active: true,
+        still_active: band?.still_active ?? true,
         people: band?.people ?? [],
         _method: band?.id ? 'PUT' : 'POST',
     });

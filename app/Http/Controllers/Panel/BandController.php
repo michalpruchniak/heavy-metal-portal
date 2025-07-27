@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Panel;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\BandRequest;
+use App\Http\Resources\BandCreateResource;
+use App\Http\Resources\BandEditResource;
 use App\Services\Interfaces\BandServiceInterface;
 use App\Services\Interfaces\PersonServiceInterface;
 use Exception;
@@ -49,9 +51,8 @@ class BandController extends Controller
     public function edit(int $band): Response
     {
         $band = $this->bandService->findOrFail($band);
-
         return Inertia::render('bands/create', [
-            'band' => $band,
+            'band' => new BandEditResource($band),
         ]);
     }
 
