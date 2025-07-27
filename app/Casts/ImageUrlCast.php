@@ -19,7 +19,7 @@ class ImageUrlCast implements CastsAttributes
             return $value;
         }
 
-        return $value ? Storage::disk('public')->url($value) : asset("images/default/{$key}.webp");
+        return $value ? Storage::disk('public')->url($value) : null;
     }
 
     /**

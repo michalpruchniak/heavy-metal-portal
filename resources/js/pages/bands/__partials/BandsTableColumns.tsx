@@ -20,9 +20,7 @@ const BandsTableColumns = (): TableColumn<Band>[] => {
         {
             name: labels.logo,
             cell: (row: Band) =>
-                typeof row.logo === 'string' && (
-                    <img src={row.logo === 'string' ? row.logo : DefaultImg} alt="Logo" className="h-10 w-10 object-contain" />
-                ),
+                    <img src={row.logo ?? DefaultImg} alt="Logo" className="h-10 w-10 object-contain" />
         },
         {
             name: labels.edit,
