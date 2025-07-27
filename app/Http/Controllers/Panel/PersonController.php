@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Panel;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PersonRequest;
 use App\Services\Interfaces\PersonServiceInterface;
-use App\Services\PersonService;
 use Exception;
 use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;

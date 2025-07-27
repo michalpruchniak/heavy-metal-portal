@@ -4,7 +4,6 @@ namespace App\Http\Middleware;
 
 use App\Enums\PersonTypeEnum;
 use App\Services\Interfaces\PersonServiceInterface;
-use App\Services\PersonService;
 use Closure;
 use Illuminate\Http\Request;
 use Inertia\Inertia;

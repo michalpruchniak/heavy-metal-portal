@@ -17,6 +17,4 @@ interface BandServiceInterface
     public function create(BandDTO $bandDTO): Band;
 
     public function update(int $id, BandDTO $bandDTO): Band;
-
-
 }

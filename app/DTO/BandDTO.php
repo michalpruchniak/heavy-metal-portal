@@ -22,7 +22,7 @@ class BandDTO implements Arrayable
             'description' => $this->description,
             'people' => $this->people,
             'still_active' => $this->stillActive,
-            'logo' => $this->logo
+            'logo' => $this->logo,
         ];
     }
 }

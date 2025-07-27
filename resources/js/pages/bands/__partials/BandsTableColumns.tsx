@@ -2,8 +2,6 @@ import ButtonLink from '@/components/Button/ButtonLink';
 import useTranslation from '@/hooks/use-translate';
 import { TableColumn } from 'react-data-table-component';
 import { Band } from '../__types/types';
-import { randomBytes } from 'crypto';
-
 
 const BandsTableColumns = (): TableColumn<Band>[] => {
     const { buttons, labels } = useTranslation();

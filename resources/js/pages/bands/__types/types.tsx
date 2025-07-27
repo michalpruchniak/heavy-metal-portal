@@ -22,7 +22,6 @@ export interface Band {
     [key: string]: string | unknown | boolean | undefined;
 }
 
-
 export interface BandProps {
     band?: Band;
 }

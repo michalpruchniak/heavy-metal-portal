@@ -63,11 +63,11 @@ Route::prefix('/panel')->middleware(['auth', 'verified', 'formOptionsMiddleware'
         ->name('bands.store')
         ->middleware('permission:people.view');
 
-        Route::get('bands/edit/{band}', [BandController::class, 'edit'])
+    Route::get('bands/edit/{band}', [BandController::class, 'edit'])
         ->name('bands.edit')
         ->middleware('permission:people.view');
 
-        Route::put('bands/{band}', [BandController::class, 'update'])
+    Route::put('bands/{band}', [BandController::class, 'update'])
         ->name('bands.update')
         ->middleware('permission:publishers.edit');
 });

@@ -4,8 +4,8 @@ import Table from '@/components/Table/Table';
 import useTranslation from '@/hooks/use-translate';
 import AppLayout from '@/layouts/app-layout';
 import { Head } from '@inertiajs/react';
-import { Band, IndexPageBandsProps} from './__types/types';
 import BandsTableColumns from './__partials/BandsTableColumns';
+import { Band, IndexPageBandsProps } from './__types/types';
 
 export default function Index({ bands }: IndexPageBandsProps) {
     const { labels, buttons } = useTranslation();

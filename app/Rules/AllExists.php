@@ -12,6 +12,7 @@ class AllExists implements ValidationRule
         protected string $table,
         protected string $column = 'id'
     ) {}
+
     /**
      * Run the validation rule.
      *
@@ -19,8 +20,9 @@ class AllExists implements ValidationRule
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        if (!is_array($value)) {
+        if (! is_array($value)) {
             $fail("The $attribute must be an array.");
+
             return;
         }
 
@@ -31,7 +33,7 @@ class AllExists implements ValidationRule
 
         $missing = array_diff($value, $existing);
 
-        if (!empty($missing)) {
+        if (! empty($missing)) {
             $fail("Some of the provided $attribute values do not exist.");
         }
     }

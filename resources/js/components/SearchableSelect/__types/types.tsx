@@ -1,9 +1,9 @@
 export type Option = {
     value: string;
     label: string;
-  };
+};
 
-  export interface ReactSelectProps {
+export interface ReactSelectProps {
     options: Option[];
     onChange: (value: string | string[] | null) => void;
     placeholder?: string;
@@ -13,4 +13,4 @@ export type Option = {
     name?: string;
     error?: string;
     className?: string;
-  }
+}

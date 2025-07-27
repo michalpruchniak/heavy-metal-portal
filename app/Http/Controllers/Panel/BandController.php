@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Panel;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\BandRequest;
-use App\Http\Resources\BandCreateResource;
 use App\Http\Resources\BandEditResource;
 use App\Services\Interfaces\BandServiceInterface;
 use App\Services\Interfaces\PersonServiceInterface;
@@ -18,7 +17,7 @@ class BandController extends Controller
     public function __construct(
         private readonly BandServiceInterface $bandService,
         private readonly PersonServiceInterface $personService
-        ) {}
+    ) {}
 
     public function index(): Response
     {
@@ -27,7 +26,7 @@ class BandController extends Controller
 
         return Inertia::render('bands/index', [
             'bands' => $bands,
-            'people' => $people
+            'people' => $people,
         ]);
     }
 
@@ -51,6 +50,7 @@ class BandController extends Controller
     public function edit(int $band): Response
     {
         $band = $this->bandService->findOrFail($band);
+
         return Inertia::render('bands/create', [
             'band' => new BandEditResource($band),
         ]);

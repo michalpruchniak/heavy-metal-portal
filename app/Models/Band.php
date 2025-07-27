@@ -12,7 +12,7 @@ class Band extends Model
         'name',
         'description',
         'logo',
-        'still_active'
+        'still_active',
     ];
 
     protected $casts = [

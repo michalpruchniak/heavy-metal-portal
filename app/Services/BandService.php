@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Services;
 
 use App\DTO\BandDTO;
@@ -23,7 +24,7 @@ class BandService implements BandServiceInterface
 
     public function findOrFail(int $id): Band
     {
-        return $this->bandRepository->findOrFail(id:$id, relationships:['people']);
+        return $this->bandRepository->findOrFail(id: $id, relationships: ['people']);
     }
 
     public function create(BandDTO $bandDTO): Band
@@ -33,6 +34,7 @@ class BandService implements BandServiceInterface
         $bandData['logo'] = $this->fileUploadService->saveOrUpdatePhoto(null, $bandDTO->logo, self::BAND_CATALOG_PHOTO_DIRECTORY);
         $band = $this->bandRepository->create($bandData);
         $band->people()->sync($bandDTO->people);
+
         return $band;
     }
 

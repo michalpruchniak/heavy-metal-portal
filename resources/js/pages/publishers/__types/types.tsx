@@ -9,7 +9,6 @@ export interface Publisher {
     [key: string]: string | unknown;
 }
 
-
 export interface PublisherFormData {
     name: string;
     url?: string | null;
@@ -24,7 +23,6 @@ export interface PublisherFormData {
 export interface IndexPageProps {
     publishers: Publisher[];
 }
-
 
 export interface PublisherProps {
     publisher?: Publisher;

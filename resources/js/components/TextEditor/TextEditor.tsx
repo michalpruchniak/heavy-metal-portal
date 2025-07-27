@@ -15,7 +15,9 @@ const TextEditor: React.FC<TextEditorProps> = ({ value, limit = 500, onChange, n
     return (
         <div className={`flex flex-col space-y-2 ${className}`}>
             {label && (
-                <label className={`font-inter text-[16px] leading-[22.4px] font-[400] dark:text-white ${error ? 'text-red-500' : 'text-[#000000]'}`}>{label}</label>
+                <label className={`font-inter text-[16px] leading-[22.4px] font-[400] dark:text-white ${error ? 'text-red-500' : 'text-[#000000]'}`}>
+                    {label}
+                </label>
             )}
             <div className="rounded-[20px] border" {...props}>
                 <TextEditorToolbar editor={editor} />

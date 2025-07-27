@@ -19,6 +19,4 @@ interface PersonServiceInterface
     public function update(int $id, PersonDTO $personDTO): Person;
 
     public function getMapPeopleArray(): array;
-
-
 }
