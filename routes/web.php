@@ -80,6 +80,10 @@ Route::prefix('/panel')->middleware(['auth', 'verified', 'formOptionsMiddleware'
         Route::get('albums/create/{album}', [AlbumController::class, 'create'])
         ->name('albums.create')
         ->middleware('permission:publishers.create');
+
+        Route::post('albums/store/', [AlbumController::class, 'store'])
+        ->name('albums.store')
+        ->middleware('permission:publishers.create');
 });
 
 require __DIR__.'/settings.php';
