@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Front\HomeController;
+use App\Http\Controllers\Panel\AlbumController;
 use App\Http\Controllers\Panel\BandController;
 use App\Http\Controllers\Panel\PersonController;
 use App\Http\Controllers\Panel\PublisherController;
@@ -74,6 +75,11 @@ Route::prefix('/panel')->middleware(['auth', 'verified', 'formOptionsMiddleware'
     Route::put('bands/{band}', [BandController::class, 'update'])
         ->name('bands.update')
         ->middleware('permission:bands.edit');
+
+
+        Route::get('albums/create/{album}', [AlbumController::class, 'create'])
+        ->name('albums.create')
+        ->middleware('permission:publishers.create');
 });
 
 require __DIR__.'/settings.php';
