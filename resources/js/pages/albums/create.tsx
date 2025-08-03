@@ -9,7 +9,7 @@ import { FormEvent } from 'react';
 import { AlbumProps, BandFormData,  } from './__types/types'
 import DatePickerInput from '@/components/DatePicker/DatePicker';
 
-const Create = ({ bandId, band }: AlbumProps) => {
+const Create = ({ bandId, album }: AlbumProps) => {
     const { labels } = useTranslation();
     const breadcrumbs = [
         {
@@ -17,23 +17,20 @@ const Create = ({ bandId, band }: AlbumProps) => {
             href: route('bands.index'),
         },
         {
-            title: band ? labels.update_album : labels.create_album,
-            href: band ? route('bands.edit', { band: band.id }) : route('bands.create'),
+            title: album ? labels.update_album : labels.create_album,
+            href: album ? route('albums.edit', { band: bandId, album: album.id }) : route('bands.create', {band: bandId}),
         },
     ];
-
-
     const { data, setData, processing, post, errors } = useForm<BandFormData>({
-        name: typeof band?.name === 'string' ? band.name : '',
-        description: typeof band?.description === 'string' ? band.description : '',
-        release_date: typeof band?.release_date === 'string' ? band.release_date : '',
+        name: typeof album?.name === 'string' ? album.name : '',
+        description: typeof album?.description === 'string' ? album.description : '',
+        release_date: typeof album?.release_date === 'string' ? album.release_date : '',
         cover: null,
         band_id: bandId,
-        _method: band?.id ? 'PUT' : 'POST',
+        _method: album?.id ? 'PUT' : 'POST',
     });
-
     const sendRequest = () => {
-        const targetRoute = band ? route('bands.update', { band: band.id }) : route('albums.store');
+        const targetRoute = album ? route('albums.update', { album: album.id }) : route('albums.store');
 
         post(targetRoute, {
             preserveScroll: true,
@@ -47,9 +44,9 @@ const Create = ({ bandId, band }: AlbumProps) => {
 
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
-            <Head title={band ? labels.update_band : labels.create_album} />
+            <Head title={album ? labels.update_band : labels.create_album} />
             <div className="flex h-full flex-1 flex-col gap-4 rounded-xl p-4">
-                <h1 className="text-center text-[45px]">{band ? `${labels.update_album} ${band.name}` : labels.create_album}</h1>
+                <h1 className="text-center text-[45px]">{album ? `${labels.update_album} ${album.name}` : labels.create_album}</h1>
 
                 <form onSubmit={handleSubmit} encType="multipart/form-data" className="flex flex-col gap-4 px-[15px] md:px-[17%]">
                     <div>
@@ -84,7 +81,7 @@ const Create = ({ bandId, band }: AlbumProps) => {
                             value={data.release_date ? new Date(data.release_date) : null}
                             onChange={(date) => {
                                 if (date) {
-                                    setData('release_date', date.toISOString().split('T')[0]); // YYYY-MM-DD
+                                    setData('release_date', date.toISOString().split('T')[0]);
                                 } else {
                                     setData('release_date', '');
                                 }
@@ -93,7 +90,7 @@ const Create = ({ bandId, band }: AlbumProps) => {
                         />
                     </div>
                     <Button type="submit" disabled={processing} className="self-start">
-                        {band ? 'Update' : 'Create'}
+                        {album ? 'Update' : 'Create'}
                     </Button>
                 </form>
             </div>

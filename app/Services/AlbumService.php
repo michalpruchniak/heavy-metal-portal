@@ -30,4 +30,15 @@ class AlbumService implements AlbumServiceInterface
 
         return $album;
     }
+
+    public function update(int $id, AlbumDTO $albumDTO): Album
+    {
+        $album = $this->albumRepository->findOrFail($id);
+        $albumData = $albumDTO->toArray();
+        $albumData['logo'] = $this->fileUploadService->saveOrUpdatePhoto($album->getRawOriginal('cover'), $albumDTO->cover, self::ALBUM_CATALOG_COVER_DIRECTORY);
+
+        $album->update($albumData);
+
+        return $album->refresh();
+    }
 }

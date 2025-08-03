@@ -21,9 +21,16 @@ export interface Band {
     [key: string]: string | unknown | boolean | undefined;
 }
 
+export interface Album {
+    'id': number;
+    'band_id': number;
+    'name': string;
+    'description'?: string;
+    'release_date'?: string;
+}
 export interface AlbumProps {
     bandId?: number;
-    band?: Band
+    album?: Album
 }
 
 export interface IndexPageBandsProps {

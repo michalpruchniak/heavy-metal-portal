@@ -77,13 +77,25 @@ Route::prefix('/panel')->middleware(['auth', 'verified', 'formOptionsMiddleware'
         ->middleware('permission:bands.edit');
 
 
+        Route::get('albums/{band}', [AlbumController::class, 'index'])
+        ->name('albums.index')
+        ->middleware('permission:publishers.create');
+
         Route::get('albums/create/{album}', [AlbumController::class, 'create'])
         ->name('albums.create')
         ->middleware('permission:publishers.create');
 
-        Route::post('albums/store/', [AlbumController::class, 'store'])
+        Route::post('albums/store', [AlbumController::class, 'store'])
         ->name('albums.store')
         ->middleware('permission:publishers.create');
+
+        Route::get('albums/edit/{band}/{album}', [AlbumController::class, 'edit'])
+        ->name('albums.edit')
+        ->middleware('permission:publishers.create');
+
+        Route::put('albums/{album}', [AlbumController::class, 'update'])
+        ->name('albums.update')
+        ->middleware('permission:bands.edit');
 });
 
 require __DIR__.'/settings.php';
