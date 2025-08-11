@@ -17,4 +17,6 @@ interface PublisherServiceInterface
     public function findOrFail(int $id): Publisher;
 
     public function update(int $id, PublisherDTO $publisherDTO): Publisher;
+
+    public function getMapPublisherArray(): array;
 }

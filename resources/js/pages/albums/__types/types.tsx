@@ -3,6 +3,7 @@ export interface BandFormData {
     description?: string | null;
     cover?: File | null;
     release_date?: string;
+    publisher_id?: number |  string | null;
     _method: 'PUT' | 'POST';
     created_at?: string;
     updated_at?: string;
@@ -27,6 +28,7 @@ export interface Album {
     'name': string;
     'description'?: string;
     'release_date'?: string;
+    'publisher_id'?: number;
 }
 export interface AlbumProps {
     bandId?: number;

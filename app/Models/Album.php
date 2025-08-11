@@ -13,6 +13,7 @@ class Album extends Model
         'name',
         'description',
         'release_date',
+        'publisher_id',
         'cover'
     ];
 
@@ -24,5 +25,10 @@ class Album extends Model
     public function band(): BelongsTo
     {
         return $this->belongsTo(Band::class);
+    }
+
+    public function publisher(): BelongsTo
+    {
+        return $this->belongsTo(Publisher::class);
     }
 }

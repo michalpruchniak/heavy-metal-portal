@@ -40,10 +40,8 @@ class FileUploadService implements FileUploadServiceInterface
             if ($currentPath && Storage::exists($currentPath)) {
                 Storage::delete($currentPath);
             }
-
             return $newFile->store($directory, 'public');
         }
-
         return $currentPath;
     }
 }

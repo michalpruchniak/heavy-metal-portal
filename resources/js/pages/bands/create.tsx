@@ -46,7 +46,7 @@ const Create = ({ band }: BandProps) => {
         e.preventDefault();
         sendRequest();
     };
-
+    console.log(peopleOptions);
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title={band ? labels.update_band : labels.create_band} />
@@ -86,9 +86,10 @@ const Create = ({ band }: BandProps) => {
                             onChange={(value) => setData('people', value)}
                             placeholder={placeholders.please_select_people}
                             options={peopleOptions}
-                            value={data.people ?? null}
+                            value={data.people ?? []}
                             error={errors.people}
                             noOptionsMessage={placeholders.no_people_to_display}
+                            isMulti={true}
                         />
                     </div>
                     <div className="flex items-center gap-2">

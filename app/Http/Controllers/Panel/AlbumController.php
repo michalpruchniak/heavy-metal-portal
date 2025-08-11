@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Panel;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AlbumRequest;
-use App\Models\Album;
+use App\Http\Resources\BandAlbumsResource;
 use App\Services\Interfaces\AlbumServiceInterface;
 use App\Services\Interfaces\BandServiceInterface;
 use Exception;
@@ -20,14 +20,15 @@ class AlbumController extends Controller
     )
     {}
 
-    public function index(): Response
+    public function index(int $band): Response
     {
-        $albums = Album::all();
+        $band = $this->bandService->findOrFail($band);
 
         return Inertia::render('albums/index', [
-            'albums' => $albums
+            'bandAlbums' => new BandAlbumsResource($band)
         ]);
     }
+
     public function create(int $bandId): Response
     {
         return Inertia::render('albums/create', [
@@ -43,7 +44,7 @@ class AlbumController extends Controller
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
 
-        return redirect()->back()->with('success', 'Album created successfully');
+        return redirect()->route('bands.index')->with('success', 'Album created successfully');
 
     }
 

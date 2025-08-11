@@ -24,10 +24,8 @@ class AlbumService implements AlbumServiceInterface
     public function create(AlbumDTO $albumDTO): Album
     {
         $albumData = $albumDTO->toArray();
-
         $albumData['cover'] = $this->fileUploadService->saveOrUpdatePhoto(null, $albumDTO->cover, self::ALBUM_CATALOG_COVER_DIRECTORY);
         $album = $this->albumRepository->create($albumData);
-
         return $album;
     }
 
@@ -35,10 +33,8 @@ class AlbumService implements AlbumServiceInterface
     {
         $album = $this->albumRepository->findOrFail($id);
         $albumData = $albumDTO->toArray();
-        $albumData['logo'] = $this->fileUploadService->saveOrUpdatePhoto($album->getRawOriginal('cover'), $albumDTO->cover, self::ALBUM_CATALOG_COVER_DIRECTORY);
-
+        $albumData['cover'] = $this->fileUploadService->saveOrUpdatePhoto($album->getRawOriginal('cover'), $albumDTO->cover, self::ALBUM_CATALOG_COVER_DIRECTORY);
         $album->update($albumData);
-
         return $album->refresh();
     }
 }

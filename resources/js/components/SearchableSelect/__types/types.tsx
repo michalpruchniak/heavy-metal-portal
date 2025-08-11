@@ -1,29 +1,28 @@
 export type Option = {
     value: string;
     label: string;
-};
+  };
 
-export interface ReactSelectProps {
-    options: Option[];
-    onChange: (value: string | string[] | null) => void;
-    placeholder?: string;
-    isMulti?: boolean;
-    value?: string | string[] | null;
-    label?: string;
-    name?: string;
-    error?: string;
-    className?: string;
-}
+  export interface SingleSelectProps {
+    isMulti?: false;
+    value: string | number | null | undefined;
+    onChange: (value: string | number | null | undefined) => void;
+  }
 
-export interface SearchableSelectProps {
+  export interface MultiSelectProps {
+    isMulti: true;
+    value: (string | number)[];
+    onChange: (value: (string | number)[]) => void;
+  }
+
+  interface SharedProps {
     label?: string;
     required?: boolean;
     error?: string;
     options: Option[];
-    value: string | number | null | Array<string | number>;
-    onChange: (value: string | number | '' | Array<string | number>) => void;
     placeholder?: string;
     isSearchable?: boolean;
     noOptionsMessage?: string;
-    isMulti?: boolean;
-}
+  }
+
+  export type SearchableSelectProps = SharedProps & (SingleSelectProps | MultiSelectProps);

@@ -24,6 +24,7 @@ class AlbumRequest extends FormRequest
     {
         return [
             'band_id' => 'required|exists:bands,id',
+            'publisher_id' => 'nullable',
             'name' => 'required|string|between:1,250',
             'description' => 'nullable|string:between:3,2500',
             'release_date' => 'nullable|date',
@@ -35,6 +36,7 @@ class AlbumRequest extends FormRequest
     {
         return new AlbumDTO(
             bandId: $this->validated('band_id'),
+            publisherId: $this->validated('publisher_id'),
             name: $this->validated('name'),
             description: $this->validated('description'),
             releaseDate: $this->validated('release_date'),

@@ -4,7 +4,8 @@ return [
     'buttons' => [
         'edit' => 'Edit',
         'add_new_band' => 'Add new band',
-
+        'albums' => 'Albums',
+        'add_new_album' => 'Add new album'
     ],
     'labels' => [
         'publishers' => 'Publishers',

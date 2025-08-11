@@ -5,28 +5,31 @@ import useTranslation from '@/hooks/use-translate';
 import AppLayout from '@/layouts/app-layout';
 import { Head, Link } from '@inertiajs/react';
 
-export default function Index({ albums }: any) {
+export default function Index({ bandAlbums }: any) {
     const { labels, buttons } = useTranslation();
-
     const breadcrumbs = [
         {
             title: labels.bands,
             href: route('bands.index'),
         },
+        {
+            title: bandAlbums.name,
+            href: route('albums.index', {band: bandAlbums.id}),
+        },
     ];
 
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
-            <Head title="Bands" />
+            <Head title="Albums" />
             <div className="flex h-full flex-1 flex-col gap-4 rounded-xl p-4">
-                <h1 className="text-center text-[45px]">{labels.bands}</h1>
+                <h1 className="text-center text-[45px]">{labels.albums}</h1>
                 <div className="flex justify-end">
                     <ButtonLink url={route('bands.create')} variant="primary">
                         {buttons.add_new_album}
                     </ButtonLink>
                 </div>
                 <div className="flex flex-wrap gap-4">
-                    {albums.map((album: any) => {
+                    {bandAlbums.albums.map((album: any) => {
                         return (
                             <Link href={route('albums.edit',{band: album.band_id, album: album.id})}>
                             <div className="group relative h-[220px] w-[220px] transform overflow-hidden border transition-transform duration-300 hover:scale-105">
