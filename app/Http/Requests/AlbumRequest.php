@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\DTO\AlbumDTO;
+use App\Rules\MaxLengthWithoutHTMLRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class AlbumRequest extends FormRequest
@@ -24,10 +25,10 @@ class AlbumRequest extends FormRequest
     {
         return [
             'band_id' => 'required|exists:bands,id',
-            'publisher_id' => 'nullable',
+            'publisher_id' => 'nullable|exists:publishers,id',
             'name' => 'required|string|between:1,250',
-            'description' => 'nullable|string:between:3,2500',
-            'release_date' => 'nullable|date',
+            'description' => ['nullable', 'string', new MaxLengthWithoutHTMLRule(2500)],
+            'release_date' => 'nullable|date|after_or_equal:1960-01-01|before_or_equal:today',
             'cover' => 'nullable|image|max:1500|image|mimes:jpg,jpeg,png,webp'
         ];
     }

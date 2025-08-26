@@ -7,6 +7,7 @@ use App\Models\Album;
 use App\Repositories\Interfaces\AlbumRepositoryInterface;
 use App\Services\Interfaces\AlbumServiceInterface;
 use App\Services\Interfaces\FileUploadServiceInterface;
+use Illuminate\Database\Eloquent\Collection;
 
 class AlbumService implements AlbumServiceInterface
 {
@@ -15,6 +16,11 @@ class AlbumService implements AlbumServiceInterface
         private readonly FileUploadServiceInterface $fileUploadService,
 
     ) {}
+
+    public function getAll(array $order = ['created_at' => 'desc'], int $limit = 20): Collection
+    {
+        return $this->albumRepository->get(order: $order, limit:  $limit);
+    }
 
     public function findOrFail(int $id): Album
     {

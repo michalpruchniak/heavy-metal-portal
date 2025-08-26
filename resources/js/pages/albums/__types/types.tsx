@@ -26,6 +26,7 @@ export interface Album {
     'id': number;
     'band_id': number;
     'name': string;
+    'cover'?: string;
     'description'?: string;
     'release_date'?: string;
     'publisher_id'?: number;

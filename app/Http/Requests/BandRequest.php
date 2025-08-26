@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use App\DTO\BandDTO;
 use App\Rules\AllExists;
+use App\Rules\MaxLengthWithoutHTMLRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class BandRequest extends FormRequest
@@ -25,7 +26,7 @@ class BandRequest extends FormRequest
     {
         return [
             'name' => 'required|string|between:2,60',
-            'description' => 'nullable|string|between:2,3000',
+            'description' => ['nullable', 'string', new MaxLengthWithoutHTMLRule(2500)],
             'logo' => 'nullable|image|max:1500|image|mimes:jpg,jpeg,png,webp',
             'still_active' => 'nullable|boolean',
             'people' => ['nullable', 'array', new AllExists('people')],

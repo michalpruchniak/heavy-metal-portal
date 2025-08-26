@@ -12,7 +12,7 @@ const DatePickerInput = ({ label, value, onChange, error, required }: DatePicker
       <DatePicker
         selected={value}
         onChange={onChange}
-        className="border rounded-md px-3 py-2 dark:bg-gray-800 dark:text-white"
+        className="min-h-[38px] border !rounded-md px-[10px] py-[6px] !border-gray-300 dark:!border-gray-600 !bg-white dark:!bg-[#0A0A0A] dark:!text-white css-13cymwt-control"
         dateFormat="yyyy-MM-dd"
         placeholderText="YYYY-MM-DD"
       />
