@@ -19,7 +19,7 @@ class AlbumService implements AlbumServiceInterface
 
     public function getAll(array $order = ['created_at' => 'desc'], int $limit = 20): Collection
     {
-        return $this->albumRepository->get(order: $order, limit:  $limit);
+        return $this->albumRepository->get(order: $order, limit: $limit);
     }
 
     public function otherAlbumsThisBand(int $band, ?array $order = [], ?array $relationships = [], ?int $limit = 10)
@@ -42,6 +42,7 @@ class AlbumService implements AlbumServiceInterface
         $albumData = $albumDTO->toArray();
         $albumData['cover'] = $this->fileUploadService->saveOrUpdatePhoto(null, $albumDTO->cover, self::ALBUM_CATALOG_COVER_DIRECTORY);
         $album = $this->albumRepository->create($albumData);
+
         return $album;
     }
 
@@ -51,6 +52,7 @@ class AlbumService implements AlbumServiceInterface
         $albumData = $albumDTO->toArray();
         $albumData['cover'] = $this->fileUploadService->saveOrUpdatePhoto($album->getRawOriginal('cover'), $albumDTO->cover, self::ALBUM_CATALOG_COVER_DIRECTORY);
         $album->update($albumData);
+
         return $album->refresh();
     }
 }

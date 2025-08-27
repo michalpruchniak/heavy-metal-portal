@@ -29,7 +29,7 @@ class AlbumRequest extends FormRequest
             'name' => 'required|string|between:1,250',
             'description' => ['nullable', 'string', new MaxLengthWithoutHTMLRule(2500)],
             'release_date' => 'nullable|date|after_or_equal:1960-01-01|before_or_equal:today',
-            'cover' => 'nullable|image|max:1500|image|mimes:jpg,jpeg,png,webp'
+            'cover' => 'nullable|image|max:1500|image|mimes:jpg,jpeg,png,webp',
         ];
     }
 

@@ -1,12 +1,12 @@
+import { Album } from '@/pages/albums/__types/types';
+import { AlbumsSliderProps } from '@/types';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import { Autoplay, Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import AlbumElement from '../AlbumElement/AlbumElement';
-import { Album } from '@/pages/albums/__types/types';
-import { AlbumsSliderProps } from '@/types';
 
-const AlbumsSlider = ({albums}: AlbumsSliderProps) => {
+const AlbumsSlider = ({ albums }: AlbumsSliderProps) => {
     return (
         <Swiper
             spaceBetween={10}
@@ -36,11 +36,12 @@ const AlbumsSlider = ({albums}: AlbumsSliderProps) => {
             }}
         >
             {albums.map((album: Album) => {
-                return <SwiperSlide>
-                    <AlbumElement album={album} url={route('album.show', {album: album.slug})} />
-                </SwiperSlide>
+                return (
+                    <SwiperSlide>
+                        <AlbumElement album={album} url={route('album.show', { album: album.slug })} />
+                    </SwiperSlide>
+                );
             })}
-
         </Swiper>
     );
 };

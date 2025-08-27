@@ -18,13 +18,12 @@ class Album extends Model
         'description',
         'release_date',
         'publisher_id',
-        'cover'
+        'cover',
     ];
 
     protected $casts = [
         'cover' => ImageUrlCast::class,
     ];
-
 
     public function band(): BelongsTo
     {
@@ -35,7 +34,6 @@ class Album extends Model
     {
         return $this->belongsTo(Publisher::class);
     }
-
 
     public function getSlugOptions(): SlugOptions
     {

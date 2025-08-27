@@ -8,8 +8,8 @@ use Inertia\Inertia;
 
 class HomeController extends Controller
 {
-    public function __construct(private AlbumServiceInterface $albumService)
-    {}
+    public function __construct(private AlbumServiceInterface $albumService) {}
+
     public function Home()
     {
         return Inertia::render('frontend/index', ['albums' => $this->albumService->getAll()]);

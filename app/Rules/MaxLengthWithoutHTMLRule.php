@@ -24,8 +24,9 @@ class MaxLengthWithoutHTMLRule implements ValidationRule
     {
         $plain = Str::of(strip_tags($value))->trim();
 
-        if(mb_strlen($plain) > $this->max) {
+        if (mb_strlen($plain) > $this->max) {
             $fail("The {$attribute} field may not be greater than {$this->max} characters.");
+
             return;
 
         }

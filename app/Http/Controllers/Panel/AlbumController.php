@@ -14,25 +14,24 @@ use Inertia\Response;
 
 class AlbumController extends Controller
 {
-    function __construct(
+    public function __construct(
         private readonly BandServiceInterface $bandService,
         private readonly AlbumServiceInterface $albumService,
-    )
-    {}
+    ) {}
 
     public function index(int $band): Response
     {
         $band = $this->bandService->findOrFail($band);
 
         return Inertia::render('albums/index', [
-            'bandAlbums' => new BandAlbumsResource($band)
+            'bandAlbums' => new BandAlbumsResource($band),
         ]);
     }
 
     public function create(int $bandId): Response
     {
         return Inertia::render('albums/create', [
-            'bandId' => $bandId
+            'bandId' => $bandId,
         ]);
     }
 
@@ -53,6 +52,7 @@ class AlbumController extends Controller
         $band = $this->bandService->findOrFail($band);
 
         $album = $this->albumService->findOrFail($album);
+
         return Inertia::render('albums/create', [
             'bandId' => $band->id,
             'album' => $album,

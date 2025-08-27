@@ -4,4 +4,4 @@ export type DatePickerProps = {
     onChange: (date: Date | null) => void;
     error?: string;
     required?: boolean;
-  };
+};

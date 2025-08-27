@@ -1,15 +1,15 @@
+import DatePickerInput from '@/components/DatePicker/DatePicker';
 import InputText from '@/components/Input/InputText';
+import SearchableSelect from '@/components/SearchableSelect/SearchableSelect';
 import TextEditor from '@/components/TextEditor/TextEditor';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { PageProps } from '@/hooks/_types/types';
 import useTranslation from '@/hooks/use-translate';
 import AppLayout from '@/layouts/app-layout';
 import { Head, useForm, usePage } from '@inertiajs/react';
-import { FormEvent, useEffect } from 'react';
-import { AlbumProps, BandFormData,  } from './__types/types'
-import DatePickerInput from '@/components/DatePicker/DatePicker';
-import SearchableSelect from '@/components/SearchableSelect/SearchableSelect';
-import { PageProps } from '@/hooks/_types/types';
+import { FormEvent } from 'react';
+import { AlbumProps, BandFormData } from './__types/types';
 
 const Create = ({ bandId, album }: AlbumProps) => {
     const { labels, placeholders } = useTranslation();
@@ -22,7 +22,7 @@ const Create = ({ bandId, album }: AlbumProps) => {
         },
         {
             title: album ? labels.update_album : labels.create_album,
-            href: album ? route('albums.edit', { band: bandId, album: album.id }) : route('bands.create', {band: bandId}),
+            href: album ? route('albums.edit', { band: bandId, album: album.id }) : route('bands.create', { band: bandId }),
         },
     ];
     const { data, setData, processing, post, errors } = useForm<BandFormData>({
@@ -93,7 +93,7 @@ const Create = ({ bandId, album }: AlbumProps) => {
                             noOptionsMessage={placeholders.no_people_to_display}
                         />
                     </div>
-                    <div className='relative'>
+                    <div className="relative">
                         <DatePickerInput
                             label={labels.release_date}
                             value={data.release_date ? new Date(data.release_date) : null}

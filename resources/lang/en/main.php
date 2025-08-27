@@ -5,7 +5,7 @@ return [
         'edit' => 'Edit',
         'add_new_band' => 'Add new band',
         'albums' => 'Albums',
-        'add_new_album' => 'Add new album'
+        'add_new_album' => 'Add new album',
     ],
     'labels' => [
         'publishers' => 'Publishers',
@@ -35,7 +35,7 @@ return [
         'create_album' => 'Create album',
         'update_album' => 'Update album',
         'release_date' => 'Release date',
-        'albums' => 'Albums'
+        'albums' => 'Albums',
     ],
     'placeholders' => [
         'please_select_people' => 'Please select people',

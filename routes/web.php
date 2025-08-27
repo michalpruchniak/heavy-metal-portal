@@ -78,24 +78,23 @@ Route::prefix('/panel')->middleware(['auth', 'verified', 'formOptionsMiddleware'
         ->name('bands.update')
         ->middleware('permission:bands.edit');
 
-
-        Route::get('albums/{band}', [AlbumController::class, 'index'])
+    Route::get('albums/{band}', [AlbumController::class, 'index'])
         ->name('albums.index')
         ->middleware('permission:albums.view');
 
-        Route::get('albums/create/{band}', [AlbumController::class, 'create'])
+    Route::get('albums/create/{band}', [AlbumController::class, 'create'])
         ->name('albums.create')
         ->middleware('permission:albums.create');
 
-        Route::post('albums/store', [AlbumController::class, 'store'])
+    Route::post('albums/store', [AlbumController::class, 'store'])
         ->name('albums.store')
         ->middleware('permission:albums.create');
 
-        Route::get('albums/edit/{band}/{album}', [AlbumController::class, 'edit'])
+    Route::get('albums/edit/{band}/{album}', [AlbumController::class, 'edit'])
         ->name('albums.edit')
         ->middleware('permission:albums.edit');
 
-        Route::put('albums/{album}', [AlbumController::class, 'update'])
+    Route::put('albums/{album}', [AlbumController::class, 'update'])
         ->name('albums.update')
         ->middleware('permission:albums.edit');
 });

@@ -1,11 +1,10 @@
 import ButtonLink from '@/components/Button/ButtonLink';
 
-import DefaultImg from '@/components/Atoms/Img/default.jpg';
+import AlbumElement from '@/components/AlbumElement/AlbumElement';
 import useTranslation from '@/hooks/use-translate';
 import AppLayout from '@/layouts/app-layout';
-import { Head, Link } from '@inertiajs/react';
+import { Head } from '@inertiajs/react';
 import { Album } from './__types/types';
-import AlbumElement from '@/components/AlbumElement/AlbumElement';
 
 export default function Index({ bandAlbums }: any) {
     const { labels, buttons } = useTranslation();
@@ -16,7 +15,7 @@ export default function Index({ bandAlbums }: any) {
         },
         {
             title: bandAlbums.name,
-            href: route('albums.index', {band: bandAlbums.id}),
+            href: route('albums.index', { band: bandAlbums.id }),
         },
     ];
 
@@ -26,15 +25,13 @@ export default function Index({ bandAlbums }: any) {
             <div className="flex h-full flex-1 flex-col gap-4 rounded-xl p-4">
                 <h1 className="text-center text-[45px]">{labels.albums}</h1>
                 <div className="flex justify-end">
-                    <ButtonLink url={route('albums.create', {band: bandAlbums.id})} variant="primary">
+                    <ButtonLink url={route('albums.create', { band: bandAlbums.id })} variant="primary">
                         {buttons.add_new_album}
                     </ButtonLink>
                 </div>
                 <div className="flex flex-wrap gap-4">
                     {bandAlbums.albums.map((album: Album) => {
-                        return (
-                            <AlbumElement album={album} url={route('albums.edit',{band: album.band_id, album: album.id})} />
-                        );
+                        return <AlbumElement album={album} url={route('albums.edit', { band: album.band_id, album: album.id })} />;
                     })}
                 </div>
             </div>

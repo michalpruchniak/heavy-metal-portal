@@ -53,10 +53,10 @@ export interface AlbumsIndexProps {
 }
 
 export interface AlbumsSliderProps {
-    albums: Album[]
+    albums: Album[];
 }
 
 export interface AlbumElementProps {
-    album: Album
+    album: Album;
     url: string;
-};
+}

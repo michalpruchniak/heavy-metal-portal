@@ -1,11 +1,11 @@
-import { Publisher } from "@/pages/publishers/__types/types";
+import { Publisher } from '@/pages/publishers/__types/types';
 
 export interface BandFormData {
     name: string;
     description?: string | null;
     cover?: File | null;
     release_date?: string;
-    publisher_id?: number |  string | null;
+    publisher_id?: number | string | null;
     _method: 'PUT' | 'POST';
     created_at?: string;
     updated_at?: string;
@@ -25,20 +25,20 @@ export interface Band {
 }
 
 export interface Album {
-    'id': number;
-    'band_id': number;
-    'name': string;
-    'cover'?: string;
-    'description'?: string;
-    'release_date'?: string;
-    'publisher_id'?: number;
-    'band'?: Band;
-    'publisher'?: Publisher;
-    'slug': string
+    id: number;
+    band_id: number;
+    name: string;
+    cover?: string;
+    description?: string;
+    release_date?: string;
+    publisher_id?: number;
+    band?: Band;
+    publisher?: Publisher;
+    slug: string;
 }
 export interface AlbumProps {
     bandId?: number;
-    album?: Album
+    album?: Album;
 }
 
 export interface IndexPageBandsProps {

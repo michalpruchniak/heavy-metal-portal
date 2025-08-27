@@ -46,7 +46,6 @@ const Create = ({ band }: BandProps) => {
         e.preventDefault();
         sendRequest();
     };
-    console.log(peopleOptions);
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title={band ? labels.update_band : labels.create_band} />
