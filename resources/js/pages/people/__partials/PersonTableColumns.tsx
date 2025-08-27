@@ -3,7 +3,6 @@ import ButtonLink from '@/components/Button/ButtonLink';
 import useTranslation from '@/hooks/use-translate';
 import { TableColumn } from 'react-data-table-component';
 import { Person } from '../__types/types';
-import { Rows } from 'lucide-react';
 
 const PersonTableColumns = (): TableColumn<Person>[] => {
     const { buttons, labels } = useTranslation();

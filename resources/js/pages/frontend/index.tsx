@@ -4,6 +4,7 @@ import FrontLayout from '@/layouts/front/FrontLayout';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import MainArticles from '../mainArticles/MainArticles';
+
 export default function Index({albums}: any ) {
     return (
         <FrontLayout>

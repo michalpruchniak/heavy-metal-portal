@@ -55,6 +55,11 @@ abstract class BaseRepository
         return $this->model->with($relationships)->findOrFail($id);
     }
 
+    public function firstOrFail(array $where, array $relationships = []): ?Model
+    {
+        return $this->model->where($where)->with($relationships)->firstOrFail();
+    }
+
     /**
      * Record update based on Model.
      *

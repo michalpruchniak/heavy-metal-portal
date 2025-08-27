@@ -12,7 +12,11 @@ interface AlbumServiceInterface
 
     public function getAll(array $order = ['created_at' => 'desc'], int $limit = 20): Collection;
 
-    public function findOrFail(int $id): Album;
+    public function otherAlbumsThisBand(int $band, ?array $order = [], ?array $relationships = [], ?int $limit = 10);
+
+    public function findOrFail(int $id, array $relationships = []): Album;
+
+    public function firstOrFail(array $where = [], array $relationships = []): Album;
 
     public function create(AlbumDTO $albumDTO): Album;
 

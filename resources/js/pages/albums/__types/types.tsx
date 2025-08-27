@@ -30,6 +30,7 @@ export interface Album {
     'description'?: string;
     'release_date'?: string;
     'publisher_id'?: number;
+    'slug': string
 }
 export interface AlbumProps {
     bandId?: number;

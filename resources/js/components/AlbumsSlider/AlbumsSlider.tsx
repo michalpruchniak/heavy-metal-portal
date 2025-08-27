@@ -4,6 +4,7 @@ import { Autoplay, Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import AlbumElement from '../AlbumElement/AlbumElement';
 import { Album } from '@/pages/albums/__types/types';
+import { ReceiptPoundSterling } from 'lucide-react';
 
 const AlbumsSlider = ({albums}: any) => {
     return (
@@ -36,7 +37,7 @@ const AlbumsSlider = ({albums}: any) => {
         >
             {albums.map((album: Album) => {
                 return <SwiperSlide>
-                    <AlbumElement album={album} url='#' />
+                    <AlbumElement album={album} url={route('album.show', {album: album.slug})} />
                 </SwiperSlide>
             })}
 

@@ -22,9 +22,19 @@ class AlbumService implements AlbumServiceInterface
         return $this->albumRepository->get(order: $order, limit:  $limit);
     }
 
-    public function findOrFail(int $id): Album
+    public function otherAlbumsThisBand(int $band, ?array $order = [], ?array $relationships = [], ?int $limit = 10)
     {
-        return $this->albumRepository->findOrFail(id: $id);
+        return $this->albumRepository->get(where: ['band_id' => $band], order: $order, relationships: $relationships, limit: $limit);
+    }
+
+    public function findOrFail(int $id, array $relationships = []): Album
+    {
+        return $this->albumRepository->findOrFail(id: $id, relationships: $relationships);
+    }
+
+    public function firstOrFail(array $where = [], array $relationships = []): Album
+    {
+        return $this->albumRepository->firstOrFail(where: $where, relationships: $relationships);
     }
 
     public function create(AlbumDTO $albumDTO): Album

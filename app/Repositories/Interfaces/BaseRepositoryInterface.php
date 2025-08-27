@@ -25,6 +25,8 @@ interface BaseRepositoryInterface
      */
     public function findOrFail(int $id, array $relationships = []): ?Model;
 
+    public function firstOrFail(array $where, array $relationships = []): ?Model;
+
     /**
      * Record update based on Model.
      *

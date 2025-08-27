@@ -12,6 +12,6 @@ class HomeController extends Controller
     {}
     public function Home()
     {
-        return Inertia::render('welcome/index', ['albums' => $this->albumService->getAll()]);
+        return Inertia::render('frontend/index', ['albums' => $this->albumService->getAll()]);
     }
 }
