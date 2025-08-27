@@ -19,7 +19,7 @@ export default function Index({ bands }: IndexPageBandsProps) {
 
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
-            <Head title="People" />
+            <Head title="Bands" />
             <div className="flex h-full flex-1 flex-col gap-4 rounded-xl p-4">
                 <h1 className="text-center text-[45px]">{labels.bands}</h1>
                 <div className="flex justify-end">

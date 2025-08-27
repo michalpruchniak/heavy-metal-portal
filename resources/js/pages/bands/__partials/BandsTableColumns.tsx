@@ -19,8 +19,15 @@ const BandsTableColumns = (): TableColumn<Band>[] => {
         },
         {
             name: labels.logo,
-            cell: (row: Band) =>
-                    <img src={row.logo ?? DefaultImg} alt="Logo" className="h-10 w-10 object-contain" />
+            cell: (row: Band) => <img src={row.logo ?? DefaultImg} alt="Logo" className="h-10 w-10 object-contain" />,
+        },
+        {
+            name: labels.albums,
+            cell: (row: Band) => (
+                <ButtonLink variant="primary" url={route('albums.index', { band: row.id })}>
+                    {buttons.albums}
+                </ButtonLink>
+            ),
         },
         {
             name: labels.edit,

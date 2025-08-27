@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Front\AlbumController as FrontAlbumController;
 use App\Http\Controllers\Front\HomeController;
+use App\Http\Controllers\Panel\AlbumController;
 use App\Http\Controllers\Panel\BandController;
 use App\Http\Controllers\Panel\PersonController;
 use App\Http\Controllers\Panel\PublisherController;
@@ -9,6 +11,7 @@ use Inertia\Inertia;
 
 Route::get('/', [HomeController::class, 'Home'])
     ->name('home');
+Route::get('album/{album}', [FrontAlbumController::class, 'show'])->name('album.show');
 
 Route::prefix('/panel')->middleware(['auth', 'verified', 'formOptionsMiddleware'])->group(function () {
     Route::get('dashboard', function () {
@@ -74,6 +77,26 @@ Route::prefix('/panel')->middleware(['auth', 'verified', 'formOptionsMiddleware'
     Route::put('bands/{band}', [BandController::class, 'update'])
         ->name('bands.update')
         ->middleware('permission:bands.edit');
+
+    Route::get('albums/{band}', [AlbumController::class, 'index'])
+        ->name('albums.index')
+        ->middleware('permission:albums.view');
+
+    Route::get('albums/create/{band}', [AlbumController::class, 'create'])
+        ->name('albums.create')
+        ->middleware('permission:albums.create');
+
+    Route::post('albums/store', [AlbumController::class, 'store'])
+        ->name('albums.store')
+        ->middleware('permission:albums.create');
+
+    Route::get('albums/edit/{band}/{album}', [AlbumController::class, 'edit'])
+        ->name('albums.edit')
+        ->middleware('permission:albums.edit');
+
+    Route::put('albums/{album}', [AlbumController::class, 'update'])
+        ->name('albums.update')
+        ->middleware('permission:albums.edit');
 });
 
 require __DIR__.'/settings.php';

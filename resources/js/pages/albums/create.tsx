@@ -1,3 +1,4 @@
+import DatePickerInput from '@/components/DatePicker/DatePicker';
 import InputText from '@/components/Input/InputText';
 import SearchableSelect from '@/components/SearchableSelect/SearchableSelect';
 import TextEditor from '@/components/TextEditor/TextEditor';
@@ -8,35 +9,35 @@ import useTranslation from '@/hooks/use-translate';
 import AppLayout from '@/layouts/app-layout';
 import { Head, useForm, usePage } from '@inertiajs/react';
 import { FormEvent } from 'react';
-import { BandFormData, BandProps } from './__types/types';
+import { AlbumProps, BandFormData } from './__types/types';
 
-const Create = ({ band }: BandProps) => {
+const Create = ({ bandId, album }: AlbumProps) => {
     const { labels, placeholders } = useTranslation();
+    const { publishersOptions = [] } = usePage<PageProps>().props;
+
     const breadcrumbs = [
         {
-            title: labels.bands,
+            title: labels.albums,
             href: route('bands.index'),
         },
         {
-            title: band ? labels.update_band : labels.create_band,
-            href: band ? route('bands.edit', { band: band.id }) : route('bands.create'),
+            title: album ? labels.update_album : labels.create_album,
+            href: album ? route('albums.edit', { band: bandId, album: album.id }) : route('bands.create', { band: bandId }),
         },
     ];
-
-    const { peopleOptions = [] } = usePage<PageProps>().props;
-
     const { data, setData, processing, post, errors } = useForm<BandFormData>({
-        name: typeof band?.name === 'string' ? band.name : '',
-        description: typeof band?.description === 'string' ? band.description : '',
-        logo: null,
-        still_active: band?.still_active ?? true,
-        people: band?.people ?? [],
-        _method: band?.id ? 'PUT' : 'POST',
+        name: typeof album?.name === 'string' ? album.name : '',
+        description: typeof album?.description === 'string' ? album.description : '',
+        release_date: typeof album?.release_date === 'string' ? album.release_date : '',
+        cover: null,
+        band_id: bandId,
+        publisher_id: typeof album?.publisher_id === 'number' ? album.publisher_id : null,
+        _method: album?.id ? 'PUT' : 'POST',
     });
-
     const sendRequest = () => {
-        const targetRoute = band ? route('bands.update', { band: band.id }) : route('bands.store');
+        const targetRoute = album ? route('albums.update', { album: album.id }) : route('albums.store');
 
+        console.log(data);
         post(targetRoute, {
             preserveScroll: true,
         });
@@ -46,11 +47,12 @@ const Create = ({ band }: BandProps) => {
         e.preventDefault();
         sendRequest();
     };
+    console.log(publishersOptions);
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
-            <Head title={band ? labels.update_band : labels.create_band} />
+            <Head title={album ? labels.update_band : labels.create_album} />
             <div className="flex h-full flex-1 flex-col gap-4 rounded-xl p-4">
-                <h1 className="text-center text-[45px]">{band ? `${labels.update_band} ${band.name}` : labels.create_band}</h1>
+                <h1 className="text-center text-[45px]">{album ? `${labels.update_album} ${album.name}` : labels.create_album}</h1>
 
                 <form onSubmit={handleSubmit} encType="multipart/form-data" className="flex flex-col gap-4 px-[15px] md:px-[17%]">
                     <div>
@@ -67,45 +69,46 @@ const Create = ({ band }: BandProps) => {
                         />
                     </div>
                     <div>
-                        <label className="dark:text-whtie">{labels.logo}:</label>
+                        <label className="dark:text-whtie">{labels.cover}:</label>
                         <Input
                             type="file"
                             onChange={(e) => {
                                 if (e.target.files && e.target.files[0]) {
-                                    setData('logo', e.target.files[0]);
+                                    setData('cover', e.target.files[0]);
                                 }
                             }}
-                            aria-invalid={!!errors.logo}
+                            aria-invalid={!!errors.cover}
                         />
-                        {errors.logo && <div className="text-red-500">{errors.logo}</div>}
+                        {errors.cover && <div className="text-red-500">{errors.cover}</div>}
                     </div>
                     <div>
                         <SearchableSelect
-                            label="People"
-                            onChange={(value) => setData('people', value)}
+                            label="Publisher"
+                            onChange={(value) => setData('publisher_id', value)}
                             placeholder={placeholders.please_select_people}
-                            options={peopleOptions}
-                            value={data.people ?? []}
-                            error={errors.people}
+                            options={publishersOptions}
+                            value={data.publisher_id ?? null}
+                            error={errors.publisher_id}
+                            isMulti={false}
                             noOptionsMessage={placeholders.no_people_to_display}
-                            isMulti={true}
                         />
                     </div>
-                    <div className="flex items-center gap-2">
-                        <input
-                            type="checkbox"
-                            id="still_active"
-                            checked={data.still_active}
-                            onChange={(e) => setData('still_active', e.target.checked)}
-                            className="h-4 w-4"
+                    <div className="relative">
+                        <DatePickerInput
+                            label={labels.release_date}
+                            value={data.release_date ? new Date(data.release_date) : null}
+                            onChange={(date) => {
+                                if (date) {
+                                    setData('release_date', date.toISOString().split('T')[0]);
+                                } else {
+                                    setData('release_date', '');
+                                }
+                            }}
+                            error={errors.release_date}
                         />
-                        <label htmlFor="still_active" className="dark:text-white">
-                            {labels.still_active || 'Still active'}
-                        </label>
-                        {errors.still_active && <div className="text-red-500">{errors.still_active}</div>}
                     </div>
                     <Button type="submit" disabled={processing} className="self-start">
-                        {band ? 'Update' : 'Create'}
+                        {album ? 'Update' : 'Create'}
                     </Button>
                 </form>
             </div>

@@ -16,6 +16,9 @@ trait CreateRolesAndPermissions
             'bands.view',
             'bands.create',
             'bands.edit',
+            'albums.view',
+            'albums.create',
+            'albums.edit',
         ],
         'moderator' => [
             'publishers.view',
@@ -25,6 +28,9 @@ trait CreateRolesAndPermissions
             'bands.view',
             'bands.create',
             'bands.edit',
+            'albums.view',
+            'albums.create',
+            'albums.edit',
         ],
     ];
 

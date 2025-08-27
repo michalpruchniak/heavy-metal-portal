@@ -11,7 +11,7 @@ interface BaseRepositoryInterface
      *
      * @return \Illuminate\Database\Eloquent\Collection
      */
-    public function get(array $where = [], array $order = [], array $relationships = []);
+    public function get(array $where = [], array $order = [], array $relationships = [], ?int $limit = null);
 
     /**
      * Creating a record.
@@ -24,6 +24,8 @@ interface BaseRepositoryInterface
      * Find or fail record
      */
     public function findOrFail(int $id, array $relationships = []): ?Model;
+
+    public function firstOrFail(array $where, array $relationships = []): ?Model;
 
     /**
      * Record update based on Model.

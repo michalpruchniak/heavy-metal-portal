@@ -15,7 +15,7 @@ abstract class BaseRepository
      *
      * @return \Illuminate\Database\Eloquent\Collection
      */
-    public function get(array $where = [], array $order = [], array $relationships = [])
+    public function get(array $where = [], array $order = [], array $relationships = [], ?int $limit = null)
     {
         $query = $this->model->newQuery();
 
@@ -29,6 +29,9 @@ abstract class BaseRepository
 
         foreach ($order as $column => $direction) {
             $query->orderBy($column, $direction);
+        }
+        if ($limit) {
+            $query->limit($limit);
         }
 
         return $query->get();
@@ -50,6 +53,11 @@ abstract class BaseRepository
     public function findOrFail(int $id, array $relationships = []): ?Model
     {
         return $this->model->with($relationships)->findOrFail($id);
+    }
+
+    public function firstOrFail(array $where, array $relationships = []): ?Model
+    {
+        return $this->model->where($where)->with($relationships)->firstOrFail();
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Services\Interfaces\PersonServiceInterface;
+use App\Services\Interfaces\PublisherServiceInterface;
 use Closure;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -11,7 +12,8 @@ use Symfony\Component\HttpFoundation\Response;
 class FormOptionsMiddleware
 {
     public function __construct(
-        private readonly PersonServiceInterface $personService
+        private readonly PersonServiceInterface $personService,
+        private readonly PublisherServiceInterface $publisherService,
     ) {}
 
     /**
@@ -29,6 +31,10 @@ class FormOptionsMiddleware
 
         if ($request->routeIs('bands.create') || $request->routeIs('bands.edit')) {
             $shares['peopleOptions'] = $this->personService->getMapPeopleArray();
+        }
+
+        if ($request->routeIs('albums.create') || $request->routeIs('albums.edit')) {
+            $shares['publishersOptions'] = $this->publisherService->getMapPublisherArray();
         }
 
         Inertia::share($shares);

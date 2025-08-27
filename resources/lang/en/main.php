@@ -4,7 +4,8 @@ return [
     'buttons' => [
         'edit' => 'Edit',
         'add_new_band' => 'Add new band',
-
+        'albums' => 'Albums',
+        'add_new_album' => 'Add new album',
     ],
     'labels' => [
         'publishers' => 'Publishers',
@@ -29,7 +30,12 @@ return [
         'bands' => 'Bands',
         'update_band' => 'Update band',
         'create_band' => 'Create band',
-        'photo' => 'Photo'
+        'photo' => 'Photo',
+        'cover' => 'Cover',
+        'create_album' => 'Create album',
+        'update_album' => 'Update album',
+        'release_date' => 'Release date',
+        'albums' => 'Albums',
     ],
     'placeholders' => [
         'please_select_people' => 'Please select people',

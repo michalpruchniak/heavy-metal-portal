@@ -49,4 +49,14 @@ class PublisherService implements PublisherServiceInterface
 
         return $publisher->refresh();
     }
+
+    public function getMapPublisherArray(): array
+    {
+        return $this->publisherRepository->get()->map(function (Publisher $publisher) {
+            return [
+                'value' => $publisher->id,
+                'label' => $publisher->name,
+            ];
+        })->toArray();
+    }
 }

@@ -16,11 +16,10 @@ const SearchableSelect = ({
     placeholder = '',
     isSearchable = true,
     noOptionsMessage,
-    isMulti = true,
+    isMulti = false,
 }: SearchableSelectProps) => {
     const generatedId = useId();
     const { appearance } = useAppearance();
-
     const { labels } = useTranslation();
 
     const selectedOption = isMulti
@@ -30,10 +29,10 @@ const SearchableSelect = ({
     const handleChange = (selected: SingleValue<Option> | MultiValue<Option>) => {
         if (isMulti) {
             const multiValues = (selected as MultiValue<Option>).map((opt) => opt.value);
-            onChange(multiValues);
+            (onChange as (value: (string | number)[]) => void)(multiValues);
         } else {
-            const singleValue = (selected as SingleValue<Option>)?.value ?? '';
-            onChange(singleValue);
+            const singleValue = (selected as SingleValue<Option>)?.value ?? null;
+            (onChange as (value: string | number | null | undefined) => void)(singleValue);
         }
     };
 
@@ -58,7 +57,7 @@ const SearchableSelect = ({
                         `!min-h-[38px] border !rounded-md px-[10px] py-[6px] ${
                             error ? '!border-red-400' : '!border-gray-300 dark:!border-gray-600'
                         } ${isFocused ? '!ring-1 !ring-primary' : ''} !bg-white dark:!bg-[#0A0A0A] dark:!text-white`,
-                    singleValue: () => 'text-black dark:text-white',
+                    singleValue: () => 'text-black dark:!text-white',
                     menu: () => '!bg-white dark:!bg-dark-500',
                 }}
                 theme={(theme) => ({
