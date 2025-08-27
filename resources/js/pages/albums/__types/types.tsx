@@ -1,3 +1,5 @@
+import { Publisher } from "@/pages/publishers/__types/types";
+
 export interface BandFormData {
     name: string;
     description?: string | null;
@@ -30,6 +32,8 @@ export interface Album {
     'description'?: string;
     'release_date'?: string;
     'publisher_id'?: number;
+    'band'?: Band;
+    'publisher'?: Publisher;
     'slug': string
 }
 export interface AlbumProps {

@@ -4,9 +4,9 @@ import { Autoplay, Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import AlbumElement from '../AlbumElement/AlbumElement';
 import { Album } from '@/pages/albums/__types/types';
-import { ReceiptPoundSterling } from 'lucide-react';
+import { AlbumsSliderProps } from '@/types';
 
-const AlbumsSlider = ({albums}: any) => {
+const AlbumsSlider = ({albums}: AlbumsSliderProps) => {
     return (
         <Swiper
             spaceBetween={10}

@@ -1,11 +1,8 @@
 import { Link } from '@inertiajs/react';
 import DefaultImg from '@/components/Atoms/Img/default.jpg';
-import { Album } from "@/pages/albums/__types/types";
+import { AlbumElementProps } from '@/types';
 
-type AlbumElementProps = {
-    album: Album
-    url: string;
-};
+
 
 const AlbumElement = ({ album, url }: AlbumElementProps) => {
     return (

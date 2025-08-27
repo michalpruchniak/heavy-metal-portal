@@ -4,7 +4,8 @@ import DefaultImg from '@/components/Atoms/Img/default.jpg';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
-export default function Index({album, albums}: any ) {
+import { AlbumShowProps } from '@/types';
+export default function Show({album, albums}: AlbumShowProps ) {
     return (
         <FrontLayout>
             <div className="mx-auto max-w-6xl py-5">

@@ -1,3 +1,4 @@
+import { Album } from '@/pages/albums/__types/types';
 import { LucideIcon } from 'lucide-react';
 import type { Config } from 'ziggy-js';
 
@@ -41,3 +42,21 @@ export interface User {
     updated_at: string;
     [key: string]: unknown; // This allows for additional properties...
 }
+
+export interface AlbumShowProps {
+    album: Album;
+    albums: Album[];
+}
+
+export interface AlbumsIndexProps {
+    albums: Album[];
+}
+
+export interface AlbumsSliderProps {
+    albums: Album[]
+}
+
+export interface AlbumElementProps {
+    album: Album
+    url: string;
+};

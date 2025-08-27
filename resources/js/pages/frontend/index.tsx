@@ -4,8 +4,9 @@ import FrontLayout from '@/layouts/front/FrontLayout';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import MainArticles from '../mainArticles/MainArticles';
+import { AlbumsIndexProps } from '@/types';
 
-export default function Index({albums}: any ) {
+export default function Index({albums}: AlbumsIndexProps ) {
     return (
         <FrontLayout>
             <div className="dark:bg-dark-500 min-h-[280px] w-full bg-black text-white">
