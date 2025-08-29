@@ -4,7 +4,7 @@ import useTranslation from '@/hooks/use-translate';
 import AppLayout from '@/layouts/app-layout';
 import { Head } from '@inertiajs/react';
 import PublisherTableColumns from './__partials/PublisherTableColumns';
-import { IndexPageProps, Publisher } from './__types/types';
+import { IndexPageProps, Publisher } from '@/types';
 
 export default function Index({ publishers }: IndexPageProps) {
     const { labels } = useTranslation();

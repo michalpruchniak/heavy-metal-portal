@@ -1,6 +1,6 @@
+import { DatePickerProps } from '@/types';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import { DatePickerProps } from './__types/types';
 
 const DatePickerInput = ({ label, value, onChange, error, required }: DatePickerProps) => {
     return (

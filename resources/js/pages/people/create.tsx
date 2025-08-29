@@ -1,17 +1,16 @@
 import InputFile from '@/components/Input/InputFile';
 import InputText from '@/components/Input/InputText';
-import SelectInput from '@/components/SelectInput/SelectInput';
+import SelectInput from '@/components/Select/SelectInput';
 import TextEditor from '@/components/TextEditor/TextEditor';
 import { Button } from '@/components/ui/button';
-import { PageProps } from '@/hooks/_types/types';
 import useTranslation from '@/hooks/use-translate';
 import AppLayout from '@/layouts/app-layout';
+import { PageProps, PersonFormData, PersonProps } from '@/types';
 import { Head, useForm, usePage } from '@inertiajs/react';
 import { FC, FormEvent } from 'react';
-import { PersonFormData, PersonProps } from './__types/types';
 
 const PersonForm: FC<PersonProps> = ({ person }) => {
-    const { labels } = useTranslation();
+    const { labels, placeholders } = useTranslation();
     const { personType = [] } = usePage<PageProps>().props;
 
     const breadcrumbs = [
@@ -85,11 +84,11 @@ const PersonForm: FC<PersonProps> = ({ person }) => {
                     <div>
                         <SelectInput
                             name="type"
-                            value={data.type}
-                            label={labels.type}
-                            options={personType}
+                            label="Type"
                             onChange={(value) => setData('type', value)}
-                            error={errors.type}
+                            options={personType}
+                            value={data.type}
+                            error={errors.people}
                         />
                     </div>
 

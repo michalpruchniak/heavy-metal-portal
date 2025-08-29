@@ -5,7 +5,7 @@ import useTranslation from '@/hooks/use-translate';
 import AppLayout from '@/layouts/app-layout';
 import { Head } from '@inertiajs/react';
 import BandsTableColumns from './__partials/BandsTableColumns';
-import { Band, IndexPageBandsProps } from './__types/types';
+import { Band, IndexPageBandsProps } from '@/types';
 
 export default function Index({ bands }: IndexPageBandsProps) {
     const { labels, buttons } = useTranslation();

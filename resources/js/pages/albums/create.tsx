@@ -1,15 +1,14 @@
 import DatePickerInput from '@/components/DatePicker/DatePicker';
 import InputText from '@/components/Input/InputText';
-import SearchableSelect from '@/components/SearchableSelect/SearchableSelect';
+import SearchableSelect from '@/components/Select/SearchableSelect';
 import TextEditor from '@/components/TextEditor/TextEditor';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { PageProps } from '@/hooks/_types/types';
 import useTranslation from '@/hooks/use-translate';
 import AppLayout from '@/layouts/app-layout';
+import { AlbumFormData, AlbumProps, PageProps } from '@/types';
 import { Head, useForm, usePage } from '@inertiajs/react';
 import { FormEvent } from 'react';
-import { AlbumProps, BandFormData } from './__types/types';
 
 const Create = ({ bandId, album }: AlbumProps) => {
     const { labels, placeholders } = useTranslation();
@@ -25,7 +24,7 @@ const Create = ({ bandId, album }: AlbumProps) => {
             href: album ? route('albums.edit', { band: bandId, album: album.id }) : route('bands.create', { band: bandId }),
         },
     ];
-    const { data, setData, processing, post, errors } = useForm<BandFormData>({
+    const { data, setData, processing, post, errors } = useForm<AlbumFormData>({
         name: typeof album?.name === 'string' ? album.name : '',
         description: typeof album?.description === 'string' ? album.description : '',
         release_date: typeof album?.release_date === 'string' ? album.release_date : '',
@@ -87,9 +86,8 @@ const Create = ({ bandId, album }: AlbumProps) => {
                             onChange={(value) => setData('publisher_id', value)}
                             placeholder={placeholders.please_select_people}
                             options={publishersOptions}
-                            value={data.publisher_id ?? null}
+                            value={data.publisher_id}
                             error={errors.publisher_id}
-                            isMulti={false}
                             noOptionsMessage={placeholders.no_people_to_display}
                         />
                     </div>

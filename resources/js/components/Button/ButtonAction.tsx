@@ -1,5 +1,5 @@
+import { ButtonProps } from '@/types';
 import buttonVariants from './__partials/constants/buttonVariants';
-import { ButtonProps } from './__types/types';
 
 const ButtonAction = ({ children, onClick, variant = 'primary', isActive = false }: ButtonProps) => {
     const className = buttonVariants[variant]?.className || buttonVariants['primary'].className;

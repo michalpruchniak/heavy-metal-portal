@@ -1,6 +1,6 @@
 import React from 'react';
-import { TextEditorToolbarProps, ToolbarButton } from '../../__types/types';
 import TextEditorButton from './TextEditorButton';
+import { TextEditorToolbarProps, ToolbarButton } from '@/types';
 
 const TextEditorToolbar: React.FC<TextEditorToolbarProps> = ({ editor }) => {
     const buttons: ToolbarButton[] = [

@@ -1,5 +1,5 @@
 import ButtonAction from '@/components/Button/ButtonAction';
-import { TextEditorButtonProps } from '../../__types/types';
+import { TextEditorButtonProps } from '@/types';
 
 const TextEditorButton: React.FC<TextEditorButtonProps> = ({ command, isActive, children }) => {
     const handleClick = () => {

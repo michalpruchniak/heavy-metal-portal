@@ -1,5 +1,5 @@
+import { PageProps, Translations } from '@/types';
 import { usePage } from '@inertiajs/react';
-import { PageProps, Translations } from './_types/types';
 
 const useTranslation = (): Translations => {
     const { props } = usePage<PageProps>();

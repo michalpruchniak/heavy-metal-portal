@@ -5,7 +5,6 @@ import useTranslation from '@/hooks/use-translate';
 import AppLayout from '@/layouts/app-layout';
 import { Head } from '@inertiajs/react';
 import PersonTableColumns from './__partials/PersonTableColumns';
-import { IndexPagePeopleProps, Person } from './__types/types';
 
 export default function Index({ people }: IndexPagePeopleProps) {
     const { labels } = useTranslation();

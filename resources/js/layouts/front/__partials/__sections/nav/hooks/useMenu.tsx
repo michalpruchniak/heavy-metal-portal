@@ -1,3 +1,4 @@
+import { MenuElement } from '@/types';
 import { route } from 'ziggy-js';
 
 const useMenu = (): MenuElement[] => {

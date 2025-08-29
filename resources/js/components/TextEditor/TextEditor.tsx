@@ -4,7 +4,7 @@ import { EditorContent } from '@tiptap/react';
 import RequiredStar from '../RequiredStar/RequiredStar';
 import TextEditorToolbar from './__partials/components/TextEditorToolbar';
 import useTextEditor from './__partials/hooks/useTextEditor';
-import { TextEditorProps } from './__types/types';
+import { TextEditorProps } from '@/types';
 
 const TextEditor = ({ value, limit = 500, onChange, name, label, required = false, className, error = '', ...props }: TextEditorProps) => {
     const { labels } = useTranslation();
