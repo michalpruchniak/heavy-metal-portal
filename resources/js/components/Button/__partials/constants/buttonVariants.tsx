@@ -1,9 +1,9 @@
-import { ButtonTypes, ButtonVariants } from "@/types";
+import { ButtonTypes, ButtonVariants } from '@/types';
 
 const type: ButtonTypes = {
-    button: "px-4 py-2 rounded-md font-semibold",
-    link: "underline font-medium cursor-pointer",
-  };
+    button: 'px-4 py-2 rounded-md font-semibold',
+    link: 'underline font-medium cursor-pointer',
+};
 
 const buttonVariants: ButtonVariants = {
     primary: {

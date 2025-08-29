@@ -1,11 +1,10 @@
+import messageVariant from '@/components/Message/__partials/constants/messageVariant';
 import { Album } from '@/pages/albums/__types/types';
-import { LucideIcon } from 'lucide-react';
-import type { Config } from 'ziggy-js';
 import type { PageProps as InertiaPageProps } from '@inertiajs/core';
 import { Editor } from '@tiptap/core';
+import { LucideIcon } from 'lucide-react';
 import { ReactNode } from 'react';
-import buttonVariants from '@/components/Button/__partials/constants/buttonVariants';
-import messageVariant from '@/components/Message/__partials/constants/messageVariant';
+import type { Config } from 'ziggy-js';
 
 export interface Auth {
     user: User;
@@ -79,7 +78,7 @@ export interface Person {
     aka?: string;
     bio?: string;
     DOB?: string;
-    img?: string | File;
+    img?: string;
     created_at?: string;
     updated_at?: string;
     [key: string]: string | unknown;
@@ -328,7 +327,6 @@ export interface SharedProps {
     noOptionsMessage?: string;
 }
 
-
 export interface SearchableMultipleSelectProps {
     label: string;
     required?: boolean;
@@ -349,7 +347,7 @@ export interface SearchableSelectProps {
     onChange: (value: string | number) => void;
     placeholder?: string;
     noOptionsMessage?: string;
-  }
+}
 
 export interface TranslationSegment {
     [key: string]: string;

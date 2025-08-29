@@ -1,7 +1,7 @@
+import { InputTextProps } from '@/types';
 import { useId } from 'react';
 import Message from '../Message/Message';
 import RequiredStar from '../RequiredStar/RequiredStar';
-import { InputTextProps } from '@/types';
 
 const InputText = ({ value, onChange, name, label, required = false, className = '', error = '', ...props }: InputTextProps) => {
     const generatedId = useId();

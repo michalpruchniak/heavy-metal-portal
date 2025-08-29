@@ -1,13 +1,13 @@
 import InputText from '@/components/Input/InputText';
+import SearchableMultipleSelect from '@/components/Select/SearchableMultipleSelect';
 import TextEditor from '@/components/TextEditor/TextEditor';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import useTranslation from '@/hooks/use-translate';
 import AppLayout from '@/layouts/app-layout';
+import { BandFormData, BandProps, PageProps } from '@/types';
 import { Head, useForm, usePage } from '@inertiajs/react';
 import { FormEvent } from 'react';
-import { BandFormData, BandProps, PageProps } from '@/types';
-import SearchableMultipleSelect from '@/components/Select/SearchableMultipleSelect';
 
 const Create = ({ band }: BandProps) => {
     const { labels, placeholders } = useTranslation();

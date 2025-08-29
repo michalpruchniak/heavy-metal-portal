@@ -1,6 +1,6 @@
+import { InputFileProps } from '@/types';
 import { useId } from 'react';
 import Message from '../Message/Message';
-import { InputFileProps } from '@/types';
 
 const InputFile: React.FC<InputFileProps> = ({ onChange, name, label, className = '', error = '', ...props }) => {
     const generatedId = useId();
