@@ -20,15 +20,12 @@ const SearchableSelect = ({
     const { appearance } = useAppearance();
     const { labels } = useTranslation();
 
-    // pojedyncza wybrana opcja
     const selectedOption = options.find((opt: Option) => opt.value === value) || null;
 
-    // obsługa zmiany wartości
     const handleChange = (selected: SingleValue<Option>) => {
         onChange(selected ? selected.value : '');
     };
 
-    // klasy dla react-select
     const getClassNames = {
         control: ({ isFocused }: { isFocused: boolean }) =>
             `!min-h-[38px] border !rounded-md px-[10px] py-[6px] ${

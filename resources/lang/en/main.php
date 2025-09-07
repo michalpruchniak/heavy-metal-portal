@@ -6,6 +6,8 @@ return [
         'add_new_band' => 'Add new band',
         'albums' => 'Albums',
         'add_new_album' => 'Add new album',
+        'create' => 'Create',
+        'update' => 'Update'
     ],
     'labels' => [
         'publishers' => 'Publishers',

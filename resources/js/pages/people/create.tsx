@@ -7,10 +7,10 @@ import useTranslation from '@/hooks/use-translate';
 import AppLayout from '@/layouts/app-layout';
 import { PageProps, PersonFormData, PersonProps } from '@/types';
 import { Head, useForm, usePage } from '@inertiajs/react';
-import { FC, FormEvent } from 'react';
+import { FormEvent } from 'react';
 
-const PersonForm: FC<PersonProps> = ({ person }) => {
-    const { labels, placeholders } = useTranslation();
+const PersonForm = ({ person }: PersonProps) => {
+    const { labels, buttons } = useTranslation();
     const { personType = [] } = usePage<PageProps>().props;
 
     const breadcrumbs = [
@@ -93,7 +93,7 @@ const PersonForm: FC<PersonProps> = ({ person }) => {
                     </div>
 
                     <Button type="submit" disabled={processing} className="self-start">
-                        {person ? 'Update' : 'Create'}
+                        {person ? buttons.update : buttons.create}
                     </Button>
                 </form>
             </div>

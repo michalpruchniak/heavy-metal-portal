@@ -11,7 +11,7 @@ import { Head, useForm, usePage } from '@inertiajs/react';
 import { FormEvent } from 'react';
 
 const Create = ({ bandId, album }: AlbumProps) => {
-    const { labels, placeholders } = useTranslation();
+    const { labels, placeholders, buttons } = useTranslation();
     const { publishersOptions = [] } = usePage<PageProps>().props;
 
     const breadcrumbs = [
@@ -106,7 +106,7 @@ const Create = ({ bandId, album }: AlbumProps) => {
                         />
                     </div>
                     <Button type="submit" disabled={processing} className="self-start">
-                        {album ? 'Update' : 'Create'}
+                        {album ? buttons.update : buttons.create}
                     </Button>
                 </form>
             </div>

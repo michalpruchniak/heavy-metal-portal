@@ -72,6 +72,12 @@ export interface Album {
     slug: string;
 }
 
+export interface bandAlbums {
+    name: string;
+    id: number;
+    albums: Album[]
+}
+
 export interface Person {
     id: number;
     name: string;
@@ -88,7 +94,7 @@ export interface Publisher {
     id: number;
     name: string;
     logo: string;
-    url?: string | null;
+    url?: string | null | undefined;
     description?: string | null;
     created_at: string;
     updated_at: string;
@@ -171,6 +177,9 @@ export interface AlbumProps {
     album?: Album;
 }
 
+export interface BandAlbumsProps {
+    bandAlbums: bandAlbums;
+}
 export interface BandProps {
     band?: Band;
 }
@@ -197,7 +206,7 @@ export interface PublisherProps {
 
 // ----------------- UI propsy -----------------
 export interface InputTextProps {
-    value?: string;
+    value?: string | null;
     onChange: (value: string) => void;
     name?: string;
     label?: string;
@@ -215,6 +224,7 @@ export interface InputFileProps {
     className?: string;
     error?: string;
     type?: string;
+    required?: boolean
 }
 
 export interface TextEditorProps {

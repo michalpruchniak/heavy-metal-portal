@@ -2,7 +2,7 @@ import { TextEditorToolbarProps, ToolbarButton } from '@/types';
 import React from 'react';
 import TextEditorButton from './TextEditorButton';
 
-const TextEditorToolbar: React.FC<TextEditorToolbarProps> = ({ editor }) => {
+const TextEditorToolbar = ({ editor }: TextEditorToolbarProps) => {
     const buttons: ToolbarButton[] = [
         {
             command: () => editor.chain().focus().toggleBold().run(),

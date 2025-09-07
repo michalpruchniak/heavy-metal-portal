@@ -1,13 +1,16 @@
+import InputFile from '@/components/Input/InputFile';
+import InputText from '@/components/Input/InputText';
+import TextEditor from '@/components/TextEditor/TextEditor';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import useTranslation from '@/hooks/use-translate';
 import AppLayout from '@/layouts/app-layout';
 import { PublisherFormData, PublisherProps } from '@/types';
 import { Head, useForm } from '@inertiajs/react';
-import { FC, FormEvent } from 'react';
+import { FormEvent } from 'react';
 
-const PublisherForm: FC<PublisherProps> = ({ publisher }) => {
-    const { labels } = useTranslation();
+const PublisherForm = ({ publisher }: PublisherProps) => {
+    const { labels, buttons } = useTranslation();
     const breadcrumbs = [
         {
             title: labels.publishers,
@@ -21,8 +24,8 @@ const PublisherForm: FC<PublisherProps> = ({ publisher }) => {
 
     const { data, setData, processing, post, errors } = useForm<PublisherFormData>({
         name: typeof publisher?.name === 'string' ? publisher.name : '',
-        url: typeof publisher?.url === 'string' ? publisher.url : '',
         description: typeof publisher?.description === 'string' ? publisher.description : '',
+        url: typeof publisher?.url === 'string' ? publisher.url : '',
         logo: null,
         _method: publisher?.id ? 'PUT' : 'POST',
     });
@@ -48,32 +51,39 @@ const PublisherForm: FC<PublisherProps> = ({ publisher }) => {
 
                 <form onSubmit={handleSubmit} encType="multipart/form-data" className="flex flex-col gap-4 px-[15px] md:px-[17%]">
                     <div>
-                        <label className="dark:text-whtie">{labels.name}:</label>
-                        <Input type="text" value={data.name} onChange={(e) => setData('name', e.target.value)} aria-invalid={!!errors.name} />
-                        {errors.name && <div className="text-red-500">{errors.name}</div>}
-                    </div>
-
-                    <div>
-                        <label className="dark:text-whtie">{labels.url}:</label>
-                        <Input type="text" value={data.url ?? ''} onChange={(e) => setData('url', e.target.value)} aria-invalid={!!errors.url} />
-                        {errors.url && <div className="text-red-500">{errors.url}</div>}
-                    </div>
-
-                    <div>
-                        <label className="dark:text-whtie">{labels.logo}:</label>
-                        <Input
-                            type="file"
-                            onChange={(e) => {
-                                if (e.target.files && e.target.files[0]) {
-                                    setData('logo', e.target.files[0]);
-                                }
-                            }}
-                            aria-invalid={!!errors.logo}
+                        <InputText
+                            label={labels.name}
+                            required={true}
+                            value={data.name}
+                            onChange={(e) => setData('name', e)}
+                            error={errors.name}
                         />
-                        {errors.logo && <div className="text-red-500">{errors.logo}</div>}
+                    </div>
+
+                    <div>
+                    <TextEditor
+                            name="description"
+                            value={data.description ?? ''}
+                            limit={2500}
+                            label={labels.description}
+                            error={errors.description}
+                            onChange={(value) => setData('description', value)}
+                        />
+                    </div>
+                    <div>
+                    <InputText
+                            label={labels.url}
+                            value={data?.url}
+                            onChange={(e) => setData('url', e)}
+                            error={errors.url}
+                        />
+                    </div>
+
+                    <div>
+                        <InputFile required={publisher?.id ? false : true} name="logo" label={labels.logo} onChange={(e) => setData('logo', e)} error={errors.logo} />
                     </div>
                     <Button type="submit" disabled={processing} className="self-start">
-                        {publisher ? 'Update' : 'Create'}
+                        {publisher ? buttons.update : buttons.create}
                     </Button>
                 </form>
             </div>

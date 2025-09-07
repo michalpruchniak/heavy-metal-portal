@@ -4,9 +4,9 @@ import AlbumElement from '@/components/AlbumElement/AlbumElement';
 import useTranslation from '@/hooks/use-translate';
 import AppLayout from '@/layouts/app-layout';
 import { Head } from '@inertiajs/react';
-import { Album } from './__types/types';
+import { Album, BandAlbumsProps } from '@/types';
 
-export default function Index({ bandAlbums }: any) {
+export default function Index({ bandAlbums }: BandAlbumsProps) {
     const { labels, buttons } = useTranslation();
     const breadcrumbs = [
         {

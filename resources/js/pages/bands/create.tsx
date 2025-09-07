@@ -10,7 +10,7 @@ import { Head, useForm, usePage } from '@inertiajs/react';
 import { FormEvent } from 'react';
 
 const Create = ({ band }: BandProps) => {
-    const { labels, placeholders } = useTranslation();
+    const { labels, placeholders, buttons } = useTranslation();
     const breadcrumbs = [
         {
             title: labels.bands,
@@ -103,7 +103,7 @@ const Create = ({ band }: BandProps) => {
                         {errors.still_active && <div className="text-red-500">{errors.still_active}</div>}
                     </div>
                     <Button type="submit" disabled={processing} className="self-start">
-                        {band ? 'Update' : 'Create'}
+                        {band ? buttons.update : buttons.create}
                     </Button>
                 </form>
             </div>

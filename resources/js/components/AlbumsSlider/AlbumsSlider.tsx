@@ -1,5 +1,4 @@
-import { Album } from '@/pages/albums/__types/types';
-import { AlbumsSliderProps } from '@/types';
+import { Album, AlbumsSliderProps } from '@/types';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import { Autoplay, Navigation } from 'swiper/modules';
