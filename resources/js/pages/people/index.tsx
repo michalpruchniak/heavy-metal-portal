@@ -3,9 +3,9 @@ import ButtonLink from '@/components/Button/ButtonLink';
 import Table from '@/components/Table/Table';
 import useTranslation from '@/hooks/use-translate';
 import AppLayout from '@/layouts/app-layout';
+import { IndexPagePeopleProps, Person } from '@/types';
 import { Head } from '@inertiajs/react';
 import PersonTableColumns from './__partials/PersonTableColumns';
-import { IndexPagePeopleProps, Person } from './__types/types';
 
 export default function Index({ people }: IndexPagePeopleProps) {
     const { labels } = useTranslation();

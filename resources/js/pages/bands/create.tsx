@@ -1,17 +1,16 @@
 import InputText from '@/components/Input/InputText';
-import SearchableSelect from '@/components/SearchableSelect/SearchableSelect';
+import SearchableMultipleSelect from '@/components/Select/SearchableMultipleSelect';
 import TextEditor from '@/components/TextEditor/TextEditor';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { PageProps } from '@/hooks/_types/types';
 import useTranslation from '@/hooks/use-translate';
 import AppLayout from '@/layouts/app-layout';
+import { BandFormData, BandProps, PageProps } from '@/types';
 import { Head, useForm, usePage } from '@inertiajs/react';
 import { FormEvent } from 'react';
-import { BandFormData, BandProps } from './__types/types';
 
 const Create = ({ band }: BandProps) => {
-    const { labels, placeholders } = useTranslation();
+    const { labels, placeholders, buttons } = useTranslation();
     const breadcrumbs = [
         {
             title: labels.bands,
@@ -80,15 +79,14 @@ const Create = ({ band }: BandProps) => {
                         {errors.logo && <div className="text-red-500">{errors.logo}</div>}
                     </div>
                     <div>
-                        <SearchableSelect
+                        <SearchableMultipleSelect
                             label="People"
                             onChange={(value) => setData('people', value)}
                             placeholder={placeholders.please_select_people}
                             options={peopleOptions}
-                            value={data.people ?? []}
+                            value={Array.isArray(data.people) ? data.people : []}
                             error={errors.people}
                             noOptionsMessage={placeholders.no_people_to_display}
-                            isMulti={true}
                         />
                     </div>
                     <div className="flex items-center gap-2">
@@ -105,7 +103,7 @@ const Create = ({ band }: BandProps) => {
                         {errors.still_active && <div className="text-red-500">{errors.still_active}</div>}
                     </div>
                     <Button type="submit" disabled={processing} className="self-start">
-                        {band ? 'Update' : 'Create'}
+                        {band ? buttons.update : buttons.create}
                     </Button>
                 </form>
             </div>

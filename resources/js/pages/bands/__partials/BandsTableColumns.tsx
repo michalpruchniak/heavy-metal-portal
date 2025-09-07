@@ -1,8 +1,8 @@
 import DefaultImg from '@/components/Atoms/Img/default.jpg';
 import ButtonLink from '@/components/Button/ButtonLink';
 import useTranslation from '@/hooks/use-translate';
+import { Band } from '@/types';
 import { TableColumn } from 'react-data-table-component';
-import { Band } from '../__types/types';
 
 const BandsTableColumns = (): TableColumn<Band>[] => {
     const { buttons, labels } = useTranslation();

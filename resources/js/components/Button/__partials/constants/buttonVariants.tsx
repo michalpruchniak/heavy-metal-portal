@@ -1,6 +1,11 @@
-import { ButtonVariant, type, VariantType } from '../../__types/types';
+import { ButtonTypes, ButtonVariants } from '@/types';
 
-const buttonVariants: Record<VariantType, ButtonVariant> = {
+const type: ButtonTypes = {
+    button: 'px-4 py-2 rounded-md font-semibold',
+    link: 'underline font-medium cursor-pointer',
+};
+
+const buttonVariants: ButtonVariants = {
     primary: {
         className: `${type.button} text-white bg-primary-500 hover:bg-primary-400 transition-colors duration-300`,
         isActive: `!bg-secondary-500`,

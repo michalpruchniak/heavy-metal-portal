@@ -1,5 +1,4 @@
-import { Album } from '@/pages/albums/__types/types';
-import { AlbumsSliderProps } from '@/types';
+import { Album, AlbumsSliderProps } from '@/types';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import { Autoplay, Navigation } from 'swiper/modules';
@@ -37,7 +36,7 @@ const AlbumsSlider = ({ albums }: AlbumsSliderProps) => {
         >
             {albums.map((album: Album) => {
                 return (
-                    <SwiperSlide>
+                    <SwiperSlide key={album.id}>
                         <AlbumElement album={album} url={route('album.show', { album: album.slug })} />
                     </SwiperSlide>
                 );

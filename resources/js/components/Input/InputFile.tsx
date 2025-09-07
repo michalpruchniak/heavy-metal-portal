@@ -1,8 +1,9 @@
+import { InputFileProps } from '@/types';
 import { useId } from 'react';
 import Message from '../Message/Message';
-import { InputFileProps } from './__types/types';
+import RequiredStar from '../RequiredStar/RequiredStar';
 
-const InputFile: React.FC<InputFileProps> = ({ onChange, name, label, className = '', error = '', ...props }) => {
+const InputFile = ({ onChange, name, label, className = '', error = '', required = false, ...props }: InputFileProps) => {
     const generatedId = useId();
     return (
         <div className={`flex flex-col space-y-2 ${className}`}>
@@ -11,7 +12,7 @@ const InputFile: React.FC<InputFileProps> = ({ onChange, name, label, className 
                     htmlFor={generatedId}
                     className={`font-inter text-[16px] leading-[22.4px] font-[400] dark:text-white ${error ? 'text-red-500' : 'text-[#000000]'}`}
                 >
-                    {label}
+                    {label} {required && <RequiredStar />}
                 </label>
             )}
 

@@ -1,7 +1,7 @@
+import { InputTextProps } from '@/types';
 import { useId } from 'react';
 import Message from '../Message/Message';
 import RequiredStar from '../RequiredStar/RequiredStar';
-import { InputTextProps } from './__types/types';
 
 const InputText = ({ value, onChange, name, label, required = false, className = '', error = '', ...props }: InputTextProps) => {
     const generatedId = useId();
@@ -21,7 +21,7 @@ const InputText = ({ value, onChange, name, label, required = false, className =
                 id={generatedId}
                 name={name}
                 type="text"
-                value={value}
+                value={value ?? ''}
                 onChange={(e) => onChange(e.target.value)}
                 aria-invalid={!!error}
                 className="borde-1 rounded-md border p-2"

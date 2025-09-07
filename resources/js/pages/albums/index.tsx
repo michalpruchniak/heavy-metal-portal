@@ -3,10 +3,10 @@ import ButtonLink from '@/components/Button/ButtonLink';
 import AlbumElement from '@/components/AlbumElement/AlbumElement';
 import useTranslation from '@/hooks/use-translate';
 import AppLayout from '@/layouts/app-layout';
+import { Album, BandAlbumsProps } from '@/types';
 import { Head } from '@inertiajs/react';
-import { Album } from './__types/types';
 
-export default function Index({ bandAlbums }: any) {
+export default function Index({ bandAlbums }: BandAlbumsProps) {
     const { labels, buttons } = useTranslation();
     const breadcrumbs = [
         {
@@ -14,11 +14,14 @@ export default function Index({ bandAlbums }: any) {
             href: route('bands.index'),
         },
         {
-            title: bandAlbums.name,
+            title: `Band: ${bandAlbums.name}`,
+            href: route('bands.index', { band: bandAlbums.id }),
+        },
+        {
+            title: `Albums`,
             href: route('albums.index', { band: bandAlbums.id }),
         },
     ];
-
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Albums" />
@@ -31,7 +34,7 @@ export default function Index({ bandAlbums }: any) {
                 </div>
                 <div className="flex flex-wrap gap-4">
                     {bandAlbums.albums.map((album: Album) => {
-                        return <AlbumElement album={album} url={route('albums.edit', { band: album.band_id, album: album.id })} />;
+                        return <AlbumElement key={album.id} album={album} url={route('albums.edit', { band: album.band_id, album: album.id })} />;
                     })}
                 </div>
             </div>

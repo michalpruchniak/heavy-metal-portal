@@ -1,11 +1,12 @@
 import Message from '@/components/Message/Message';
+import { SelectInputProps } from '@/types';
 import { useId } from 'react';
-import { SelectInputProps } from './__types/types';
 
 const SelectInput = ({ name, value, label, options, onChange, className = '', error = '' }: SelectInputProps) => {
     const generatedId = useId();
+
     return (
-        <div className={`flex flex-col space-y-2 ${className}`}>
+        <div className={`flex flex-col gap-2 ${className}`}>
             {label && (
                 <label
                     htmlFor={generatedId}
@@ -21,7 +22,7 @@ const SelectInput = ({ name, value, label, options, onChange, className = '', er
                 value={value}
                 onChange={(e) => onChange(e.target.value)}
                 aria-invalid={!!error}
-                className="borde-1 rounded-md border p-2"
+                className={`!min-h-[38px] !rounded-md border px-[10px] py-[6px] ${error ? '!border-red-400' : '!border-gray-300 dark:!border-gray-600'} focus:!ring-primary bg-black text-white focus:!ring-1`}
             >
                 {options.map((opt) => (
                     <option key={opt.value} value={opt.value}>

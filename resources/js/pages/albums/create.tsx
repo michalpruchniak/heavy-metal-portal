@@ -1,23 +1,21 @@
 import DatePickerInput from '@/components/DatePicker/DatePicker';
 import InputText from '@/components/Input/InputText';
-import SearchableSelect from '@/components/SearchableSelect/SearchableSelect';
+import SearchableSelect from '@/components/Select/SearchableSelect';
 import TextEditor from '@/components/TextEditor/TextEditor';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { PageProps } from '@/hooks/_types/types';
 import useTranslation from '@/hooks/use-translate';
 import AppLayout from '@/layouts/app-layout';
+import { AlbumFormData, AlbumProps, PageProps } from '@/types';
 import { Head, useForm, usePage } from '@inertiajs/react';
 import { FormEvent } from 'react';
-import { AlbumProps, BandFormData } from './__types/types';
 
 const Create = ({ bandId, album }: AlbumProps) => {
-    const { labels, placeholders } = useTranslation();
+    const { labels, placeholders, buttons } = useTranslation();
     const { publishersOptions = [] } = usePage<PageProps>().props;
-
     const breadcrumbs = [
         {
-            title: labels.albums,
+            title: labels.bands,
             href: route('bands.index'),
         },
         {
@@ -25,7 +23,7 @@ const Create = ({ bandId, album }: AlbumProps) => {
             href: album ? route('albums.edit', { band: bandId, album: album.id }) : route('bands.create', { band: bandId }),
         },
     ];
-    const { data, setData, processing, post, errors } = useForm<BandFormData>({
+    const { data, setData, processing, post, errors } = useForm<AlbumFormData>({
         name: typeof album?.name === 'string' ? album.name : '',
         description: typeof album?.description === 'string' ? album.description : '',
         release_date: typeof album?.release_date === 'string' ? album.release_date : '',
@@ -37,7 +35,6 @@ const Create = ({ bandId, album }: AlbumProps) => {
     const sendRequest = () => {
         const targetRoute = album ? route('albums.update', { album: album.id }) : route('albums.store');
 
-        console.log(data);
         post(targetRoute, {
             preserveScroll: true,
         });
@@ -47,7 +44,6 @@ const Create = ({ bandId, album }: AlbumProps) => {
         e.preventDefault();
         sendRequest();
     };
-    console.log(publishersOptions);
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title={album ? labels.update_band : labels.create_album} />
@@ -87,9 +83,8 @@ const Create = ({ bandId, album }: AlbumProps) => {
                             onChange={(value) => setData('publisher_id', value)}
                             placeholder={placeholders.please_select_people}
                             options={publishersOptions}
-                            value={data.publisher_id ?? null}
+                            value={data.publisher_id}
                             error={errors.publisher_id}
-                            isMulti={false}
                             noOptionsMessage={placeholders.no_people_to_display}
                         />
                     </div>
@@ -108,7 +103,7 @@ const Create = ({ bandId, album }: AlbumProps) => {
                         />
                     </div>
                     <Button type="submit" disabled={processing} className="self-start">
-                        {album ? 'Update' : 'Create'}
+                        {album ? buttons.update : buttons.create}
                     </Button>
                 </form>
             </div>
