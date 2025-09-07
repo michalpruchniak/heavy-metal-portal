@@ -11,6 +11,7 @@ The project is purely etesting, and its main purpose was to demonstrate my progr
 * TipTap
 * React Select
 * Tailwind
+* Dark and light layout
 ### About the author
 Programmer and UX: Michał Pruchniak
 
