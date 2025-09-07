@@ -36,7 +36,7 @@ const AlbumsSlider = ({ albums }: AlbumsSliderProps) => {
         >
             {albums.map((album: Album) => {
                 return (
-                    <SwiperSlide>
+                    <SwiperSlide key={album.id}>
                         <AlbumElement album={album} url={route('album.show', { album: album.slug })} />
                     </SwiperSlide>
                 );

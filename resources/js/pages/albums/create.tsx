@@ -13,10 +13,9 @@ import { FormEvent } from 'react';
 const Create = ({ bandId, album }: AlbumProps) => {
     const { labels, placeholders, buttons } = useTranslation();
     const { publishersOptions = [] } = usePage<PageProps>().props;
-
     const breadcrumbs = [
         {
-            title: labels.albums,
+            title: labels.bands,
             href: route('bands.index'),
         },
         {
@@ -36,7 +35,6 @@ const Create = ({ bandId, album }: AlbumProps) => {
     const sendRequest = () => {
         const targetRoute = album ? route('albums.update', { album: album.id }) : route('albums.store');
 
-        console.log(data);
         post(targetRoute, {
             preserveScroll: true,
         });
@@ -46,7 +44,6 @@ const Create = ({ bandId, album }: AlbumProps) => {
         e.preventDefault();
         sendRequest();
     };
-    console.log(publishersOptions);
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title={album ? labels.update_band : labels.create_album} />
