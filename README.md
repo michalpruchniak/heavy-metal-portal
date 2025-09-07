@@ -1,6 +1,8 @@
 # HEAVY METAL PORTAL
 ## About the project
 The project is purely etesting, and its main purpose was to demonstrate my programming skills. Both the code and the layout are entirely my own work. For convenience, I used Inertia here, although I usually **try to avoid building monoliths**. Since this is only a test application, I didn’t write as many tests as I would for a production-grade project. **I simply wanted to show that I am capable of writing tests.**
+![Page view](screens/screen1.png)
+
 ### Stack
 * Laravel 12
 * sqlite (in developer version)
