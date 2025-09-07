@@ -1,5 +1,4 @@
 import { TextEditorToolbarProps, ToolbarButton } from '@/types';
-import React from 'react';
 import TextEditorButton from './TextEditorButton';
 
 const TextEditorToolbar = ({ editor }: TextEditorToolbarProps) => {

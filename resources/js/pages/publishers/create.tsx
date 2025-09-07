@@ -2,7 +2,6 @@ import InputFile from '@/components/Input/InputFile';
 import InputText from '@/components/Input/InputText';
 import TextEditor from '@/components/TextEditor/TextEditor';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
 import useTranslation from '@/hooks/use-translate';
 import AppLayout from '@/layouts/app-layout';
 import { PublisherFormData, PublisherProps } from '@/types';
@@ -51,17 +50,11 @@ const PublisherForm = ({ publisher }: PublisherProps) => {
 
                 <form onSubmit={handleSubmit} encType="multipart/form-data" className="flex flex-col gap-4 px-[15px] md:px-[17%]">
                     <div>
-                        <InputText
-                            label={labels.name}
-                            required={true}
-                            value={data.name}
-                            onChange={(e) => setData('name', e)}
-                            error={errors.name}
-                        />
+                        <InputText label={labels.name} required={true} value={data.name} onChange={(e) => setData('name', e)} error={errors.name} />
                     </div>
 
                     <div>
-                    <TextEditor
+                        <TextEditor
                             name="description"
                             value={data.description ?? ''}
                             limit={2500}
@@ -71,16 +64,17 @@ const PublisherForm = ({ publisher }: PublisherProps) => {
                         />
                     </div>
                     <div>
-                    <InputText
-                            label={labels.url}
-                            value={data?.url}
-                            onChange={(e) => setData('url', e)}
-                            error={errors.url}
-                        />
+                        <InputText label={labels.url} value={data?.url} onChange={(e) => setData('url', e)} error={errors.url} />
                     </div>
 
                     <div>
-                        <InputFile required={publisher?.id ? false : true} name="logo" label={labels.logo} onChange={(e) => setData('logo', e)} error={errors.logo} />
+                        <InputFile
+                            required={publisher?.id ? false : true}
+                            name="logo"
+                            label={labels.logo}
+                            onChange={(e) => setData('logo', e)}
+                            error={errors.logo}
+                        />
                     </div>
                     <Button type="submit" disabled={processing} className="self-start">
                         {publisher ? buttons.update : buttons.create}

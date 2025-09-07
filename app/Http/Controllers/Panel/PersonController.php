@@ -17,6 +17,7 @@ class PersonController extends Controller
     public function index(): Response
     {
         $people = $this->personService->getAll();
+
         return Inertia::render('people/index', [
             'people' => $people,
         ]);

@@ -75,7 +75,7 @@ export interface Album {
 export interface bandAlbums {
     name: string;
     id: number;
-    albums: Album[]
+    albums: Album[];
 }
 
 export interface Person {
@@ -224,7 +224,7 @@ export interface InputFileProps {
     className?: string;
     error?: string;
     type?: string;
-    required?: boolean
+    required?: boolean;
 }
 
 export interface TextEditorProps {

@@ -7,7 +7,7 @@ return [
         'albums' => 'Albums',
         'add_new_album' => 'Add new album',
         'create' => 'Create',
-        'update' => 'Update'
+        'update' => 'Update',
     ],
     'labels' => [
         'publishers' => 'Publishers',

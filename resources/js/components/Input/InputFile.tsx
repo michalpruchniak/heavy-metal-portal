@@ -3,7 +3,7 @@ import { useId } from 'react';
 import Message from '../Message/Message';
 import RequiredStar from '../RequiredStar/RequiredStar';
 
-const InputFile = ({ onChange, name, label, className = '', error = '', required=false, ...props }: InputFileProps) => {
+const InputFile = ({ onChange, name, label, className = '', error = '', required = false, ...props }: InputFileProps) => {
     const generatedId = useId();
     return (
         <div className={`flex flex-col space-y-2 ${className}`}>

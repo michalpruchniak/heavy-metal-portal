@@ -3,8 +3,8 @@ import ButtonLink from '@/components/Button/ButtonLink';
 import AlbumElement from '@/components/AlbumElement/AlbumElement';
 import useTranslation from '@/hooks/use-translate';
 import AppLayout from '@/layouts/app-layout';
-import { Head } from '@inertiajs/react';
 import { Album, BandAlbumsProps } from '@/types';
+import { Head } from '@inertiajs/react';
 
 export default function Index({ bandAlbums }: BandAlbumsProps) {
     const { labels, buttons } = useTranslation();

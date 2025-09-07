@@ -1,6 +1,6 @@
+import { ButtonLinkProps } from '@/types';
 import { Link } from '@inertiajs/react';
 import buttonVariants from './__partials/constants/buttonVariants';
-import { ButtonLinkProps } from '@/types';
 
 const ButtonLink = ({ children, url, variant = 'primary' }: ButtonLinkProps) => {
     const className = buttonVariants[variant] ? buttonVariants[variant].className : buttonVariants['primary'].className;
