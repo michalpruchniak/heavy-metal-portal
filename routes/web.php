@@ -4,6 +4,7 @@ use App\Http\Controllers\Front\AlbumController as FrontAlbumController;
 use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Panel\AlbumController;
 use App\Http\Controllers\Panel\BandController;
+use App\Http\Controllers\Panel\EventController;
 use App\Http\Controllers\Panel\PersonController;
 use App\Http\Controllers\Panel\PublisherController;
 use Illuminate\Support\Facades\Route;
@@ -97,6 +98,13 @@ Route::prefix('/panel')->middleware(['auth', 'verified', 'formOptionsMiddleware'
     Route::put('albums/{album}', [AlbumController::class, 'update'])
         ->name('albums.update')
         ->middleware('permission:albums.edit');
+
+    Route::get('events/create', [EventController::class, 'create'])
+        ->name('events.create')
+        ->middleware('permission:albums.edit');
+    Route::post('events', [EventController::class, 'store'])
+        ->name('events.store')
+        ->middleware('permission:publishers.create');
 });
 
 require __DIR__.'/settings.php';
