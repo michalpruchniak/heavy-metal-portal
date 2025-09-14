@@ -105,6 +105,19 @@ Route::prefix('/panel')->middleware(['auth', 'verified', 'formOptionsMiddleware'
     Route::post('events', [EventController::class, 'store'])
         ->name('events.store')
         ->middleware('permission:publishers.create');
+
+    Route::get('events', [EventController::class, 'index'])
+        ->name('events.index')
+        ->middleware('permission:bands.view');
+
+    Route::get('events/edit/{event}', [EventController::class, 'edit'])
+        ->name('events.edit')
+        ->middleware('permission:bands.edit');
+
+
+    Route::put('events/{event}', [EventController::class, 'update'])
+        ->name('events.update')
+        ->middleware('permission:publishers.edit');
 });
 
 require __DIR__.'/settings.php';

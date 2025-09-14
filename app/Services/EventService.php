@@ -27,10 +27,10 @@ class EventService implements EventServiceInterface
         });
     }
 
-    // public function findOrFail(int $id): Band
-    // {
-    //     return $this->bandRepository->findOrFail(id: $id, relationships: ['people']);
-    // }
+    public function findOrFail(int $id): Event
+    {
+        return $this->eventRepository->findOrFail(id: $id);
+    }
 
     public function create(EventDTO $eventDTO): Event
     {
@@ -42,15 +42,14 @@ class EventService implements EventServiceInterface
         return $event;
     }
 
-    // public function update(int $id, BandDTO $bandDTO): Band
-    // {
-    //     $band = $this->bandRepository->findOrFail($id);
-    //     $bandData = $bandDTO->toArray();
-    //     $bandData['logo'] = $this->fileUploadService->saveOrUpdatePhoto($band->getRawOriginal('logo'), $bandDTO->logo, self::BAND_CATALOG_PHOTO_DIRECTORY);
+    public function update(int $id, EventDTO $eventDTO): Event
+    {
+        $event = $this->eventRepository->findOrFail($id);
+        $eventData = $eventDTO->toArray();
+        $eventData['cover'] = $this->fileUploadService->saveOrUpdatePhoto($event->getRawOriginal('cover'), $eventDTO->cover, self::EVENT_CATALOG_COVER_DIRECTORY);
 
-    //     $band->update($bandData);
-    //     $band->people()->sync($bandDTO->people);
+        $event->update($eventData);
 
-    //     return $band->refresh();
-    // }
+        return $event->refresh();
+    }
 }

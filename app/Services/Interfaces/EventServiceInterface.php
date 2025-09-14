@@ -13,9 +13,9 @@ interface EventServiceInterface
 
     public function getAll(array $order = ['created_at' => 'desc']): Collection;
 
-    // public function findOrFail(int $id): Band;
+    public function findOrFail(int $id): Event;
 
     public function create(EventDTO $eventDTO): Event;
 
-    // public function update(int $id, BandDTO $bandDTO): Band;
+    public function update(int $id, EventDTO $eventDTO): Event;
 }

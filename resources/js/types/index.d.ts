@@ -230,6 +230,11 @@ export interface PublisherProps {
     publisher?: Publisher;
 }
 
+export interface IndexPageEventsProps {
+    events: Event[];
+}
+
+
 // ----------------- UI propsy -----------------
 export interface InputTextProps {
     value?: string | null;

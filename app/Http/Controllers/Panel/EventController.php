@@ -18,10 +18,10 @@ class EventController extends Controller
 
     public function index(): Response
     {
-        $bands = $this->eventService->getAll();
+        $events = $this->eventService->getAll();
 
-        return Inertia::render('bands/index', [
-            'bands' => $bands,
+        return Inertia::render('events/index', [
+            'events' => $events,
         ]);
     }
 
@@ -39,6 +39,26 @@ class EventController extends Controller
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
 
-        return redirect()->route('bands.index')->with('success', 'Person created successfully');
+        return redirect()->route('events.index')->with('success', 'Person created successfully');
+    }
+
+    public function edit(int $event): Response
+    {
+        $event = $this->eventService->findOrFail($event);
+
+        return Inertia::render('events/create', [
+            'event' => $event,
+        ]);
+    }
+
+    public function update(int $id, EventRequest $request): RedirectResponse
+    {
+        try {
+            $this->eventService->update($id, $request->getDTO());
+        } catch (Exception $e) {
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+        }
+
+        return redirect()->route('events.index')->with('success', 'Person updated successfully');
     }
 }

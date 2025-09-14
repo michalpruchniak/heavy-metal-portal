@@ -5,20 +5,20 @@ import TextEditor from '@/components/TextEditor/TextEditor';
 import { Button } from '@/components/ui/button';
 import useTranslation from '@/hooks/use-translate';
 import AppLayout from '@/layouts/app-layout';
-import { BandFormData, BandProps, EventFormData, EventProps } from '@/types';
+import { EventFormData, EventProps } from '@/types';
 import { Head, useForm, usePage } from '@inertiajs/react';
 import { FormEvent } from 'react';
 
 const Create = ({ event }: EventProps) => {
-    const { labels, placeholders, buttons } = useTranslation();
+    const { labels, buttons } = useTranslation();
     const breadcrumbs = [
         {
-            title: labels.bands,
-            href: route('bands.index'),
+            title: labels.events,
+            href: route('events.index'),
         },
         {
-            title: event ? labels.update_band : labels.create_band,
-            href: event ? route('bands.edit', { band: event.id }) : route('bands.create'),
+            title: event ? labels.update_event : labels.create_band,
+            href: event ? route('events.edit', { event: event.id }) : route('events.create'),
         },
     ];
 
@@ -32,7 +32,7 @@ const Create = ({ event }: EventProps) => {
     });
 
     const sendRequest = () => {
-        const targetRoute = event ? route('bands.update', { band: event.id }) : route('events.store');
+        const targetRoute = event ? route('events.update', { event: event.id }) : route('events.store');
 
         post(targetRoute, {
             preserveScroll: true,
@@ -81,7 +81,7 @@ const Create = ({ event }: EventProps) => {
                         />
                     </div>
                     <div>
-                        <InputFile name="cover" label={labels.cover} required={event ? false : true} onChange={(file) => setData('cover', file)} error={errors.cover} />
+                        <InputFile name="cover" label={labels.cover} onChange={(file) => setData('cover', file)} error={errors.cover} />
                     </div>
                     <Button type="submit" disabled={processing} className="self-start">
                         {event ? buttons.update : buttons.create}
