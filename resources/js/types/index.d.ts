@@ -65,6 +65,7 @@ export interface Event {
     cover: string;
     description?: string | null;
     date: string;
+    formatted_date?: string;
     created_at: string;
     updated_at: string;
     [key: string]: string | unknown | boolean | undefined;
@@ -182,6 +183,7 @@ export interface AlbumShowProps {
 
 export interface AlbumsIndexProps {
     albums: Album[];
+    events: EventsByDate
 }
 
 export interface AlbumsSliderProps {
@@ -233,7 +235,6 @@ export interface PublisherProps {
 export interface IndexPageEventsProps {
     events: Event[];
 }
-
 
 // ----------------- UI propsy -----------------
 export interface InputTextProps {
@@ -344,6 +345,11 @@ export interface DatePickerProps {
     onChange: (date: Date | null) => void;
     error?: string;
     required?: boolean;
+}
+export type EventsByDate = Record<string, Event[]>;
+
+export interface EventComponentProps {
+    events: EventsByDate;
 }
 
 // ----------------- Utility typy -----------------

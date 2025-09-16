@@ -9,7 +9,6 @@ import EventsTableColumns from './__partials/EventsTableColumns';
 
 export default function Index({ events }: IndexPageEventsProps) {
     const { labels, buttons } = useTranslation();
-    console.log(events);
     const breadcrumbs = [
         {
             title: labels.events,

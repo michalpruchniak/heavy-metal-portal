@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Casts\ImageUrlCast;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Event extends Model

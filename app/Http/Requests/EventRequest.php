@@ -27,7 +27,7 @@ class EventRequest extends FormRequest
             'name' => 'required|string|between:2,60',
             'description' => ['nullable', 'string', new MaxLengthWithoutHTMLRule(2500)],
             'cover' => 'nullable|image|max:1500|image|mimes:jpg,jpeg,png,webp',
-            'date' => 'nullable|date|after_or_equal:2025-10-01',
+            'date' => 'nullable|date',
         ];
     }
 
