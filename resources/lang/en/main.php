@@ -43,7 +43,7 @@ return [
         'create_event' => 'Create event',
         'update_event' => 'Update event',
         'date' => 'Date',
-        'events' => 'Events'
+        'events' => 'Events',
     ],
     'placeholders' => [
         'please_select_people' => 'Please select people',

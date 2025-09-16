@@ -183,7 +183,7 @@ export interface AlbumShowProps {
 
 export interface AlbumsIndexProps {
     albums: Album[];
-    events: EventsByDate
+    events: EventsByDate;
 }
 
 export interface AlbumsSliderProps {

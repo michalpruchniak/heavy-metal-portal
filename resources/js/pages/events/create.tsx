@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import useTranslation from '@/hooks/use-translate';
 import AppLayout from '@/layouts/app-layout';
 import { EventFormData, EventProps } from '@/types';
-import { Head, useForm, usePage } from '@inertiajs/react';
+import { Head, useForm } from '@inertiajs/react';
 import { FormEvent } from 'react';
 
 const Create = ({ event }: EventProps) => {
@@ -21,7 +21,6 @@ const Create = ({ event }: EventProps) => {
             href: event ? route('events.edit', { event: event.id }) : route('events.create'),
         },
     ];
-
 
     const { data, setData, processing, post, errors } = useForm<EventFormData>({
         name: typeof event?.name === 'string' ? event.name : '',
@@ -66,7 +65,7 @@ const Create = ({ event }: EventProps) => {
                         />
                     </div>
                     <div>
-                    <DatePickerInput
+                        <DatePickerInput
                             label={labels.date}
                             required={true}
                             value={data.date ? new Date(data.date) : null}

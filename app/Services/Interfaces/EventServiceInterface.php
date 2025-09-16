@@ -2,7 +2,6 @@
 
 namespace App\Services\Interfaces;
 
-use App\DTO\BandDTO;
 use App\DTO\EventDTO;
 use App\Models\Event;
 use Illuminate\Support\Collection;
@@ -18,4 +17,6 @@ interface EventServiceInterface
     public function create(EventDTO $eventDTO): Event;
 
     public function update(int $id, EventDTO $eventDTO): Event;
+
+    public function getEventsFromLast7Days(): Collection;
 }

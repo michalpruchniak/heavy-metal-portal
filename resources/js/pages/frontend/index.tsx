@@ -9,7 +9,6 @@ import MainArticles from '../mainArticles/MainArticles';
 export default function Index({ albums, events }: AlbumsIndexProps) {
     return (
         <FrontLayout>
-
             <div className="dark:bg-dark-500 min-h-[280px] w-full bg-black text-white">
                 <MainArticles />
             </div>

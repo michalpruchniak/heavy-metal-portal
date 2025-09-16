@@ -114,7 +114,6 @@ Route::prefix('/panel')->middleware(['auth', 'verified', 'formOptionsMiddleware'
         ->name('events.edit')
         ->middleware('permission:bands.edit');
 
-
     Route::put('events/{event}', [EventController::class, 'update'])
         ->name('events.update')
         ->middleware('permission:publishers.edit');

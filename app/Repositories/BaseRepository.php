@@ -2,9 +2,10 @@
 
 namespace App\Repositories;
 
+use App\Repositories\Interfaces\BaseRepositoryInterface;
 use Illuminate\Database\Eloquent\Model;
 
-abstract class BaseRepository
+abstract class BaseRepository implements BaseRepositoryInterface
 {
     public function __construct(
         protected Model $model,
@@ -15,7 +16,7 @@ abstract class BaseRepository
      *
      * @return \Illuminate\Database\Eloquent\Collection
      */
-    public function get(array $where = [], array $order = [], array $relationships = [], ?int $limit = null)
+    public function get(array $where = [], array $between = [], array $order = [], array $relationships = [], ?int $limit = null)
     {
         $query = $this->model->newQuery();
 
@@ -25,6 +26,10 @@ abstract class BaseRepository
 
         foreach ($where as $column => $value) {
             $query->where($column, $value);
+        }
+
+        foreach ($between as $column => [$from, $to]) {
+            $query->whereBetween($column, [$from, $to]);
         }
 
         foreach ($order as $column => $direction) {

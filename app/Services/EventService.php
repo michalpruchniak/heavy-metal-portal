@@ -2,14 +2,14 @@
 
 namespace App\Services;
 
-use App\DTO\BandDTO;
 use App\DTO\EventDTO;
-use App\Models\Band;
 use App\Models\Event;
 use App\Repositories\Interfaces\EventRepositoryInterface;
 use App\Services\Interfaces\EventServiceInterface;
 use App\Services\Interfaces\FileUploadServiceInterface;
-use Illuminate\Database\Eloquent\Collection;
+use Carbon\Carbon;
+use Carbon\CarbonPeriod;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
 
 class EventService implements EventServiceInterface
@@ -51,5 +51,24 @@ class EventService implements EventServiceInterface
         $event->update($eventData);
 
         return $event->refresh();
+    }
+
+    public function getEventsFromLast7Days(): Collection
+    {
+        $startDate = Carbon::today();
+        $endDate = Carbon::today()->addDays(6);
+
+        $groupedEvents = $this->eventRepository->get(between: ['date' => [
+            $startDate->toDateString(),
+            $endDate->toDateString(), ],
+        ],
+        )->groupBy('date');
+
+        $eventsByDate = collect(CarbonPeriod::create($startDate, $endDate))
+            ->mapWithKeys(fn ($date) => [
+                $date->toDateString() => $groupedEvents->get($date->toDateString(), collect()),
+            ]);
+
+        return $eventsByDate;
     }
 }
