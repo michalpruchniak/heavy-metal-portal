@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
-use App\Models\Event;
 use App\Services\Interfaces\AlbumServiceInterface;
 use App\Services\Interfaces\EventServiceInterface;
 use Inertia\Inertia;

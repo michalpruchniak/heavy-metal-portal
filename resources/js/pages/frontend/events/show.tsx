@@ -7,10 +7,9 @@ export default function Show({ event }: EventShowProps) {
     return (
         <FrontLayout>
             <div className="mx-auto max-w-6xl py-5">
-            <h1 className="text-center">{event.name}</h1>
+                <h1 className="text-center">{event.name}</h1>
 
                 <div className="flex flex-col gap-3 md:flex-row">
-
                     <div className="mx-auto h-64 w-64 overflow-hidden rounded-lg md:mx-0">
                         <img src={event.cover ?? DefaultImg} alt={event.name} className="h-full w-full object-cover" />
                     </div>
