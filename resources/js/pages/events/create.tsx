@@ -17,7 +17,7 @@ const Create = ({ event }: EventProps) => {
             href: route('events.index'),
         },
         {
-            title: event ? labels.update_event : labels.create_band,
+            title: event ? labels.update_event : labels.create_event,
             href: event ? route('events.edit', { event: event.id }) : route('events.create'),
         },
     ];

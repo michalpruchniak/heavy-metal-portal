@@ -1,4 +1,5 @@
 import { EventsByDate } from '@/types';
+import { Link } from '@inertiajs/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import { Navigation } from 'swiper/modules';
@@ -36,10 +37,12 @@ const EventCalendar = ({ events }: { events: EventsByDate }) => {
                                 <div className="flex !h-[320px] flex-col gap-2 overflow-auto">
                                     {dayEvents.map((event) => {
                                         return (
-                                            <div className="bg-light-100 dark:bg-dark-100 border-primary-200 border-l border-l-2 p-2">
+                                            <Link href={route('event.show', {event: event.id})}>
+                                            <div className="bg-light-100 dark:bg-dark-100 border-primary-200 border-l border-l-2 p-2 hover:border-l-4">
                                                 <strong>{event.name}</strong>
                                                 {event?.description && <div dangerouslySetInnerHTML={{ __html: event.description }} />}
                                             </div>
+                                            </Link>
                                         );
                                     })}
                                 </div>

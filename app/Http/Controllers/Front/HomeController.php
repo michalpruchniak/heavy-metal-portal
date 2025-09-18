@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Models\Event;
 use App\Services\Interfaces\AlbumServiceInterface;
 use App\Services\Interfaces\EventServiceInterface;
 use Inertia\Inertia;
+use Inertia\Response;
 
 class HomeController extends Controller
 {
@@ -14,7 +16,7 @@ class HomeController extends Controller
         private EventServiceInterface $eventService
     ) {}
 
-    public function Home()
+    public function Home(): Response
     {
         return Inertia::render('frontend/index', [
             'albums' => $this->albumService->getAll(),
