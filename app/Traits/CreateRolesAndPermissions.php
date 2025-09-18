@@ -19,6 +19,9 @@ trait CreateRolesAndPermissions
             'albums.view',
             'albums.create',
             'albums.edit',
+            'events.view',
+            'events.create',
+            'events.edit',
         ],
         'moderator' => [
             'publishers.view',
@@ -31,6 +34,9 @@ trait CreateRolesAndPermissions
             'albums.view',
             'albums.create',
             'albums.edit',
+            'events.view',
+            'events.create',
+            'events.edit',
         ],
     ];
 

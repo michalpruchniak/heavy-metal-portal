@@ -22,7 +22,7 @@ class EventService implements EventServiceInterface
 
     public function getAll(array $order = ['created_at' => 'desc']): Collection
     {
-        return Cache::remember('events_all', 60, function () use ($order) {
+        return Cache::remember('events_all', config('settings.cookies_expires'), function () use ($order) {
             return $this->eventRepository->get(order: $order);
         });
     }

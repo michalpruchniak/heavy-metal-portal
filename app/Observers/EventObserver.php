@@ -13,7 +13,6 @@ class EventObserver
     public function created(Event $event): void
     {
         Cache::forget('events_all');
-
     }
 
     /**
@@ -22,7 +21,6 @@ class EventObserver
     public function updated(Event $event): void
     {
         Cache::forget('events_all');
-
     }
 
     /**
@@ -31,6 +29,7 @@ class EventObserver
     public function deleted(Event $event): void
     {
         Cache::forget('events_all');
+
     }
 
     /**

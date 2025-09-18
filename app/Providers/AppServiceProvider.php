@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\Event;
 use App\Models\Publisher;
+use App\Observers\EventObserver;
 use App\Observers\PublisherObserver;
 use App\Repositories\AlbumRepository;
 use App\Repositories\BandRepository;
@@ -68,6 +70,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Publisher::observe(PublisherObserver::class);
+        Event::observe(EventObserver::class);
 
         $this->getTranslate();
     }
