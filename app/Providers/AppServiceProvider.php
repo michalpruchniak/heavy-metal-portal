@@ -2,21 +2,27 @@
 
 namespace App\Providers;
 
+use App\Models\Event;
 use App\Models\Publisher;
+use App\Observers\EventObserver;
 use App\Observers\PublisherObserver;
 use App\Repositories\AlbumRepository;
 use App\Repositories\BandRepository;
+use App\Repositories\EventRepository;
 use App\Repositories\Interfaces\AlbumRepositoryInterface;
 use App\Repositories\Interfaces\BandRepositoryInterface;
+use App\Repositories\Interfaces\EventRepositoryInterface;
 use App\Repositories\Interfaces\PersonRepositoryInterface;
 use App\Repositories\Interfaces\PublisherRepositoryInterface;
 use App\Repositories\PersonRepository;
 use App\Repositories\PublisherRepository;
 use App\Services\AlbumService;
 use App\Services\BandService;
+use App\Services\EventService;
 use App\Services\FileUploadService;
 use App\Services\Interfaces\AlbumServiceInterface;
 use App\Services\Interfaces\BandServiceInterface;
+use App\Services\Interfaces\EventServiceInterface;
 use App\Services\Interfaces\FileUploadServiceInterface;
 use App\Services\Interfaces\PersonServiceInterface;
 use App\Services\Interfaces\PublisherServiceInterface;
@@ -52,6 +58,10 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->bind(AlbumRepositoryInterface::class, AlbumRepository::class);
 
+        $this->app->bind(EventServiceInterface::class, EventService::class);
+
+        $this->app->bind(EventRepositoryInterface::class, EventRepository::class);
+
     }
 
     /**
@@ -60,6 +70,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Publisher::observe(PublisherObserver::class);
+        Event::observe(EventObserver::class);
 
         $this->getTranslate();
     }

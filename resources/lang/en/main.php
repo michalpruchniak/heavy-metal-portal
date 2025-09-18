@@ -8,6 +8,8 @@ return [
         'add_new_album' => 'Add new album',
         'create' => 'Create',
         'update' => 'Update',
+        'add_new_event' => 'Add new event',
+
     ],
     'labels' => [
         'publishers' => 'Publishers',
@@ -38,6 +40,10 @@ return [
         'update_album' => 'Update album',
         'release_date' => 'Release date',
         'albums' => 'Albums',
+        'create_event' => 'Create event',
+        'update_event' => 'Update event',
+        'date' => 'Date',
+        'events' => 'Events',
     ],
     'placeholders' => [
         'please_select_people' => 'Please select people',

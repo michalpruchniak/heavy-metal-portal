@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\Front\AlbumController as FrontAlbumController;
+use App\Http\Controllers\front\EventController as FrontEventController;
 use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Panel\AlbumController;
 use App\Http\Controllers\Panel\BandController;
+use App\Http\Controllers\Panel\EventController;
 use App\Http\Controllers\Panel\PersonController;
 use App\Http\Controllers\Panel\PublisherController;
 use Illuminate\Support\Facades\Route;
@@ -12,6 +14,7 @@ use Inertia\Inertia;
 Route::get('/', [HomeController::class, 'Home'])
     ->name('home');
 Route::get('album/{album}', [FrontAlbumController::class, 'show'])->name('album.show');
+Route::get('event/{event}', [FrontEventController::class, 'show'])->name('event.show');
 
 Route::prefix('/panel')->middleware(['auth', 'verified', 'formOptionsMiddleware'])->group(function () {
     Route::get('dashboard', function () {
@@ -97,6 +100,25 @@ Route::prefix('/panel')->middleware(['auth', 'verified', 'formOptionsMiddleware'
     Route::put('albums/{album}', [AlbumController::class, 'update'])
         ->name('albums.update')
         ->middleware('permission:albums.edit');
+
+    Route::get('events/create', [EventController::class, 'create'])
+        ->name('events.create')
+        ->middleware('permission:albums.edit');
+    Route::post('events', [EventController::class, 'store'])
+        ->name('events.store')
+        ->middleware('permission:events.create');
+
+    Route::get('events', [EventController::class, 'index'])
+        ->name('events.index')
+        ->middleware('permission:events.view');
+
+    Route::get('events/edit/{event}', [EventController::class, 'edit'])
+        ->name('events.edit')
+        ->middleware('permission:events.edit');
+
+    Route::put('events/{event}', [EventController::class, 'update'])
+        ->name('events.update')
+        ->middleware('permission:events.edit');
 });
 
 require __DIR__.'/settings.php';

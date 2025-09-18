@@ -11,7 +11,7 @@ interface BaseRepositoryInterface
      *
      * @return \Illuminate\Database\Eloquent\Collection
      */
-    public function get(array $where = [], array $order = [], array $relationships = [], ?int $limit = null);
+    public function get(array $where = [], array $between = [], array $order = [], array $relationships = [], ?int $limit = null);
 
     /**
      * Creating a record.

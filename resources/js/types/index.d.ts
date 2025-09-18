@@ -59,6 +59,18 @@ export interface Band {
     [key: string]: string | unknown | boolean | undefined;
 }
 
+export interface Event {
+    id: number;
+    name: string;
+    cover: string;
+    description?: string | null;
+    date: string;
+    formatted_date?: string;
+    created_at: string;
+    updated_at: string;
+    [key: string]: string | unknown | boolean | undefined;
+}
+
 export interface Album {
     id: number;
     band_id: number;
@@ -107,11 +119,21 @@ export interface BandFormData {
     description?: string | null;
     logo?: File | null;
     still_active?: boolean;
-    cover?: File | null;
     release_date?: string;
     publisher_id?: number | string | null;
     _method: 'PUT' | 'POST';
     people?: string | number | Array<string | number> | null;
+    created_at?: string;
+    updated_at?: string;
+    [key: string]: string | number | File | null | undefined | boolean | Array<string | number>;
+}
+
+export interface EventFormData {
+    name: string;
+    description?: string | null;
+    cover?: File | null;
+    date?: string;
+    _method: 'PUT' | 'POST';
     created_at?: string;
     updated_at?: string;
     [key: string]: string | number | File | null | undefined | boolean | Array<string | number>;
@@ -159,8 +181,13 @@ export interface AlbumShowProps {
     albums: Album[];
 }
 
+export interface EventShowProps {
+    event: Event;
+}
+
 export interface AlbumsIndexProps {
     albums: Album[];
+    events: EventsByDate;
 }
 
 export interface AlbumsSliderProps {
@@ -180,8 +207,13 @@ export interface AlbumProps {
 export interface BandAlbumsProps {
     bandAlbums: bandAlbums;
 }
+
 export interface BandProps {
     band?: Band;
+}
+
+export interface EventProps {
+    event?: Event;
 }
 
 export interface IndexPageBandsProps {
@@ -202,6 +234,10 @@ export interface IndexPageProps {
 
 export interface PublisherProps {
     publisher?: Publisher;
+}
+
+export interface IndexPageEventsProps {
+    events: Event[];
 }
 
 // ----------------- UI propsy -----------------
@@ -313,6 +349,11 @@ export interface DatePickerProps {
     onChange: (date: Date | null) => void;
     error?: string;
     required?: boolean;
+}
+export type EventsByDate = Record<string, Event[]>;
+
+export interface EventComponentProps {
+    events: EventsByDate;
 }
 
 // ----------------- Utility typy -----------------

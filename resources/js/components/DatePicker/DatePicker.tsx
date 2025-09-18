@@ -1,12 +1,13 @@
 import { DatePickerProps } from '@/types';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import RequiredStar from '../RequiredStar/RequiredStar';
 
 const DatePickerInput = ({ label, value, onChange, error, required }: DatePickerProps) => {
     return (
         <div className="flex flex-col gap-1">
             <label>
-                {label} {required && '*'}
+                {label} {required && <RequiredStar />}
             </label>
             <div>
                 <DatePicker
