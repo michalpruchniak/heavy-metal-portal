@@ -19,5 +19,4 @@ interface BandServiceInterface
     public function update(int $id, BandDTO $bandDTO): Band;
 
     public function search(string $search): Collection;
-
 }

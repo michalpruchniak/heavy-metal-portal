@@ -26,8 +26,6 @@ class Album extends Model
         'cover' => ImageUrlCast::class,
     ];
 
-
-
     public function band(): BelongsTo
     {
         return $this->belongsTo(Band::class);

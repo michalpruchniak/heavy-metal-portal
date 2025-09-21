@@ -10,7 +10,9 @@ const MenuLinks = () => {
     const toggleOpenMenu = () => {
         setIsOpen(!isOpen);
     };
+
     const menuElements = useMenu();
+
     return (
         <>
             <button className="block w-full cursor-pointer lg:hidden" onClick={toggleOpenMenu} aria-label="Menu">

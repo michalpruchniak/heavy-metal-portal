@@ -41,5 +41,4 @@ interface BaseRepositoryInterface
     public function delete(?Model $model): ?bool;
 
     public function search(string $text): Collection;
-
 }

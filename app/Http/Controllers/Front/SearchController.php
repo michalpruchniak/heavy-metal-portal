@@ -13,7 +13,8 @@ class SearchController extends Controller
         private readonly AlbumServiceInterface $albumService,
     ) {}
 
-    public function search($text) {
+    public function search($text)
+    {
 
         return response()->json([
             'bands' => $this->bandService->search($text),
