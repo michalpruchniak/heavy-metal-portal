@@ -49,4 +49,9 @@ class BandService implements BandServiceInterface
 
         return $band->refresh();
     }
+
+    public function search(string $search): Collection
+    {
+        return $this->bandRepository->search($search);
+    }
 }

@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Repositories\Interfaces\BaseRepositoryInterface;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
 
 abstract class BaseRepository implements BaseRepositoryInterface
 {
@@ -91,5 +92,10 @@ abstract class BaseRepository implements BaseRepositoryInterface
         }
 
         return null;
+    }
+
+    public function search(string $text): Collection
+    {
+        return $this->model->search($text)->get();
     }
 }

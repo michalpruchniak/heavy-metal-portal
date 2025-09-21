@@ -3,6 +3,7 @@
 namespace App\Repositories\Interfaces;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
 
 interface BaseRepositoryInterface
 {
@@ -38,4 +39,7 @@ interface BaseRepositoryInterface
      * Delete record.
      */
     public function delete(?Model $model): ?bool;
+
+    public function search(string $text): Collection;
+
 }

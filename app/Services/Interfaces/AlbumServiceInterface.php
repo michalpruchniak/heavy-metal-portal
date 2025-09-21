@@ -21,4 +21,7 @@ interface AlbumServiceInterface
     public function create(AlbumDTO $albumDTO): Album;
 
     public function update(int $id, AlbumDTO $albumDTO): Album;
+
+    public function search(string $search): Collection;
+
 }

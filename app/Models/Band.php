@@ -6,9 +6,12 @@ use App\Casts\ImageUrlCast;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Laravel\Scout\Searchable;
 
 class Band extends Model
 {
+    use Searchable;
+
     protected $fillable = [
         'name',
         'description',
@@ -28,5 +31,12 @@ class Band extends Model
     public function albums(): HasMany
     {
         return $this->hasMany(Album::class);
+    }
+
+    public function toSearchableArray()
+    {
+        return [
+            'name' => $this->name,
+        ];
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Panel;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\BandRequest;
 use App\Http\Resources\BandEditResource;
+use App\Models\Band;
 use App\Services\Interfaces\BandServiceInterface;
 use App\Services\Interfaces\PersonServiceInterface;
 use Exception;
@@ -64,4 +65,5 @@ class BandController extends Controller
 
         return redirect()->route('bands.index')->with('success', 'Band updated successfully');
     }
+
 }

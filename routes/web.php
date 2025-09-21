@@ -3,6 +3,7 @@
 use App\Http\Controllers\Front\AlbumController as FrontAlbumController;
 use App\Http\Controllers\front\EventController as FrontEventController;
 use App\Http\Controllers\Front\HomeController;
+use App\Http\Controllers\Front\SearchController;
 use App\Http\Controllers\Panel\AlbumController;
 use App\Http\Controllers\Panel\BandController;
 use App\Http\Controllers\Panel\EventController;
@@ -104,6 +105,7 @@ Route::prefix('/panel')->middleware(['auth', 'verified', 'formOptionsMiddleware'
     Route::get('events/create', [EventController::class, 'create'])
         ->name('events.create')
         ->middleware('permission:albums.edit');
+
     Route::post('events', [EventController::class, 'store'])
         ->name('events.store')
         ->middleware('permission:events.create');
@@ -119,7 +121,10 @@ Route::prefix('/panel')->middleware(['auth', 'verified', 'formOptionsMiddleware'
     Route::put('events/{event}', [EventController::class, 'update'])
         ->name('events.update')
         ->middleware('permission:events.edit');
+
 });
+
+Route::get('search/{text}', [SearchController::class, 'search'])->name('search');
 
 require __DIR__.'/settings.php';
 require __DIR__.'/auth.php';

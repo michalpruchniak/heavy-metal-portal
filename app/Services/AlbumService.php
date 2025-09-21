@@ -55,4 +55,9 @@ class AlbumService implements AlbumServiceInterface
 
         return $album->refresh();
     }
+
+    public function search(string $search): Collection
+    {
+        return $this->albumRepository->search($search);
+    }
 }
