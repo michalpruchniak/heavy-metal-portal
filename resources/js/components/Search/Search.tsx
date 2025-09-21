@@ -1,22 +1,24 @@
-import InputText from '@/components/Input/InputText';
 import DefaultImg from '@/components/Atoms/Img/default.jpg';
+import InputText from '@/components/Input/InputText';
+import { useFront } from '@/contexts/FrontContext';
 import useTranslation from '@/hooks/use-translate';
+import { Album, Band } from '@/types';
 import { useForm } from '@inertiajs/react';
-import { useDebounce } from 'use-debounce';
-import { Album, Band, } from '@/types';
-import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { useDebounce } from 'use-debounce';
 
-const Search = ({ isOpen = false }) => {
-const { labels } = useTranslation();
-const { data, setData, errors } = useForm({
-    name: '',
-});
+const Search = () => {
+    const { labels } = useTranslation();
+    const { data, setData, errors } = useForm({
+        name: '',
+    });
 
     const [debouncedName] = useDebounce(data.name, 400);
-
     const [bands, setBands] = useState<Band[]>([]);
     const [albums, setAlbums] = useState<Album[]>([]);
+
+    const { isOpenSearch, closeSearch } = useFront();
 
     useEffect(() => {
         if (debouncedName.length === 0) {
@@ -33,40 +35,52 @@ const { data, setData, errors } = useForm({
             })
             .catch((error) => console.error(error));
     }, [debouncedName]);
-return(
-    <div className={`fixed w-full h-full bg-white/80 dark:bg-black/80 z-50 p-4 ${isOpen ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-95 -translate-y-2 pointer-events-none'}`}>
-    <InputText
-        label={labels.name}
-        required
-        value={data.name}
-        onChange={(e) => setData('name', e)}
-        error={errors.name}
-    />
 
-    {debouncedName && (
-        <div className="mt-4 p-4 rounded shadow max-h-96 overflow-auto">
-            <h3 className="font-bold mb-2">Bands</h3>
-            <div className='flex flex-wrap'>
-                {bands.map((band) => (
-                    <div key={band.id}>
-                        <img src={band?.logo ?? DefaultImg} alt="Logo" className="h-20 w-20 object-contain" />
-                    </div>
-                ))}
+    return (
+        <div
+            className={`fixed inset-0 z-50 h-full w-full bg-white/80 p-4 transition-all duration-300 dark:bg-black/80 ${
+                isOpenSearch ? 'translate-y-0 scale-100 opacity-100' : 'pointer-events-none -translate-y-2 scale-95 opacity-0'
+            }`}
+        >
+            <button
+                onClick={closeSearch}
+                className="absolute top-4 right-4 cursor-pointer text-3xl font-bold text-black transition-transform hover:scale-110 dark:text-white"
+                aria-label="Close search"
+            >
+                &times;
+            </button>
+            <div className="mt-20 flex w-full">
+                <div className="w-full">
+                    <InputText label={labels.name} value={data.name} onChange={(e) => setData('name', e)} error={errors.name} />
+
+                    {debouncedName && (
+                        <div className="mt-4 max-h-96 overflow-auto rounded bg-white p-4 shadow dark:bg-gray-900">
+                            <h3 className="mb-2 font-bold">Bands</h3>
+                            <div className="flex flex-wrap gap-2">
+                                {bands.map((band) => (
+                                    <div key={band.id}>
+                                        <img src={band?.logo ?? DefaultImg} alt="Logo" className="h-20 w-20 object-contain" />
+                                    </div>
+                                ))}
+                            </div>
+
+                            <h3 className="mt-4 mb-2 font-bold">Albums</h3>
+                            <div className="flex flex-wrap gap-2">
+                                {albums.map((album) => (
+                                    <div
+                                        key={album.id}
+                                        className="group relative h-[130px] w-[130px] transform overflow-hidden border transition-transform duration-300 hover:scale-105"
+                                    >
+                                        <img src={album.cover ?? DefaultImg} alt={album.name} className="h-full w-full object-cover" />
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    )}
+                </div>
             </div>
-
-            <h3 className="font-bold mt-4 mb-2">Albums</h3>
-            <ul>
-                {albums.map((album) => (
-                <div className="group relative h-[130px] w-[130px] transform overflow-hidden border transition-transform duration-300 hover:scale-105">
-
-                <img src={album.cover ?? DefaultImg} alt={album.name} className="h-full w-full object-cover" />
-                    </div>
-                ))}
-            </ul>
         </div>
-    )}
-</div>
-)
-}
+    );
+};
 
-export default Search
+export default Search;

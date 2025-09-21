@@ -1,6 +1,8 @@
+import { useFront } from '@/contexts/FrontContext';
 import { faBars, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from '@inertiajs/react';
+import { Search } from 'lucide-react';
 import { useState } from 'react';
 import useMenu from '../hooks/useMenu';
 
@@ -10,6 +12,7 @@ const MenuLinks = () => {
     const toggleOpenMenu = () => {
         setIsOpen(!isOpen);
     };
+    const { isOpenSearch, closeSearch, openSearch } = useFront();
 
     const menuElements = useMenu();
 
@@ -33,6 +36,11 @@ const MenuLinks = () => {
                         </li>
                     );
                 })}
+                <li>
+                    <a onClick={openSearch} className="text-white hover:text-[#FB7419]">
+                        <Search />
+                    </a>
+                </li>
             </ul>
         </>
     );
