@@ -12,7 +12,7 @@ const MenuLinks = () => {
     const toggleOpenMenu = () => {
         setIsOpen(!isOpen);
     };
-    const { isOpenSearch, closeSearch, openSearch } = useFront();
+    const { openSearch } = useFront();
 
     const menuElements = useMenu();
 
@@ -37,7 +37,7 @@ const MenuLinks = () => {
                     );
                 })}
                 <li>
-                    <a onClick={openSearch} className="text-white hover:text-[#FB7419]">
+                    <a onClick={openSearch} className="text-white hover:text-[#FB7419] cursor-pointer">
                         <Search />
                     </a>
                 </li>

@@ -7,6 +7,7 @@ import { useForm } from '@inertiajs/react';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useDebounce } from 'use-debounce';
+import SearchResult from './__partials/components/SearchResult';
 
 const Search = () => {
     const { labels } = useTranslation();
@@ -54,27 +55,17 @@ const Search = () => {
                     <InputText label={labels.name} value={data.name} onChange={(e) => setData('name', e)} error={errors.name} />
 
                     {debouncedName && (
-                        <div className="mt-4 max-h-96 overflow-auto rounded bg-white p-4 shadow dark:bg-gray-900">
-                            <h3 className="mb-2 font-bold">Bands</h3>
-                            <div className="flex flex-wrap gap-2">
-                                {bands.map((band) => (
-                                    <div key={band.id}>
-                                        <img src={band?.logo ?? DefaultImg} alt="Logo" className="h-20 w-20 object-contain" />
-                                    </div>
-                                ))}
-                            </div>
+                        <div className="mt-4 max-h-96 overflow-auto rounded p-4 shadow">
+                            <SearchResult
+                            results={albums}
+                            variant='bands'
+                            />
 
-                            <h3 className="mt-4 mb-2 font-bold">Albums</h3>
-                            <div className="flex flex-wrap gap-2">
-                                {albums.map((album) => (
-                                    <div
-                                        key={album.id}
-                                        className="group relative h-[130px] w-[130px] transform overflow-hidden border transition-transform duration-300 hover:scale-105"
-                                    >
-                                        <img src={album.cover ?? DefaultImg} alt={album.name} className="h-full w-full object-cover" />
-                                    </div>
-                                ))}
-                            </div>
+                            <SearchResult
+                            results={bands}
+                            variant='albums'
+
+                            />
                         </div>
                     )}
                 </div>
