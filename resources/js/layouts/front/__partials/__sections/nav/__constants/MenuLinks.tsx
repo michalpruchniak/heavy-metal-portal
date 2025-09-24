@@ -37,7 +37,7 @@ const MenuLinks = () => {
                     );
                 })}
                 <li>
-                    <a onClick={openSearch} className="text-white hover:text-[#FB7419] cursor-pointer">
+                    <a onClick={openSearch} className="cursor-pointer text-white hover:text-[#FB7419]">
                         <Search />
                     </a>
                 </li>

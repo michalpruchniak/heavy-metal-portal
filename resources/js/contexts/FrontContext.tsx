@@ -1,7 +1,6 @@
 import { FrontContextType } from '@/types';
 import { createContext, ReactNode, useContext, useState } from 'react';
 
-
 const FrontContext = createContext<FrontContextType | undefined>(undefined);
 
 export const FrontProvider = ({ children }: { children: ReactNode }) => {
@@ -11,12 +10,18 @@ export const FrontProvider = ({ children }: { children: ReactNode }) => {
     const closeSearch = () => setIsOpenSearch(false);
     const toggleSearch = () => setIsOpenSearch((prev) => !prev);
 
-    return <FrontContext.Provider value={{
-        isOpenSearch,
-        openSearch,
-        closeSearch,
-        toggleSearch
-    }}>{children}</FrontContext.Provider>;
+    return (
+        <FrontContext.Provider
+            value={{
+                isOpenSearch,
+                openSearch,
+                closeSearch,
+                toggleSearch,
+            }}
+        >
+            {children}
+        </FrontContext.Provider>
+    );
 };
 
 export const useFront = () => {

@@ -1,4 +1,3 @@
-import DefaultImg from '@/components/Atoms/Img/default.jpg';
 import InputText from '@/components/Input/InputText';
 import { useFront } from '@/contexts/FrontContext';
 import useTranslation from '@/hooks/use-translate';
@@ -56,16 +55,9 @@ const Search = () => {
 
                     {debouncedName && (
                         <div className="mt-4 max-h-96 overflow-auto rounded p-4 shadow">
-                            <SearchResult
-                            results={albums}
-                            variant='bands'
-                            />
+                            <SearchResult results={albums} variant="bands" />
 
-                            <SearchResult
-                            results={bands}
-                            variant='albums'
-
-                            />
+                            <SearchResult results={bands} variant="albums" />
                         </div>
                     )}
                 </div>

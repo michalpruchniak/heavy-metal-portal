@@ -251,7 +251,7 @@ export interface FrontContextType {
     openSearch: () => void;
     closeSearch: () => void;
     toggleSearch: () => void;
-};
+}
 
 // ----------------- UI propsy -----------------
 export interface InputTextProps {
