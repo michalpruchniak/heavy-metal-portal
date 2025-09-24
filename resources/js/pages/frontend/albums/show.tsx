@@ -1,11 +1,14 @@
 import AlbumsSlider from '@/components/AlbumsSlider/AlbumsSlider';
 import DefaultImg from '@/components/Atoms/Img/default.jpg';
 import FrontLayout from '@/layouts/front/FrontLayout';
+import useTranslation from '@/hooks/use-translate';
 
 import { AlbumShowProps } from '@/types';
 import 'swiper/css';
 import 'swiper/css/navigation';
 export default function Show({ album, albums }: AlbumShowProps) {
+    const { labels } = useTranslation();
+
     return (
         <FrontLayout>
             <div className="mx-auto max-w-6xl py-5">
@@ -18,17 +21,17 @@ export default function Show({ album, albums }: AlbumShowProps) {
                         <div className="mt-3 flex flex-col gap-2">
                             {album?.band && (
                                 <p>
-                                    <strong>Band:</strong> {album.band.name}
+                                    <strong>{labels.band}:</strong> {album.band.name}
                                 </p>
                             )}
                             {album?.publisher && (
                                 <p>
-                                    <strong>Publisher:</strong> {album.publisher.name}
+                                    <strong>{labels.publisher}:</strong> {album.publisher.name}
                                 </p>
                             )}
                             {album?.release_date && (
                                 <p>
-                                    <strong>Release date:</strong> {album.release_date}
+                                    <strong>{labels.release_date}:</strong> {album.release_date}
                                 </p>
                             )}
                         </div>
@@ -38,14 +41,14 @@ export default function Show({ album, albums }: AlbumShowProps) {
             <div className="mx-auto max-w-6xl py-5">
                 {album?.description && (
                     <>
-                        <h2>Description</h2>
+                        <h2>{labels.description}</h2>
                         <div dangerouslySetInnerHTML={{ __html: album.description }} />
                     </>
                 )}
             </div>
             {albums.length > 0 && (
                 <div className="mx-auto max-w-6xl py-5">
-                    <h2>Other albums</h2>
+                    <h2>{labels.other_albums}</h2>
                     <AlbumsSlider albums={albums} />
                 </div>
             )}

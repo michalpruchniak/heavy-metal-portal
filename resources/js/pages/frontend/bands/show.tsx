@@ -1,10 +1,12 @@
 import AlbumsSlider from '@/components/AlbumsSlider/AlbumsSlider';
 import DefaultImg from '@/components/Atoms/Img/default.jpg';
 import FrontLayout from '@/layouts/front/FrontLayout';
+import useTranslation from '@/hooks/use-translate';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
-export default function Show({ band, albums }: any) {
+export default function Show({ band }: any) {
+    const { labels } = useTranslation();
 
     return (
         <FrontLayout>
@@ -17,7 +19,7 @@ export default function Show({ band, albums }: any) {
                         <h1 className="text-center">{band.name}</h1>
                         <div className="mt-3 flex flex-col gap-2">
                                 <p>
-                                    <strong>Still active:</strong> {band.still_active ? 'yes' : 'no'}
+                                    <strong>{labels.still_active}:</strong> {band.still_active ? 'yes' : 'no'}
                                 </p>
                         </div>
                     </div>
@@ -26,14 +28,14 @@ export default function Show({ band, albums }: any) {
             <div className="mx-auto max-w-6xl py-5">
                 {band?.description && (
                     <>
-                        <h2>Description</h2>
+                        <h2>{labels.description}</h2>
                         <div dangerouslySetInnerHTML={{ __html: band.description }} />
                     </>
                 )}
             </div>
             {band?.albums.length > 0 && (
                 <div className="mx-auto max-w-6xl py-5">
-                    <h2>Dyscography</h2>
+                    <h2>{labels.dyscography}</h2>
                     <AlbumsSlider albums={band?.albums} />
                 </div>
             )}
