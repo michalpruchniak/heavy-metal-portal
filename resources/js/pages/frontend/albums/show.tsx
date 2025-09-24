@@ -1,7 +1,7 @@
 import AlbumsSlider from '@/components/AlbumsSlider/AlbumsSlider';
 import DefaultImg from '@/components/Atoms/Img/default.jpg';
-import FrontLayout from '@/layouts/front/FrontLayout';
 import useTranslation from '@/hooks/use-translate';
+import FrontLayout from '@/layouts/front/FrontLayout';
 
 import { AlbumShowProps } from '@/types';
 import 'swiper/css';

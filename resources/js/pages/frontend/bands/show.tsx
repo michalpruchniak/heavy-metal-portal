@@ -1,7 +1,7 @@
 import AlbumsSlider from '@/components/AlbumsSlider/AlbumsSlider';
 import DefaultImg from '@/components/Atoms/Img/default.jpg';
-import FrontLayout from '@/layouts/front/FrontLayout';
 import useTranslation from '@/hooks/use-translate';
+import FrontLayout from '@/layouts/front/FrontLayout';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -18,9 +18,9 @@ export default function Show({ band }: any) {
                     <div className="px-5 md:px-0">
                         <h1 className="text-center">{band.name}</h1>
                         <div className="mt-3 flex flex-col gap-2">
-                                <p>
-                                    <strong>{labels.still_active}:</strong> {band.still_active ? 'yes' : 'no'}
-                                </p>
+                            <p>
+                                <strong>{labels.still_active}:</strong> {band.still_active ? 'yes' : 'no'}
+                            </p>
                         </div>
                     </div>
                 </div>

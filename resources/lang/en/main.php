@@ -48,7 +48,7 @@ return [
         'events' => 'Events',
         'still_active' => 'Strill active',
         'dyscography' => 'Dyscography',
-        'other_albums' => 'Other albums'
+        'other_albums' => 'Other albums',
     ],
     'placeholders' => [
         'please_select_people' => 'Please select people',

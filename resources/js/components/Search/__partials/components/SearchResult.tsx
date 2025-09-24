@@ -1,7 +1,7 @@
 import DefaultImg from '@/components/Atoms/Img/default.jpg';
 import { SearchResultProps } from '@/types';
-import ResultsVariants from './constants/resultsType';
 import { Link } from '@inertiajs/react';
+import ResultsVariants from './constants/resultsType';
 
 const SearchResult = ({ variant, results }: SearchResultProps) => {
     const {
@@ -21,10 +21,7 @@ const SearchResult = ({ variant, results }: SearchResultProps) => {
                 {results.map((element) => {
                     const imgSrc = element[imageKey] ?? DefaultImg;
                     return (
-                        <Link
-                            key={element.id}
-                            href={route(routeName, { [paramKey]: element.slug })}
-                        >
+                        <Link key={element.id} href={route(routeName, { [paramKey]: element.slug })}>
                             <div key={element.id} className={containerClass}>
                                 <img src={imgSrc} className={imageClass} />
                             </div>
