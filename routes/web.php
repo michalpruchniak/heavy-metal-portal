@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Front\AlbumController as FrontAlbumController;
+use App\Http\Controllers\Front\BandController as FrontBandController;
 use App\Http\Controllers\front\EventController as FrontEventController;
 use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Front\SearchController;
@@ -15,6 +16,7 @@ use Inertia\Inertia;
 Route::get('/', [HomeController::class, 'Home'])
     ->name('home');
 Route::get('album/{album}', [FrontAlbumController::class, 'show'])->name('album.show');
+Route::get('band/{band}', [FrontBandController::class, 'show'])->name('band.show');
 Route::get('event/{event}', [FrontEventController::class, 'show'])->name('event.show');
 
 Route::prefix('/panel')->middleware(['auth', 'verified', 'formOptionsMiddleware'])->group(function () {

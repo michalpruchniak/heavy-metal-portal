@@ -54,10 +54,9 @@ const Search = () => {
                     <InputText label={labels.name} value={data.name} onChange={(e) => setData('name', e)} error={errors.name} />
 
                     {debouncedName && (
-                        <div className="mt-4 max-h-96 overflow-auto rounded p-4 shadow">
-                            <SearchResult results={albums} variant="bands" />
-
-                            <SearchResult results={bands} variant="albums" />
+                        <div className="mt-4 h-full overflow-auto rounded p-4 shadow">
+                            <SearchResult results={bands} variant="bands" />
+                            <SearchResult results={albums} variant="albums" />
                         </div>
                     )}
                 </div>
