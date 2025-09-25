@@ -20,6 +20,7 @@ return new class extends Migration
             $table->date('DOB')->nullable();
             $table->string('img')->nullable();
             $table->enum('type', PersonTypeEnum::values())->default(PersonTypeEnum::NONE->value);
+            $table->string('slug');
             $table->timestamps();
         });
     }

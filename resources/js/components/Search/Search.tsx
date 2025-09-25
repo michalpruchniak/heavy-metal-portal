@@ -51,7 +51,7 @@ const Search = () => {
             </button>
             <div className="mt-20 flex w-full">
                 <div className="w-full">
-                    <InputText label={labels.name} value={data.name} onChange={(e) => setData('name', e)} error={errors.name} />
+                    <InputText label={labels.search} value={data.name} onChange={(e) => setData('name', e)} error={errors.name} />
 
                     {debouncedName && (
                         <div className="mt-4 h-full overflow-auto rounded p-4 shadow">

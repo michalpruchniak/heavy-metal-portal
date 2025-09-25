@@ -3,6 +3,7 @@ import ResultsVariants from '@/components/Search/__partials/components/constants
 import { Album } from '@/pages/albums/__types/types';
 import type { PageProps as InertiaPageProps } from '@inertiajs/core';
 import { Editor } from '@tiptap/core';
+import { StringToBoolean } from 'class-variance-authority/types';
 import { LucideIcon } from 'lucide-react';
 import { ReactNode } from 'react';
 import type { Config } from 'ziggy-js';
@@ -54,7 +55,8 @@ export interface Band {
     logo: string;
     description?: string | null;
     still_active?: boolean | null;
-    people?: any[] | null;
+    people?: any[];
+    albums?: Album[];
     created_at: string;
     updated_at: string;
     [key: string]: string | unknown | boolean | undefined;
@@ -98,8 +100,10 @@ export interface Person {
     bio?: string;
     DOB?: string;
     img?: string;
+    type?: string;
     created_at?: string;
     updated_at?: string;
+    bands?: Band[]
     [key: string]: string | unknown;
 }
 
@@ -251,6 +255,14 @@ export interface FrontContextType {
     openSearch: () => void;
     closeSearch: () => void;
     toggleSearch: () => void;
+}
+
+export interface BandShowProps {
+    band:Band
+}
+
+export interface PersonShowProps {
+    person:Person
 }
 
 // ----------------- UI propsy -----------------

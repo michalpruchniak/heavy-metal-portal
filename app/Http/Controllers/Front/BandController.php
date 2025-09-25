@@ -15,7 +15,7 @@ class BandController extends Controller
 
     public function show(string $band): Response
     {
-        $band = $this->bandService->firstOrFail(where: ['slug' => $band], relationships: ['albums']);
+        $band = $this->bandService->firstOrFail(where: ['slug' => $band], relationships: ['albums', 'people']);
 
         return Inertia::render('frontend/bands/show', ['band' => $band]);
 

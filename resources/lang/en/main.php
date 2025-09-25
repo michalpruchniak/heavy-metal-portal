@@ -46,9 +46,10 @@ return [
         'update_event' => 'Update event',
         'date' => 'Date',
         'events' => 'Events',
-        'still_active' => 'Strill active',
+        'still_active' => 'Still active',
         'dyscography' => 'Dyscography',
         'other_albums' => 'Other albums',
+        'search' => 'search'
     ],
     'placeholders' => [
         'please_select_people' => 'Please select people',

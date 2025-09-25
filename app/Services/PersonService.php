@@ -23,6 +23,10 @@ class PersonService implements PersonServiceInterface
         return $this->personRepository->findOrFail($id);
     }
 
+    public function firstOrFail(array $where = [], array $relationships = []): Person
+    {
+        return $this->personRepository->firstOrFail(where: $where, relationships: $relationships);
+    }
     public function getAll(array $order = ['created_at' => 'desc']): Collection
     {
         return $this->personRepository->get(order: $order);

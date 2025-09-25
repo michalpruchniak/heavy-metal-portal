@@ -6,10 +6,12 @@ use App\Casts\ImageUrlCast;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Laravel\Scout\Searchable;
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
 
 class Person extends Model
 {
-    use Searchable;
+    use HasSlug, Searchable;
 
     protected $fillable = [
         'name',
@@ -24,9 +26,9 @@ class Person extends Model
         'img' => ImageUrlCast::class,
     ];
 
-    public function people(): BelongsToMany
+    public function bands(): BelongsToMany
     {
-        return $this->belongsToMany(Person::class);
+        return $this->belongsToMany(Band::class);
     }
 
     public function toSearchableArray()
@@ -37,5 +39,12 @@ class Person extends Model
             'name' => $this->name,
             'band_name' => $this->band?->name,
         ];
+    }
+
+    public function getSlugOptions(): SlugOptions
+    {
+        return SlugOptions::create()
+            ->generateSlugsFrom('name')
+            ->saveSlugsTo('slug');
     }
 }
