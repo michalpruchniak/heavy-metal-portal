@@ -3,7 +3,6 @@ import ResultsVariants from '@/components/Search/__partials/components/constants
 import { Album } from '@/pages/albums/__types/types';
 import type { PageProps as InertiaPageProps } from '@inertiajs/core';
 import { Editor } from '@tiptap/core';
-import { StringToBoolean } from 'class-variance-authority/types';
 import { LucideIcon } from 'lucide-react';
 import { ReactNode } from 'react';
 import type { Config } from 'ziggy-js';
@@ -103,7 +102,7 @@ export interface Person {
     type?: string;
     created_at?: string;
     updated_at?: string;
-    bands?: Band[]
+    bands?: Band[];
     [key: string]: string | unknown;
 }
 
@@ -258,11 +257,11 @@ export interface FrontContextType {
 }
 
 export interface BandShowProps {
-    band:Band
+    band: Band;
 }
 
 export interface PersonShowProps {
-    person:Person
+    person: Person;
 }
 
 // ----------------- UI propsy -----------------

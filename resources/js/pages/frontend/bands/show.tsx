@@ -44,15 +44,15 @@ export default function Show({ band }: BandShowProps) {
             {people.length > 0 && (
                 <div className="mx-auto max-w-6xl py-5">
                     <h2>{labels.people}</h2>
-                    <div className='flex flex-wrap'>
+                    <div className="flex flex-wrap">
                         {(band.people || []).map((person) => {
-                            return(
-                                <Link href={route('person.show', {'person': person.slug})}>
-                                    <div className='w-40 h-40 overflow-hidden duration-300 hover:scale-105'>
-                                        <img src={person.img} className='h-full w-full object-cover'/>
+                            return (
+                                <Link href={route('person.show', { person: person.slug })}>
+                                    <div className="h-40 w-40 overflow-hidden duration-300 hover:scale-105">
+                                        <img src={person.img} className="h-full w-full object-cover" />
                                     </div>
                                 </Link>
-                            )
+                            );
                         })}
                     </div>
                 </div>

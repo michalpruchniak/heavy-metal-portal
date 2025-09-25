@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Services\Interfaces\PersonServiceInterface;
 use Inertia\Inertia;
 
-
 class PersonController extends Controller
 {
     public function __construct(

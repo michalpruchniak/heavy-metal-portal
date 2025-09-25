@@ -42,12 +42,10 @@ export default function Show({ person }: PersonShowProps) {
                 {bands.length > 0 && (
                     <>
                         <h2>Bands</h2>
-                        <div className='flex flex-wrap gap-2'>
-                        {bands.map((band) => {
-                            return(
-                                <img src={band.logo} alt={band.name} className='h-20'/>
-                            )
-                        })}
+                        <div className="flex flex-wrap gap-2">
+                            {bands.map((band) => {
+                                return <img src={band.logo} alt={band.name} className="h-20" />;
+                            })}
                         </div>
                     </>
                 )}

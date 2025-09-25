@@ -49,7 +49,7 @@ return [
         'still_active' => 'Still active',
         'dyscography' => 'Dyscography',
         'other_albums' => 'Other albums',
-        'search' => 'search'
+        'search' => 'search',
     ],
     'placeholders' => [
         'please_select_people' => 'Please select people',
