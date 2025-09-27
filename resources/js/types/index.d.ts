@@ -1,5 +1,5 @@
 import messageVariant from '@/components/Message/__partials/constants/messageVariant';
-import ResultsVariants from '@/components/Search/__partials/components/constants/resultsType';
+import ResultsVariants from '@/components/Search/__partials/constants/resultsType';
 import { Album } from '@/pages/albums/__types/types';
 import type { PageProps as InertiaPageProps } from '@inertiajs/core';
 import { Editor } from '@tiptap/core';

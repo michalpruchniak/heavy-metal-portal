@@ -1,7 +1,7 @@
 import DefaultImg from '@/components/Atoms/Img/default.jpg';
 import { SearchResultProps } from '@/types';
 import { Link } from '@inertiajs/react';
-import ResultsVariants from './constants/resultsType';
+import ResultsVariants from '../constants/resultsType';
 
 const SearchResult = ({ variant, results }: SearchResultProps) => {
     const {
