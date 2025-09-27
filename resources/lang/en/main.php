@@ -51,6 +51,11 @@ return [
         'other_albums' => 'Other albums',
         'search' => 'search',
         'DOB' => 'DOB',
+        'articles' => 'Articles',
+        'update_article' => 'Update article',
+        'create_article' => 'Create article',
+        'content' => 'Content',
+        'title' => 'Title'
     ],
     'placeholders' => [
         'please_select_people' => 'Please select people',

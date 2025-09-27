@@ -7,6 +7,7 @@ use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Front\PersonController as FrontPersonController;
 use App\Http\Controllers\Front\SearchController;
 use App\Http\Controllers\Panel\AlbumController;
+use App\Http\Controllers\Panel\ArticleController;
 use App\Http\Controllers\Panel\BandController;
 use App\Http\Controllers\Panel\EventController;
 use App\Http\Controllers\Panel\PersonController;
@@ -125,6 +126,13 @@ Route::prefix('/panel')->middleware(['auth', 'verified', 'formOptionsMiddleware'
     Route::put('events/{event}', [EventController::class, 'update'])
         ->name('events.update')
         ->middleware('permission:events.edit');
+
+    Route::get('articles/create', [ArticleController::class, 'create'])
+        ->name('articles.create')
+        ->middleware('permission:events.edit');
+
+    Route::post('articles', [ArticleController::class, 'store'])
+        ->name('articles.store');
 
 });
 
