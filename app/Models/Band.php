@@ -35,7 +35,7 @@ class Band extends Model
         return $this->hasMany(Album::class)->orderBy('release_date');
     }
 
-    public function toSearchableArray()
+    public function toSearchableArray(): array
     {
         return [
             'name' => $this->name,

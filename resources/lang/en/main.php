@@ -50,6 +50,7 @@ return [
         'dyscography' => 'Dyscography',
         'other_albums' => 'Other albums',
         'search' => 'search',
+        'DOB' => 'DOB',
     ],
     'placeholders' => [
         'please_select_people' => 'Please select people',

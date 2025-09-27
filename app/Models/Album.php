@@ -43,7 +43,7 @@ class Album extends Model
             ->saveSlugsTo('slug');
     }
 
-    public function toSearchableArray()
+    public function toSearchableArray(): array
     {
         $this->loadMissing('band');
 

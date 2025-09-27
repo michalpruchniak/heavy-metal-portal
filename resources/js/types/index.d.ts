@@ -54,7 +54,7 @@ export interface Band {
     logo: string;
     description?: string | null;
     still_active?: boolean | null;
-    people?: any[];
+    people?: Person[];
     albums?: Album[];
     created_at: string;
     updated_at: string;

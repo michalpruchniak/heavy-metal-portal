@@ -31,7 +31,7 @@ class Person extends Model
         return $this->belongsToMany(Band::class);
     }
 
-    public function toSearchableArray()
+    public function toSearchableArray(): array
     {
         $this->loadMissing('band');
 
