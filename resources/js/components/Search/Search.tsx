@@ -36,6 +36,22 @@ const Search = () => {
             .catch((error) => console.error(error));
     }, [debouncedName]);
 
+    useEffect(() => {
+        const handleEsc = (event: KeyboardEvent) => {
+            if (event.key === 'Escape') {
+                closeSearch();
+            }
+        };
+
+        if (isOpenSearch) {
+            window.addEventListener('keydown', handleEsc);
+        }
+
+        return () => {
+            window.removeEventListener('keydown', handleEsc);
+        };
+    }, [isOpenSearch, closeSearch]);
+
     return (
         <div
             className={`fixed inset-0 z-50 h-full w-full bg-white/80 p-4 transition-all duration-300 dark:bg-black/80 ${

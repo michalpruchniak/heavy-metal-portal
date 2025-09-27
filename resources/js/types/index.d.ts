@@ -65,7 +65,7 @@ export interface Event {
     id: number;
     name: string;
     cover: string;
-    description?: string | null;
+    description?: string;
     date: string;
     formatted_date?: string;
     created_at: string;
@@ -179,6 +179,17 @@ export interface PublisherFormData {
     [key: string]: string | number | File | null | undefined;
 }
 
+export interface EventComponentProps {
+    events: EventsByDate;
+}
+
+export interface PeopleListProps {
+    people: Person[];
+}
+export interface SinglePersonProps {
+    person: Person;
+}
+
 // ----------------- Propsy dla stron/komponentów -----------------
 export interface AlbumShowProps {
     album: Album;
@@ -195,6 +206,7 @@ export interface AlbumsIndexProps {
 }
 
 export interface AlbumsSliderProps {
+    label: string;
     albums: Album[];
 }
 
@@ -264,6 +276,13 @@ export interface PersonShowProps {
     person: Person;
 }
 
+export interface BandsListProps {
+    bands: Band[];
+}
+
+export interface SingleBandProps {
+    band: Band;
+}
 // ----------------- UI propsy -----------------
 export interface InputTextProps {
     value?: string | null;
@@ -375,10 +394,6 @@ export interface DatePickerProps {
     required?: boolean;
 }
 export type EventsByDate = Record<string, Event[]>;
-
-export interface EventComponentProps {
-    events: EventsByDate;
-}
 
 // ----------------- Utility typy -----------------
 export interface Option {

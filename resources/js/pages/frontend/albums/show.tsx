@@ -46,12 +46,8 @@ export default function Show({ album, albums }: AlbumShowProps) {
                     </>
                 )}
             </div>
-            {albums.length > 0 && (
-                <div className="mx-auto max-w-6xl py-5">
-                    <h2>{labels.other_albums}</h2>
-                    <AlbumsSlider albums={albums} />
-                </div>
-            )}
+
+            <AlbumsSlider label={labels.other_albums} albums={albums} />
         </FrontLayout>
     );
 }

@@ -2,6 +2,7 @@ import DefaultImg from '@/components/Atoms/Img/default.jpg';
 import useTranslation from '@/hooks/use-translate';
 import FrontLayout from '@/layouts/front/FrontLayout';
 import { PersonShowProps } from '@/types';
+import { Link } from '@inertiajs/react';
 
 export default function Show({ person }: PersonShowProps) {
     const { labels } = useTranslation();
@@ -41,10 +42,14 @@ export default function Show({ person }: PersonShowProps) {
             <div className="mx-auto max-w-6xl py-5">
                 {bands.length > 0 && (
                     <>
-                        <h2>Bands</h2>
+                        <h2>{labels.band}</h2>
                         <div className="flex flex-wrap gap-2">
                             {bands.map((band) => {
-                                return <img src={band.logo} alt={band.name} className="h-20" />;
+                                return (
+                                    <Link href={route('band.show', { band: band.slug })}>
+                                        <img src={band.logo} alt={band.name} className="h-20 duration-300 hover:scale-105" />
+                                    </Link>
+                                );
                             })}
                         </div>
                     </>
