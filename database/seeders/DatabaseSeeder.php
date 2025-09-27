@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
             UserTableSeeder::class,
             PublisherTableSeeder::class,
             PersonPositionTableSeeder::class,
+            MeiliSeeder::class,
         ]);
     }
 }

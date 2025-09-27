@@ -12,9 +12,13 @@ interface BandServiceInterface
 
     public function getAll(array $order = ['created_at' => 'desc']): Collection;
 
+    public function firstOrFail(array $where = [], array $relationships = []): Band;
+
     public function findOrFail(int $id): Band;
 
     public function create(BandDTO $bandDTO): Band;
 
     public function update(int $id, BandDTO $bandDTO): Band;
+
+    public function search(string $search): Collection;
 }

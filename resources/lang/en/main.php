@@ -13,6 +13,7 @@ return [
     ],
     'labels' => [
         'publishers' => 'Publishers',
+        'publisher' => 'Publisher',
         'add_new_publisher' => 'Add new publisher',
         'update_publisher' => 'Update publisher',
         'create_publisher' => 'Create publisher',
@@ -32,6 +33,7 @@ return [
         'type' => 'Type',
         'description' => 'Description',
         'bands' => 'Bands',
+        'band' => 'Band',
         'update_band' => 'Update band',
         'create_band' => 'Create band',
         'photo' => 'Photo',
@@ -44,6 +46,11 @@ return [
         'update_event' => 'Update event',
         'date' => 'Date',
         'events' => 'Events',
+        'still_active' => 'Still active',
+        'dyscography' => 'Dyscography',
+        'other_albums' => 'Other albums',
+        'search' => 'search',
+        'DOB' => 'DOB',
     ],
     'placeholders' => [
         'please_select_people' => 'Please select people',

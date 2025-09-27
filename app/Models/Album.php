@@ -5,12 +5,13 @@ namespace App\Models;
 use App\Casts\ImageUrlCast;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Laravel\Scout\Searchable;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
 class Album extends Model
 {
-    use HasSlug;
+    use HasSlug, Searchable;
 
     protected $fillable = [
         'band_id',
@@ -40,5 +41,15 @@ class Album extends Model
         return SlugOptions::create()
             ->generateSlugsFrom('name')
             ->saveSlugsTo('slug');
+    }
+
+    public function toSearchableArray(): array
+    {
+        $this->loadMissing('band');
+
+        return [
+            'name' => $this->name,
+            'band_name' => $this->band?->name,
+        ];
     }
 }

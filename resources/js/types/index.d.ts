@@ -1,4 +1,5 @@
 import messageVariant from '@/components/Message/__partials/constants/messageVariant';
+import ResultsVariants from '@/components/Search/__partials/components/constants/resultsType';
 import { Album } from '@/pages/albums/__types/types';
 import type { PageProps as InertiaPageProps } from '@inertiajs/core';
 import { Editor } from '@tiptap/core';
@@ -53,7 +54,8 @@ export interface Band {
     logo: string;
     description?: string | null;
     still_active?: boolean | null;
-    people?: any[] | null;
+    people?: Person[];
+    albums?: Album[];
     created_at: string;
     updated_at: string;
     [key: string]: string | unknown | boolean | undefined;
@@ -63,7 +65,7 @@ export interface Event {
     id: number;
     name: string;
     cover: string;
-    description?: string | null;
+    description?: string;
     date: string;
     formatted_date?: string;
     created_at: string;
@@ -97,8 +99,10 @@ export interface Person {
     bio?: string;
     DOB?: string;
     img?: string;
+    type?: string;
     created_at?: string;
     updated_at?: string;
+    bands?: Band[];
     [key: string]: string | unknown;
 }
 
@@ -175,6 +179,17 @@ export interface PublisherFormData {
     [key: string]: string | number | File | null | undefined;
 }
 
+export interface EventComponentProps {
+    events: EventsByDate;
+}
+
+export interface PeopleListProps {
+    people: Person[];
+}
+export interface SinglePersonProps {
+    person: Person;
+}
+
 // ----------------- Propsy dla stron/komponentów -----------------
 export interface AlbumShowProps {
     album: Album;
@@ -191,6 +206,7 @@ export interface AlbumsIndexProps {
 }
 
 export interface AlbumsSliderProps {
+    label: string;
     albums: Album[];
 }
 
@@ -240,6 +256,33 @@ export interface IndexPageEventsProps {
     events: Event[];
 }
 
+export interface SearchResultProps {
+    variant: keyof typeof ResultsVariants;
+    results: Band[] | Album[];
+}
+
+export interface FrontContextType {
+    isOpenSearch: boolean;
+    openSearch: () => void;
+    closeSearch: () => void;
+    toggleSearch: () => void;
+}
+
+export interface BandShowProps {
+    band: Band;
+}
+
+export interface PersonShowProps {
+    person: Person;
+}
+
+export interface BandsListProps {
+    bands: Band[];
+}
+
+export interface SingleBandProps {
+    band: Band;
+}
 // ----------------- UI propsy -----------------
 export interface InputTextProps {
     value?: string | null;
@@ -351,10 +394,6 @@ export interface DatePickerProps {
     required?: boolean;
 }
 export type EventsByDate = Record<string, Event[]>;
-
-export interface EventComponentProps {
-    events: EventsByDate;
-}
 
 // ----------------- Utility typy -----------------
 export interface Option {

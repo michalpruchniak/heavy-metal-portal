@@ -1,6 +1,8 @@
+import { useFront } from '@/contexts/FrontContext';
 import { faBars, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from '@inertiajs/react';
+import { Search } from 'lucide-react';
 import { useState } from 'react';
 import useMenu from '../hooks/useMenu';
 
@@ -10,7 +12,10 @@ const MenuLinks = () => {
     const toggleOpenMenu = () => {
         setIsOpen(!isOpen);
     };
+    const { openSearch } = useFront();
+
     const menuElements = useMenu();
+
     return (
         <>
             <button className="block w-full cursor-pointer lg:hidden" onClick={toggleOpenMenu} aria-label="Menu">
@@ -31,6 +36,11 @@ const MenuLinks = () => {
                         </li>
                     );
                 })}
+                <li>
+                    <a onClick={openSearch} className="cursor-pointer text-white hover:text-[#FB7419]">
+                        <Search />
+                    </a>
+                </li>
             </ul>
         </>
     );

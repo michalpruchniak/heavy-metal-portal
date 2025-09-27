@@ -17,6 +17,7 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->string('logo')->nullable();
             $table->boolean('still_active')->default(1);
+            $table->string('slug');
             $table->timestamps();
         });
     }

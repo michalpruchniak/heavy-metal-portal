@@ -12,6 +12,8 @@ interface PersonServiceInterface
 
     public function findOrFail(int $id): Person;
 
+    public function firstOrFail(array $where = [], array $relationships = []): Person;
+
     public function getAll(array $order = ['created_at' => 'desc']): Collection;
 
     public function create(PersonDTO $personDTO): Person;

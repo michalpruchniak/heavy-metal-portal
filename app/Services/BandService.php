@@ -22,6 +22,11 @@ class BandService implements BandServiceInterface
         return $this->bandRepository->get(order: $order);
     }
 
+    public function firstOrFail(array $where = [], array $relationships = []): Band
+    {
+        return $this->bandRepository->firstOrFail(where: $where, relationships: $relationships);
+    }
+
     public function findOrFail(int $id): Band
     {
         return $this->bandRepository->findOrFail(id: $id, relationships: ['people']);
@@ -48,5 +53,10 @@ class BandService implements BandServiceInterface
         $band->people()->sync($bandDTO->people);
 
         return $band->refresh();
+    }
+
+    public function search(string $search): Collection
+    {
+        return $this->bandRepository->search($search);
     }
 }
