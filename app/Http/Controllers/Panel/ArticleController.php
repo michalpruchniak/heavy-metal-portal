@@ -37,7 +37,6 @@ class ArticleController extends Controller
         try {
             $this->articleService->create($request->getDTO());
         } catch (Exception $e) {
-            dd($e);
 
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
@@ -58,7 +57,6 @@ class ArticleController extends Controller
         try {
             $this->articleService->update($article, $request->getDTO());
         } catch (Exception $e) {
-            dd($e);
 
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }

@@ -6,11 +6,11 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import MainArticles from '../mainArticles/MainArticles';
 
-export default function Index({ albums, events }: AlbumsIndexProps) {
+export default function Index({ albums, events, articles }: AlbumsIndexProps) {
     return (
         <FrontLayout>
             <div className="dark:bg-dark-500 min-h-[280px] w-full bg-black text-white">
-                <MainArticles />
+                <MainArticles articles={articles} />
             </div>
             <div className="mx-auto max-w-6xl py-5">
                 <AlbumsSlider albums={albums} />

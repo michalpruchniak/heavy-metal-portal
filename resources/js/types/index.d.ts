@@ -204,6 +204,11 @@ export interface EventComponentProps {
     events: EventsByDate;
 }
 
+export interface MainArticlesComponentProps {
+    articles: Article[];
+}
+
+
 export interface PeopleListProps {
     people: Person[];
 }
@@ -223,6 +228,7 @@ export interface EventShowProps {
 
 export interface AlbumsIndexProps {
     albums: Album[];
+    articles: Article[];
     events: EventsByDate;
 }
 

@@ -5,7 +5,7 @@ import { Autoplay, Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import AlbumElement from '../AlbumElement/AlbumElement';
 
-const AlbumsSlider = ({ albums, label }: AlbumsSliderProps) => {
+const AlbumsSlider = ({ albums, label = '' }: AlbumsSliderProps) => {
     if (albums.length === 0) {
         return;
     }
