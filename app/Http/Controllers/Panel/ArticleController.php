@@ -14,9 +14,18 @@ use Illuminate\Http\RedirectResponse;
 
 class ArticleController extends Controller
 {
-    public function __construct(private readonly ArticleServiceInerface $articleService)
-    {
+    public function __construct(
+        private readonly ArticleServiceInerface $articleService
+        )
+    {}
 
+    public function index(): Response
+    {
+        $articles = $this->articleService->getAll();
+
+        return Inertia::render('articles/index', [
+            'articles' => $articles,
+        ]);
     }
     public function create(): Response
     {

@@ -1,30 +1,28 @@
 import InputFile from '@/components/Input/InputFile';
 import InputText from '@/components/Input/InputText';
-import RequiredStar from '@/components/RequiredStar/RequiredStar';
 import TextEditor from '@/components/TextEditor/TextEditor';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
 import useTranslation from '@/hooks/use-translate';
 import AppLayout from '@/layouts/app-layout';
-import { BandFormData, BandProps, PageProps } from '@/types';
-import { Head, useForm, usePage } from '@inertiajs/react';
+import { ArticleFormData, ArticleProps, } from '@/types';
+import { Head, useForm  } from '@inertiajs/react';
 import { FormEvent } from 'react';
 
-const Create = ({ article }: any) => {
-    const { labels, placeholders, buttons } = useTranslation();
+const Create = ({ article }: ArticleProps) => {
+    const { labels, buttons } = useTranslation();
     const breadcrumbs = [
         {
             title: labels.articles,
-            href: route('bands.index'),
+            href: route('articles.index'),
         },
         {
             title: article? labels.update_article : labels.create_article,
-            href: article ? route('bands.edit', { band: article.id }) : route('bands.create'),
+            href: article ? route('articles.edit', { article: article.id }) : route('articles.create'),
         },
     ];
 
 
-    const { data, setData, processing, post, errors } = useForm<any>({
+    const { data, setData, processing, post, errors } = useForm<ArticleFormData>({
         title: typeof article?.title === 'string' ? article.title : '',
         content: typeof article?.content === 'string' ? article?.content : '',
         cover: null,

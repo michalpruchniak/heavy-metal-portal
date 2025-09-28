@@ -9,6 +9,7 @@ return [
         'create' => 'Create',
         'update' => 'Update',
         'add_new_event' => 'Add new event',
+        'add_new_article' => 'Add new article'
 
     ],
     'labels' => [
@@ -55,10 +56,11 @@ return [
         'update_article' => 'Update article',
         'create_article' => 'Create article',
         'content' => 'Content',
-        'title' => 'Title'
+        'title' => 'Title',
     ],
     'placeholders' => [
         'please_select_people' => 'Please select people',
         'no_people_to_display' => 'No people to display',
+        'search_by_title' => 'Search by title'
     ],
 ];

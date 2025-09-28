@@ -73,6 +73,16 @@ export interface Event {
     [key: string]: string | unknown | boolean | undefined;
 }
 
+export interface Article {
+    id: number;
+    title: string;
+    content: string;
+    cover: string;
+    created_at: string;
+    updated_at: string;
+    [key: string]: string | unknown | undefined;
+}
+
 export interface Album {
     id: number;
     band_id: number;
@@ -130,6 +140,17 @@ export interface BandFormData {
     created_at?: string;
     updated_at?: string;
     [key: string]: string | number | File | null | undefined | boolean | Array<string | number>;
+}
+
+export interface ArticleFormData {
+    id?: number;
+    title: string;
+    content: string;
+    cover?: File | null;
+    _method: 'PUT' | 'POST';
+    created_at?: string;
+    updated_at?: string;
+    [key: string]: string | number | File | null | undefined;
 }
 
 export interface EventFormData {
@@ -227,6 +248,9 @@ export interface BandAlbumsProps {
 export interface BandProps {
     band?: Band;
 }
+export interface ArticleProps {
+    article?: Article;
+}
 
 export interface EventProps {
     event?: Event;
@@ -254,6 +278,10 @@ export interface PublisherProps {
 
 export interface IndexPageEventsProps {
     events: Event[];
+}
+
+export interface IndexPageArticlesProps {
+    articles: Article[];
 }
 
 export interface SearchResultProps {

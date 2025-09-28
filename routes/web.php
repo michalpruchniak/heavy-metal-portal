@@ -131,6 +131,9 @@ Route::prefix('/panel')->middleware(['auth', 'verified', 'formOptionsMiddleware'
         ->name('articles.create')
         ->middleware('permission:events.edit');
 
+        Route::get('articles/', [ArticleController::class, 'index'])
+        ->name('articles.index')
+        ->middleware('permission:events.edit');
     Route::post('articles', [ArticleController::class, 'store'])
         ->name('articles.store');
 

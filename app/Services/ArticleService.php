@@ -7,6 +7,7 @@ use App\Models\Article;
 use App\Repositories\Interfaces\ArticleRepositoryInterface;
 use App\Services\Interfaces\ArticleServiceInerface;
 use App\Services\Interfaces\FileUploadServiceInterface;
+use Illuminate\Support\Collection;
 
 class ArticleService implements ArticleServiceInerface {
     const ARTICLE_CATALOG_COVER_DIRECTORY = 'article/cover';
@@ -16,6 +17,11 @@ class ArticleService implements ArticleServiceInerface {
         private readonly ArticleRepositoryInterface $articleRepository
         )
     {}
+
+    public function getAll(array $order = ['created_at' => 'desc']): Collection
+    {
+        return $this->articleRepository->get(order: $order);
+    }
 
     public function create(ArticleDTO $articleDTO): Article
     {
