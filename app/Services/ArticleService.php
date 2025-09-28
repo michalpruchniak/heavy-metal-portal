@@ -20,11 +20,23 @@ class ArticleService implements ArticleServiceInerface {
     public function create(ArticleDTO $articleDTO): Article
     {
         $articleData = $articleDTO->toArray();
-
         $articleData['cover'] = $this->fileUploadService->saveOrUpdatePhoto(null, $articleDTO->cover, self::ARTICLE_CATALOG_COVER_DIRECTORY);
         $article = $this->articleRepository->create($articleData);
 
         return $article;
+    }
+
+    public function update(int $id, ArticleDTO $articleDTO): Article
+    {
+        $article = $this->articleRepository->findOrFail($id);
+        $articleData = $articleDTO->toArray();
+        $articleData['cover'] = $this->fileUploadService->saveOrUpdatePhoto($article->getRawOriginal('cover'), $articleDTO->cover, self::ARTICLE_CATALOG_COVER_DIRECTORY);
+
+
+        $article->update($articleData);
+
+        return $article;
+
     }
 }
 

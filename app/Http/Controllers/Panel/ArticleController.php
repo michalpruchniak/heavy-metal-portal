@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Panel;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ArticleRequest;
+use App\Models\Article;
 use App\Services\Interfaces\ArticleServiceInerface;
 use Exception;
 use Illuminate\Http\Request;
@@ -33,5 +34,25 @@ class ArticleController extends Controller
         }
 
         return redirect()->route('bands.index')->with('success', 'Article created successfully');
+    }
+
+    public function Edit(Article $article): Response
+    {
+        return Inertia::render('articles/create', [
+            'article' => $article
+        ]);
+
+    }
+
+    public function update(int $article, ArticleRequest $request): RedirectResponse
+    {
+        try {
+            $this->articleService->update($article, $request->getDTO());
+        } catch (Exception $e) {
+            dd($e);
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+        }
+
+        return redirect()->route('bands.index')->with('success', 'Band updated successfully');
     }
 }

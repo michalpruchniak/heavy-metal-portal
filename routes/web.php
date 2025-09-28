@@ -134,6 +134,13 @@ Route::prefix('/panel')->middleware(['auth', 'verified', 'formOptionsMiddleware'
     Route::post('articles', [ArticleController::class, 'store'])
         ->name('articles.store');
 
+    Route::get('articles/edit/{article}', [ArticleController::class, 'edit'])
+    ->name('articles.edit')
+    ->middleware('permission:events.edit');
+
+    Route::put('articles/{article}', [ArticleController::class, 'update'])
+    ->name('articles.update');
+
 });
 
 Route::get('search/{text}', [SearchController::class, 'search'])->name('search');

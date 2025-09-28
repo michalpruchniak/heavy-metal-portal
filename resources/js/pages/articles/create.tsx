@@ -32,7 +32,7 @@ const Create = ({ article }: any) => {
     });
 
     const sendRequest = () => {
-        const targetRoute = article ? route('bands.update', { band: article.id }) : route('articles.store');
+        const targetRoute = article ? route('articles.update', { article: article.id }) : route('articles.store');
 
         post(targetRoute, {
             preserveScroll: true,
@@ -47,7 +47,7 @@ const Create = ({ article }: any) => {
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title={article ? labels.update_article : labels.create_article} />
             <div className="flex h-full flex-1 flex-col gap-4 rounded-xl p-4">
-                <h1 className="text-center text-[45px]">{article ? `${labels.update_article} ${article.name}` : labels.create_article}</h1>
+                <h1 className="text-center text-[45px]">{article ? `${labels.update_article} ${article.title}` : labels.create_article}</h1>
 
                 <form onSubmit={handleSubmit} encType="multipart/form-data" className="flex flex-col gap-4 px-[15px] md:px-[17%]">
                     <div>
@@ -68,7 +68,6 @@ const Create = ({ article }: any) => {
                     <div>
                         <InputFile
                             name="cover"
-                            required={true}
                             label={labels.cover}
                             onChange={(file) => setData('cover', file)}
                             error={errors.cover}

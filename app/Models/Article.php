@@ -22,12 +22,18 @@ class Article extends Model
     public function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()
-            ->generateSlugsFrom('name')
+            ->generateSlugsFrom('title')
             ->saveSlugsTo('slug');
     }
 
     protected $casts = [
         'cover' => ImageUrlCast::class,
     ];
+
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
+    }
+
 
 }

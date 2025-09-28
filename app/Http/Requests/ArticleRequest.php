@@ -26,7 +26,7 @@ class ArticleRequest extends FormRequest
         return [
             'title' => 'required|string|between:2,250',
             'content' => ['required', 'string', new MaxLengthWithoutHTMLRule(10000)],
-            'cover' => 'required|max:1500|image|mimes:jpg,jpeg,png,webp'
+            'cover' => 'nullable|max:1500|image|mimes:jpg,jpeg,png,webp'
         ];
     }
 
