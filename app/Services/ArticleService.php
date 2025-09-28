@@ -9,14 +9,14 @@ use App\Services\Interfaces\ArticleServiceInerface;
 use App\Services\Interfaces\FileUploadServiceInterface;
 use Illuminate\Support\Collection;
 
-class ArticleService implements ArticleServiceInerface {
+class ArticleService implements ArticleServiceInerface
+{
     const ARTICLE_CATALOG_COVER_DIRECTORY = 'article/cover';
 
     public function __construct(
         private readonly FileUploadServiceInterface $fileUploadService,
         private readonly ArticleRepositoryInterface $articleRepository
-        )
-    {}
+    ) {}
 
     public function getAll(array $order = ['created_at' => 'desc']): Collection
     {
@@ -38,11 +38,9 @@ class ArticleService implements ArticleServiceInerface {
         $articleData = $articleDTO->toArray();
         $articleData['cover'] = $this->fileUploadService->saveOrUpdatePhoto($article->getRawOriginal('cover'), $articleDTO->cover, self::ARTICLE_CATALOG_COVER_DIRECTORY);
 
-
         $article->update($articleData);
 
         return $article;
 
     }
 }
-

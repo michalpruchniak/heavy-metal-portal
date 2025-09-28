@@ -4,9 +4,9 @@ namespace App\Models;
 
 use App\Casts\ImageUrlCast;
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
-use Laravel\Scout\Searchable;
 
 class Article extends Model
 {
@@ -16,7 +16,7 @@ class Article extends Model
         'title',
         'content',
         'cover',
-        'slug'
+        'slug',
     ];
 
     public function getSlugOptions(): SlugOptions
@@ -34,6 +34,4 @@ class Article extends Model
     {
         return 'slug';
     }
-
-
 }

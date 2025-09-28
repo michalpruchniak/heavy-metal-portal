@@ -7,17 +7,15 @@ use App\Http\Requests\ArticleRequest;
 use App\Models\Article;
 use App\Services\Interfaces\ArticleServiceInerface;
 use Exception;
-use Illuminate\Http\Request;
-use Inertia\Response;
-use Inertia\Inertia;
 use Illuminate\Http\RedirectResponse;
+use Inertia\Inertia;
+use Inertia\Response;
 
 class ArticleController extends Controller
 {
     public function __construct(
         private readonly ArticleServiceInerface $articleService
-        )
-    {}
+    ) {}
 
     public function index(): Response
     {
@@ -27,6 +25,7 @@ class ArticleController extends Controller
             'articles' => $articles,
         ]);
     }
+
     public function create(): Response
     {
         return Inertia::render('articles/create');
@@ -39,6 +38,7 @@ class ArticleController extends Controller
             $this->articleService->create($request->getDTO());
         } catch (Exception $e) {
             dd($e);
+
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
 
@@ -48,7 +48,7 @@ class ArticleController extends Controller
     public function Edit(Article $article): Response
     {
         return Inertia::render('articles/create', [
-            'article' => $article
+            'article' => $article,
         ]);
 
     }
@@ -59,6 +59,7 @@ class ArticleController extends Controller
             $this->articleService->update($article, $request->getDTO());
         } catch (Exception $e) {
             dd($e);
+
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
 

@@ -1,7 +1,7 @@
 import DefaultImg from '@/components/Atoms/Img/default.jpg';
 import ButtonLink from '@/components/Button/ButtonLink';
 import useTranslation from '@/hooks/use-translate';
-import { Article, Event } from '@/types';
+import { Article } from '@/types';
 import { TableColumn } from 'react-data-table-component';
 
 const ArticlesTableColumns = (): TableColumn<Article>[] => {

@@ -11,7 +11,6 @@ export default function Index({ articles }: IndexPageArticlesProps) {
     const { labels, buttons, placeholders } = useTranslation();
 
     const breadcrumbs = [
-
         {
             title: labels.articles,
             href: route('articles.index'),
@@ -28,7 +27,12 @@ export default function Index({ articles }: IndexPageArticlesProps) {
                         {buttons.add_new_article}
                     </ButtonLink>
                 </div>
-                <Table<Article> filterField="title" placeholderFilteredInput={placeholders.search_by_title} data={articles} columns={ArticlesTableColumns()} />
+                <Table<Article>
+                    filterField="title"
+                    placeholderFilteredInput={placeholders.search_by_title}
+                    data={articles}
+                    columns={ArticlesTableColumns()}
+                />
             </div>
         </AppLayout>
     );

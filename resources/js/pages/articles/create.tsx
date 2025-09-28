@@ -4,8 +4,8 @@ import TextEditor from '@/components/TextEditor/TextEditor';
 import { Button } from '@/components/ui/button';
 import useTranslation from '@/hooks/use-translate';
 import AppLayout from '@/layouts/app-layout';
-import { ArticleFormData, ArticleProps, } from '@/types';
-import { Head, useForm  } from '@inertiajs/react';
+import { ArticleFormData, ArticleProps } from '@/types';
+import { Head, useForm } from '@inertiajs/react';
 import { FormEvent } from 'react';
 
 const Create = ({ article }: ArticleProps) => {
@@ -16,11 +16,10 @@ const Create = ({ article }: ArticleProps) => {
             href: route('articles.index'),
         },
         {
-            title: article? labels.update_article : labels.create_article,
+            title: article ? labels.update_article : labels.create_article,
             href: article ? route('articles.edit', { article: article.id }) : route('articles.create'),
         },
     ];
-
 
     const { data, setData, processing, post, errors } = useForm<ArticleFormData>({
         title: typeof article?.title === 'string' ? article.title : '',
@@ -49,7 +48,13 @@ const Create = ({ article }: ArticleProps) => {
 
                 <form onSubmit={handleSubmit} encType="multipart/form-data" className="flex flex-col gap-4 px-[15px] md:px-[17%]">
                     <div>
-                        <InputText label={labels.title} required={true} value={data.title} onChange={(e) => setData('title', e)} error={errors.title} />
+                        <InputText
+                            label={labels.title}
+                            required={true}
+                            value={data.title}
+                            onChange={(e) => setData('title', e)}
+                            error={errors.title}
+                        />
                     </div>
                     <div>
                         <TextEditor
@@ -63,14 +68,9 @@ const Create = ({ article }: ArticleProps) => {
                         />
                     </div>
                     <div>
-                    <div>
-                        <InputFile
-                            name="cover"
-                            label={labels.cover}
-                            onChange={(file) => setData('cover', file)}
-                            error={errors.cover}
-                        />
-                    </div>
+                        <div>
+                            <InputFile name="cover" label={labels.cover} onChange={(file) => setData('cover', file)} error={errors.cover} />
+                        </div>
                     </div>
                     <Button type="submit" disabled={processing} className="self-start">
                         {article ? buttons.update : buttons.create}
