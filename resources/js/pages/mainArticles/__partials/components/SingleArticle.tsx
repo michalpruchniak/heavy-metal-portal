@@ -1,10 +1,12 @@
 import { SingleArticleComponentProps } from '@/types';
+import { Link } from '@inertiajs/react';
 import singleArticleVariants from '../constants/singleArticleVariants';
 
 const SingleArticle = ({ article, variant }: SingleArticleComponentProps) => {
     const className = singleArticleVariants[variant].className || singleArticleVariants['other'].className;
 
     return (
+        <Link href={route('article.show', { article: article.slug })}>
             <div className="group relative h-full w-full overflow-hidden rounded">
                 <img
                     src={article.cover}
@@ -18,6 +20,7 @@ const SingleArticle = ({ article, variant }: SingleArticleComponentProps) => {
                     </div>
                 </div>
             </div>
+        </Link>
     );
 };
 

@@ -227,6 +227,10 @@ export interface AlbumShowProps {
     albums: Album[];
 }
 
+export interface ArticleShowProps {
+    article: Article;
+}
+
 export interface EventShowProps {
     event: Event;
 }
@@ -500,13 +504,12 @@ export interface ButtonTypes {
 
 type SingleArticleTypes = {
     main: {
-      className: string;
+        className: string;
     };
     other: {
-      className: string;
+        className: string;
     };
-  };
-
+};
 
 export interface MenuElement {
     label: string;

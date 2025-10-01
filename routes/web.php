@@ -5,6 +5,7 @@ use App\Http\Controllers\Front\BandController as FrontBandController;
 use App\Http\Controllers\front\EventController as FrontEventController;
 use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Front\PersonController as FrontPersonController;
+use App\Http\Controllers\Front\ArticleController as FrontArticleController;
 use App\Http\Controllers\Front\SearchController;
 use App\Http\Controllers\Panel\AlbumController;
 use App\Http\Controllers\Panel\ArticleController;
@@ -21,6 +22,7 @@ Route::get('album/{album}', [FrontAlbumController::class, 'show'])->name('album.
 Route::get('band/{band}', [FrontBandController::class, 'show'])->name('band.show');
 Route::get('person/{person}', [FrontPersonController::class, 'show'])->name('person.show');
 Route::get('event/{event}', [FrontEventController::class, 'show'])->name('event.show');
+Route::get('article/{article}', [FrontArticleController::class, 'show'])->name('article.show');
 
 Route::prefix('/panel')->middleware(['auth', 'verified', 'formOptionsMiddleware'])->group(function () {
     Route::get('dashboard', function () {

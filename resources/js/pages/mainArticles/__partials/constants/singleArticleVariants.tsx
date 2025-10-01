@@ -1,4 +1,4 @@
-import { SingleArticleTypes } from "@/types";
+import { SingleArticleTypes } from '@/types';
 
 const singleArticleVariants: SingleArticleTypes = {
     main: {
