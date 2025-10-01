@@ -1,6 +1,7 @@
 import messageVariant from '@/components/Message/__partials/constants/messageVariant';
 import ResultsVariants from '@/components/Search/__partials/components/constants/resultsType';
 import { Album } from '@/pages/albums/__types/types';
+import singleArticleVariants from '@/pages/mainArticles/__partials/constants/singleArticleVariants';
 import type { PageProps as InertiaPageProps } from '@inertiajs/core';
 import { Editor } from '@tiptap/core';
 import { LucideIcon } from 'lucide-react';
@@ -208,6 +209,10 @@ export interface MainArticlesComponentProps {
     articles: Article[];
 }
 
+export interface SingleArticleComponentProps {
+    article: Article;
+    variant: keyof typeof singleArticleVariants;
+}
 
 export interface PeopleListProps {
     people: Person[];
@@ -233,7 +238,7 @@ export interface AlbumsIndexProps {
 }
 
 export interface AlbumsSliderProps {
-    label: string;
+    label?: string;
     albums: Album[];
 }
 
@@ -492,6 +497,16 @@ export interface ButtonTypes {
     button: string;
     link: string;
 }
+
+type SingleArticleTypes = {
+    main: {
+      className: string;
+    };
+    other: {
+      className: string;
+    };
+  };
+
 
 export interface MenuElement {
     label: string;
