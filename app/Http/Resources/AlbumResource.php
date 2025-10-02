@@ -18,8 +18,10 @@ class AlbumResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'cover' => $this->cover,
+            'slug' => $this->slug,
             'band_name' => $this->band->name,
             'band_id' => $this->band_id,
+            'band_slug' => $this->band->slug,
         ];
     }
 }

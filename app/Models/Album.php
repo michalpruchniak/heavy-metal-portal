@@ -52,4 +52,9 @@ class Album extends Model
             'band_name' => $this->band?->name,
         ];
     }
+
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
+    }
 }

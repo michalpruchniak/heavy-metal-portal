@@ -19,7 +19,7 @@ export default function Index({ bandAlbums }: BandAlbumsProps) {
         },
         {
             title: `Albums`,
-            href: route('albums.index', { band: bandAlbums.id }),
+            href: route('albums.index', { band: bandAlbums.slug }),
         },
     ];
     return (
@@ -34,7 +34,7 @@ export default function Index({ bandAlbums }: BandAlbumsProps) {
                 </div>
                 <div className="flex flex-wrap gap-4">
                     {bandAlbums.albums.map((album: Album) => {
-                        return <AlbumElement key={album.id} album={album} url={route('albums.edit', { band: album.band_id, album: album.id })} />;
+                        return <AlbumElement key={album.id} album={album} url={route('albums.edit', { band: album.band_slug, album: album.slug })} />;
                     })}
                 </div>
             </div>

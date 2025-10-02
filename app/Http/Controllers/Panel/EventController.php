@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Panel;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EventRequest;
+use App\Models\Event;
 use App\Services\Interfaces\EventServiceInterface;
 use Exception;
 use Illuminate\Http\RedirectResponse;
@@ -42,10 +43,8 @@ class EventController extends Controller
         return redirect()->route('events.index')->with('success', 'Person created successfully');
     }
 
-    public function edit(int $event): Response
+    public function edit(Event $event): Response
     {
-        $event = $this->eventService->findOrFail($event);
-
         return Inertia::render('events/create', [
             'event' => $event,
         ]);

@@ -57,6 +57,7 @@ export interface Band {
     still_active?: boolean | null;
     people?: Person[];
     albums?: Album[];
+    slug: string;
     created_at: string;
     updated_at: string;
     [key: string]: string | unknown | boolean | undefined;
@@ -87,6 +88,7 @@ export interface Article {
 export interface Album {
     id: number;
     band_id: number;
+    band_slug: string;
     name: string;
     cover?: string;
     description?: string;
@@ -100,6 +102,7 @@ export interface Album {
 export interface bandAlbums {
     name: string;
     id: number;
+    slug: string;
     albums: Album[];
 }
 
@@ -252,7 +255,7 @@ export interface AlbumElementProps {
 }
 
 export interface AlbumProps {
-    bandId?: number;
+    band?: Band;
     album?: Album;
 }
 

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Panel;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AlbumRequest;
 use App\Http\Resources\BandAlbumsResource;
+use App\Models\Album;
+use App\Models\Band;
 use App\Services\Interfaces\AlbumServiceInterface;
 use App\Services\Interfaces\BandServiceInterface;
 use Exception;
@@ -19,10 +21,8 @@ class AlbumController extends Controller
         private readonly AlbumServiceInterface $albumService,
     ) {}
 
-    public function index(int $band): Response
+    public function index(Band $band): Response
     {
-        $band = $this->bandService->findOrFail($band);
-
         return Inertia::render('albums/index', [
             'bandAlbums' => new BandAlbumsResource($band),
         ]);
@@ -47,14 +47,10 @@ class AlbumController extends Controller
 
     }
 
-    public function edit(int $band, int $album): Response
+    public function edit(Band $band, Album $album): Response
     {
-        $band = $this->bandService->findOrFail($band);
-
-        $album = $this->albumService->findOrFail($album);
-
         return Inertia::render('albums/create', [
-            'bandId' => $band->id,
+            'band' => $band,
             'album' => $album,
         ]);
     }

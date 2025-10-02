@@ -24,7 +24,7 @@ const BandsTableColumns = (): TableColumn<Band>[] => {
         {
             name: labels.albums,
             cell: (row: Band) => (
-                <ButtonLink variant="primary" url={route('albums.index', { band: row.id })}>
+                <ButtonLink variant="primary" url={route('albums.index', { band: row.slug })}>
                     {buttons.albums}
                 </ButtonLink>
             ),
