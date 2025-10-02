@@ -1,6 +1,7 @@
 import messageVariant from '@/components/Message/__partials/constants/messageVariant';
 import ResultsVariants from '@/components/Search/__partials/components/constants/resultsType';
 import { Album } from '@/pages/albums/__types/types';
+import singleArticleVariants from '@/pages/mainArticles/__partials/constants/singleArticleVariants';
 import type { PageProps as InertiaPageProps } from '@inertiajs/core';
 import { Editor } from '@tiptap/core';
 import { LucideIcon } from 'lucide-react';
@@ -73,6 +74,16 @@ export interface Event {
     [key: string]: string | unknown | boolean | undefined;
 }
 
+export interface Article {
+    id: number;
+    title: string;
+    content: string;
+    cover: string;
+    created_at: string;
+    updated_at: string;
+    [key: string]: string | unknown | undefined;
+}
+
 export interface Album {
     id: number;
     band_id: number;
@@ -132,6 +143,17 @@ export interface BandFormData {
     [key: string]: string | number | File | null | undefined | boolean | Array<string | number>;
 }
 
+export interface ArticleFormData {
+    id?: number;
+    title: string;
+    content: string;
+    cover?: File | null;
+    _method: 'PUT' | 'POST';
+    created_at?: string;
+    updated_at?: string;
+    [key: string]: string | number | File | null | undefined;
+}
+
 export interface EventFormData {
     name: string;
     description?: string | null;
@@ -183,6 +205,15 @@ export interface EventComponentProps {
     events: EventsByDate;
 }
 
+export interface MainArticlesComponentProps {
+    articles: Article[];
+}
+
+export interface SingleArticleComponentProps {
+    article: Article;
+    variant: keyof typeof singleArticleVariants;
+}
+
 export interface PeopleListProps {
     people: Person[];
 }
@@ -196,17 +227,22 @@ export interface AlbumShowProps {
     albums: Album[];
 }
 
+export interface ArticleShowProps {
+    article: Article;
+}
+
 export interface EventShowProps {
     event: Event;
 }
 
 export interface AlbumsIndexProps {
     albums: Album[];
+    articles: Article[];
     events: EventsByDate;
 }
 
 export interface AlbumsSliderProps {
-    label: string;
+    label?: string;
     albums: Album[];
 }
 
@@ -226,6 +262,9 @@ export interface BandAlbumsProps {
 
 export interface BandProps {
     band?: Band;
+}
+export interface ArticleProps {
+    article?: Article;
 }
 
 export interface EventProps {
@@ -254,6 +293,10 @@ export interface PublisherProps {
 
 export interface IndexPageEventsProps {
     events: Event[];
+}
+
+export interface IndexPageArticlesProps {
+    articles: Article[];
 }
 
 export interface SearchResultProps {
@@ -458,6 +501,15 @@ export interface ButtonTypes {
     button: string;
     link: string;
 }
+
+type SingleArticleTypes = {
+    main: {
+        className: string;
+    };
+    other: {
+        className: string;
+    };
+};
 
 export interface MenuElement {
     label: string;

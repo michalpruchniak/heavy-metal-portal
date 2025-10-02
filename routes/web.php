@@ -1,12 +1,14 @@
 <?php
 
 use App\Http\Controllers\Front\AlbumController as FrontAlbumController;
+use App\Http\Controllers\Front\ArticleController as FrontArticleController;
 use App\Http\Controllers\Front\BandController as FrontBandController;
 use App\Http\Controllers\front\EventController as FrontEventController;
 use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Front\PersonController as FrontPersonController;
 use App\Http\Controllers\Front\SearchController;
 use App\Http\Controllers\Panel\AlbumController;
+use App\Http\Controllers\Panel\ArticleController;
 use App\Http\Controllers\Panel\BandController;
 use App\Http\Controllers\Panel\EventController;
 use App\Http\Controllers\Panel\PersonController;
@@ -20,6 +22,7 @@ Route::get('album/{album}', [FrontAlbumController::class, 'show'])->name('album.
 Route::get('band/{band}', [FrontBandController::class, 'show'])->name('band.show');
 Route::get('person/{person}', [FrontPersonController::class, 'show'])->name('person.show');
 Route::get('event/{event}', [FrontEventController::class, 'show'])->name('event.show');
+Route::get('article/{article}', [FrontArticleController::class, 'show'])->name('article.show');
 
 Route::prefix('/panel')->middleware(['auth', 'verified', 'formOptionsMiddleware'])->group(function () {
     Route::get('dashboard', function () {
@@ -125,6 +128,23 @@ Route::prefix('/panel')->middleware(['auth', 'verified', 'formOptionsMiddleware'
     Route::put('events/{event}', [EventController::class, 'update'])
         ->name('events.update')
         ->middleware('permission:events.edit');
+
+    Route::get('articles/create', [ArticleController::class, 'create'])
+        ->name('articles.create')
+        ->middleware('permission:events.edit');
+
+    Route::get('articles/', [ArticleController::class, 'index'])
+        ->name('articles.index')
+        ->middleware('permission:events.edit');
+    Route::post('articles', [ArticleController::class, 'store'])
+        ->name('articles.store');
+
+    Route::get('articles/edit/{article}', [ArticleController::class, 'edit'])
+        ->name('articles.edit')
+        ->middleware('permission:events.edit');
+
+    Route::put('articles/{article}', [ArticleController::class, 'update'])
+        ->name('articles.update');
 
 });
 

@@ -3,7 +3,7 @@ import { NavUser } from '@/components/nav-user';
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/react';
-import { Calendar, CircleUserRound, LayoutGrid, Mic } from 'lucide-react';
+import { Calendar, CircleUserRound, LayoutGrid, Mic, Pen } from 'lucide-react';
 import AppLogo from './app-logo';
 
 const mainNavItems: NavItem[] = [
@@ -26,6 +26,11 @@ const mainNavItems: NavItem[] = [
         title: 'Events',
         href: route('events.index'),
         icon: Calendar,
+    },
+    {
+        title: 'Articles',
+        href: route('articles.index'),
+        icon: Pen,
     },
 ];
 

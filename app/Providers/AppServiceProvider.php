@@ -7,9 +7,11 @@ use App\Models\Publisher;
 use App\Observers\EventObserver;
 use App\Observers\PublisherObserver;
 use App\Repositories\AlbumRepository;
+use App\Repositories\ArticleRepository;
 use App\Repositories\BandRepository;
 use App\Repositories\EventRepository;
 use App\Repositories\Interfaces\AlbumRepositoryInterface;
+use App\Repositories\Interfaces\ArticleRepositoryInterface;
 use App\Repositories\Interfaces\BandRepositoryInterface;
 use App\Repositories\Interfaces\EventRepositoryInterface;
 use App\Repositories\Interfaces\PersonRepositoryInterface;
@@ -17,10 +19,12 @@ use App\Repositories\Interfaces\PublisherRepositoryInterface;
 use App\Repositories\PersonRepository;
 use App\Repositories\PublisherRepository;
 use App\Services\AlbumService;
+use App\Services\ArticleService;
 use App\Services\BandService;
 use App\Services\EventService;
 use App\Services\FileUploadService;
 use App\Services\Interfaces\AlbumServiceInterface;
+use App\Services\Interfaces\ArticleServiceInerface;
 use App\Services\Interfaces\BandServiceInterface;
 use App\Services\Interfaces\EventServiceInterface;
 use App\Services\Interfaces\FileUploadServiceInterface;
@@ -61,6 +65,10 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(EventServiceInterface::class, EventService::class);
 
         $this->app->bind(EventRepositoryInterface::class, EventRepository::class);
+
+        $this->app->bind(ArticleRepositoryInterface::class, ArticleRepository::class);
+
+        $this->app->bind(ArticleServiceInerface::class, ArticleService::class);
 
     }
 
