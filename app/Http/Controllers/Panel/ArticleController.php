@@ -37,11 +37,10 @@ class ArticleController extends Controller
         try {
             $this->articleService->create($request->getDTO());
         } catch (Exception $e) {
-
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
 
-        return redirect()->route('bands.index')->with('success', 'Article created successfully');
+        return redirect()->route('articles.index')->with('success', 'Article created successfully');
     }
 
     public function Edit(Article $article): Response
@@ -61,6 +60,6 @@ class ArticleController extends Controller
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
 
-        return redirect()->route('bands.index')->with('success', 'Band updated successfully');
+        return redirect()->route('articles.index')->with('success', 'Band updated successfully');
     }
 }

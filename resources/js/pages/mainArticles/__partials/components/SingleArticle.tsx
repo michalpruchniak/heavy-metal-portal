@@ -1,6 +1,7 @@
 import { SingleArticleComponentProps } from '@/types';
 import { Link } from '@inertiajs/react';
 import singleArticleVariants from '../constants/singleArticleVariants';
+import DefaultImg from '@/components/Atoms/Img/default.jpg';
 
 const SingleArticle = ({ article, variant }: SingleArticleComponentProps) => {
     const className = singleArticleVariants[variant].className || singleArticleVariants['other'].className;
@@ -9,7 +10,7 @@ const SingleArticle = ({ article, variant }: SingleArticleComponentProps) => {
         <Link href={route('article.show', { article: article.slug })}>
             <div className="group relative h-full w-full overflow-hidden rounded">
                 <img
-                    src={article.cover}
+                    src={article.cover ?? DefaultImg}
                     className="absolute top-0 left-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                     alt={article.title || ''}
                 />

@@ -19,16 +19,16 @@ class Article extends Model
         'slug',
     ];
 
+    protected $casts = [
+        'cover' => ImageUrlCast::class,
+    ];
+
     public function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()
             ->generateSlugsFrom('title')
             ->saveSlugsTo('slug');
     }
-
-    protected $casts = [
-        'cover' => ImageUrlCast::class,
-    ];
 
     public function getRouteKeyName(): string
     {
