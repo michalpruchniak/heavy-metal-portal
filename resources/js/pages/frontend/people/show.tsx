@@ -1,4 +1,4 @@
-import DefaultImg from '@/components/Atoms/Img/default.jpg';
+import DefaultImg from '@img/common/default-featured-image.jpg';
 import BandsList from '@/components/BandList/BandsList';
 import useTranslation from '@/hooks/use-translate';
 import FrontLayout from '@/layouts/front/FrontLayout';

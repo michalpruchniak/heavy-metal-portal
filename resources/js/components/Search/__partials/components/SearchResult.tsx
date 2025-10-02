@@ -1,4 +1,4 @@
-import DefaultImg from '@/components/Atoms/Img/default.jpg';
+import DefaultImg from '@img/common/default-featured-image.jpg';
 import { SearchResultProps } from '@/types';
 import { Link } from '@inertiajs/react';
 import ResultsVariants from './constants/resultsType';

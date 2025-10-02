@@ -1,4 +1,4 @@
-import DefaultImg from '@/components/Atoms/Img/default.jpg';
+import DefaultImg from '@img/common/default-featured-image.jpg';
 import FrontLayout from '@/layouts/front/FrontLayout';
 
 import { EventShowProps } from '@/types';

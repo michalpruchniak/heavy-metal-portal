@@ -1,5 +1,5 @@
 import AlbumsSlider from '@/components/AlbumsSlider/AlbumsSlider';
-import DefaultImg from '@/components/Atoms/Img/default.jpg';
+import DefaultImg from '@img/common/default-featured-image.jpg';
 import PeopleList from '@/components/PeopleList/PeopleList';
 import useTranslation from '@/hooks/use-translate';
 import FrontLayout from '@/layouts/front/FrontLayout';

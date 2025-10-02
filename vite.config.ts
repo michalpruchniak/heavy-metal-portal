@@ -19,6 +19,7 @@ export default defineConfig({
     },
     resolve: {
         alias: {
+            '@img': resolve(__dirname, 'resources/img'),
             'ziggy-js': resolve(__dirname, 'vendor/tightenco/ziggy'),
         },
     },
