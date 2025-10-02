@@ -18,9 +18,9 @@ class ArticleService implements ArticleServiceInerface
         private readonly ArticleRepositoryInterface $articleRepository
     ) {}
 
-    public function getAll(array $order = ['created_at' => 'desc']): Collection
+    public function getAll(array $order = ['created_at' => 'desc'], $limit = null): Collection
     {
-        return $this->articleRepository->get(order: $order);
+        return $this->articleRepository->get(order: $order, limit: $limit);
     }
 
     public function create(ArticleDTO $articleDTO): Article
@@ -41,6 +41,10 @@ class ArticleService implements ArticleServiceInerface
         $article->update($articleData);
 
         return $article;
+    }
 
+    public function getLatest5Articles(): Collection
+    {
+        return $this->articleRepository->get(order: ['created_at' => 'asc'], limit: 5);
     }
 }

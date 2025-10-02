@@ -10,7 +10,7 @@ interface ArticleServiceInerface
 {
     const ARTICLE_CATALOG_COVER_DIRECTORY = 'article/cover';
 
-    public function getAll(array $order = ['created_at' => 'desc']): Collection;
+    public function getAll(array $order = ['created_at' => 'desc'], $limit = null): Collection;
 
     public function create(ArticleDTO $articleDTO): Article;
 

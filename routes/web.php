@@ -1,11 +1,11 @@
 <?php
 
 use App\Http\Controllers\Front\AlbumController as FrontAlbumController;
+use App\Http\Controllers\Front\ArticleController as FrontArticleController;
 use App\Http\Controllers\Front\BandController as FrontBandController;
 use App\Http\Controllers\front\EventController as FrontEventController;
 use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Front\PersonController as FrontPersonController;
-use App\Http\Controllers\Front\ArticleController as FrontArticleController;
 use App\Http\Controllers\Front\SearchController;
 use App\Http\Controllers\Panel\AlbumController;
 use App\Http\Controllers\Panel\ArticleController;

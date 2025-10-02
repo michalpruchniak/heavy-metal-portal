@@ -1,8 +1,8 @@
 import FrontLayout from '@/layouts/front/FrontLayout';
 
 import { ArticleShowProps } from '@/types';
-import 'swiper/css';
-import 'swiper/css/navigation';
+import { formatDistanceToNow } from 'date-fns';
+import { enUS } from 'date-fns/locale'; // albo pl, jeśli chcesz po polsku
 export default function Show({ article }: ArticleShowProps) {
     return (
         <FrontLayout>
@@ -10,7 +10,10 @@ export default function Show({ article }: ArticleShowProps) {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 to-transparent"></div>
 
                 <div className="relative z-10 mx-auto flex h-full max-w-6xl items-end p-2">
-                    <h1 className="text-white">{article.title}</h1>
+                    <div>
+                        <h1 className="text-white">{article.title}</h1>
+                        <p className="text-white">{formatDistanceToNow(new Date(article.created_at), { addSuffix: true, locale: enUS })}</p>
+                    </div>
                 </div>
             </div>
 
