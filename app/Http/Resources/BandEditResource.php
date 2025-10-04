@@ -19,6 +19,7 @@ class BandEditResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'slug' => $this->slug,
             'description' => $this->description,
             'still_active' => $this->still_active,
             'logo' => $this->logo,

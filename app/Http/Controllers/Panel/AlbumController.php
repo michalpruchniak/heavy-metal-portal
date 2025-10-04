@@ -28,10 +28,10 @@ class AlbumController extends Controller
         ]);
     }
 
-    public function create(int $bandId): Response
+    public function create(Band $band): Response
     {
         return Inertia::render('albums/create', [
-            'bandId' => $bandId,
+            'band' => $band,
         ]);
     }
 
@@ -55,10 +55,10 @@ class AlbumController extends Controller
         ]);
     }
 
-    public function update(int $album, AlbumRequest $request): RedirectResponse
+    public function update(Album $album, AlbumRequest $request): RedirectResponse
     {
         try {
-            $this->albumService->update($album, $request->getDTO());
+            $this->albumService->update($album->id, $request->getDTO());
         } catch (Exception $e) {
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }

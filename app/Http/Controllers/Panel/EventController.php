@@ -50,10 +50,10 @@ class EventController extends Controller
         ]);
     }
 
-    public function update(int $id, EventRequest $request): RedirectResponse
+    public function update(Event $event, EventRequest $request): RedirectResponse
     {
         try {
-            $this->eventService->update($id, $request->getDTO());
+            $this->eventService->update($event->id, $request->getDTO());
         } catch (Exception $e) {
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }

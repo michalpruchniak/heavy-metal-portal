@@ -32,8 +32,9 @@ const Create = ({ band, album }: AlbumProps) => {
         publisher_id: typeof album?.publisher_id === 'number' ? album.publisher_id : null,
         _method: album?.id ? 'PUT' : 'POST',
     });
+
     const sendRequest = () => {
-        const targetRoute = album ? route('albums.update', { album: album.id }) : route('albums.store');
+        const targetRoute = album ? route('albums.update', { album: album.slug }) : route('albums.store');
 
         post(targetRoute, {
             preserveScroll: true,

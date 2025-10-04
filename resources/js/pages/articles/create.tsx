@@ -29,7 +29,7 @@ const Create = ({ article }: ArticleProps) => {
     });
 
     const sendRequest = () => {
-        const targetRoute = article ? route('articles.update', { article: article.id }) : route('articles.store');
+        const targetRoute = article ? route('articles.update', { article: article.slug }) : route('articles.store');
 
         post(targetRoute, {
             preserveScroll: true,

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Panel;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PublisherRequest;
 use App\Http\Requests\UpdatePublisherRequest;
+use App\Models\Publisher;
 use App\Services\Interfaces\PublisherServiceInterface;
 use Exception;
 use Illuminate\Http\RedirectResponse;
@@ -40,19 +41,17 @@ class PublisherController extends Controller
         return redirect()->route('publishers.index')->with('success', 'Publisher created successfully');
     }
 
-    public function edit(int $publisher): Response
+    public function edit(Publisher $publisher): Response
     {
-        $publisher = $this->publisherService->findOrFail($publisher);
-
         return Inertia::render('publishers/create', [
             'publisher' => $publisher,
         ]);
     }
 
-    public function update(int $id, UpdatePublisherRequest $request): RedirectResponse
+    public function update(Publisher $publisher, UpdatePublisherRequest $request): RedirectResponse
     {
         try {
-            $this->publisherService->update($id, $request->getDTO());
+            $this->publisherService->update($publisher->id, $request->getDTO());
         } catch (Exception $e) {
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }

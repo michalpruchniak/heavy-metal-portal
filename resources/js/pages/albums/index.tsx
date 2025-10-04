@@ -28,7 +28,7 @@ export default function Index({ bandAlbums }: BandAlbumsProps) {
             <div className="flex h-full flex-1 flex-col gap-4 rounded-xl p-4">
                 <h1 className="text-center text-[45px]">{labels.albums}</h1>
                 <div className="flex justify-end">
-                    <ButtonLink url={route('albums.create', { band: bandAlbums.id })} variant="primary">
+                    <ButtonLink url={route('albums.create', { band: bandAlbums.slug })} variant="primary">
                         {buttons.add_new_album}
                     </ButtonLink>
                 </div>

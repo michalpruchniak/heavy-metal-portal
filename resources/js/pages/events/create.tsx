@@ -31,7 +31,7 @@ const Create = ({ event }: EventProps) => {
     });
 
     const sendRequest = () => {
-        const targetRoute = event ? route('events.update', { event: event.id }) : route('events.store');
+        const targetRoute = event ? route('events.update', { event: event.slug }) : route('events.store');
 
         post(targetRoute, {
             preserveScroll: true,

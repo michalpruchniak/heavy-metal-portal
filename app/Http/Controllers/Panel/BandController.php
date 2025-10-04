@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Panel;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\BandRequest;
 use App\Http\Resources\BandEditResource;
+use App\Models\Band;
 use App\Services\Interfaces\BandServiceInterface;
 use App\Services\Interfaces\PersonServiceInterface;
 use Exception;
@@ -45,19 +46,17 @@ class BandController extends Controller
         return redirect()->route('bands.index')->with('success', 'Person created successfully');
     }
 
-    public function edit(int $band): Response
+    public function edit(Band $band): Response
     {
-        $band = $this->bandService->findOrFail($band);
-
         return Inertia::render('bands/create', [
             'band' => new BandEditResource($band),
         ]);
     }
 
-    public function update(int $band, BandRequest $request): RedirectResponse
+    public function update(Band $band, BandRequest $request): RedirectResponse
     {
         try {
-            $this->bandService->update($band, $request->getDTO());
+            $this->bandService->update($band->id, $request->getDTO());
         } catch (Exception $e) {
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }

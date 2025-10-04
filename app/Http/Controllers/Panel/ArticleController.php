@@ -51,10 +51,10 @@ class ArticleController extends Controller
 
     }
 
-    public function update(int $article, ArticleRequest $request): RedirectResponse
+    public function update(Article $article, ArticleRequest $request): RedirectResponse
     {
         try {
-            $this->articleService->update($article, $request->getDTO());
+            $this->articleService->update($article->id, $request->getDTO());
         } catch (Exception $e) {
 
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);

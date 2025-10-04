@@ -32,7 +32,7 @@ const BandsTableColumns = (): TableColumn<Band>[] => {
         {
             name: labels.edit,
             cell: (row: Band) => (
-                <ButtonLink variant="secondary" url={route('bands.edit', { band: row.id })}>
+                <ButtonLink variant="secondary" url={route('bands.edit', { band: row.slug })}>
                     {buttons.edit}
                 </ButtonLink>
             ),
