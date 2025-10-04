@@ -409,9 +409,26 @@ export interface ButtonVariant {
 }
 
 export interface ButtonVariants {
-    primary: ButtonVariant;
-    secondary: ButtonVariant;
-    link: ButtonVariant;
+    primary: {
+        className: string;
+        isActive: string;
+    };
+    secondary: {
+        className: string;
+        isActive: string;
+    };
+    link: {
+        className: string;
+        isActive: string;
+    };
+
+}
+
+export interface messageVariants {
+    error: {
+        className: string;
+    };
+
 }
 
 export interface ButtonProps {
@@ -505,7 +522,7 @@ export interface ButtonTypes {
     link: string;
 }
 
-type SingleArticleTypes = {
+export type SingleArticleTypes = {
     main: {
         className: string;
     };

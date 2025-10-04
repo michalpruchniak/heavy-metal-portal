@@ -11,6 +11,7 @@ const AlbumsSlider = ({ albums, label = '' }: AlbumsSliderProps) => {
     }
 
     return (
+
         <div className="mx-auto max-w-6xl py-5">
             <h2>{label}</h2>
             <Swiper
