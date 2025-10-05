@@ -8,9 +8,9 @@ use App\Models\Event;
 use App\Services\Interfaces\EventServiceInterface;
 use Exception;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Cache;
 use Inertia\Inertia;
 use Inertia\Response;
-use Illuminate\Support\Facades\Cache;
 
 class EventController extends Controller
 {

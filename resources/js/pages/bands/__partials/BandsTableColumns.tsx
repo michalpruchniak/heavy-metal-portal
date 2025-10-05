@@ -1,7 +1,7 @@
-import DefaultImg from '@img/common/default-featured-image.jpg';
 import ButtonLink from '@/components/Button/ButtonLink';
 import useTranslation from '@/hooks/use-translate';
 import { Band } from '@/types';
+import DefaultImg from '@img/common/default-featured-image.jpg';
 import { TableColumn } from 'react-data-table-component';
 
 const BandsTableColumns = (): TableColumn<Band>[] => {

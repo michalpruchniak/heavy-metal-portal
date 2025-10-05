@@ -21,7 +21,7 @@ class EventService implements EventServiceInterface
 
     public function getAll(array $order = ['created_at' => 'desc']): Collection
     {
-            return $this->eventRepository->get(order: $order);
+        return $this->eventRepository->get(order: $order);
     }
 
     public function findOrFail(int $id): Event

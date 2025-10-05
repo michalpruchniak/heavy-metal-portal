@@ -421,14 +421,12 @@ export interface ButtonVariants {
         className: string;
         isActive: string;
     };
-
 }
 
 export interface messageVariants {
     error: {
         className: string;
     };
-
 }
 
 export interface ButtonProps {

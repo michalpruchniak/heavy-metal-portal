@@ -1,8 +1,8 @@
-import DefaultImg from '@img/common/default-featured-image.jpg';
 import BandsList from '@/components/BandList/BandsList';
 import useTranslation from '@/hooks/use-translate';
 import FrontLayout from '@/layouts/front/FrontLayout';
 import { PersonShowProps } from '@/types';
+import DefaultImg from '@img/common/default-featured-image.jpg';
 import PersonDetails from './__partials/components/PersonDetails';
 
 export default function Show({ person }: PersonShowProps) {

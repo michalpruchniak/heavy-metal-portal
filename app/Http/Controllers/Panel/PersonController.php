@@ -21,7 +21,6 @@ class PersonController extends Controller
             return $this->personService->getAll();
         });
 
-
         return Inertia::render('people/index', [
             'people' => $people,
         ]);

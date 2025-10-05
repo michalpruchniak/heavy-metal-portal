@@ -23,7 +23,7 @@ class BandController extends Controller
 
     public function index(): Response
     {
-        $bands =  Cache::remember('bands_all', config('settings.cookies_expires'), function () {
+        $bands = Cache::remember('bands_all', config('settings.cookies_expires'), function () {
             return $this->bandService->getAll();
         });
 

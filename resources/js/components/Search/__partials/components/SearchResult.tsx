@@ -1,5 +1,5 @@
-import DefaultImg from '@img/common/default-featured-image.jpg';
 import { SearchResultProps } from '@/types';
+import DefaultImg from '@img/common/default-featured-image.jpg';
 import { Link } from '@inertiajs/react';
 import ResultsVariants from './constants/resultsType';
 

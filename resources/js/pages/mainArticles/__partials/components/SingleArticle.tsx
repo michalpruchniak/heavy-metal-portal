@@ -1,7 +1,7 @@
 import { SingleArticleComponentProps } from '@/types';
+import DefaultImg from '@img/common/default-featured-image.jpg';
 import { Link } from '@inertiajs/react';
 import singleArticleVariants from '../constants/singleArticleVariants';
-import DefaultImg from '@img/common/default-featured-image.jpg';
 
 const SingleArticle = ({ article, variant }: SingleArticleComponentProps) => {
     const className = singleArticleVariants[variant].className || singleArticleVariants['other'].className;

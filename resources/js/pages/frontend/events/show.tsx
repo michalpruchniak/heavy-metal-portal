@@ -1,5 +1,5 @@
-import DefaultImg from '@img/common/default-featured-image.jpg';
 import FrontLayout from '@/layouts/front/FrontLayout';
+import DefaultImg from '@img/common/default-featured-image.jpg';
 
 import { EventShowProps } from '@/types';
 

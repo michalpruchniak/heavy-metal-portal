@@ -45,6 +45,7 @@ class Album extends Model
             'band_name' => $this->band?->name,
         ];
     }
+
     public function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()

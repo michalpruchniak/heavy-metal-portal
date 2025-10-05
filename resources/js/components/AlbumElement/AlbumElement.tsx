@@ -1,5 +1,5 @@
-import DefaultImg from '@img/common/default-featured-image.jpg';
 import { AlbumElementProps } from '@/types';
+import DefaultImg from '@img/common/default-featured-image.jpg';
 import { Link } from '@inertiajs/react';
 
 const AlbumElement = ({ album, url }: AlbumElementProps) => {

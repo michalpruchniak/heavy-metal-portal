@@ -1,4 +1,4 @@
-import { messageVariants } from "@/types";
+import { messageVariants } from '@/types';
 
 const messageVariant: messageVariants = {
     error: {

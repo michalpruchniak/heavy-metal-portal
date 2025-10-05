@@ -9,9 +9,9 @@ import MainArticles from '../mainArticles/MainArticles';
 export default function Index({ albums, events, articles }: AlbumsIndexProps) {
     return (
         <FrontLayout>
-                <MainArticles articles={articles} />
-                <AlbumsSlider albums={albums} />
-                <EventCalendar events={events} />
+            <MainArticles articles={articles} />
+            <AlbumsSlider albums={albums} />
+            <EventCalendar events={events} />
         </FrontLayout>
     );
 }

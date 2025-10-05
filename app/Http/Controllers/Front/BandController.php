@@ -9,7 +9,6 @@ use Inertia\Response;
 
 class BandController extends Controller
 {
-
     public function show(Band $band): Response
     {
         $band->load(['albums', 'people']);
