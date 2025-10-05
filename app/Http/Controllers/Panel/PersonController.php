@@ -7,6 +7,7 @@ use App\Http\Requests\PersonRequest;
 use App\Services\Interfaces\PersonServiceInterface;
 use Exception;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Cache;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -16,7 +17,10 @@ class PersonController extends Controller
 
     public function index(): Response
     {
-        $people = $this->personService->getAll();
+        $people = Cache::remember('people_all', config('settings.cookies_expires'), function () {
+            return $this->personService->getAll();
+        });
+
 
         return Inertia::render('people/index', [
             'people' => $people,

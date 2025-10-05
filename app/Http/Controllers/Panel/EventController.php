@@ -10,6 +10,7 @@ use Exception;
 use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
 use Inertia\Response;
+use Illuminate\Support\Facades\Cache;
 
 class EventController extends Controller
 {
@@ -19,7 +20,9 @@ class EventController extends Controller
 
     public function index(): Response
     {
-        $events = $this->eventService->getAll();
+        return Cache::remember('events_all', config('settings.cookies_expires'), function () {
+            return $this->eventService->getAll();
+        });
 
         return Inertia::render('events/index', [
             'events' => $events,

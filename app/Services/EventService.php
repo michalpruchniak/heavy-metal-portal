@@ -10,7 +10,6 @@ use App\Services\Interfaces\FileUploadServiceInterface;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Cache;
 
 class EventService implements EventServiceInterface
 {
@@ -22,9 +21,7 @@ class EventService implements EventServiceInterface
 
     public function getAll(array $order = ['created_at' => 'desc']): Collection
     {
-        return Cache::remember('events_all', config('settings.cookies_expires'), function () use ($order) {
             return $this->eventRepository->get(order: $order);
-        });
     }
 
     public function findOrFail(int $id): Event

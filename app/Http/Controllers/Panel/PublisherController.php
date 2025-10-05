@@ -11,6 +11,7 @@ use Exception;
 use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
 use Inertia\Response;
+use Illuminate\Support\Facades\Cache;
 
 class PublisherController extends Controller
 {
@@ -18,7 +19,9 @@ class PublisherController extends Controller
 
     public function index(): Response
     {
-        $publishers = $this->publisherService->getAll();
+        $publishers = Cache::remember('publishers_all', config('settings.cookies_expires'), function () {
+            return $this->publisherService->getAll();
+        });
 
         return Inertia::render('publishers/index', [
             'publishers' => $publishers,

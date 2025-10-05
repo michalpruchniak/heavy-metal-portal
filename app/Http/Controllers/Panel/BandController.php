@@ -10,6 +10,7 @@ use App\Services\Interfaces\BandServiceInterface;
 use App\Services\Interfaces\PersonServiceInterface;
 use Exception;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Cache;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -22,7 +23,9 @@ class BandController extends Controller
 
     public function index(): Response
     {
-        $bands = $this->bandService->getAll();
+        $bands =  Cache::remember('bands_all', config('settings.cookies_expires'), function () {
+            return $this->bandService->getAll();
+        });
 
         return Inertia::render('bands/index', [
             'bands' => $bands,

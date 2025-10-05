@@ -8,6 +8,7 @@ use App\Models\Article;
 use App\Services\Interfaces\ArticleServiceInerface;
 use Exception;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Cache;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -19,7 +20,9 @@ class ArticleController extends Controller
 
     public function index(): Response
     {
-        $articles = $this->articleService->getAll();
+        $articles = Cache::remember('articles_all', config('settings.cookies_expires'), function () {
+            return $this->articleService->getAll();
+        });
 
         return Inertia::render('articles/index', [
             'articles' => $articles,
