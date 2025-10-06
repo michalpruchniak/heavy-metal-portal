@@ -4,12 +4,15 @@ import Table from '@/components/Table/Table';
 import useTranslation from '@/hooks/use-translate';
 import AppLayout from '@/layouts/app-layout';
 import { Band, IndexPageBandsProps } from '@/types';
-import { Head } from '@inertiajs/react';
+import { Head, usePage } from '@inertiajs/react';
 import BandsTableColumns from './__partials/BandsTableColumns';
+import usePermissions from '@/hooks/usePermissions';
 
 export default function Index({ bands }: IndexPageBandsProps) {
     const { labels, buttons } = useTranslation();
+    const { hasPermission } = usePermissions();
 
+    console.log(hasPermission('events_index'))
     const breadcrumbs = [
         {
             title: labels.bands,

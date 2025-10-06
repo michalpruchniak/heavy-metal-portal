@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Middleware\FormOptionsMiddleware;
+use App\Http\Middleware\PermissionMiddleware;
 use App\Http\Middleware\HandleAppearance;
 use App\Http\Middleware\HandleInertiaRequests;
 use Illuminate\Foundation\Application;
@@ -29,6 +30,7 @@ return Application::configure(basePath: dirname(__DIR__))
             'permission' => \Spatie\Permission\Middleware\PermissionMiddleware::class,
             'role_or_permission' => \Spatie\Permission\Middleware\RoleOrPermissionMiddleware::class,
             'formOptionsMiddleware' => FormOptionsMiddleware::class,
+            'permissionMiddleware' => PermissionMiddleware::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

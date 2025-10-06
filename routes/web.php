@@ -1,12 +1,5 @@
 <?php
 
-use App\Http\Controllers\Front\AlbumController as FrontAlbumController;
-use App\Http\Controllers\Front\ArticleController as FrontArticleController;
-use App\Http\Controllers\Front\BandController as FrontBandController;
-use App\Http\Controllers\Front\EventController as FrontEventController;
-use App\Http\Controllers\Front\HomeController;
-use App\Http\Controllers\Front\PersonController as FrontPersonController;
-use App\Http\Controllers\Front\SearchController;
 use App\Http\Controllers\Panel\AlbumController;
 use App\Http\Controllers\Panel\ArticleController;
 use App\Http\Controllers\Panel\BandController;
@@ -16,22 +9,16 @@ use App\Http\Controllers\Panel\PublisherController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-Route::get('/', [HomeController::class, 'Home'])
-    ->name('home');
-Route::get('album/{album}', [FrontAlbumController::class, 'show'])->name('album.show');
-Route::get('band/{band}', [FrontBandController::class, 'show'])->name('band.show');
-Route::get('person/{person}', [FrontPersonController::class, 'show'])->name('person.show');
-Route::get('event/{event}', [FrontEventController::class, 'show'])->name('event.show');
-Route::get('article/{article}', [FrontArticleController::class, 'show'])->name('article.show');
 
-Route::prefix('/panel')->middleware(['auth', 'verified', 'formOptionsMiddleware'])->group(function () {
+
+Route::prefix('/panel')->middleware(['auth', 'verified', 'formOptionsMiddleware', 'permissionMiddleware'])->group(function () {
     Route::get('dashboard', function () {
         return Inertia::render('dashboard');
     })->name('dashboard');
 
     Route::get('publishers', [PublisherController::class, 'index'])
         ->name('publishers.index')
-        ->middleware('permission:publishers.view');
+        ->middleware('permission:publishers.index');
 
     Route::get('publishers/create', [PublisherController::class, 'create'])
         ->name('publishers.create')
@@ -51,19 +38,19 @@ Route::prefix('/panel')->middleware(['auth', 'verified', 'formOptionsMiddleware'
 
     Route::get('people', [PersonController::class, 'index'])
         ->name('people.index')
-        ->middleware('permission:people.view');
+        ->middleware('permission:people.index');
 
     Route::get('people/create', [PersonController::class, 'create'])
         ->name('people.create')
-        ->middleware('permission:people.view');
+        ->middleware('permission:people.index');
 
     Route::post('people/store', [PersonController::class, 'store'])
         ->name('people.store')
-        ->middleware('permission:people.view');
+        ->middleware('permission:people.index');
 
     Route::get('people/edit/{person}', [PersonController::class, 'edit'])
         ->name('people.edit')
-        ->middleware('permission:people.view');
+        ->middleware('permission:people.index');
 
     Route::put('people/{person}', [PersonController::class, 'update'])
         ->name('people.update')
@@ -71,7 +58,7 @@ Route::prefix('/panel')->middleware(['auth', 'verified', 'formOptionsMiddleware'
 
     Route::get('bands', [BandController::class, 'index'])
         ->name('bands.index')
-        ->middleware('permission:bands.view');
+        ->middleware('permission:bands.index');
 
     Route::get('band/create', [BandController::class, 'create'])
         ->name('bands.create')
@@ -91,7 +78,7 @@ Route::prefix('/panel')->middleware(['auth', 'verified', 'formOptionsMiddleware'
 
     Route::get('albums/{band}', [AlbumController::class, 'index'])
         ->name('albums.index')
-        ->middleware('permission:albums.view');
+        ->middleware('permission:albums.index');
 
     Route::get('albums/create/{band}', [AlbumController::class, 'create'])
         ->name('albums.create')
@@ -119,7 +106,7 @@ Route::prefix('/panel')->middleware(['auth', 'verified', 'formOptionsMiddleware'
 
     Route::get('events', [EventController::class, 'index'])
         ->name('events.index')
-        ->middleware('permission:events.view');
+        ->middleware('permission:events.index');
 
     Route::get('events/edit/{event}', [EventController::class, 'edit'])
         ->name('events.edit')
@@ -133,9 +120,9 @@ Route::prefix('/panel')->middleware(['auth', 'verified', 'formOptionsMiddleware'
         ->name('articles.create')
         ->middleware('permission:events.edit');
 
-    Route::get('articles/', [ArticleController::class, 'index'])
+    Route::get('articles', [ArticleController::class, 'index'])
         ->name('articles.index')
-        ->middleware('permission:events.edit');
+        ->middleware('permission:articles.index');
     Route::post('articles', [ArticleController::class, 'store'])
         ->name('articles.store');
 
@@ -147,8 +134,7 @@ Route::prefix('/panel')->middleware(['auth', 'verified', 'formOptionsMiddleware'
         ->name('articles.update');
 
 });
-
-Route::get('search/{text}', [SearchController::class, 'search'])->name('search');
+require __DIR__.'/front.php';
 
 require __DIR__.'/settings.php';
 require __DIR__.'/auth.php';

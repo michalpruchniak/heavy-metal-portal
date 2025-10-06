@@ -43,7 +43,15 @@ Seeder will create an admin account based on this data. 3. Install dependencies
 composer install
 npm install
 ```
+3. Run Meilisearch
+Meilisearch is required for correct work this system.
+```
+# Install Meilisearch
+curl -L https://install.meilisearch.com | sh
 
+# Launch Meilisearch
+./meilisearch
+```
 4. Run migrations and seeder
 
 ```

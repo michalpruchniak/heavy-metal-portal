@@ -13,7 +13,8 @@ class MeiliSeeder extends Seeder
         $client = new Client(config('scout.meilisearch.host'));
 
         $indices = [
-            'bands' => ['name', 'description', 'ngrams'],
+            'bands' => ['name'],
+            'albums' => ['name', 'band'],
         ];
 
         foreach ($indices as $indexName => $attributes) {

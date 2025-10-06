@@ -4,9 +4,13 @@ import AlbumElement from '@/components/AlbumElement/AlbumElement';
 import useTranslation from '@/hooks/use-translate';
 import AppLayout from '@/layouts/app-layout';
 import { Album, BandAlbumsProps } from '@/types';
-import { Head } from '@inertiajs/react';
+import { Head, usePage } from '@inertiajs/react';
 
 export default function Index({ bandAlbums }: BandAlbumsProps) {
+
+    const { props } = usePage();
+    console.log(props);
+
     const { labels, buttons } = useTranslation();
     const breadcrumbs = [
         {

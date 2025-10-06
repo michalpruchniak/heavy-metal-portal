@@ -6,9 +6,9 @@ import DefaultImg from '@img/common/default-featured-image.jpg';
 import { AlbumShowProps } from '@/types';
 import 'swiper/css';
 import 'swiper/css/navigation';
+
 export default function Show({ album, albums }: AlbumShowProps) {
     const { labels } = useTranslation();
-
     return (
         <FrontLayout>
             <div className="mx-auto max-w-6xl py-5">

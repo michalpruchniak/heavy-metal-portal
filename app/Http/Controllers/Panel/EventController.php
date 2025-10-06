@@ -20,7 +20,7 @@ class EventController extends Controller
 
     public function index(): Response
     {
-        return Cache::remember('events_all', config('settings.cookies_expires'), function () {
+        $events = Cache::remember('events_all', config('settings.cookies_expires'), function () {
             return $this->eventService->getAll();
         });
 
