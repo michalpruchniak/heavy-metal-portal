@@ -8,6 +8,7 @@ use App\Http\Resources\BandEditResource;
 use App\Models\Band;
 use App\Services\Interfaces\BandServiceInterface;
 use App\Services\Interfaces\PersonServiceInterface;
+use App\Traits\SharePermissions;
 use Exception;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Cache;
@@ -16,10 +17,14 @@ use Inertia\Response;
 
 class BandController extends Controller
 {
+    use SharePermissions;
+
     public function __construct(
         private readonly BandServiceInterface $bandService,
         private readonly PersonServiceInterface $personService
-    ) {}
+    ) {
+        self::shareInertia('bands');
+    }
 
     public function index(): Response
     {

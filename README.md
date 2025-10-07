@@ -10,6 +10,7 @@ The project is purely etesting, and its main purpose was to demonstrate my progr
 - Laravel 12
 - sqlite (in developer version)
 - Inertia
+- Meilisearch
 - React
 - TipTap
 - React Select

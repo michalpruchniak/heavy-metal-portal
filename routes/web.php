@@ -11,7 +11,7 @@ use Inertia\Inertia;
 
 
 
-Route::prefix('/panel')->middleware(['auth', 'verified', 'formOptionsMiddleware', 'permissionMiddleware'])->group(function () {
+Route::prefix('/panel')->middleware(['auth', 'verified', 'formOptionsMiddleware'])->group(function () {
     Route::get('dashboard', function () {
         return Inertia::render('dashboard');
     })->name('dashboard');

@@ -12,7 +12,6 @@ export default function Index({ bands }: IndexPageBandsProps) {
     const { labels, buttons } = useTranslation();
     const { hasPermission } = usePermissions();
 
-    console.log(hasPermission('events_index'))
     const breadcrumbs = [
         {
             title: labels.bands,
