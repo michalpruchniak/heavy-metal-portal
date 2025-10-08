@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Panel;
 
+use App\Enums\AppGroupsEnum;
+use App\Enums\PermissionEnum;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\BandRequest;
 use App\Http\Resources\BandEditResource;
@@ -23,7 +25,15 @@ class BandController extends Controller
         private readonly BandServiceInterface $bandService,
         private readonly PersonServiceInterface $personService
     ) {
-        self::shareInertia('bands');
+        $this->sharePermissions(AppGroupsEnum::BANDS);
+
+        $this->authorizePermissions(
+            [
+                PermissionEnum::BANDS_INDEX->value => ['index'],
+                PermissionEnum::BANDS_CREATE->value => ['create', 'store'],
+                PermissionEnum::BANDS_EDIT->value => ['edit', 'update'],
+            ]
+        );
     }
 
     public function index(): Response

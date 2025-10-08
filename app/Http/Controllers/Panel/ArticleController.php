@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\Panel;
 
+use App\Enums\AppGroupsEnum;
+use App\Enums\PermissionEnum;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ArticleRequest;
 use App\Models\Article;
 use App\Services\Interfaces\ArticleServiceInerface;
+use App\Traits\SharePermissions;
 use Exception;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Cache;
@@ -14,9 +17,21 @@ use Inertia\Response;
 
 class ArticleController extends Controller
 {
+    use SharePermissions;
+
     public function __construct(
         private readonly ArticleServiceInerface $articleService
-    ) {}
+    ) {
+        $this->sharePermissions(AppGroupsEnum::ARTICLES);
+
+        $this->authorizePermissions(
+            [
+                PermissionEnum::ARTICLES_INDEX->value => ['index'],
+                PermissionEnum::ARTICLES_CREATE->value => ['create', 'store'],
+                PermissionEnum::ARTICLES_EDIT->value => ['edit', 'update'],
+            ]
+        );
+    }
 
     public function index(): Response
     {

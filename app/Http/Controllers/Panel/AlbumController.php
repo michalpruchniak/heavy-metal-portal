@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Panel;
 
+use App\Enums\AppGroupsEnum;
+use App\Enums\PermissionEnum;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AlbumRequest;
 use App\Http\Resources\BandAlbumsResource;
@@ -9,6 +11,7 @@ use App\Models\Album;
 use App\Models\Band;
 use App\Services\Interfaces\AlbumServiceInterface;
 use App\Services\Interfaces\BandServiceInterface;
+use App\Traits\SharePermissions;
 use Exception;
 use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
@@ -16,10 +19,22 @@ use Inertia\Response;
 
 class AlbumController extends Controller
 {
+    use SharePermissions;
+
     public function __construct(
         private readonly BandServiceInterface $bandService,
         private readonly AlbumServiceInterface $albumService,
-    ) {}
+    ) {
+        $this->sharePermissions(AppGroupsEnum::ALBUMS);
+
+        $this->authorizePermissions(
+            [
+                PermissionEnum::ALBUMS_INDEX->value => ['index'],
+                PermissionEnum::ALBUMS_CREATE->value => ['create', 'store'],
+                PermissionEnum::ALBUMS_EDIT->value => ['edit', 'update'],
+            ]
+        );
+    }
 
     public function index(Band $band): Response
     {
@@ -35,7 +50,7 @@ class AlbumController extends Controller
         ]);
     }
 
-    public function store(AlbumRequest $request): RedirectResponse
+    public function store(Band $band, AlbumRequest $request): RedirectResponse
     {
         try {
             $this->albumService->create($request->getDTO());
@@ -55,7 +70,7 @@ class AlbumController extends Controller
         ]);
     }
 
-    public function update(Album $album, AlbumRequest $request): RedirectResponse
+    public function update(Band $band, Album $album, AlbumRequest $request): RedirectResponse
     {
         try {
             $this->albumService->update($album->id, $request->getDTO());

@@ -2,12 +2,28 @@
 
 namespace App\Traits;
 
-use Inertia\Inertia;
+use App\Enums\AppGroupsEnum;
 use Illuminate\Support\Facades\Auth;
+use Inertia\Inertia;
 
 trait SharePermissions
 {
-    public static function share(string $type): array
+    protected function sharePermissions(AppGroupsEnum $type): void
+    {
+        Inertia::share([
+            'permissions' => $this->getPermissions($type->value),
+        ]);
+    }
+
+    protected function authorizePermissions(array $permissions): void
+    {
+        foreach ($permissions as $permission => $methods) {
+            $methods = (array) $methods;
+            $this->middleware("can:$permission")->only($methods);
+        }
+    }
+
+    private function getPermissions(string $type): array
     {
         $user = Auth::user();
 
@@ -25,12 +41,5 @@ trait SharePermissions
         }
 
         return $permissionsWithAccess;
-    }
-
-    public static function shareInertia(string $type): void
-    {
-        Inertia::share([
-            'permissions' => self::share($type),
-        ]);
     }
 }

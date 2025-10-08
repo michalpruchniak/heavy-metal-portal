@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\Panel;
 
+use App\Enums\AppGroupsEnum;
+use App\Enums\PermissionEnum;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EventRequest;
 use App\Models\Event;
 use App\Services\Interfaces\EventServiceInterface;
+use App\Traits\SharePermissions;
 use Exception;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Cache;
@@ -14,9 +17,22 @@ use Inertia\Response;
 
 class EventController extends Controller
 {
+    use SharePermissions;
+
     public function __construct(
         private readonly EventServiceInterface $eventService
-    ) {}
+    ) {
+        $this->sharePermissions(AppGroupsEnum::EVENTS);
+
+        $this->authorizePermissions(
+            [
+                PermissionEnum::EVENTS_INDEX->value => ['index'],
+                PermissionEnum::EVENTS_CREATE->value => ['create', 'store'],
+                PermissionEnum::EVENTS_EDIT->value => ['edit', 'update'],
+            ]
+        );
+
+    }
 
     public function index(): Response
     {

@@ -9,7 +9,6 @@ import { Head, usePage } from '@inertiajs/react';
 export default function Index({ bandAlbums }: BandAlbumsProps) {
 
     const { props } = usePage();
-    console.log(props);
 
     const { labels, buttons } = useTranslation();
     const breadcrumbs = [
@@ -23,7 +22,7 @@ export default function Index({ bandAlbums }: BandAlbumsProps) {
         },
         {
             title: `Albums`,
-            href: route('albums.index', { band: bandAlbums.slug }),
+            href: route('bands.albums.index', { band: bandAlbums.slug }),
         },
     ];
     return (
@@ -32,13 +31,13 @@ export default function Index({ bandAlbums }: BandAlbumsProps) {
             <div className="flex h-full flex-1 flex-col gap-4 rounded-xl p-4">
                 <h1 className="text-center text-[45px]">{labels.albums}</h1>
                 <div className="flex justify-end">
-                    <ButtonLink url={route('albums.create', { band: bandAlbums.slug })} variant="primary">
+                    <ButtonLink url={route('bands.albums.create', { band: bandAlbums.slug })} variant="primary">
                         {buttons.add_new_album}
                     </ButtonLink>
                 </div>
                 <div className="flex flex-wrap gap-4">
                     {bandAlbums.albums.map((album: Album) => {
-                        return <AlbumElement key={album.id} album={album} url={route('albums.edit', { band: album.band_slug, album: album.slug })} />;
+                        return <AlbumElement key={album.id} album={album} url={route('bands.albums.edit', { band: album.band_slug, album: album.slug })} />;
                     })}
                 </div>
             </div>

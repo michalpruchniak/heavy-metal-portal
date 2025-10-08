@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers\Panel;
 
+use App\Enums\AppGroupsEnum;
+use App\Enums\PermissionEnum;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PublisherRequest;
 use App\Http\Requests\UpdatePublisherRequest;
 use App\Models\Publisher;
 use App\Services\Interfaces\PublisherServiceInterface;
+use App\Traits\SharePermissions;
 use Exception;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Cache;
@@ -15,7 +18,19 @@ use Inertia\Response;
 
 class PublisherController extends Controller
 {
-    public function __construct(private readonly PublisherServiceInterface $publisherService) {}
+    use SharePermissions;
+
+    public function __construct(private readonly PublisherServiceInterface $publisherService) {
+        $this->sharePermissions(AppGroupsEnum::PUBLISHERS);
+
+        $this->authorizePermissions(
+            [
+                PermissionEnum::PUBLISHERS_INDEX->value => ['index'],
+                PermissionEnum::PUBLISHERS_CREATE->value => ['create', 'store'],
+                PermissionEnum::PUBLISHERS_EDIT->value => ['edit', 'update'],
+            ]
+        );
+    }
 
     public function index(): Response
     {

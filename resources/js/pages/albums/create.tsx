@@ -20,7 +20,7 @@ const Create = ({ band, album }: AlbumProps) => {
         },
         {
             title: album ? labels.update_album : labels.create_album,
-            href: album ? route('albums.edit', { band: band?.slug, album: album.slug }) : route('bands.create', { band: band?.slug }),
+            href: album ? route('bands.albums.edit', { band: band?.slug, album: album.slug }) : route('bands.create', { band: band?.slug }),
         },
     ];
     const { data, setData, processing, post, errors } = useForm<AlbumFormData>({
@@ -34,7 +34,7 @@ const Create = ({ band, album }: AlbumProps) => {
     });
 
     const sendRequest = () => {
-        const targetRoute = album ? route('albums.update', { album: album.slug }) : route('albums.store');
+        const targetRoute = album ? route('bands.albums.update', { band: band?.slug, album: album.slug }) : route('bands.albums.store', {band: band?.slug});
 
         post(targetRoute, {
             preserveScroll: true,

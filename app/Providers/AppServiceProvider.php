@@ -12,6 +12,7 @@ use App\Observers\BandObserver;
 use App\Observers\EventObserver;
 use App\Observers\PersonObserver;
 use App\Observers\PublisherObserver;
+use App\Policies\BandPolicy;
 use App\Repositories\AlbumRepository;
 use App\Repositories\ArticleRepository;
 use App\Repositories\BandRepository;

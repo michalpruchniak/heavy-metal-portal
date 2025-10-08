@@ -44,5 +44,5 @@ return [
             PermissionEnum::ARTICLES_CREATE->value,
             PermissionEnum::ARTICLES_EDIT->value,
         ],
-    ]
-    ];
+    ],
+];

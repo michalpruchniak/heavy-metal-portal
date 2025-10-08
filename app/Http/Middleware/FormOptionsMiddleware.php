@@ -33,7 +33,7 @@ class FormOptionsMiddleware
             $shares['peopleOptions'] = $this->personService->getMapPeopleArray();
         }
 
-        if ($request->routeIs('albums.create') || $request->routeIs('albums.edit')) {
+        if ($request->routeIs('bands.albums.create') || $request->routeIs('bands.albums.edit')) {
             $shares['publishersOptions'] = $this->publisherService->getMapPublisherArray();
         }
 
