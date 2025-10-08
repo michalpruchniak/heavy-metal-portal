@@ -20,7 +20,8 @@ class PublisherController extends Controller
 {
     use SharePermissions;
 
-    public function __construct(private readonly PublisherServiceInterface $publisherService) {
+    public function __construct(private readonly PublisherServiceInterface $publisherService)
+    {
         $this->sharePermissions(AppGroupsEnum::PUBLISHERS);
 
         $this->authorizePermissions(

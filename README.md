@@ -44,8 +44,10 @@ Seeder will create an admin account based on this data. 3. Install dependencies
 composer install
 npm install
 ```
+
 3. Run Meilisearch
-Meilisearch is required for correct work this system. More you can read [here](https://www.meilisearch.com/docs/learn/self_hosted/install_meilisearch_locally)
+   Meilisearch is required for correct work this system. More you can read [here](https://www.meilisearch.com/docs/learn/self_hosted/install_meilisearch_locally)
+
 ```
 # Install Meilisearch
 curl -L https://install.meilisearch.com | sh
@@ -53,10 +55,13 @@ curl -L https://install.meilisearch.com | sh
 # Launch Meilisearch
 ./meilisearch
 ```
+
 4. Create database
+
 ```
 touch database/database.sqlite
 ```
+
 5. Run migrations and seeder
 
 ```

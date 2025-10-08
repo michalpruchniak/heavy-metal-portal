@@ -7,7 +7,6 @@ import { Album, BandAlbumsProps } from '@/types';
 import { Head, usePage } from '@inertiajs/react';
 
 export default function Index({ bandAlbums }: BandAlbumsProps) {
-
     const { props } = usePage();
 
     const { labels, buttons } = useTranslation();
@@ -37,7 +36,13 @@ export default function Index({ bandAlbums }: BandAlbumsProps) {
                 </div>
                 <div className="flex flex-wrap gap-4">
                     {bandAlbums.albums.map((album: Album) => {
-                        return <AlbumElement key={album.id} album={album} url={route('bands.albums.edit', { band: album.band_slug, album: album.slug })} />;
+                        return (
+                            <AlbumElement
+                                key={album.id}
+                                album={album}
+                                url={route('bands.albums.edit', { band: album.band_slug, album: album.slug })}
+                            />
+                        );
                     })}
                 </div>
             </div>

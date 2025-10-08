@@ -18,7 +18,8 @@ class PersonController extends Controller
 {
     use SharePermissions;
 
-    public function __construct(private readonly PersonServiceInterface $personService) {
+    public function __construct(private readonly PersonServiceInterface $personService)
+    {
         $this->sharePermissions(AppGroupsEnum::PEOPLE);
 
         $this->authorizePermissions(

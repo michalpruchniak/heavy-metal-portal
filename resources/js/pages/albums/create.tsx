@@ -34,7 +34,9 @@ const Create = ({ band, album }: AlbumProps) => {
     });
 
     const sendRequest = () => {
-        const targetRoute = album ? route('bands.albums.update', { band: band?.slug, album: album.slug }) : route('bands.albums.store', {band: band?.slug});
+        const targetRoute = album
+            ? route('bands.albums.update', { band: band?.slug, album: album.slug })
+            : route('bands.albums.store', { band: band?.slug });
 
         post(targetRoute, {
             preserveScroll: true,

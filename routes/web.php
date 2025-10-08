@@ -9,8 +9,6 @@ use App\Http\Controllers\Panel\PublisherController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-
-
 Route::prefix('/panel')->middleware(['auth', 'verified', 'formOptionsMiddleware'])->group(function () {
     Route::get('dashboard', function () {
         return Inertia::render('dashboard');
@@ -22,7 +20,7 @@ Route::prefix('/panel')->middleware(['auth', 'verified', 'formOptionsMiddleware'
     Route::resource('articles', ArticleController::class)->only(['index', 'create', 'edit', 'store', 'update']);
     Route::resource('events', EventController::class)->only(['index', 'create', 'edit', 'store', 'update']);
     Route::resource('bands.albums', AlbumController::class)
-    ->only(['index', 'create', 'store', 'edit', 'update']);
+        ->only(['index', 'create', 'store', 'edit', 'update']);
 });
 require __DIR__.'/front.php';
 

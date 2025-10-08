@@ -2,11 +2,11 @@ import ButtonLink from '@/components/Button/ButtonLink';
 
 import Table from '@/components/Table/Table';
 import useTranslation from '@/hooks/use-translate';
+import usePermissions from '@/hooks/usePermissions';
 import AppLayout from '@/layouts/app-layout';
 import { Band, IndexPageBandsProps } from '@/types';
-import { Head, usePage } from '@inertiajs/react';
+import { Head } from '@inertiajs/react';
 import BandsTableColumns from './__partials/BandsTableColumns';
-import usePermissions from '@/hooks/usePermissions';
 
 export default function Index({ bands }: IndexPageBandsProps) {
     const { labels, buttons } = useTranslation();
