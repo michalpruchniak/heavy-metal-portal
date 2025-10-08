@@ -46,7 +46,6 @@ trait CreateRolesAndPermissions
 
             ]
         );
-
         $this->defaultRolesPermissions = [
             'admin' => $this->adminPermissions,
             'moderator' => $this->moderatorPermissions,

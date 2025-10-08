@@ -9,7 +9,7 @@ use App\Http\Controllers\Panel\PublisherController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-Route::prefix('/panel')->middleware(['auth', 'verified', 'formOptionsMiddleware'])->group(function () {
+Route::prefix('/panel')->middleware(['auth', 'verified', 'formOptionsMiddleware', 'UserPermissionMiddleware'])->group(function () {
     Route::get('dashboard', function () {
         return Inertia::render('dashboard');
     })->name('dashboard');

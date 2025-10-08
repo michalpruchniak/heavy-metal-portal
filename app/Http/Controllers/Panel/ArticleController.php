@@ -22,7 +22,6 @@ class ArticleController extends Controller
     public function __construct(
         private readonly ArticleServiceInerface $articleService
     ) {
-        $this->sharePermissions(AppGroupsEnum::ARTICLES);
 
         $this->authorizePermissions(
             [

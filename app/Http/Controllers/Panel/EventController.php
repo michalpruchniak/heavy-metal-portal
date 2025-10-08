@@ -22,7 +22,6 @@ class EventController extends Controller
     public function __construct(
         private readonly EventServiceInterface $eventService
     ) {
-        $this->sharePermissions(AppGroupsEnum::EVENTS);
 
         $this->authorizePermissions(
             [

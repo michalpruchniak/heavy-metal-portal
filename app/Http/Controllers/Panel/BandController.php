@@ -25,7 +25,6 @@ class BandController extends Controller
         private readonly BandServiceInterface $bandService,
         private readonly PersonServiceInterface $personService
     ) {
-        $this->sharePermissions(AppGroupsEnum::BANDS);
 
         $this->authorizePermissions(
             [
