@@ -5,40 +5,41 @@ import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/react';
 import { Calendar, CircleUserRound, LayoutGrid, Mic, Pen } from 'lucide-react';
 import AppLogo from './app-logo';
+import PermissionEnum from '@/enums/PermissionEnum';
 
 const mainNavItems: NavItem[] = [
     {
         title: 'Publishers',
         href: route('publishers.index'),
         icon: LayoutGrid,
-        permission: 'publishers.index'
+        permission: PermissionEnum.PUBLISHERS_INDEX
     },
     {
         title: 'People',
         href: route('people.index'),
         icon: CircleUserRound,
-        permission: 'people.index'
+        permission: PermissionEnum.PEOPLE_INDEX
 
     },
     {
         title: 'Bands',
         href: route('bands.index'),
         icon: Mic,
-        permission: 'bands.index'
+        permission: PermissionEnum.BANDS_INDEX
 
     },
     {
         title: 'Events',
         href: route('events.index'),
         icon: Calendar,
-        permission: 'events.index'
+        permission: PermissionEnum.EVENTS_INDEX
 
     },
     {
         title: 'Articles',
         href: route('articles.index'),
         icon: Pen,
-        permission: 'articles.index'
+        permission: PermissionEnum.ARTICLES_INDEX
 
     },
 ];

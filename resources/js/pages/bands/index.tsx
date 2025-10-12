@@ -7,6 +7,7 @@ import AppLayout from '@/layouts/app-layout';
 import { Band, IndexPageBandsProps } from '@/types';
 import { Head } from '@inertiajs/react';
 import BandsTableColumns from './__partials/BandsTableColumns';
+import PermissionEnum from '@/enums/PermissionEnum';
 
 export default function Index({ bands }: IndexPageBandsProps) {
     const { labels, buttons } = useTranslation();
@@ -24,11 +25,12 @@ export default function Index({ bands }: IndexPageBandsProps) {
             <Head title="Bands" />
             <div className="flex h-full flex-1 flex-col gap-4 rounded-xl p-4">
                 <h1 className="text-center text-[45px]">{labels.bands}</h1>
-                <div className="flex justify-end">
+                {hasPermission(PermissionEnum.BANDS_CREATE) &&                 <div className="flex justify-end">
                     <ButtonLink url={route('bands.create')} variant="primary">
                         {buttons.add_new_band}
                     </ButtonLink>
-                </div>
+                </div>}
+
                 <Table<Band> data={bands} columns={BandsTableColumns()} />
             </div>
         </AppLayout>

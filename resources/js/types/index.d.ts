@@ -1,5 +1,6 @@
 import messageVariant from '@/components/Message/__partials/constants/messageVariant';
 import ResultsVariants from '@/components/Search/__partials/components/constants/resultsType';
+import PermissionEnum from '@/enums/PermissionEnum';
 import { Album } from '@/pages/albums/__types/types';
 import singleArticleVariants from '@/pages/mainArticles/__partials/constants/singleArticleVariants';
 import type { PageProps as InertiaPageProps } from '@inertiajs/core';
@@ -27,7 +28,7 @@ export interface NavItem {
     href: string;
     icon?: LucideIcon | null;
     isActive?: boolean;
-    permission: string;
+    permission: PermissionEnum;
 }
 
 export interface SharedData {

@@ -4,9 +4,13 @@ import ButtonLink from '@/components/Button/ButtonLink';
 import useTranslation from '@/hooks/use-translate';
 import { Person } from '@/types';
 import { TableColumn } from 'react-data-table-component';
+import usePermissions from '@/hooks/usePermissions';
+import PermissionEnum from '@/enums/PermissionEnum';
 
 const PersonTableColumns = (): TableColumn<Person>[] => {
     const { buttons, labels } = useTranslation();
+    const { hasPermission } = usePermissions();
+
     return [
         {
             name: labels.id,
@@ -28,7 +32,7 @@ const PersonTableColumns = (): TableColumn<Person>[] => {
         },
         {
             name: labels.edit,
-            cell: (row: Person) => (
+            cell: (row: Person) => hasPermission(PermissionEnum.PEOPLE_EDIT) && (
                 <ButtonLink variant="secondary" url={route('people.edit', { person: row.id })}>
                     {buttons.edit}
                 </ButtonLink>

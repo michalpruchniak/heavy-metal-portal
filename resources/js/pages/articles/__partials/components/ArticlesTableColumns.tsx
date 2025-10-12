@@ -1,11 +1,15 @@
 import ButtonLink from '@/components/Button/ButtonLink';
+import PermissionEnum from '@/enums/PermissionEnum';
 import useTranslation from '@/hooks/use-translate';
+import usePermissions from '@/hooks/usePermissions';
 import { Article } from '@/types';
 import DefaultImg from '@img/common/default-featured-image.jpg';
 import { TableColumn } from 'react-data-table-component';
 
 const ArticlesTableColumns = (): TableColumn<Article>[] => {
     const { buttons, labels } = useTranslation();
+    const { hasPermission } = usePermissions();
+
     return [
         {
             name: labels.id,
@@ -23,7 +27,7 @@ const ArticlesTableColumns = (): TableColumn<Article>[] => {
         },
         {
             name: labels.edit,
-            cell: (row: Article) => (
+            cell: (row: Article) => hasPermission(PermissionEnum.ARTICLES_EDIT) && (
                 <ButtonLink variant="secondary" url={route('articles.edit', { article: row.slug })}>
                     {buttons.edit}
                 </ButtonLink>
