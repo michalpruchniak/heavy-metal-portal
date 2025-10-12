@@ -17,6 +17,7 @@ return new class extends Migration
             $table->text('description');
             $table->date('date');
             $table->string('cover')->nullable();
+            $table->string('slug');
             $table->timestamps();
         });
     }

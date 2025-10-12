@@ -1,14 +1,14 @@
 import AlbumsSlider from '@/components/AlbumsSlider/AlbumsSlider';
-import DefaultImg from '@/components/Atoms/Img/default.jpg';
 import useTranslation from '@/hooks/use-translate';
 import FrontLayout from '@/layouts/front/FrontLayout';
+import DefaultImg from '@img/common/default-featured-image.jpg';
 
 import { AlbumShowProps } from '@/types';
 import 'swiper/css';
 import 'swiper/css/navigation';
+
 export default function Show({ album, albums }: AlbumShowProps) {
     const { labels } = useTranslation();
-
     return (
         <FrontLayout>
             <div className="mx-auto max-w-6xl py-5">

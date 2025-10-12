@@ -19,6 +19,7 @@ class BandAlbumsResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'slug' => $this->slug,
             'albums' => AlbumResource::collection($this->albums),
         ];
     }

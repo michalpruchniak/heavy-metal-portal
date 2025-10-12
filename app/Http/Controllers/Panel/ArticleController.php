@@ -2,24 +2,40 @@
 
 namespace App\Http\Controllers\Panel;
 
+use App\Enums\PermissionEnum;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ArticleRequest;
 use App\Models\Article;
 use App\Services\Interfaces\ArticleServiceInerface;
+use App\Traits\SharePermissions;
 use Exception;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Cache;
 use Inertia\Inertia;
 use Inertia\Response;
 
 class ArticleController extends Controller
 {
+    use SharePermissions;
+
     public function __construct(
         private readonly ArticleServiceInerface $articleService
-    ) {}
+    ) {
+
+        $this->authorizePermissions(
+            [
+                PermissionEnum::ARTICLES_INDEX->value => ['index'],
+                PermissionEnum::ARTICLES_CREATE->value => ['create', 'store'],
+                PermissionEnum::ARTICLES_EDIT->value => ['edit', 'update'],
+            ]
+        );
+    }
 
     public function index(): Response
     {
-        $articles = $this->articleService->getAll();
+        $articles = Cache::remember('articles_all', config('settings.cookies_expires'), function () {
+            return $this->articleService->getAll();
+        });
 
         return Inertia::render('articles/index', [
             'articles' => $articles,
@@ -51,10 +67,10 @@ class ArticleController extends Controller
 
     }
 
-    public function update(int $article, ArticleRequest $request): RedirectResponse
+    public function update(Article $article, ArticleRequest $request): RedirectResponse
     {
         try {
-            $this->articleService->update($article, $request->getDTO());
+            $this->articleService->update($article->id, $request->getDTO());
         } catch (Exception $e) {
 
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);

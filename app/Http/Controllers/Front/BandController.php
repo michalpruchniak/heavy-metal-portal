@@ -3,19 +3,15 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
-use App\Services\Interfaces\BandServiceInterface;
+use App\Models\Band;
 use Inertia\Inertia;
 use Inertia\Response;
 
 class BandController extends Controller
 {
-    public function __construct(
-        private BandServiceInterface $bandService
-    ) {}
-
-    public function show(string $band): Response
+    public function show(Band $band): Response
     {
-        $band = $this->bandService->firstOrFail(where: ['slug' => $band], relationships: ['albums', 'people']);
+        $band->load(['albums', 'people']);
 
         return Inertia::render('frontend/bands/show', ['band' => $band]);
 

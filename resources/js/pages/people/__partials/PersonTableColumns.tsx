@@ -1,11 +1,16 @@
-import DefaultImg from '@/components/Atoms/Img/default.jpg';
+import DefaultImg from '@img/common/default-featured-image.jpg';
+
 import ButtonLink from '@/components/Button/ButtonLink';
+import PermissionEnum from '@/enums/PermissionEnum';
 import useTranslation from '@/hooks/use-translate';
+import usePermissions from '@/hooks/usePermissions';
 import { Person } from '@/types';
 import { TableColumn } from 'react-data-table-component';
 
 const PersonTableColumns = (): TableColumn<Person>[] => {
     const { buttons, labels } = useTranslation();
+    const { hasPermission } = usePermissions();
+
     return [
         {
             name: labels.id,
@@ -27,11 +32,12 @@ const PersonTableColumns = (): TableColumn<Person>[] => {
         },
         {
             name: labels.edit,
-            cell: (row: Person) => (
-                <ButtonLink variant="secondary" url={route('people.edit', { person: row.id })}>
-                    {buttons.edit}
-                </ButtonLink>
-            ),
+            cell: (row: Person) =>
+                hasPermission(PermissionEnum.PEOPLE_EDIT) && (
+                    <ButtonLink variant="secondary" url={route('people.edit', { person: row.id })}>
+                        {buttons.edit}
+                    </ButtonLink>
+                ),
         },
     ];
 };

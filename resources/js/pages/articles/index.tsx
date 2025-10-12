@@ -1,7 +1,9 @@
 import ButtonLink from '@/components/Button/ButtonLink';
 
 import Table from '@/components/Table/Table';
+import PermissionEnum from '@/enums/PermissionEnum';
 import useTranslation from '@/hooks/use-translate';
+import usePermissions from '@/hooks/usePermissions';
 import AppLayout from '@/layouts/app-layout';
 import { Article, IndexPageArticlesProps } from '@/types';
 import { Head } from '@inertiajs/react';
@@ -9,6 +11,7 @@ import ArticlesTableColumns from './__partials/components/ArticlesTableColumns';
 
 export default function Index({ articles }: IndexPageArticlesProps) {
     const { labels, buttons, placeholders } = useTranslation();
+    const { hasPermission } = usePermissions();
 
     const breadcrumbs = [
         {
@@ -22,11 +25,14 @@ export default function Index({ articles }: IndexPageArticlesProps) {
             <Head title={labels.articles} />
             <div className="flex h-full flex-1 flex-col gap-4 rounded-xl p-4">
                 <h1 className="text-center text-[45px]">{labels.articles}</h1>
-                <div className="flex justify-end">
-                    <ButtonLink url={route('articles.create')} variant="primary">
-                        {buttons.add_new_article}
-                    </ButtonLink>
-                </div>
+                {hasPermission(PermissionEnum.ARTICLES_CREATE) && (
+                    <div className="flex justify-end">
+                        <ButtonLink url={route('articles.create')} variant="primary">
+                            {buttons.add_new_article}
+                        </ButtonLink>
+                    </div>
+                )}
+
                 <Table<Article>
                     filterField="title"
                     placeholderFilteredInput={placeholders.search_by_title}

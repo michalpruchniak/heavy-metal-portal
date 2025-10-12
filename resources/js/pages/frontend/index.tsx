@@ -9,15 +9,9 @@ import MainArticles from '../mainArticles/MainArticles';
 export default function Index({ albums, events, articles }: AlbumsIndexProps) {
     return (
         <FrontLayout>
-            <div className="dark:bg-dark-500 min-h-[280px] w-full bg-black text-white">
-                <MainArticles articles={articles} />
-            </div>
-            <div className="mx-auto max-w-6xl py-5">
-                <AlbumsSlider albums={albums} />
-            </div>
-            <div className="flex-flex-col mx-auto max-w-6xl py-5">
-                <EventCalendar events={events} />
-            </div>
+            <MainArticles articles={articles} />
+            <AlbumsSlider albums={albums} />
+            <EventCalendar events={events} />
         </FrontLayout>
     );
 }

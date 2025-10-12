@@ -36,13 +36,6 @@ class Album extends Model
         return $this->belongsTo(Publisher::class);
     }
 
-    public function getSlugOptions(): SlugOptions
-    {
-        return SlugOptions::create()
-            ->generateSlugsFrom('name')
-            ->saveSlugsTo('slug');
-    }
-
     public function toSearchableArray(): array
     {
         $this->loadMissing('band');
@@ -51,5 +44,17 @@ class Album extends Model
             'name' => $this->name,
             'band_name' => $this->band?->name,
         ];
+    }
+
+    public function getSlugOptions(): SlugOptions
+    {
+        return SlugOptions::create()
+            ->generateSlugsFrom('name')
+            ->saveSlugsTo('slug');
+    }
+
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
     }
 }

@@ -10,6 +10,7 @@ The project is purely etesting, and its main purpose was to demonstrate my progr
 - Laravel 12
 - sqlite (in developer version)
 - Inertia
+- Meilisearch
 - React
 - TipTap
 - React Select
@@ -44,19 +45,36 @@ composer install
 npm install
 ```
 
-4. Run migrations and seeder
+3. Run Meilisearch
+   Meilisearch is required for correct work this system. More you can read [here](https://www.meilisearch.com/docs/learn/self_hosted/install_meilisearch_locally)
+
+```
+# Install Meilisearch
+curl -L https://install.meilisearch.com | sh
+
+# Launch Meilisearch
+./meilisearch
+```
+
+4. Create database
+
+```
+touch database/database.sqlite
+```
+
+5. Run migrations and seeder
 
 ```
 php artisan migrate --seed
 ```
 
-5. Generate new key
+6. Generate new key
 
 ```
 php artisan key:generate
 ```
 
-6. Run the project
+7. Run the project
 
 ```
 composer run dev

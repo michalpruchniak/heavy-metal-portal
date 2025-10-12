@@ -7,7 +7,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 
 const EventCalendar = ({ events }: { events: EventsByDate }) => {
     return (
-        <>
+        <div className="flex-flex-col mx-auto max-w-6xl py-5">
             <Swiper
                 slidesPerView={4}
                 spaceBetween={10}
@@ -37,7 +37,7 @@ const EventCalendar = ({ events }: { events: EventsByDate }) => {
                                 <div className="flex !h-[320px] flex-col gap-2 overflow-auto">
                                     {dayEvents.map((event) => {
                                         return (
-                                            <Link href={route('event.show', { event: event.id })}>
+                                            <Link href={route('event.show', { event: event.slug })}>
                                                 <div className="bg-light-100 dark:bg-dark-100 border-primary-200 border-l border-l-2 p-2 hover:border-l-4">
                                                     <strong>{event.name}</strong>
                                                     {event?.description && <div dangerouslySetInnerHTML={{ __html: event.description }} />}
@@ -60,7 +60,7 @@ const EventCalendar = ({ events }: { events: EventsByDate }) => {
                     →
                 </button>
             </div>
-        </>
+        </div>
     );
 };
 

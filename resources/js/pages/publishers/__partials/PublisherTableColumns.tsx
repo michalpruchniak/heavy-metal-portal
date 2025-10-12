@@ -1,11 +1,15 @@
-import DefaultImg from '@/components/Atoms/Img/default.jpg';
 import ButtonLink from '@/components/Button/ButtonLink';
+import PermissionEnum from '@/enums/PermissionEnum';
 import useTranslation from '@/hooks/use-translate';
+import usePermissions from '@/hooks/usePermissions';
 import { Publisher } from '@/types';
+import DefaultImg from '@img/common/default-featured-image.jpg';
 import { TableColumn } from 'react-data-table-component';
 
 const PublisherTableColumns = (): TableColumn<Publisher>[] => {
     const { buttons, labels } = useTranslation();
+    const { hasPermission } = usePermissions();
+
     return [
         {
             name: labels.id,
@@ -27,11 +31,12 @@ const PublisherTableColumns = (): TableColumn<Publisher>[] => {
         },
         {
             name: labels.edit,
-            cell: (row: Publisher) => (
-                <ButtonLink variant="secondary" url={route('publishers.edit', { publisher: row.id })}>
-                    {buttons.edit}
-                </ButtonLink>
-            ),
+            cell: (row: Publisher) =>
+                hasPermission(PermissionEnum.PUBLISHERS_EDIT) && (
+                    <ButtonLink variant="secondary" url={route('publishers.edit', { publisher: row.id })}>
+                        {buttons.edit}
+                    </ButtonLink>
+                ),
         },
     ];
 };

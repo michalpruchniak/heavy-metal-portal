@@ -2,21 +2,38 @@
 
 namespace App\Http\Controllers\Panel;
 
+use App\Enums\PermissionEnum;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PersonRequest;
 use App\Services\Interfaces\PersonServiceInterface;
+use App\Traits\SharePermissions;
 use Exception;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Cache;
 use Inertia\Inertia;
 use Inertia\Response;
 
 class PersonController extends Controller
 {
-    public function __construct(private readonly PersonServiceInterface $personService) {}
+    use SharePermissions;
+
+    public function __construct(private readonly PersonServiceInterface $personService)
+    {
+
+        $this->authorizePermissions(
+            [
+                PermissionEnum::PEOPLE_INDEX->value => ['index'],
+                PermissionEnum::PEOPLE_CREATE->value => ['create', 'store'],
+                PermissionEnum::PEOPLE_EDIT->value => ['edit', 'update'],
+            ]
+        );
+    }
 
     public function index(): Response
     {
-        $people = $this->personService->getAll();
+        $people = Cache::remember('people_all', config('settings.cookies_expires'), function () {
+            return $this->personService->getAll();
+        });
 
         return Inertia::render('people/index', [
             'people' => $people,

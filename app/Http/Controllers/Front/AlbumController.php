@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Models\Album;
 use App\Services\Interfaces\AlbumServiceInterface;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -13,12 +14,12 @@ class AlbumController extends Controller
         private AlbumServiceInterface $albumService,
     ) {}
 
-    public function show(string $album): Response
+    public function show(Album $album): Response
     {
-        $singleAlbum = $this->albumService->firstOrFail(where: ['slug' => $album], relationships: ['band', 'publisher']);
-        $otherAlbumsThisBand = $this->albumService->otherAlbumsThisBand(band: $singleAlbum->band_id);
+        $album->load(['band', 'publisher']);
+        $otherAlbumsThisBand = $this->albumService->otherAlbumsThisBand(band: $album->band_id);
 
-        return Inertia::render('frontend/albums/show', ['album' => $singleAlbum, 'albums' => $otherAlbumsThisBand]);
+        return Inertia::render('frontend/albums/show', ['album' => $album, 'albums' => $otherAlbumsThisBand]);
 
     }
 }

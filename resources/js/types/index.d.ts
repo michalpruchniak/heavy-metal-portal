@@ -1,5 +1,6 @@
 import messageVariant from '@/components/Message/__partials/constants/messageVariant';
 import ResultsVariants from '@/components/Search/__partials/components/constants/resultsType';
+import PermissionEnum from '@/enums/PermissionEnum';
 import { Album } from '@/pages/albums/__types/types';
 import singleArticleVariants from '@/pages/mainArticles/__partials/constants/singleArticleVariants';
 import type { PageProps as InertiaPageProps } from '@inertiajs/core';
@@ -27,6 +28,7 @@ export interface NavItem {
     href: string;
     icon?: LucideIcon | null;
     isActive?: boolean;
+    permission: PermissionEnum;
 }
 
 export interface SharedData {
@@ -57,6 +59,7 @@ export interface Band {
     still_active?: boolean | null;
     people?: Person[];
     albums?: Album[];
+    slug: string;
     created_at: string;
     updated_at: string;
     [key: string]: string | unknown | boolean | undefined;
@@ -87,6 +90,7 @@ export interface Article {
 export interface Album {
     id: number;
     band_id: number;
+    band_slug: string;
     name: string;
     cover?: string;
     description?: string;
@@ -100,6 +104,7 @@ export interface Album {
 export interface bandAlbums {
     name: string;
     id: number;
+    slug: string;
     albums: Album[];
 }
 
@@ -252,7 +257,7 @@ export interface AlbumElementProps {
 }
 
 export interface AlbumProps {
-    bandId?: number;
+    band?: Band;
     album?: Album;
 }
 
@@ -406,9 +411,24 @@ export interface ButtonVariant {
 }
 
 export interface ButtonVariants {
-    primary: ButtonVariant;
-    secondary: ButtonVariant;
-    link: ButtonVariant;
+    primary: {
+        className: string;
+        isActive: string;
+    };
+    secondary: {
+        className: string;
+        isActive: string;
+    };
+    link: {
+        className: string;
+        isActive: string;
+    };
+}
+
+export interface messageVariants {
+    error: {
+        className: string;
+    };
 }
 
 export interface ButtonProps {
@@ -502,7 +522,7 @@ export interface ButtonTypes {
     link: string;
 }
 
-type SingleArticleTypes = {
+export type SingleArticleTypes = {
     main: {
         className: string;
     };

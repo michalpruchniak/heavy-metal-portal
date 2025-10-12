@@ -38,14 +38,14 @@ test('Method getAll exists', function () {
     expect(method_exists($this->personService, 'getAll'))->toBeTrue();
 });
 
-test('PersonService return correct collection', function () {
+test('PersonService returns correct collection', function () {
     $expectedCollection = new Collection(($this->makePersonDTOs)(3));
     $wrongCollection = new Collection(($this->makePersonDTOs)(3));
 
     $this->personRepositoryMock
         ->shouldReceive('get')
         ->once()
-        ->with([], ['created_at' => 'desc'])
+        ->with([], [], ['created_at' => 'desc'])
         ->andReturn($expectedCollection);
 
     $result = $this->personService->getAll();

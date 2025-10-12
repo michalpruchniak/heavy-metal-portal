@@ -47,4 +47,9 @@ class Person extends Model
             ->generateSlugsFrom('name')
             ->saveSlugsTo('slug');
     }
+
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
+    }
 }

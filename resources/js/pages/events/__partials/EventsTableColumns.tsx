@@ -1,11 +1,15 @@
-import DefaultImg from '@/components/Atoms/Img/default.jpg';
 import ButtonLink from '@/components/Button/ButtonLink';
+import PermissionEnum from '@/enums/PermissionEnum';
 import useTranslation from '@/hooks/use-translate';
+import usePermissions from '@/hooks/usePermissions';
 import { Event } from '@/types';
+import DefaultImg from '@img/common/default-featured-image.jpg';
 import { TableColumn } from 'react-data-table-component';
 
 const EventsTableColumns = (): TableColumn<Event>[] => {
     const { buttons, labels } = useTranslation();
+    const { hasPermission } = usePermissions();
+
     return [
         {
             name: labels.id,
@@ -23,11 +27,12 @@ const EventsTableColumns = (): TableColumn<Event>[] => {
         },
         {
             name: labels.edit,
-            cell: (row: Event) => (
-                <ButtonLink variant="secondary" url={route('events.edit', { event: row.id })}>
-                    {buttons.edit}
-                </ButtonLink>
-            ),
+            cell: (row: Event) =>
+                hasPermission(PermissionEnum.EVENTS_EDIT) && (
+                    <ButtonLink variant="secondary" url={route('events.edit', { event: row.id })}>
+                        {buttons.edit}
+                    </ButtonLink>
+                ),
         },
     ];
 };

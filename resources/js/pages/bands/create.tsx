@@ -34,7 +34,7 @@ const Create = ({ band }: BandProps) => {
     });
 
     const sendRequest = () => {
-        const targetRoute = band ? route('bands.update', { band: band.id }) : route('bands.store');
+        const targetRoute = band ? route('bands.update', { band: band.slug }) : route('bands.store');
 
         post(targetRoute, {
             preserveScroll: true,

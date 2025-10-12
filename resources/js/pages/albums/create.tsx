@@ -10,7 +10,7 @@ import { AlbumFormData, AlbumProps, PageProps } from '@/types';
 import { Head, useForm, usePage } from '@inertiajs/react';
 import { FormEvent } from 'react';
 
-const Create = ({ bandId, album }: AlbumProps) => {
+const Create = ({ band, album }: AlbumProps) => {
     const { labels, placeholders, buttons } = useTranslation();
     const { publishersOptions = [] } = usePage<PageProps>().props;
     const breadcrumbs = [
@@ -20,7 +20,7 @@ const Create = ({ bandId, album }: AlbumProps) => {
         },
         {
             title: album ? labels.update_album : labels.create_album,
-            href: album ? route('albums.edit', { band: bandId, album: album.id }) : route('bands.create', { band: bandId }),
+            href: album ? route('bands.albums.edit', { band: band?.slug, album: album.slug }) : route('bands.create', { band: band?.slug }),
         },
     ];
     const { data, setData, processing, post, errors } = useForm<AlbumFormData>({
@@ -28,12 +28,15 @@ const Create = ({ bandId, album }: AlbumProps) => {
         description: typeof album?.description === 'string' ? album.description : '',
         release_date: typeof album?.release_date === 'string' ? album.release_date : '',
         cover: null,
-        band_id: bandId,
+        band_id: band?.id,
         publisher_id: typeof album?.publisher_id === 'number' ? album.publisher_id : null,
         _method: album?.id ? 'PUT' : 'POST',
     });
+
     const sendRequest = () => {
-        const targetRoute = album ? route('albums.update', { album: album.id }) : route('albums.store');
+        const targetRoute = album
+            ? route('bands.albums.update', { band: band?.slug, album: album.slug })
+            : route('bands.albums.store', { band: band?.slug });
 
         post(targetRoute, {
             preserveScroll: true,
