@@ -27,11 +27,12 @@ const EventsTableColumns = (): TableColumn<Event>[] => {
         },
         {
             name: labels.edit,
-            cell: (row: Event) => hasPermission(PermissionEnum.EVENTS_EDIT) && (
-                <ButtonLink variant="secondary" url={route('events.edit', { event: row.id })}>
-                    {buttons.edit}
-                </ButtonLink>
-            ),
+            cell: (row: Event) =>
+                hasPermission(PermissionEnum.EVENTS_EDIT) && (
+                    <ButtonLink variant="secondary" url={route('events.edit', { event: row.id })}>
+                        {buttons.edit}
+                    </ButtonLink>
+                ),
         },
     ];
 };

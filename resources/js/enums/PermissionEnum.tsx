@@ -22,6 +22,6 @@ enum PermissionEnum {
     ARTICLES_INDEX = 'articles.index',
     ARTICLES_CREATE = 'articles.create',
     ARTICLES_EDIT = 'articles.edit',
-  }
+}
 
-  export default PermissionEnum;
+export default PermissionEnum;

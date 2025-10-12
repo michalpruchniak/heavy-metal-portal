@@ -33,10 +33,10 @@ const PublisherTableColumns = (): TableColumn<Publisher>[] => {
             name: labels.edit,
             cell: (row: Publisher) =>
                 hasPermission(PermissionEnum.PUBLISHERS_EDIT) && (
-                <ButtonLink variant="secondary" url={route('publishers.edit', { publisher: row.id })}>
-                    {buttons.edit}
-                </ButtonLink>
-            ),
+                    <ButtonLink variant="secondary" url={route('publishers.edit', { publisher: row.id })}>
+                        {buttons.edit}
+                    </ButtonLink>
+                ),
         },
     ];
 };

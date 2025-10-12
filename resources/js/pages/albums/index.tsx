@@ -1,16 +1,15 @@
 import ButtonLink from '@/components/Button/ButtonLink';
 
 import AlbumElement from '@/components/AlbumElement/AlbumElement';
+import PermissionEnum from '@/enums/PermissionEnum';
 import useTranslation from '@/hooks/use-translate';
+import usePermissions from '@/hooks/usePermissions';
 import AppLayout from '@/layouts/app-layout';
 import { Album, BandAlbumsProps } from '@/types';
 import { Head } from '@inertiajs/react';
-import usePermissions from '@/hooks/usePermissions';
-import PermissionEnum from '@/enums/PermissionEnum';
 
 export default function Index({ bandAlbums }: BandAlbumsProps) {
     const { hasPermission } = usePermissions();
-
 
     const { labels, buttons } = useTranslation();
     const breadcrumbs = [
@@ -32,11 +31,13 @@ export default function Index({ bandAlbums }: BandAlbumsProps) {
             <Head title="Albums" />
             <div className="flex h-full flex-1 flex-col gap-4 rounded-xl p-4">
                 <h1 className="text-center text-[45px]">{labels.albums}</h1>
-                {hasPermission(PermissionEnum.ALBUMS_CREATE) &&                <div className="flex justify-end">
-                    <ButtonLink url={route('bands.albums.create', { band: bandAlbums.slug })} variant="primary">
-                        {buttons.add_new_album}
-                    </ButtonLink>
-                </div>}
+                {hasPermission(PermissionEnum.ALBUMS_CREATE) && (
+                    <div className="flex justify-end">
+                        <ButtonLink url={route('bands.albums.create', { band: bandAlbums.slug })} variant="primary">
+                            {buttons.add_new_album}
+                        </ButtonLink>
+                    </div>
+                )}
                 <div className="flex flex-wrap gap-4">
                     {bandAlbums.albums.map((album: Album) => {
                         return (

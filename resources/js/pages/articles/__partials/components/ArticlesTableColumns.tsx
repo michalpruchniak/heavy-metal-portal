@@ -27,11 +27,12 @@ const ArticlesTableColumns = (): TableColumn<Article>[] => {
         },
         {
             name: labels.edit,
-            cell: (row: Article) => hasPermission(PermissionEnum.ARTICLES_EDIT) && (
-                <ButtonLink variant="secondary" url={route('articles.edit', { article: row.slug })}>
-                    {buttons.edit}
-                </ButtonLink>
-            ),
+            cell: (row: Article) =>
+                hasPermission(PermissionEnum.ARTICLES_EDIT) && (
+                    <ButtonLink variant="secondary" url={route('articles.edit', { article: row.slug })}>
+                        {buttons.edit}
+                    </ButtonLink>
+                ),
         },
     ];
 };

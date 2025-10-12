@@ -29,21 +29,19 @@ const BandsTableColumns = (): TableColumn<Band>[] => {
             name: labels.albums,
             cell: (row: Band) =>
                 hasPermission(PermissionEnum.ALBUMS_INDEX) && (
-                    <ButtonLink
-                        variant="primary"
-                        url={route('bands.albums.index', { band: row.slug })}
-                    >
+                    <ButtonLink variant="primary" url={route('bands.albums.index', { band: row.slug })}>
                         {buttons.albums}
                     </ButtonLink>
                 ),
         },
         {
             name: labels.edit,
-            cell: (row: Band) => hasPermission(PermissionEnum.BANDS_EDIT)&&(
-                <ButtonLink variant="secondary" url={route('bands.edit', { band: row.slug })}>
-                    {buttons.edit}
-                </ButtonLink>
-            ),
+            cell: (row: Band) =>
+                hasPermission(PermissionEnum.BANDS_EDIT) && (
+                    <ButtonLink variant="secondary" url={route('bands.edit', { band: row.slug })}>
+                        {buttons.edit}
+                    </ButtonLink>
+                ),
         },
     ];
 };
