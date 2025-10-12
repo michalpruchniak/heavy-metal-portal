@@ -78,6 +78,8 @@ php artisan key:generate
 
 ```
 composer run dev
+./meilisearch
+php artisan queue:work
 ```
 
 And now you can go to **localhost:8000**.
