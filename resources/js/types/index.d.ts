@@ -268,8 +268,8 @@ export interface BandAlbumsProps {
 export interface AlbumFrontPage {
     albums: {
         data: Album[];
-        links: PaginateLinks[]
-      };
+        links: PaginateLinks[];
+    };
 }
 
 export interface BandProps {
@@ -465,7 +465,7 @@ export interface DatePickerProps {
 }
 export type EventsByDate = Record<string, Event[]>;
 
-export interface PaginationProps{
+export interface PaginationProps {
     links: PaginateLinks[];
 }
 
@@ -474,7 +474,7 @@ export interface PaginationProps{
 export interface PaginateLinks {
     active: boolean;
     label: string;
-    url: string|null;
+    url: string | null;
 }
 
 export interface Option {

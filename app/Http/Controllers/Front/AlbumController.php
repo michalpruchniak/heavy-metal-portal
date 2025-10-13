@@ -16,7 +16,7 @@ class AlbumController extends Controller
 
     public function index(): Response
     {
-        $albums = $this->albumService->getall(paginate:50);
+        $albums = $this->albumService->getall(paginate: 50);
 
         return Inertia::render('frontend/albums/index', ['albums' => $albums]);
 

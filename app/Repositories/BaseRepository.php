@@ -39,7 +39,7 @@ abstract class BaseRepository implements BaseRepositoryInterface
         if ($limit) {
             $query->limit($limit);
         }
-        if($paginate){
+        if ($paginate) {
             return $query->paginate($paginate);
         }
 
