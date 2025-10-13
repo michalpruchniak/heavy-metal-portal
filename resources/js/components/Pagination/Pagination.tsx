@@ -11,9 +11,8 @@ const Pagination = ({ links }: PaginationProps) => {
                     className={`rounded border px-3 py-1 transition ${
                         link.active ? 'bg-primary-500 border-primary-500 text-white' : 'bg-white text-gray-700 hover:bg-gray-100'
                     } ${!link.url ? 'pointer-events-none cursor-not-allowed opacity-50' : ''}`}
-                >
-                    {link.label}
-                </Link>
+                    dangerouslySetInnerHTML={{ __html: link.label }}
+                />
             ))}
         </div>
     );

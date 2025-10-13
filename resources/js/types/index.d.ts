@@ -219,6 +219,10 @@ export interface SingleArticleComponentProps {
     variant: keyof typeof singleArticleVariants;
 }
 
+export interface ArticleElementComponentProps {
+    article: Article;
+}
+
 export interface PeopleListProps {
     people: Person[];
 }
@@ -268,6 +272,13 @@ export interface BandAlbumsProps {
 export interface AlbumFrontPage {
     albums: {
         data: Album[];
+        links: PaginateLinks[];
+    };
+}
+
+export interface ArticleFrontPage {
+    articles: {
+        data: Article[];
         links: PaginateLinks[];
     };
 }

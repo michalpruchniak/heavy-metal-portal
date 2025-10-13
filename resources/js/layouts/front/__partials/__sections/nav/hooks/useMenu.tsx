@@ -11,6 +11,10 @@ const useMenu = (): MenuElement[] => {
             label: 'Albums',
             url: route('album.index'),
         },
+        {
+            label: 'Articles',
+            url: route('article.index'),
+        },
     ];
 };
 
