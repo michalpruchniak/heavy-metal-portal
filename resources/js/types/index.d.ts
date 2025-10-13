@@ -265,6 +265,13 @@ export interface BandAlbumsProps {
     bandAlbums: bandAlbums;
 }
 
+export interface AlbumFrontPage {
+    albums: {
+        data: Album[];
+        links: PaginateLinks[]
+      };
+}
+
 export interface BandProps {
     band?: Band;
 }
@@ -458,7 +465,18 @@ export interface DatePickerProps {
 }
 export type EventsByDate = Record<string, Event[]>;
 
+export interface PaginationProps{
+    links: PaginateLinks[];
+}
+
 // ----------------- Utility typy -----------------
+
+export interface PaginateLinks {
+    active: boolean;
+    label: string;
+    url: string|null;
+}
+
 export interface Option {
     value: string;
     label: string;

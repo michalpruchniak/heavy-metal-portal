@@ -8,8 +8,8 @@ const useMenu = (): MenuElement[] => {
             url: route('home'),
         },
         {
-            label: 'Test',
-            url: '#',
+            label: 'Albums',
+            url: route('album.index'),
         },
     ];
 };
