@@ -7,6 +7,7 @@ use App\Models\Article;
 use App\Repositories\Interfaces\ArticleRepositoryInterface;
 use App\Services\Interfaces\ArticleServiceInerface;
 use App\Services\Interfaces\FileUploadServiceInterface;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 
 class ArticleService implements ArticleServiceInerface
@@ -18,9 +19,9 @@ class ArticleService implements ArticleServiceInerface
         private readonly ArticleRepositoryInterface $articleRepository
     ) {}
 
-    public function getAll(array $order = ['created_at' => 'desc'], $limit = null): Collection
+    public function getAll(?array $order = ['created_at' => 'desc'], ?int $paginate = null, ?int $limit = null): Collection|LengthAwarePaginator
     {
-        return $this->articleRepository->get(order: $order, limit: $limit);
+        return $this->articleRepository->get(order: $order, paginate: $paginate);
     }
 
     public function create(ArticleDTO $articleDTO): Article

@@ -17,5 +17,6 @@ Route::get('band/{band}', [BandController::class, 'show'])->name('band.show');
 Route::get('person/{person}', [PersonController::class, 'show'])->name('person.show');
 Route::get('event/{event}', [EventController::class, 'show'])->name('event.show');
 Route::get('article/{article}', [ArticleController::class, 'show'])->name('article.show');
+Route::get('articles', [ArticleController::class, 'index'])->name('article.index');
 
 Route::get('search/{text}', [SearchController::class, 'search'])->name('search');
