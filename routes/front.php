@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'Home'])
     ->name('home');
+Route::get('albums', [AlbumController::class, 'index'])->name('album.index');
 Route::get('album/{album}', [AlbumController::class, 'show'])->name('album.show');
 Route::get('band/{band}', [BandController::class, 'show'])->name('band.show');
 Route::get('person/{person}', [PersonController::class, 'show'])->name('person.show');

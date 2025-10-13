@@ -7,6 +7,7 @@ use App\Models\Album;
 use App\Repositories\Interfaces\AlbumRepositoryInterface;
 use App\Services\Interfaces\AlbumServiceInterface;
 use App\Services\Interfaces\FileUploadServiceInterface;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Collection;
 
 class AlbumService implements AlbumServiceInterface
@@ -17,9 +18,9 @@ class AlbumService implements AlbumServiceInterface
 
     ) {}
 
-    public function getAll(array $order = ['created_at' => 'desc'], int $limit = 20): Collection
+    public function getAll(?array $order = ['created_at' => 'desc'], ?int $paginate = null): Collection|LengthAwarePaginator
     {
-        return $this->albumRepository->get(order: $order, limit: $limit);
+        return $this->albumRepository->get(order: $order, paginate: $paginate);
     }
 
     public function otherAlbumsThisBand(int $band, ?array $order = [], ?array $relationships = [], ?int $limit = 10)

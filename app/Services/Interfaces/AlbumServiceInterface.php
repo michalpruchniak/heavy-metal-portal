@@ -4,13 +4,14 @@ namespace App\Services\Interfaces;
 
 use App\DTO\AlbumDTO;
 use App\Models\Album;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 
 interface AlbumServiceInterface
 {
     const ALBUM_CATALOG_COVER_DIRECTORY = 'album/cover';
 
-    public function getAll(array $order = ['created_at' => 'desc'], int $limit = 20): Collection;
+    public function getAll(?array $order = ['created_at' => 'desc'], ?int $paginate = null): Collection|LengthAwarePaginator;
 
     public function otherAlbumsThisBand(int $band, ?array $order = [], ?array $relationships = [], ?int $limit = 10);
 

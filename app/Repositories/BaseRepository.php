@@ -17,7 +17,7 @@ abstract class BaseRepository implements BaseRepositoryInterface
      *
      * @return \Illuminate\Database\Eloquent\Collection
      */
-    public function get(array $where = [], array $between = [], array $order = [], array $relationships = [], ?int $limit = null)
+    public function get(array $where = [], array $between = [], array $order = [], array $relationships = [], ?int $limit = null, ?int $paginate = null)
     {
         $query = $this->model->newQuery();
 
@@ -38,6 +38,9 @@ abstract class BaseRepository implements BaseRepositoryInterface
         }
         if ($limit) {
             $query->limit($limit);
+        }
+        if ($paginate) {
+            return $query->paginate($paginate);
         }
 
         return $query->get();

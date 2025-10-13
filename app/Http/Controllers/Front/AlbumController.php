@@ -14,6 +14,14 @@ class AlbumController extends Controller
         private AlbumServiceInterface $albumService,
     ) {}
 
+    public function index(): Response
+    {
+        $albums = $this->albumService->getall(paginate: 50);
+
+        return Inertia::render('frontend/albums/index', ['albums' => $albums]);
+
+    }
+
     public function show(Album $album): Response
     {
         $album->load(['band', 'publisher']);
