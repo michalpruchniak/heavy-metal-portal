@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Panel;
 use App\Enums\PermissionEnum;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PersonRequest;
+use App\Models\Person;
 use App\Services\Interfaces\PersonServiceInterface;
 use App\Traits\SharePermissions;
 use Exception;
@@ -56,10 +57,8 @@ class PersonController extends Controller
         return redirect()->route('people.index')->with('success', 'Person created successfully');
     }
 
-    public function edit(int $person): Response
+    public function edit(Person $person): Response
     {
-        $person = $this->personService->findOrFail($person);
-
         return Inertia::render('people/create', [
             'person' => $person,
         ]);

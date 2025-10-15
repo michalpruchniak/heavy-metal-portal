@@ -8,7 +8,7 @@ enum PersonTypeEnum: string
 {
     use EnumHelper;
 
-    case ARTIS = 'artist';
+    case ARTIST = 'artist';
     case STAFF = 'staff';
     case NONE = 'none';
 }

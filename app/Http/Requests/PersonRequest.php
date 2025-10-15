@@ -27,7 +27,7 @@ class PersonRequest extends FormRequest
         return [
             'name' => 'required|string|between:2,100',
             'aka' => 'nullable|string|between:2,150',
-            'DOB' => 'nullable|string|between:50,2000',
+            'bio' => 'nullable|string|between:50,2000',
             'DOB' => 'nullable|date',
             'img' => 'nullable|image|max:1500|image|mimes:jpg,jpeg,png,webp',
             'type' => ['required', 'string', Rule::in(PersonTypeEnum::values())],
