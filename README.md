@@ -83,3 +83,14 @@ php artisan queue:work
 ```
 
 And now you can go to **localhost:8000**.
+
+## Tests
+
+You can run test:
+
+```
+php artisan test
+```
+
+The tests are, however, **incomplete**. This is due to the fact that it is a **demonstration project, done outside of working hours**.
+![Tests](screens/screen2.png)

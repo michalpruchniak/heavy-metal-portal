@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Casts\ImageUrlCast;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Laravel\Scout\Searchable;
@@ -11,7 +12,7 @@ use Spatie\Sluggable\SlugOptions;
 
 class Person extends Model
 {
-    use HasSlug, Searchable;
+    use HasFactory, HasSlug, Searchable;
 
     protected $fillable = [
         'name',
@@ -33,11 +34,10 @@ class Person extends Model
 
     public function toSearchableArray(): array
     {
-        $this->loadMissing('band');
+        $this->loadMissing('bands');
 
         return [
             'name' => $this->name,
-            'band_name' => $this->band?->name,
         ];
     }
 

@@ -25,27 +25,24 @@ trait CreateRolesAndPermissions
         PermissionEnum::ALBUMS_CREATE->value,
         PermissionEnum::ALBUMS_EDIT->value,
 
-        PermissionEnum::EVENTS_INDEX->value,
-        PermissionEnum::EVENTS_CREATE->value,
-        PermissionEnum::EVENTS_EDIT->value,
-
         PermissionEnum::ARTICLES_INDEX->value,
         PermissionEnum::ARTICLES_CREATE->value,
         PermissionEnum::ARTICLES_EDIT->value,
     ];
 
-    private array $adminPermissions = [];
+    private array $adminPermissions = [
+        PermissionEnum::EVENTS_INDEX->value,
+        PermissionEnum::EVENTS_CREATE->value,
+        PermissionEnum::EVENTS_EDIT->value,
+    ];
 
     private array $defaultRolesPermissions = [];
 
-    public function __construct()
+    private function initRolesAndPermissions(): void
     {
-        $this->adminPermissions = array_merge(
-            $this->moderatorPermissions,
-            [
+        $this->adminPermissions = array_merge($this->moderatorPermissions, [
+        ]);
 
-            ]
-        );
         $this->defaultRolesPermissions = [
             'admin' => $this->adminPermissions,
             'moderator' => $this->moderatorPermissions,
@@ -54,6 +51,8 @@ trait CreateRolesAndPermissions
 
     public function createDefaultRolesAndPermissions(): void
     {
+        $this->initRolesAndPermissions();
+
         foreach ($this->defaultRolesPermissions as $role => $permissions) {
             $roleModel = Role::firstOrCreate(['name' => $role]);
 
