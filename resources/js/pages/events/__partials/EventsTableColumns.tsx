@@ -22,6 +22,11 @@ const EventsTableColumns = (): TableColumn<Event>[] => {
             sortable: true,
         },
         {
+            name: labels.date,
+            selector: (row: Event) => row.date,
+            sortable: true,
+        },
+        {
             name: labels.cover,
             cell: (row: Event) => <img src={row.cover ?? DefaultImg} alt="Logo" className="h-10 w-10 object-contain" />,
         },
@@ -29,7 +34,7 @@ const EventsTableColumns = (): TableColumn<Event>[] => {
             name: labels.edit,
             cell: (row: Event) =>
                 hasPermission(PermissionEnum.EVENTS_EDIT) && (
-                    <ButtonLink variant="secondary" url={route('events.edit', { event: row.id })}>
+                    <ButtonLink variant="secondary" url={route('events.edit', { event: row.slug })}>
                         {buttons.edit}
                     </ButtonLink>
                 ),

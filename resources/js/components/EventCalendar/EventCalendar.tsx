@@ -25,10 +25,10 @@ const EventCalendar = ({ events }: { events: EventsByDate }) => {
                 }}
                 className="min-h-[200px] pb-12"
             >
-                {Object.entries(events).map(([date, dayEvents]) => {
+                {Object.entries(events).map(([date, dayEvents], index) => {
                     const [year, month, day] = date.split('-');
                     return (
-                        <SwiperSlide>
+                        <SwiperSlide key={index}>
                             <div className="border-light-400 h-[400px] border p-2">
                                 <h4 className="text-[32px] font-bold">
                                     <span className="text-primary-500">{day}</span>.
@@ -37,10 +37,9 @@ const EventCalendar = ({ events }: { events: EventsByDate }) => {
                                 <div className="flex !h-[320px] flex-col gap-2 overflow-auto">
                                     {dayEvents.map((event) => {
                                         return (
-                                            <Link href={route('event.show', { event: event.slug })}>
+                                            <Link key={event.id} href={route('event.show', { event: event.slug })}>
                                                 <div className="bg-light-100 dark:bg-dark-100 border-primary-200 border-l border-l-2 p-2 hover:border-l-4">
                                                     <strong>{event.name}</strong>
-                                                    {event?.description && <div dangerouslySetInnerHTML={{ __html: event.description }} />}
                                                 </div>
                                             </Link>
                                         );
